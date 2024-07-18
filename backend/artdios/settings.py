@@ -61,7 +61,7 @@ ROOT_URLCONF = "artdios.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'store', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,5 +149,5 @@ CORS_ORIGIN_WHITELIST = [
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'store','static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
