@@ -27,6 +27,7 @@ class ProductType(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     parent = models.ForeignKey(ProductType, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
 
@@ -42,6 +43,7 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     parent = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
     discount = models.IntegerField(null=True, blank=True)
@@ -61,6 +63,7 @@ class SubCategory(models.Model):
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=300, unique=True)
     description = models.TextField()
@@ -95,6 +98,7 @@ class Characteristic(models.Model):
 
 class Promotion(models.Model):
     name = models.CharField(max_length=255, blank=False)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     description = models.TextField(blank=False)
     is_show = models.BooleanField(default=False, blank=False)
     main_image = models.ImageField(upload_to=upload_promo)
@@ -122,6 +126,7 @@ class PopularProduct(models.Model):
 
 class Gallery(models.Model):
     gallery_id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
     name = models.CharField(max_length=255, blank=False)
     description = models.TextField(blank=False)
     image = models.ImageField(upload_to=upload_gallery)
