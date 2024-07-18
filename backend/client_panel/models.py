@@ -3,10 +3,18 @@ from django.db.models import Index
 
 
 # Create your models here.
+class ProductType(models.Model):
+    name = models.CharField(max_length=255, blank=False, unique=True)
+    is_show = models.BooleanField(default=True, blank=False)
+
+    def __str__(self):
+        return self.name
+    
+    verbose_name = "ProductType"
+    verbose_name_plural = "ProductTypes"
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
-    discount = models.IntegerField(null=True, blank=True)
+    parent = models.ForeignKey(ProductType, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
 
     def __str__(self):
@@ -18,6 +26,22 @@ class Category(models.Model):
         ]
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+
+class SubCategory(models.Model):
+    name = models.CharField(max_length=255, blank=False, unique=True)
+    parent = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    is_show = models.BooleanField(default=True, blank=False)
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        indexes = [
+            Index(fields=['name']),
+            Index(fields=['is_show']),
+        ]
+
+    verbose_name = "SubCategory"
+    verbose_name_plural = "SubCategories"
 
 class Product(models.Model):
     product_id = models.IntegerField(primary_key=True)
