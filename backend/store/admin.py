@@ -11,14 +11,14 @@ class ProductTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'parent', 'is_show']
+    list_display = ['name', 'parent', 'is_show', 'slug']
     search_fields = ['name', 'parent']
     list_filter = ['name']
     ordering = ['name']
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'parent', 'is_show', 'discount']
+    list_display = ['name', 'parent', 'is_show', 'discount', 'slug']
     search_fields = ['name', 'parent']
     list_filter = ['name']
     ordering = ['name']
@@ -26,7 +26,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['product_id', 'category', 'name', 'description', 'price', 'new_price', 'code', 'image']
+    list_display = ['product_id', 'category', 'name', 'description', 'price', 'new_price', 'code', 'image', 'slug']
     search_fields = ['name', 'code']
     list_filter = ['name']
     ordering = ['name']

@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Index
+import slugify
+from transliterate import translit
 
 
 def upload_products(instance, filename):
@@ -27,9 +29,14 @@ class ProductType(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True, blank=True)
     parent = models.ForeignKey(ProductType, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -43,10 +50,15 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True, blank=True)
     parent = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
     discount = models.IntegerField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        super(SubCategory, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -63,7 +75,7 @@ class SubCategory(models.Model):
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
+    slug = models.SlugField(max_length=300, unique=True, db_index=True, null=True, blank=True)
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=300, unique=True)
     description = models.TextField()
@@ -71,6 +83,11 @@ class Product(models.Model):
     new_price = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=255, null=True)
     image = models.ImageField(upload_to=upload_products)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -98,11 +115,16 @@ class Characteristic(models.Model):
 
 class Promotion(models.Model):
     name = models.CharField(max_length=255, blank=False)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True, blank=True)
     description = models.TextField(blank=False)
     is_show = models.BooleanField(default=False, blank=False)
     main_image = models.ImageField(upload_to=upload_promo)
     second_image = models.ImageField(upload_to=upload_promo)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        super(Promotion, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -126,10 +148,15 @@ class PopularProduct(models.Model):
 
 class Gallery(models.Model):
     gallery_id = models.AutoField(primary_key=True)
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True, blank=True)
     name = models.CharField(max_length=255, blank=False)
     description = models.TextField(blank=False)
     image = models.ImageField(upload_to=upload_gallery)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        super(Gallery, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
