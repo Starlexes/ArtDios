@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-
 @admin.register(ProductType)
 class ProductTypeAdmin(admin.ModelAdmin):
     list_display = ['name', 'is_show']
@@ -23,6 +22,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
     search_fields = ['name', 'parent']
     list_filter = ['name']
     ordering = ['name']
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

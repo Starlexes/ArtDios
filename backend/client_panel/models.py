@@ -45,7 +45,8 @@ class SubCategory(models.Model):
         verbose_name = "SubCategory"
         verbose_name_plural = "SubCategories"
 
-    
+
+
 class Product(models.Model):
     product_id = models.IntegerField(primary_key=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
