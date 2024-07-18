@@ -2,6 +2,18 @@ from django.db import models
 from django.db.models import Index
 
 
+def upload_products(instance, filename):
+    return f'products/{instance.category}/{instance.name}/{filename}'
+
+def upload_promo(instance, filename):
+    return f'promotions/{instance.name}/{filename}'
+
+def upload_gallery(instance, filename):
+    return f'gallery/{instance.name}/{filename}'
+
+def upload_pop_product(instance, filename):
+    return f'popular-products/{instance.category}/{filename}'
+
 # Create your models here.
 class ProductType(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
@@ -48,15 +60,14 @@ class SubCategory(models.Model):
 
 
 class Product(models.Model):
-    product_id = models.IntegerField(primary_key=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=300, unique=True, blank=False)
-    description = models.TextField(blank=False)
-    price = models.IntegerField(blank=False)
+    product_id = models.AutoField(primary_key=True)
+    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    name = models.CharField(max_length=300, unique=True)
+    description = models.TextField()
+    price = models.IntegerField()
     new_price = models.IntegerField(null=True, blank=True)
-    code = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to=f'products/{category.name}/{name}/')
-    characteristic = models.ForeignKey('Characteristic', on_delete=models.CASCADE)
+    code = models.CharField(max_length=255, null=True)
+    image = models.ImageField(upload_to=upload_products)
 
     def __str__(self):
         return self.name
@@ -65,12 +76,13 @@ class Product(models.Model):
         indexes = [
             Index(fields=['name']),
             Index(fields=['category']),
-            Index(fields=['characteristic']),
         ]
         verbose_name = "Product"
         verbose_name_plural = "Products"
+        
 class Characteristic(models.Model):
-    char_id = models.IntegerField(primary_key=True)
+    char_id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
     name = models.CharField(max_length=255, blank=False)
     description = models.CharField(max_length=255, blank=False)
 
@@ -85,8 +97,8 @@ class Promotion(models.Model):
     name = models.CharField(max_length=255, blank=False)
     description = models.TextField(blank=False)
     is_show = models.BooleanField(default=False, blank=False)
-    main_image = models.ImageField(upload_to=f'promotions/{name}/main-image/')
-    second_image = models.ImageField(upload_to=f'promotions/{name}/second-image/')
+    main_image = models.ImageField(upload_to=upload_promo)
+    second_image = models.ImageField(upload_to=upload_promo)
 
     def __str__(self):
         return self.name
@@ -98,7 +110,7 @@ class Promotion(models.Model):
 class PopularProduct(models.Model):
     
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=f'popular-products/{category.name}/')
+    image = models.ImageField(upload_to=upload_pop_product)
     is_show = models.BooleanField(default=False, blank=False)
 
     def __str__(self):
@@ -109,10 +121,10 @@ class PopularProduct(models.Model):
         verbose_name_plural = "PopularProducts"
 
 class Gallery(models.Model):
-    gallery_id = models.IntegerField(primary_key=True)
+    gallery_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False)
     description = models.TextField(blank=False)
-    image = models.ImageField(upload_to=f'gallery/{name}/')
+    image = models.ImageField(upload_to=upload_gallery)
 
     def __str__(self):
         return self.name
@@ -120,6 +132,7 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = "Gallery"
         verbose_name_plural = "Gallery"
+
 class Contacts(models.Model):
     opening_hours = models.TimeField()
     closing_hours = models.TimeField()

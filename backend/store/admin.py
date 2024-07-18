@@ -26,8 +26,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    def get_list_display(self, request):
-        return [field.name for field in Product._meta.get_fields()]
+    list_display = ['product_id', 'category', 'name', 'description', 'price', 'new_price', 'code', 'image']
     search_fields = ['name', 'code']
     list_filter = ['name']
     ordering = ['name']
