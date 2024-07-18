@@ -9,9 +9,10 @@ class ProductType(models.Model):
 
     def __str__(self):
         return self.name
-    
-    verbose_name = "ProductType"
-    verbose_name_plural = "ProductTypes"
+    class Meta:
+        verbose_name = "ProductType"
+        verbose_name_plural = "ProductTypes"
+
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
     parent = models.ForeignKey(ProductType, null=True, blank=True, on_delete=models.CASCADE)
@@ -31,6 +32,7 @@ class SubCategory(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
     parent = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
+    discount = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -40,9 +42,10 @@ class SubCategory(models.Model):
             Index(fields=['is_show']),
         ]
 
-    verbose_name = "SubCategory"
-    verbose_name_plural = "SubCategories"
+        verbose_name = "SubCategory"
+        verbose_name_plural = "SubCategories"
 
+    
 class Product(models.Model):
     product_id = models.IntegerField(primary_key=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
