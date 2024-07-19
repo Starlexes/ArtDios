@@ -35,7 +35,7 @@ class PopularProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = PopularProduct
         fields = '__all__'
-
+    
 class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Gallery
