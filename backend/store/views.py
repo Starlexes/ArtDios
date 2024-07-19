@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404 
+from django.db.models import Prefetch
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+
 
 from .models import *
 from .serializers import *
@@ -113,7 +115,7 @@ class PromotionView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     
     def put(self, request, pk=None):
         if pk:
@@ -127,7 +129,7 @@ class PromotionView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(status=status.HTTP_200_OK)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response( status=status.HTTP_400_BAD_REQUEST)
         
         data = request.data
 
@@ -140,6 +142,217 @@ class PromotionView(APIView):
     
     def delete(self, request, pk=None):
         instance = get_object_or_404(Promotion, pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class PhoneView(APIView):
+    def get(self, request, pk=None):
+        if pk:
+            obj = get_object_or_404(Phone, pk=pk)
+            obj = PhoneSerializer(obj)
+            return Response(obj.data)
+
+        obj = Phone.objects.all()
+        
+        obj = PhoneSerializer(obj, many=True)
+
+        return Response(obj.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = PhoneSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                instance = Phone.objects.get(pk=pk)
+            except Phone.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+            serializer = PhoneSerializer(instance, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        instance = get_object_or_404(Phone, pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class EmailView(APIView):
+    def get(self, request, pk=None):
+        if pk:
+            obj = get_object_or_404(Email, pk=pk)
+            obj = EmailSerializer(obj)
+            return Response(obj.data)
+
+        obj = Email.objects.all()
+        
+        obj = EmailSerializer(obj, many=True)
+
+        return Response(obj.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = EmailSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                instance = Email.objects.get(pk=pk)
+            except Email.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+            serializer = EmailSerializer(instance, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        instance = get_object_or_404(Email, pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class AddressView(APIView):
+    def get(self, request, pk=None):
+        if pk:
+            obj = get_object_or_404(Address, pk=pk)
+            obj = AddressSerializer(obj)
+            return Response(obj.data)
+
+        obj = Address.objects.all()
+        
+        obj = AddressSerializer(obj, many=True)
+
+        return Response(obj.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = AddressSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                instance = Address.objects.get(pk=pk)
+            except Address.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+            serializer = AddressSerializer(instance, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        instance = get_object_or_404(Address, pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ContactsView(APIView):
+    def get(self, request, pk=None):
+        if pk:
+            working_hours = get_object_or_404(Contacts, pk=pk)
+            phones = Phone.objects.filter(contacts=pk)
+            emails = Email.objects.filter(contacts=pk)
+            address = Address.objects.filter(contacts=pk)
+
+            phone_serializer = PhoneSerializer(phones, many=True)
+            email_serializer = EmailSerializer(emails, many=True)
+            address_serializer = AddressSerializer(address, many=True)
+            working_hours_serializer = ContactsSerializer(working_hours)
+
+            contacts = {
+                'phones': phone_serializer.data,
+                'emails': email_serializer.data,
+                'addresses': address_serializer.data,
+                'working_hours': working_hours_serializer.data
+            }
+
+            return Response(contacts, status=status.HTTP_200_OK)
+
+        obj = Contacts.objects.all()
+        
+        obj = ContactsSerializer(obj, many=True)
+
+        return Response(obj.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = ContactsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                instance = Contacts.objects.get(pk=pk)
+            except Contacts.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+            serializer = ContactsSerializer(instance, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class GalleryView(APIView):
+    def get(self, request, pk=None):
+        if pk:
+            obj = get_object_or_404(Gallery, pk=pk)
+            obj = GallerySerializer(obj)
+            return Response(obj.data)
+
+        obj = Gallery.objects.all()
+        
+        obj = GallerySerializer(obj, many=True)
+
+        return Response(obj.data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        serializer = GallerySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self, request, pk=None):
+        if pk:
+            try:
+                instance = Gallery.objects.get(pk=pk)
+            except Gallery.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+            serializer = GallerySerializer(instance, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(status=status.HTTP_200_OK)
+        
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        instance = get_object_or_404(Gallery, pk=pk)
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -160,23 +373,3 @@ class CharacteristicViewSet(viewsets.ModelViewSet):
     serializer_class = CharacteristicSerializer
 
 
-
-class GalleryViewSet(viewsets.ModelViewSet):
-    queryset = Gallery.objects.all()
-    serializer_class = GallerySerializer
-
-class ContactsViewSet(viewsets.ModelViewSet):
-    queryset = Contacts.objects.all()
-    serializer_class = ContactsSerializer
-
-class PhoneViewSet(viewsets.ModelViewSet):
-    queryset = Phone.objects.all()
-    serializer_class = PhoneSerializer
-
-class EmailViewSet(viewsets.ModelViewSet):
-    queryset = Email.objects.all()
-    serializer_class = EmailSerializer
-
-class AddressViewSet(viewsets.ModelViewSet):
-    queryset = Address.objects.all()
-    serializer_class = AddressSerializer
