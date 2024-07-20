@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "debug_toolbar",
-    "store.apps.StoreConfig"
+    "store.apps.StoreConfig",
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [

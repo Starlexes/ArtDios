@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404 
-from django.db.models import Prefetch
-from django.db import connection
-from rest_framework import viewsets
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.db.models import F
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
-import json
 
 from .models import *
 from .serializers import *
@@ -277,7 +276,8 @@ class ProductView(APIView):
             characteristic_names = request.query_params.getlist('characteristic', '')
             category = request.query_params.get('category', '')
             admin = request.query_params.get('admin', '')
-           
+            search = request.query_params.get('search', '')
+    
             if admin.lower() == 'true':
                 if category:
                     products = Product.objects.filter(category__parent__name=category)
@@ -286,6 +286,14 @@ class ProductView(APIView):
             else:
                 products = Product.objects.filter(category__is_show=True)
 
+            if search:
+                search_vector = SearchVector('name', 'description', 'code') + \
+                        SearchVector(F('category__name')) + \
+                        SearchVector(F('category__parent__name'))
+                search_query = SearchQuery(search)
+                products = Product.objects.annotate(search=search_vector, rank=SearchRank(search_vector, search_query)
+                            ).filter(search=search_query).order_by("-rank")
+                
             
             if min_price and max_price:
                 products = products.filter(price__gte=min_price, price__lte=max_price)
@@ -304,8 +312,8 @@ class ProductView(APIView):
             serializer = ProductSerializer(products, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
          
     
     def post(self, request):
