@@ -72,7 +72,6 @@ class SubCategory(models.Model):
         verbose_name_plural = "SubCategories"
 
 
-
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     slug = models.SlugField(max_length=300, unique=True, db_index=True, null=True, blank=True)

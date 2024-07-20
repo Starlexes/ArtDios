@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F
+from django.core.files.storage import default_storage
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+
+import os
 
 from .models import *
 from .serializers import *
@@ -74,9 +77,26 @@ def put_method(request, model, model_serializer, pk=None):
     except Exception:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
+def delete_image_field(instance, field_name):
+    if hasattr(instance, field_name):
+        image_field = getattr(instance, field_name)
+        if image_field:
+            image_path = image_field.path
+            image_dir = os.path.dirname(image_path)
+            if default_storage.exists(image_path):
+                default_storage.delete(image_path)
+                if not os.listdir(image_dir):
+                    os.rmdir(image_dir)
+    
 def delete_method(model, pk=None):
     try:
         instance = get_object_or_404(model, pk=pk)
+        
+        image_fields = ['image', 'main_image', 'second_image', 'third_image']
+        
+        for field in image_fields:
+            delete_image_field(instance, field)
+
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     except Exception:
