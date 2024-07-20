@@ -76,7 +76,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     slug = models.SlugField(max_length=300, unique=True, db_index=True, null=True, blank=True)
-    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='product')
     name = models.CharField(max_length=300, unique=True)
     description = models.TextField()
     price = models.IntegerField()
@@ -104,7 +104,7 @@ class Product(models.Model):
         
 class Characteristic(models.Model):
     char_id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False, related_name='characteristic')
     name = models.CharField(max_length=255, blank=False)
     description = models.CharField(max_length=255, blank=False)
 

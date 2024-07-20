@@ -31,7 +31,7 @@ urlpatterns = [
     path('api/gallery/<int:pk>', GalleryView.as_view()),
     path('api/characteristic/', CharacteristicView.as_view()),
     path('api/characteristic/<int:pk>', CharacteristicView.as_view()),
-     path('api/product/', ProductView.as_view()),
+    path('api/product/', ProductView.as_view()),
     path('api/product/<int:pk>', ProductView.as_view()),
 ]
 
