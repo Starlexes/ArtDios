@@ -34,8 +34,8 @@ class Category(models.Model):
     is_show = models.BooleanField(default=True, blank=False)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        
+        self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -56,8 +56,8 @@ class SubCategory(models.Model):
     discount = models.IntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        
+        self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(SubCategory, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -83,10 +83,12 @@ class Product(models.Model):
     new_price = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=255, null=True)
     image = models.ImageField(upload_to=upload_products)
+    second_image = models.ImageField(upload_to=upload_products, null=True)
+    third_image = models.ImageField(upload_to=upload_products, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        
+        self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -122,8 +124,8 @@ class Promotion(models.Model):
     second_image = models.ImageField(upload_to=upload_promo)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        
+        self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Promotion, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -154,8 +156,8 @@ class Gallery(models.Model):
     image = models.ImageField(upload_to=upload_gallery)
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
+        
+        self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Gallery, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -175,7 +177,7 @@ class Contacts(models.Model):
 
 
 class Phone(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING) 
+    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='phone') 
     number = models.CharField(max_length=25, blank=False, unique=True)
 
     class Meta:
@@ -183,7 +185,7 @@ class Phone(models.Model):
         verbose_name_plural = "Phones"
 
 class Email(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING)
+    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='email')
     email = models.EmailField(unique=True, max_length=255, blank=False)
 
     class Meta:
@@ -191,7 +193,7 @@ class Email(models.Model):
         verbose_name_plural = "Emails"
 
 class Address(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING)
+    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='address')
     address = models.CharField(max_length=255, blank=False)
 
     class Meta:

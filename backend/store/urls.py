@@ -3,16 +3,18 @@ from rest_framework.routers import DefaultRouter
 from .views import *
 
 router = DefaultRouter()
-router.register(r'product-type', ProductTypeViewSet, 'product-type')
-router.register(r'sub-category', SubCategoryViewSet, basename='sub-category') 
-router.register(r'product', ProductViewSet, basename='product')
-router.register(r'characteristic', CharacteristicViewSet, basename='characteristic') 
+
+
 
 urlpatterns = [
     path('', index, name='index'),
     path('api/', include(router.urls)),
-    path('api/category/<str:identifier>/', CategoryView.as_view()),
     path('api/category/', CategoryView.as_view()),
+    path('api/category/<int:pk>/', CategoryView.as_view()),
+    path('api/product-type/', ProductTypeView.as_view()),
+    path('api/product-type/<int:pk>/', ProductTypeView.as_view()),
+    path('api/sub-category/', SubCategoryView.as_view()),
+    path('api/sub-category/<int:pk>/', SubCategoryView.as_view()),
     path('api/popular-product/', PopularProductView.as_view()),
     path('api/popular-product/<int:pk>', PopularProductView.as_view()),
     path('api/promotions/', PromotionView.as_view()),
@@ -27,6 +29,9 @@ urlpatterns = [
     path('api/contacts/<int:pk>', ContactsView.as_view()),
     path('api/gallery/', GalleryView.as_view()),
     path('api/gallery/<int:pk>', GalleryView.as_view()),
-   
+    path('api/characteristic/', CharacteristicView.as_view()),
+    path('api/characteristic/<int:pk>', CharacteristicView.as_view()),
+     path('api/product/', ProductView.as_view()),
+    path('api/product/<int:pk>', ProductView.as_view()),
 ]
 
