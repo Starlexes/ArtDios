@@ -21,7 +21,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('store.urls'))
+    path('', include('store.urls')),
+    path('api/notify/', include('notifications.urls'))
 ]
 
 if settings.DEBUG:
