@@ -1,0 +1,5 @@
+.messangers__header {
+    display: flex;
+    justify-content: center;
+    gap: min(calc(12 / 1200 * 100vw), 12px);
+}

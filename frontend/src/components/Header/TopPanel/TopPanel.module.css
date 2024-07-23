@@ -1,0 +1,16 @@
+.main__header {
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary-bgc);
+    height: 104px;
+    width: 100%;
+}
+
+.main-inner__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: min(calc(42 / 1200 * 100vw), 42px);
+    padding-left: min(calc(62 / 1200 * 100vw), 62px);
+}

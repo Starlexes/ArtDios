@@ -1,0 +1,7 @@
+.search {
+    display: flex;
+    position: relative;
+    width: 30.5vw;
+    max-width: 366px;
+    height: 44px;
+}

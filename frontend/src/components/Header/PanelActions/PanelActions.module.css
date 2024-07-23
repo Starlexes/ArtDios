@@ -1,0 +1,4 @@
+.panel-actions {
+    display: flex;
+    gap: min(calc(30 / 1200 * 100vw), 30px);
+}

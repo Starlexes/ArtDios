@@ -8,7 +8,7 @@ function App() {
 
 	return (
 		<>
-			<Header>Это header</Header>
+			<Header/>
 			<Footer>Это footer</Footer>
 		</>
 	);

@@ -1,0 +1,9 @@
+.contacts__header {
+    display: flex;
+    align-items: center;
+    gap: min(calc(30 / 1200 * 100vw), 30px);
+}
+
+.link-menu {
+    gap: min(calc(40 / 1200 * 100vw), 40px);
+}

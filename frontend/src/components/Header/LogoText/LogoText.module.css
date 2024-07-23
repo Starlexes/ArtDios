@@ -1,0 +1,9 @@
+.logo-two {
+    width: calc(206 / 1200 * 100vw);
+    max-width: 206px;
+    border-top: 1px solid var(--active-color);
+    border-bottom: 1px solid var(--active-color);
+    font-weight: 400;
+    font-size: clamp(10px, calc(16 / 1200 * 100vw), 16px);
+    color: var(--text-color);
+}

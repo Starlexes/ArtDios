@@ -1,4 +1,3 @@
-
-export interface NavSocialProps {
+export interface SearchProps {
     className?: string | undefined;
 }

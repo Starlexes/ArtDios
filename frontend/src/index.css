@@ -1,0 +1,31 @@
+:root {
+    --main-font: "Noto Serif", "Exo", "Inter", serif;
+    --btn-success: #40d128;
+    --primary-bgc: #333333; 
+    --text-color: #fff;
+    --text-color2: #e6e6e6;
+    --primary-bgc2: #1D1D1D;
+    --active-color: #DA5F1A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;   
+}

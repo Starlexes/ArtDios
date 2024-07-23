@@ -1,0 +1,9 @@
+.bottom__header {
+    display: flex;
+    height: 58px;
+    gap: min(calc(21 / 1200 * 100vw), 21px);
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    padding-left: min(calc(40 / 1200 * 100vw), 40px);
+}

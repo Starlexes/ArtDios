@@ -1,0 +1,39 @@
+.contact__header {
+    text-decoration: none;
+    font-size: clamp(14px, calc(15 / 1200 * 100vw), 15px);
+}
+
+.contact__header:hover {
+    color: var(--active-color);
+}
+
+.contact-text {
+    color: var(--text-color2);
+    display: flex;
+    align-items: center;
+}
+
+.phone-num {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.social-item {
+    display: flex;
+}
+
+.logo-link {
+    caret-color: transparent;
+    text-decoration: none;
+}
+
+.nav-menu {
+    font-weight: 700;
+    font-size: clamp(16px, calc(18 / 1200 * 100vw), 18px);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav-menu:hover {
+    color: var(--active-color);
+}

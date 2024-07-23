@@ -1,0 +1,8 @@
+.navigation__header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 11px 40px;
+    max-width: 1200px;
+    width: 100%;
+}

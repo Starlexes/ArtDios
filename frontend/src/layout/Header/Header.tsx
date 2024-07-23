@@ -1,10 +1,16 @@
-//import styles from './Header.module.css';
-import { HeaderProps } from './Header.props';
+import LinkMenu from '../../components/Header/LinkMenu/LinkMenu';
+import Navigation from '../../components/Header/Navigation/Navigation';
+import TopPanel from '../../components/Header/TopPanel/TopPanel';
+import styles from './Header.module.css';
+import cn from 'classnames';
 
-function Header({children, className}: HeaderProps) {
+
+function Header() {
 	return (
-		<header className={className}>
-			{children}
+		<header className={cn(styles['header'])}>
+			<Navigation/>
+			<TopPanel/>
+			<LinkMenu/>
 		</header>
 	);
 }
