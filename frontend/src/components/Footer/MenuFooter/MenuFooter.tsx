@@ -10,7 +10,8 @@ import { useSelector} from 'react-redux';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
-	const phones = useSelector((state: RootState) => state.phones.phones);
+	const phones = useSelector((state: RootState) => state.contacts.phones);
+	const emails = useSelector((state: RootState) => state.contacts.emails);
 
 	return (
 		<div className={cn(styles['menu-footer'], className)} {...props}>
@@ -56,14 +57,16 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 			<MenuFooterItem>
 				<MenuTitle>Контакты</MenuTitle>
 				{phones.map(item => (
-					<NavItem className='contact-text' href={item.link}>
-						{item.children}
+					<NavItem className='contact-text' href={`tel:${item}`}>
+						{item}
 					</NavItem>
 				))}
 
-				<NavItem className='contact-text' href='mailto:artdios@gmail.ru'>
-                    artdios@gmail.ru
-				</NavItem>
+				{emails.map(item => (
+					<NavItem className='contact-text' href={`mailto:${item}`}>
+						{item}
+					</NavItem>
+				))}
 
 			</MenuFooterItem>
 		</div>

@@ -5,7 +5,7 @@
     gap: min(calc(17 / 1200 * 100vw), 17px);
     align-items: center;
     justify-content: center;
-    padding-left: 85px;
+    padding-left: min(calc(80 / 1200 * 100vw), 80px);
     padding-top: 33px;
     padding-bottom: 33px;
 }

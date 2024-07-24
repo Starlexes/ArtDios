@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
-
-
 export interface ContactState {
     phones: string[],
 	emails: string[],

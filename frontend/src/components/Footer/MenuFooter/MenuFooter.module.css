@@ -2,8 +2,8 @@
     display: flex;
     padding-top: 92px;
     padding-bottom: 44px;
-    padding-left: 100px;
-    padding-right: 80px;
+    padding-left: min(calc(20 / 1200 * 100vw), 20px);
     gap: min(calc(140 / 1200 * 100vw), 140px);
-    max-width: 1200px;
+    max-width: 1050px;
+    width: calc(1050 / 1200 * 100vw);
 }

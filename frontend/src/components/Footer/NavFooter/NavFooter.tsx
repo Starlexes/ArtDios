@@ -6,15 +6,15 @@ import styles from './NavFooter.module.css';
 import { NavFooterProps } from './NavFooter.props';
 import cn from 'classnames';
 
-function NavFooter({className, ...props }: NavFooterProps) {
+const links: Link[] = [
+	{id: 1, children: '© 2024 - artdios.ru', type: 'main', className: 'nav-footer', isText: true},
+	{id: 2, children: 'Все права защищены', type: 'main', className: 'nav-footer', isText: true},
+	{id: 3, link: '#', children: 'Обработка персональных данных', type: 'main', className: 'nav-footer'},
+	{id: 4, link: '#', children: 'Публичная оферта', type: 'main', className: 'nav-footer'},
+	{id: 5, link: '#', children: 'Пользовательское соглашение', type: 'main', className: 'nav-footer'}
+];
 
-	const links: Link[] = [
-		{ children: '© 2024 - artdios.ru', type: 'main', className: 'nav-footer', isText: true},
-		{ children: 'Все права защищены', type: 'main', className: 'nav-footer', isText: true},
-		{ link: '#', children: 'Обработка персональных данных', type: 'main', className: 'nav-footer'},
-		{ link: '#', children: 'Публичная оферта', type: 'main', className: 'nav-footer'},
-		{ link: '#', children: 'Пользовательское соглашение', type: 'main', className: 'nav-footer'}
-	];
+function NavFooter({className, ...props }: NavFooterProps) {
 
 	return (
 		<div className={cn(styles['nav-footer'], className)} {...props}>
