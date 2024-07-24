@@ -14,8 +14,8 @@ function NavigationList({links, className}: NavigationListProps) {
 					[styles['link-menu']]: className === 'link-menu',
 					[styles['nav-footer']]: className === 'nav-footer'
 				})}>
-					{links.map((item) => (
-						<NavigationListItem>
+					{links.map((item, index) => (
+						<NavigationListItem key={item.id || index}>
 							{item.isText? (
 								<TextFooter className={item.className}>{item.children}</TextFooter>
 							):

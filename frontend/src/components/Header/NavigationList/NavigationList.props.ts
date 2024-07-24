@@ -5,6 +5,7 @@ export interface Link {
     type: 'main' | 'social',
     className?: string | undefined,
     isText?: boolean | undefined
+    id: number;
 }
 
 export interface NavigationListProps {
