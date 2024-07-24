@@ -2,3 +2,8 @@
     width: calc(454 / 1200 * 100vw);
     max-width: 454px;
 }
+
+.logo-footer {
+    width: calc(340 / 1200 * 100vw);
+    max-width: 340px;
+}

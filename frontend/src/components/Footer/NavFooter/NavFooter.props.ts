@@ -1,3 +1,3 @@
-export interface MenuFooterProps {
+export interface NavFooterProps {
     className?: string | undefined
 }

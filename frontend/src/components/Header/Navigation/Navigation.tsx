@@ -11,8 +11,8 @@ function Navigation({className}: NavigationProps) {
 		{ link: '#', children: 'Возврат товара', type: 'main', className: 'contact-text'},
 		{ link: '#', children: 'Контакты', type: 'main', className: 'contact-text'},
 		{ type: 'social' },
-		{ link: '#', children: '8 (800) 988-89-89', type: 'main', className: 'phone-num' },
-		{ link: '#', children: '+7 (978) 888 98 99', type: 'main', className: 'phone-num' }
+		{ link: 'tel:8 (800) 988-89-89', children: '8 (800) 988-89-89', type: 'main', className: 'phone-num' },
+		{ link: 'tel:+7 (978) 888 98 99', children: '+7 (978) 888 98 99', type: 'main', className: 'phone-num' }
 	];
 
 	return (

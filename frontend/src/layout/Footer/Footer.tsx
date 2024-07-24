@@ -1,10 +1,16 @@
+import MenuFooter from '../../components/Footer/MenuFooter/MenuFooter';
+import NavFooter from '../../components/Footer/NavFooter/NavFooter';
 import styles from './Footer.module.css';
-import { FooterProps } from './Footer.props';
+import cn from 'classnames';
 
-function Footer({children, className}: FooterProps) {
+function Footer() {
 	return (
-		<footer className={className}>
-			{children}
+		<footer className={cn(styles['footer'])}>
+			
+			<MenuFooter/>
+			
+			<NavFooter/>
+			
 		</footer>
 	);
 }

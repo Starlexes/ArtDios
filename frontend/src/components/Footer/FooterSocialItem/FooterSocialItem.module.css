@@ -1,0 +1,10 @@
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: min(calc(15 / 1200 * 100vw), 15px);
+}
+
+.social-item img {
+    width: 34px;
+    height: 34px;
+}

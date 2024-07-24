@@ -3,3 +3,8 @@
     justify-content: center;
     gap: min(calc(12 / 1200 * 100vw), 12px);
 }
+
+.messangers__header img {
+    width: 20px;
+    height: 20px;
+}

@@ -4,11 +4,13 @@ import { LogoImageProps } from './LogoImage.props';
 import LogoText from '../LogoText/LogoText';
 import cn from 'classnames';
 
-function LogoImage({className}: LogoImageProps) {
+function LogoImage({isFooter, className}: LogoImageProps) {
 	return (
-		<div className={cn(styles['logos'], className)}>
+		<div className={cn(styles['logos'], {
+			[styles['logo-footer']]: isFooter
+		}, className)}>
 			<img src="/artdios-logo.png" alt="АРТДИОС logo"/>
-			<LogoText>Магазин материалов для<br/>отделки помещений</LogoText> 
+			<LogoText isFooter={isFooter}>Магазин материалов для отделки помещений</LogoText> 
 		</div>
 		
 	);

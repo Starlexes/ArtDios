@@ -3,7 +3,8 @@ export interface Link {
     link?: string | undefined,
     children?: string | undefined,
     type: 'main' | 'social',
-    className?: string | undefined
+    className?: string | undefined,
+    isText?: boolean | undefined
 }
 
 export interface NavigationListProps {

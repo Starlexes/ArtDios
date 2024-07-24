@@ -1,0 +1,9 @@
+.menu-footer {
+    display: flex;
+    padding-top: 92px;
+    padding-bottom: 44px;
+    padding-left: 100px;
+    padding-right: 80px;
+    gap: min(calc(140 / 1200 * 100vw), 140px);
+    max-width: 1200px;
+}

@@ -1,0 +1,5 @@
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: min(calc(14 / 1200 * 100vw), 14px);
+}

@@ -1,0 +1,6 @@
+.menu-title {
+    font-weight: 700;
+    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+    line-height: 100%;
+    color: var(--text-color);
+}

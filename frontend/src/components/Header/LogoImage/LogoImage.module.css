@@ -12,3 +12,10 @@
     max-width: 222px;
     max-height: 44px;
 }
+
+.logo-footer img {
+    max-width: 159px;
+    max-height: 32px;
+    width: calc(159 / 1200 * 100vw);
+    height: calc(32 / 1200 * 100vw);
+}

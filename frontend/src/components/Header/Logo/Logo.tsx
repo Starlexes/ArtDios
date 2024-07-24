@@ -5,11 +5,13 @@ import NavItem from '../NavItem/NavItem';
 import LogoImage from '../LogoImage/LogoImage';
 import cn from 'classnames';
 
-function Logo({className}: LogoProps) {
+function Logo({isFooter, className}: LogoProps) {
 	return (
-		<div className={cn(styles, className)}>
+		<div className={cn(styles['logo-link'], {
+			[styles['logo-footer']]: className === 'logo-footer'
+		})}>
 			<NavItem href='#' className='logo-link'>
-				<LogoImage />
+				<LogoImage isFooter={isFooter}/>
 			</NavItem>
 		</div>
 	);

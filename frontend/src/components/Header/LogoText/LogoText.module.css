@@ -7,3 +7,11 @@
     font-size: clamp(10px, calc(16 / 1200 * 100vw), 16px);
     color: var(--text-color);
 }
+
+.logo-footer {
+    max-height: 32px;
+    display: flex;
+    font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
+    border: none;
+    width: 300px;
+}
