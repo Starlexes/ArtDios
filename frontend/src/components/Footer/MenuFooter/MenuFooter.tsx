@@ -5,8 +5,13 @@ import MenuTitle from '../MenuTitle/MenuTitle';
 import styles from './MenuFooter.module.css';
 import { MenuFooterProps } from './MenuFooter.props';
 import cn from 'classnames';
+import { RootState } from '../../../store';
+import { useSelector} from 'react-redux';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
+
+	const phones = useSelector((state: RootState) => state.phones.phones);
+
 	return (
 		<div className={cn(styles['menu-footer'], className)} {...props}>
 			<MenuFooterItem>
@@ -50,13 +55,11 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Контакты</MenuTitle>
-				<NavItem className='contact-text' href='tel:+ 7 (978) 888 98 99'>
-                    + 7 (978) 888 98 99
-				</NavItem>
-
-				<NavItem className='contact-text' href='tel:8 (978) 888 98 99'>
-                    8 (978) 888 98 99
-				</NavItem>
+				{phones.map(item => (
+					<NavItem className='contact-text' href={item.link}>
+						{item.children}
+					</NavItem>
+				))}
 
 				<NavItem className='contact-text' href='mailto:artdios@gmail.ru'>
                     artdios@gmail.ru

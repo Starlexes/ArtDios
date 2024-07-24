@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import NavigationList from '../NavigationList/NavigationList';
 import { Link } from '../NavigationList/NavigationList.props';
 import styles from './Navigation.module.css';
 import { NavigationProps } from './Navigation.props';
 import cn from 'classnames';
 import axios from 'axios';
+import { RootState } from '../../../store';
+import { setPhones } from '../../../slices/contactSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const links: Link[] = [
 	{id: 1, link: '#', children: 'Доставка и оплата', type: 'main', className: 'contact-text'},
@@ -15,9 +18,10 @@ const links: Link[] = [
 
 function Navigation({className}: NavigationProps) {
 
-
-	const [phones, setPhones] = useState<Link[]>(links);
-
+	const phones = useSelector((state: RootState) => state.phones.phones);
+	const dispatch = useDispatch();
+	
+	
 	useEffect(() => {
 		axios.get('/api/phones/')
 			.then(response => {
@@ -32,13 +36,14 @@ function Navigation({className}: NavigationProps) {
 						id: links.length+index+ 1
 					}));
 					
-					setPhones([...links, ...modifData.slice(0, 2)]);
+					dispatch(setPhones(modifData.slice(0, 2)));
+					
 				}
 			})
 			.catch(error => {
 				console.error('There was an error fetching the data!', error);
 			});
-	}, []);
+	}, [dispatch]);
 
 	console.log(phones);
 	return (
