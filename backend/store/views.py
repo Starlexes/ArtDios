@@ -204,42 +204,36 @@ class AddressView(APIView):
         return delete_method(Address, pk)
 
 
-class ContactsView(APIView):
+class WorkingHoursView(APIView):
     def get(self, request, pk=None):
-        if pk:
-
-            working_hours = get_object_or_404(
-                    Contacts.objects.prefetch_related('phone', 'email', 'address'), pk=pk
-                )
-
-            phone_serializer = PhoneSerializer(working_hours.phone.all(), many=True)
-            email_serializer = EmailSerializer(working_hours.email.all(), many=True)
-            address_serializer = AddressSerializer(working_hours.address.all(), many=True)
-            working_hours_serializer = ContactsSerializer(working_hours)
-
-            contacts = {
-                'phones': phone_serializer.data,
-                'emails': email_serializer.data,
-                'addresses': address_serializer.data,
-                'working_hours': working_hours_serializer.data
-            }
-
-            
-            return Response(contacts, status=status.HTTP_200_OK)
-
-        obj = Contacts.objects.all()
-        
-        obj = ContactsSerializer(obj, many=True)
-
-        
-
-        return Response(obj.data, status=status.HTTP_200_OK)
+        return get_method(request, WorkingHours, WorkingHoursSerializer, pk)
     
     def post(self, request):
-        return post_method(request, AddressSerializer)
+        return post_method(request, WorkingHoursSerializer)
     
     def put(self, request, pk=None):
-        return put_method(request, Address, AddressSerializer, pk)
+        return put_method(request, WorkingHours, WorkingHoursSerializer, pk)
+
+    def delete(self, request, pk=None):
+        return delete_method(WorkingHours, pk)
+
+class ContactsView(APIView):
+    def get(self, request):
+        
+        working_hours = WorkingHoursSerializer(WorkingHours.objects.all(), many=True)
+        phone_serializer = PhoneSerializer(Phone.objects.all(), many=True)
+        email_serializer = EmailSerializer(Email.objects.all(), many=True)
+        address_serializer = AddressSerializer(Address.objects.all(), many=True)
+
+        contacts = {
+            'phones': phone_serializer.data,
+            'emails': email_serializer.data,
+            'addresses': address_serializer.data,
+            'working_hours': working_hours.data
+        }
+
+        return Response(contacts, status=status.HTTP_200_OK)
+
 
 class GalleryView(APIView):
     def get(self, request, pk=None):

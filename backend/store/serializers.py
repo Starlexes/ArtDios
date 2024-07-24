@@ -42,9 +42,9 @@ class GallerySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ContactsSerializer(serializers.ModelSerializer):
+class WorkingHoursSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Contacts
+        model = WorkingHours
         fields = '__all__'
 
 class PhoneSerializer(serializers.ModelSerializer):

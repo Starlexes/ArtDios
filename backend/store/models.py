@@ -166,17 +166,16 @@ class Gallery(models.Model):
         verbose_name = "Gallery"
         verbose_name_plural = "Gallery"
 
-class Contacts(models.Model):
+class WorkingHours(models.Model):
     opening_hours = models.TimeField()
     closing_hours = models.TimeField()
-
+    
     class Meta:
-        verbose_name = "Contacts"
-        verbose_name_plural = "Contacts"
+        verbose_name = "WorkingHours"
+        verbose_name_plural = "WorkingHours"
 
 
 class Phone(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='phone') 
     number = models.CharField(max_length=25, blank=False, unique=True)
 
     class Meta:
@@ -184,7 +183,6 @@ class Phone(models.Model):
         verbose_name_plural = "Phones"
 
 class Email(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='email')
     email = models.EmailField(unique=True, max_length=255, blank=False)
 
     class Meta:
@@ -192,7 +190,6 @@ class Email(models.Model):
         verbose_name_plural = "Emails"
 
 class Address(models.Model):
-    contacts = models.ForeignKey(Contacts, on_delete=models.DO_NOTHING, related_name='address')
     address = models.CharField(max_length=255, blank=False)
 
     class Meta:

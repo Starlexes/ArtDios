@@ -62,7 +62,7 @@ class GalleryAdmin(admin.ModelAdmin):
     list_filter = ['name']
     ordering = ['name']
 
-@admin.register(Contacts)
+@admin.register(WorkingHours)
 class ContactsAdmin(admin.ModelAdmin):
     list_display = ['opening_hours', 'closing_hours']
     
