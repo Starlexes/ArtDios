@@ -12,9 +12,17 @@ class ProductTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SubCategorySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = SubCategory
         fields = '__all__'
+
+class ClassificationsSerializer(serializers.ModelSerializer):
+    subcategory = SubCategorySerializer(many=True)
+    class Meta:
+        model = Category
+        fields = ['name', 'subcategory']
+        
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

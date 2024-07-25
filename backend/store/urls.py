@@ -29,5 +29,6 @@ urlpatterns = [
     path('api/characteristic/<int:pk>', CharacteristicView.as_view()),
     path('api/product/', ProductView.as_view()),
     path('api/product/<int:pk>', ProductView.as_view()),
+    path('api/classify/', ClassificationsView.as_view()),
 ]
 

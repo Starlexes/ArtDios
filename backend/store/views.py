@@ -340,7 +340,11 @@ class ProductView(APIView):
         return delete_method(Product, pk)
 
 
-
+class ClassificationsView(APIView):
+    def get(self , request):
+        categories = Category.objects.filter(is_show = True)
+        serializer = ClassificationsSerializer(categories, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 

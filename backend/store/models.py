@@ -51,7 +51,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=True)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, null=True, blank=True)
-    parent = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Category, null=True, related_name='subcategory', blank=True, on_delete=models.CASCADE)
     is_show = models.BooleanField(default=True, blank=False)
     discount = models.IntegerField(null=True, blank=True)
 
