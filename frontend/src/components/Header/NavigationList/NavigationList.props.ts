@@ -1,3 +1,4 @@
+import { HTMLProps } from 'react';
 
 export interface Link {
     link?: string | undefined,
@@ -8,7 +9,7 @@ export interface Link {
     id: number;
 }
 
-export interface NavigationListProps {
+export interface NavigationListProps extends HTMLProps<HTMLDivElement>{
     className?: string | undefined,
     links: Link[]
 }

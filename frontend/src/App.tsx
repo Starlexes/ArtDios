@@ -6,6 +6,8 @@ import {useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setPhones, setEmails, setAddresses, setWorkingHours } from './slices/contactSlice';
+import MainPanel from './layout/MainPanel/MainPanel';
+
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
 	return (
 		<>
 			<Header/>
+			<MainPanel/>
 			<Footer/>
 		</>
 	);

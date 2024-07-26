@@ -1,0 +1,21 @@
+.category-list {
+    background-color: #252525;
+    max-width: 306px;
+    width: calc(306 / 1200 * 100vw);
+    z-index: 1;
+    display: none;
+    position: absolute;
+    left: auto;
+    top: 204px;
+    
+}
+
+.category-list li {
+    list-style-type: none;
+    max-height: 44px;
+    height: 44px;
+}
+.active {
+    display: flex;
+    flex-direction: column;
+}

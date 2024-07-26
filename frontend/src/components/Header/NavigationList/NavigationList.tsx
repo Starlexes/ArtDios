@@ -6,14 +6,15 @@ import styles from './NavigationList.module.css';
 import { NavigationListProps } from './NavigationList.props';
 import cn from 'classnames';
 
-function NavigationList({links, className}: NavigationListProps) {
+function NavigationList({links, className, onMouseEnter}: NavigationListProps) {
 	return (
+		
 		<nav>
 			<ul>
 				<div className={cn(styles['contacts__header'], {
 					[styles['link-menu']]: className === 'link-menu',
 					[styles['nav-footer']]: className === 'nav-footer'
-				})}>
+				})} onMouseEnter={onMouseEnter}>
 					{links.map((item, index) => (
 						<NavigationListItem key={item.id || index}>
 							{item.isText? (

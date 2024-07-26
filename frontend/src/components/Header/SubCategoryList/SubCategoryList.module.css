@@ -1,0 +1,13 @@
+.subcategory {
+    background-color: #3F3F3F;
+    z-index: 2;
+    bottom: 100%;
+    left: 100%;
+    position: relative;
+}
+
+
+.active {
+    display: flex;
+    flex-direction: column;
+}

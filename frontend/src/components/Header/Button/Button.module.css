@@ -46,11 +46,11 @@
     border: 1px solid transparent;
 }
 
-.catalog:hover {
+.catalog:hover, .active  {
     border: 1px solid var(--active-color);
     color: var(--active-color);
 }
 
-.catalog:hover rect {
+.catalog:hover rect, .active rect {
     fill: var(--active-color);
 }

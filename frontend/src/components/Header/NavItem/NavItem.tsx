@@ -12,7 +12,8 @@ function NavItem({children, className, href,...props}: NavItemProps) {
 			[styles['social-item']]: className === 'social-item',
 			[styles['logo-link']]: className === 'logo-link',
 			[styles['nav-menu']]: className === 'nav-menu',
-			[styles['nav-footer']]: className === 'nav-footer'
+			[styles['nav-footer']]: className === 'nav-footer',
+			[styles['category']]: className === 'category'
 		})} {...props}>{children}</a>
 		
 	);
