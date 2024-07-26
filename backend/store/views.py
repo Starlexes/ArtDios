@@ -220,10 +220,10 @@ class WorkingHoursView(APIView):
 class ContactsView(APIView):
     def get(self, request):
         
-        working_hours = WorkingHoursSerializer(WorkingHours.objects.all(), many=True)
-        phone_serializer = PhoneSerializer(Phone.objects.all(), many=True)
-        email_serializer = EmailSerializer(Email.objects.all(), many=True)
-        address_serializer = AddressSerializer(Address.objects.all(), many=True)
+        working_hours = WorkingHoursSerializer(WorkingHours.objects.values("opening_hours", "closing_hours"), many=True)
+        phone_serializer = PhoneSerializer(Phone.objects.values("number"), many=True)
+        email_serializer = EmailSerializer(Email.objects.values("email"), many=True)
+        address_serializer = AddressSerializer(Address.objects.values("address"), many=True)
 
         contacts = {
             'phones': phone_serializer.data,
