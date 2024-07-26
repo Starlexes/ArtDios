@@ -4,7 +4,7 @@ import { Link } from '../NavigationList/NavigationList.props';
 import styles from './Navigation.module.css';
 import { NavigationProps } from './Navigation.props';
 import cn from 'classnames';
-import { RootState } from '../../../store';
+import { RootState, selectPhones } from '../../../store';
 import { useSelector} from 'react-redux';
 
 const initial: Link[] = [
@@ -16,7 +16,7 @@ const initial: Link[] = [
 
 function Navigation({className}: NavigationProps) {
 
-	const phones = useSelector((state: RootState) => state.contacts.phones.slice(0, 2));
+	const phones = useSelector((state: RootState) => selectPhones(state));
 	
 	const links: Link[] = [
 		...initial,
@@ -29,7 +29,6 @@ function Navigation({className}: NavigationProps) {
 		} as Link))
 	];
 
-	console.log(phones);
 	return (
 		<div className={cn(styles['navigation__header'], className)}>
 			<NavigationList links={links}/>

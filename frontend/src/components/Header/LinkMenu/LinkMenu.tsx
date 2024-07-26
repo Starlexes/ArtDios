@@ -6,46 +6,41 @@ import Button from '../Button/Button';
 import CategoryList from '../CategoryList/CategoryList';
 import { useState } from 'react';
 
+const links: Link[] = [
+	{id: 1, link: '#', children: 'Главная', type: 'main', className: 'nav-menu' },
+	{id: 2, link: '#', children: 'Услуги', type: 'main', className: 'nav-menu' },
+	{id: 3, link: '#', children: 'Акции', type: 'main', className: 'nav-menu' },
+	{id: 4, link: '#', children: 'Галерея', type: 'main', className: 'nav-menu' },
+	{id: 5, link: '#', children: 'О компании', type: 'main', className: 'nav-menu' }
+];
 
 function LinkMenu() {
 	
-	const links: Link[] = [
-		{id: 1, link: '#', children: 'Главная', type: 'main', className: 'nav-menu' },
-		{id: 2, link: '#', children: 'Услуги', type: 'main', className: 'nav-menu' },
-		{id: 3, link: '#', children: 'Акции', type: 'main', className: 'nav-menu' },
-		{id: 4, link: '#', children: 'Галерея', type: 'main', className: 'nav-menu' },
-		{id: 5, link: '#', children: 'О компании', type: 'main', className: 'nav-menu' }
-	];
+	
 
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
-	
-	const onClick = () => {
+	const handleClick = () => {
 		setIsClicked(prevState => !prevState);
 	};
 
-
-
-	const onMouseLeave = () => {
-		
+	const handleMouseLeave = () => {
 		setIsClicked(false);
 	};
 
 	return (
-
-		<div className={cn(styles['bottom__header'])} onMouseLeave={onMouseLeave}>
-			<Button className='catalog' onClick={onClick} isActive={isClicked}>
+		<div className={cn(styles.bottom__header)} onMouseLeave={handleMouseLeave}>
+			<Button className='catalog' onClick={handleClick} isActive={isClicked}>
 				<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<rect width="20" height="4" rx="2" fill="white"/>
-					<rect y="6" width="20" height="4" rx="2" fill="white"/>
-					<rect y="12" width="20" height="4" rx="2" fill="white"/>
+					<rect width="20" height="4" rx="2" fill="white" />
+					<rect y="6" width="20" height="4" rx="2" fill="white" />
+					<rect y="12" width="20" height="4" rx="2" fill="white" />
 				</svg>
-                    Каталог
+        Каталог
 			</Button>
-			<NavigationList links={links} className='link-menu' onMouseEnter={onMouseLeave}/>
-			<CategoryList isActive={isClicked}/>
+			<NavigationList links={links} className='link-menu' onMouseEnter={handleMouseLeave} />
+			<CategoryList isActive={isClicked} />
 		</div>
-			
 	);
 }
 

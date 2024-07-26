@@ -7,11 +7,15 @@ import { MenuFooterProps } from './MenuFooter.props';
 import cn from 'classnames';
 import { RootState } from '../../../store';
 import { useSelector} from 'react-redux';
+import { useMemo } from 'react';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
 	const phones = useSelector((state: RootState) => state.contacts.phones);
 	const emails = useSelector((state: RootState) => state.contacts.emails);
+
+	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
+	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
 
 	return (
 		<div className={cn(styles['menu-footer'], className)} {...props}>
@@ -22,13 +26,12 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<NavItem href='#' className='contact-text'>Натяжные потолки</NavItem>
 				<NavItem href='#' className='contact-text'>Напольные покрытия</NavItem>
 			</MenuFooterItem>
-            
+
 			<MenuFooterItem>
 				<MenuTitle>Информация</MenuTitle>
 				<NavItem href='#' className='contact-text'>Доставка и оплата</NavItem>
 				<NavItem href='#' className='contact-text'>Возврат товара</NavItem>
 				<NavItem href='#' className='contact-text'>Установка</NavItem>
-				
 			</MenuFooterItem>
 
 			<MenuFooterItem>
@@ -56,18 +59,17 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Контакты</MenuTitle>
-				{phones.map(item => (
-					<NavItem className='contact-text' href={`tel:${item}`}>
+				{memoizedPhones.map(item => (
+					<NavItem className='contact-text' href={`tel:${item}`} key={item}>
 						{item}
 					</NavItem>
 				))}
 
-				{emails.map(item => (
-					<NavItem className='contact-text' href={`mailto:${item}`}>
+				{memoizedEmails.map(item => (
+					<NavItem className='contact-text' href={`mailto:${item}`} key={item}>
 						{item}
 					</NavItem>
 				))}
-
 			</MenuFooterItem>
 		</div>
 	);

@@ -1,23 +1,42 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 
 export interface ContactState {
-    phones: string[],
+	phones: string[],
 	emails: string[],
 	addresses: string[],
 	workingHours: {
-		openingHours: Date,
-		closingHours: Date
+	openingHours: number,
+	closingHours: number
 	}
   }
+  
+  interface ContactGetState {
+	phones: {number: string}[],
+	emails: {email: string}[],
+	addresses: {address: string}[],
+	workingHours: {
+	openingHours: number,
+	closingHours: number
+	}
+  }
+
+export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
+	'contacts/fetchContacts',
+	async () => {
+		const response = await axios.get('/api/contacts/');
+		return response.data as ContactGetState;
+	}
+);
   
 const initialState: ContactState = {
 	phones: [''],
 	emails: [''],
 	addresses: [''],
 	workingHours: {
-		openingHours: new Date(),
-		closingHours: new Date()
+		openingHours: Date.now(),
+		closingHours: Date.now()
 	}
 };
 
@@ -34,9 +53,21 @@ const contactSlice = createSlice({
 		setAddresses(state, action: PayloadAction<string[]>) {
 			state.addresses = action.payload;
 		},
-		setWorkingHours(state, action: PayloadAction<{ openingHours: Date; closingHours: Date }>) {
+		setWorkingHours(state, action: PayloadAction<{ openingHours: number; closingHours: number }>) {
 			state.workingHours = action.payload;
 		}
+	},
+	extraReducers: (builder) => {
+		builder.addCase(fetchContacts.fulfilled, (state, action) => {
+			state.emails = action.payload.emails.map(item => item.email);
+			state.phones = action.payload.phones.map(item => item.number);
+			state.addresses = action.payload.addresses.map(item => item.address);
+			state.workingHours = { 
+				...action.payload.workingHours,
+				openingHours: action.payload.workingHours.openingHours,
+				closingHours: action.payload.workingHours.closingHours
+			};
+		});
 	}
 });
 
