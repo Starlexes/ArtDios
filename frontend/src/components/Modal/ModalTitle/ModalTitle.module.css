@@ -1,3 +1,8 @@
 .modal-title {
     font-size: clamp(26px, calc(36 / 1200 * 100vw), 36px);
 }
+
+.thank-title {
+    display: inline-block;
+    width: 100%;
+}

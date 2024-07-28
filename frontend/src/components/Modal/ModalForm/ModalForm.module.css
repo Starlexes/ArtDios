@@ -12,6 +12,12 @@
     gap: min(calc(24 / 1200 * 100vw), 24px);
 }
 
+.form-inputs label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .checkbox-block {
     position: relative;
     font-weight: 400;
@@ -29,4 +35,12 @@
     
     display: inline-block;
     width: 350px;
+}
+
+.error-msg {
+    font-weight: 400;
+    font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
+    color: var(--error);
+    display: inline-block;
+    margin-left: auto;
 }

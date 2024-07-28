@@ -68,6 +68,12 @@
     fill: #a4a2a2;
 }
 
+.close-thank {
+    left: calc(472 / 510 *100%);
+    top: 16px;
+}
+
+
 .submit {
     height: 58px;
     width: 100%;

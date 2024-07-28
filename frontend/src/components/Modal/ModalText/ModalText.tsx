@@ -6,7 +6,10 @@ import cn from 'classnames';
 function ModalText({children, className }: ModalTextProps) {
 
 	return (
-		<span className={cn(styles['modal-text'], className)}>{children}</span>
+		<span className={cn({
+			[styles['modal-text']]: className === 'modal-text',
+			[styles['modal-thank']]: className === 'modal-thank'
+		}, className)}>{children}</span>
 	);
 }
 

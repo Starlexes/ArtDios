@@ -1,0 +1,16 @@
+.modal-content {
+    display: flex;
+    flex-direction: column; 
+    
+    width: 100%;
+}
+
+.modal-content img {
+    max-width: 65px;
+    max-height: 65px;
+    width: (65 / 1200 * 100vw);
+    height: (65 / 1200 * 100vw);
+    position: absolute;
+    right: 27px;
+    bottom: 16px;
+}

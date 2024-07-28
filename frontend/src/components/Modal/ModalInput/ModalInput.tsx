@@ -4,10 +4,10 @@ import Input from '../../Header/Input/Input';
 import { ModalInputProps } from './ModalInput.props';
 
 
-function ModalInput({placeholder, type}: ModalInputProps) {
+function ModalInput({hasError=false, name, onInput, onChange, placeholder, type}: ModalInputProps) {
 
 	return (
-		<Input type={type} placeholder={placeholder} className='modal-input'/>
+		<Input hasError={hasError} onInput={onInput} name={name} onChange={onChange} type={type} placeholder={placeholder} className='modal-input'/>
 	);
 }
 

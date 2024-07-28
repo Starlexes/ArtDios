@@ -9,6 +9,7 @@
     --active-color: #DA5F1A;
     --default-color: #000;
     --border-color: #8E8E8E;
+    --error: #F44848;
 }
 
 * {

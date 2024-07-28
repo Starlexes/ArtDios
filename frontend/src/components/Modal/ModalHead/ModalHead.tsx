@@ -6,15 +6,16 @@ import { ModalHeadProps } from './ModalHead.props';
 import cn from 'classnames';
 
 
-function ModalHead({ className }: ModalHeadProps) {
+function ModalHead({modalTitle, modalText, className, textClass }: ModalHeadProps) {
 
 	return (
-		<div className={cn(styles['modal-head'], className)}>
+		<div className={cn(styles['modal-head'], {
+			[styles['modal-thank']]: className === 'modal-thank'
+		}, className)}>
 
-        
-			<ModalTitle>Обратная связь</ModalTitle>
+			<ModalTitle className='thank-title'>{modalTitle}</ModalTitle>
 				
-			<ModalText>Укажите ваши контактные данные и мы свяжемся с вами</ModalText>
+			<ModalText className={textClass}>{modalText}</ModalText>
 		</div>
 	);
 }

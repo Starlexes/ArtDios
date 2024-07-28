@@ -3,3 +3,9 @@
     font-weight: 300;
     color: #464646;
 }
+
+.modal-thank {
+    font-weight: 300;
+    font-size: clamp(18px, calc(24 / 1200 * 100vw), 24px);
+    color: var(--default-color);
+}

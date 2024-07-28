@@ -3,10 +3,10 @@ import { ModalTextAreaProps } from './ModalTextArea.props';
 import cn from 'classnames';
 
 
-function ModalTextArea({placeholder, className }: ModalTextAreaProps) {
+function ModalTextArea({onChange, name, placeholder, className }: ModalTextAreaProps) {
 
 	return (
-		<textarea placeholder={placeholder} className={cn(styles['modal-textarea'], className)} />
+		<textarea onChange={onChange} name={name} placeholder={placeholder} className={cn(styles['modal-textarea'], className)} />
 	);
 }
 

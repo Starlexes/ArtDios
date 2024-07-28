@@ -5,4 +5,12 @@
     align-items: center;
     max-width: 330px;
     width: calc(330 / 1200 * 100vw);
+    
+}
+
+.modal-thank {
+    gap: min(calc(7 / 1200 * 100vw), 7px);
+    min-width: 100%;
+
+    align-items: start;
 }
