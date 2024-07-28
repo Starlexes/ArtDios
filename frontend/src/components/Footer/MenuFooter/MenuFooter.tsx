@@ -8,11 +8,14 @@ import cn from 'classnames';
 import { RootState } from '../../../store';
 import { useSelector} from 'react-redux';
 import { useMemo } from 'react';
+import { useAppSelector } from '../../../hooks';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
 	const phones = useSelector((state: RootState) => state.contacts.phones);
 	const emails = useSelector((state: RootState) => state.contacts.emails);
+
+	const categories = useAppSelector((state: RootState) => state.categories);
 
 	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
 	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
@@ -21,10 +24,13 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 		<div className={cn(styles['menu-footer'], className)} {...props}>
 			<MenuFooterItem>
 				<MenuTitle>Категории</MenuTitle>
-				<NavItem href='#' className='contact-text'>Межкомнатные двери</NavItem>
-				<NavItem href='#' className='contact-text'>Входные двери</NavItem>
-				<NavItem href='#' className='contact-text'>Натяжные потолки</NavItem>
-				<NavItem href='#' className='contact-text'>Напольные покрытия</NavItem>
+				{
+					categories.map((item) => (
+						<NavItem href={item.slug} key={item.name} className='contact-text'>{item.name}</NavItem>
+					)
+						
+					)
+				}
 			</MenuFooterItem>
 
 			<MenuFooterItem>
