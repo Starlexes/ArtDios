@@ -16,10 +16,10 @@ export interface ContactState {
 	phones: {number: string}[],
 	emails: {email: string}[],
 	addresses: {address: string}[],
-	workingHours: {
-	openingHours: number,
-	closingHours: number
-	}
+	working_hours: {
+	opening_hours: number,
+	closing_hours: number
+	}[]
   }
 
 export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
@@ -63,9 +63,9 @@ const contactSlice = createSlice({
 			state.phones = action.payload.phones.map(item => item.number);
 			state.addresses = action.payload.addresses.map(item => item.address);
 			state.workingHours = { 
-				...action.payload.workingHours,
-				openingHours: action.payload.workingHours.openingHours,
-				closingHours: action.payload.workingHours.closingHours
+				...action.payload.working_hours[0],
+				openingHours: action.payload.working_hours[0].opening_hours,
+				closingHours: action.payload.working_hours[0].closing_hours
 			};
 		});
 	}

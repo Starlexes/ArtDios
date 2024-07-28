@@ -5,7 +5,9 @@ import styles from './Navigation.module.css';
 import { NavigationProps } from './Navigation.props';
 import cn from 'classnames';
 import { RootState, selectPhones } from '../../../store';
-import { useSelector} from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContacts } from '../../../slices/contactSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 const initial: Link[] = [
 	{id: 1, link: '#', children: 'Доставка и оплата', type: 'main', className: 'contact-text'},
@@ -16,7 +18,12 @@ const initial: Link[] = [
 
 function Navigation({className}: NavigationProps) {
 
-	const phones = useSelector((state: RootState) => selectPhones(state));
+	const phones = useAppSelector((state: RootState) => selectPhones(state));
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchContacts());
+	}, [dispatch]);
 	
 	const links: Link[] = [
 		...initial,
