@@ -6,5 +6,10 @@ TELEGRAM_CHAT_ID = config("CHAT_ID")
 
 def send_to_telegram(data):
     bot = Bot(token=TELEGRAM_TOKEN)
-    message = f'Имя: {data["name"]}\n\nТелефон: {data["tel"]}\n\nПочта: {data["email"]}\n\nКомментарии: {data["comments"]}'
+    name = f'Имя: {data["name"]}\n\n'
+    phone = f'Телефон: {data["tel"] }\n\n'
+    email = f'Почта: {data["email"]}\n\n' if data["email"] else ''
+    comments = f'Комментарии: {data["comments"]}' if data["comments"] else ''
+
+    message = ''.join([name, phone, email, comments])
     bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message)
