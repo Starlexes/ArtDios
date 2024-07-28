@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('api/csrf-token', get_csrf_token),
+    path('api/csrf-token/', get_csrf_token),
     path('api/category/', CategoryView.as_view()),
     path('api/category/<int:pk>/', CategoryView.as_view()),
     path('api/product-type/', ProductTypeView.as_view()),
