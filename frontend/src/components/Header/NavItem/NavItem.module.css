@@ -51,3 +51,10 @@
     font-size: clamp(14px, calc(18 / 1200 * 100vw), 18px);
     color: var(--text-color);
 }
+
+.modal-label {
+    font-weight: 400;
+    font-size: 12px;
+    color: #444;
+    text-decoration: underline; 
+}

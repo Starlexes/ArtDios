@@ -1,0 +1,5 @@
+.modal-text {
+    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+    font-weight: 300;
+    color: #464646;
+}

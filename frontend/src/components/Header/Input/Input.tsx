@@ -5,7 +5,10 @@ import cn from 'classnames';
 function Input({className, ...props}: InputProps) {
 	return (
 		<input className={cn({
-			[styles['search-input']]: className === 'search-input'
+			[styles['search-input']]: className === 'search-input',
+			[styles['modal-input']]: className === 'modal-input',
+			[styles['modal-checkbox']]: className === 'modal-checkbox'
+			
 		})} {...props} />
 	);
 }

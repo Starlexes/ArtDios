@@ -13,7 +13,8 @@ function NavItem({children, className, href,...props}: NavItemProps) {
 			[styles['logo-link']]: className === 'logo-link',
 			[styles['nav-menu']]: className === 'nav-menu',
 			[styles['nav-footer']]: className === 'nav-footer',
-			[styles['category']]: className === 'category'
+			[styles['category']]: className === 'category',
+			[styles['modal-label']]: className === 'modal-label'
 		})} {...props}>{children}</a>
 		
 	);

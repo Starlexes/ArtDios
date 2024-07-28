@@ -1,0 +1,8 @@
+.modal-head {
+    display: flex;
+    flex-direction: column;
+    gap: min(calc(21 / 1200 * 100vw), 21px);
+    align-items: center;
+    max-width: 330px;
+    width: calc(330 / 1200 * 100vw);
+}

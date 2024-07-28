@@ -1,0 +1,18 @@
+
+.modal-form {
+    width: calc(350 / 1200 * 100vw);
+    max-width: 350px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: min(calc(34 / 1200 * 100vw), 34px);
+    align-items: center;
+}
+

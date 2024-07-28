@@ -1,0 +1,25 @@
+.modal-textarea {
+    padding: 13px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    font-weight: 400;
+    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+    color: var(--default-color);
+
+    resize: none;
+    min-height: 134px;
+}
+
+
+.modal-textarea:focus {
+    outline: none;
+    border: 1px solid #1A50DA;
+}
+
+.modal-textarea::-webkit-input-placeholder {
+    font-weight: 400;
+    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+    color: #444;
+}

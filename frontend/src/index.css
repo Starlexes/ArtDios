@@ -7,6 +7,8 @@
     --text-color3: #CCCCCC;
     --primary-bgc2: #1D1D1D;
     --active-color: #DA5F1A;
+    --default-color: #000;
+    --border-color: #8E8E8E;
 }
 
 * {

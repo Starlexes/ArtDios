@@ -1,0 +1,32 @@
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: min(calc(34 / 1200 * 100vw), 34px);
+    max-width: 300px;
+    width: calc(300 / 1200 * 100vw);
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: min(calc(24 / 1200 * 100vw), 24px);
+}
+
+.checkbox-block {
+    position: relative;
+    font-weight: 400;
+    font-size: 12px;
+    color: #444;
+    max-width: 350;
+    width: calc(350 / 1200 * 100vw);
+    display: flex;
+    min-height: 32px;
+}
+
+.checkbox-block p {
+    position: absolute;
+    top:0;
+    
+    display: inline-block;
+    width: 350px;
+}
