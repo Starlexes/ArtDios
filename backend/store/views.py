@@ -8,11 +8,18 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
+
 import os
 
 from .models import *
 from .serializers import *
 
+
+
+def get_csrf_token(request):
+    return JsonResponse({'csrfToken': get_token(request)})
 
 def get_method(request, model, model_serializer, pk=None):
     try:
