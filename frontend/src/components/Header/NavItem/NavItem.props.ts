@@ -1,5 +1,6 @@
-import { AnchorHTMLAttributes, ReactNode } from 'react';
+import { ReactNode} from 'react';
+import { LinkProps } from 'react-router-dom';
 
-export interface NavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-    children: ReactNode;
+export interface NavItemProps extends LinkProps {
+    children: ReactNode
 }

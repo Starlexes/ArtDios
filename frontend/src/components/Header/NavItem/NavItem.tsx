@@ -1,21 +1,23 @@
+import { Link } from 'react-router-dom';
 import styles from './NavItem.module.css';
 import { NavItemProps } from './NavItem.props';
 import cn from 'classnames';
 
 
-function NavItem({children, className, href,...props}: NavItemProps) {
+function NavItem({children, className, to,...props}: NavItemProps) {
 	return (
 		
-		<a href={href} className={cn(styles['contact__header'], {
+		<Link to={to} className={cn(styles['contact__header'], {
 			[styles['contact-text']]: className === 'contact-text',
 			[styles['phone-num']]: className === 'phone-num',
-			[styles['social-item']]: className === 'social-item',
+			
 			[styles['logo-link']]: className === 'logo-link',
 			[styles['nav-menu']]: className === 'nav-menu',
 			[styles['nav-footer']]: className === 'nav-footer',
 			[styles['category']]: className === 'category',
 			[styles['modal-label']]: className === 'modal-label'
-		})} {...props}>{children}</a>
+		}, className)} {...props}>{children}
+		</Link>
 		
 	);
 }

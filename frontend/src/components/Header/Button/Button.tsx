@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 function Button({children,className, isActive = false, ...props}: ButtonProps) {
 	return (
-		<button className={cn({
+		<button className={cn(styles['main-btn'], {
 			[styles['order-btn']]: className === 'order-btn',
 			[styles['search-btn']]: className === 'search-btn',
 			[styles['catalog']]: className === 'catalog',
@@ -12,7 +12,7 @@ function Button({children,className, isActive = false, ...props}: ButtonProps) {
 			[styles['close-thank']]: className === 'close-thank',
 			[styles['submit']]: className === 'submit',
 			[styles['active']]: isActive
-		})} {...props}>{children}</button>
+		}, className)} {...props}>{children}</button>
 	);
 }
 

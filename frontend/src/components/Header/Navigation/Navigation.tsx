@@ -13,7 +13,7 @@ const initial: Link[] = [
 	{id: 1, link: '#', children: 'Доставка и оплата', type: 'main', className: 'contact-text'},
 	{id: 2, link: '#', children: 'Возврат товара', type: 'main', className: 'contact-text'},
 	{id: 3, link: '#', children: 'Контакты', type: 'main', className: 'contact-text'},
-	{id: 4, type: 'social' }
+	{id: 4, link: '#', type: 'social' }
 ];
 
 function Navigation({className}: NavigationProps) {
@@ -22,6 +22,7 @@ function Navigation({className}: NavigationProps) {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		
 		dispatch(fetchContacts());
 	}, [dispatch]);
 	

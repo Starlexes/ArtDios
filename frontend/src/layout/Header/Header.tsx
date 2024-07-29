@@ -1,4 +1,5 @@
 
+import { memo } from 'react';
 import LinkMenu from '../../components/Header/LinkMenu/LinkMenu';
 import Navigation from '../../components/Header/Navigation/Navigation';
 import TopPanel from '../../components/Header/TopPanel/TopPanel';
@@ -6,7 +7,7 @@ import styles from './Header.module.css';
 import cn from 'classnames';
 
 
-function Header() {
+const Header = memo(function Header() {
 	return (
 		<header className={cn(styles['header'])}>
 			<Navigation/>
@@ -15,6 +16,6 @@ function Header() {
 			
 		</header>
 	);
-}
+});
 
 export default Header;

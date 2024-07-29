@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from '../store';
 
 
 export interface ContactState {
@@ -24,16 +25,30 @@ export interface ContactState {
 
 export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 	'contacts/fetchContacts',
-	async () => {
+	async (_, { getState  }) => {
+		const state= getState() as RootState ;
+		
+		if (state.contacts.phones.length > 0 || state.contacts.emails.length > 0) {
+			return {
+				phones: state.contacts.phones.map(phone => ({ number: phone })),
+				emails: state.contacts.emails.map(email => ({ email })),
+				addresses: state.contacts.addresses.map(address => ({ address })),
+				working_hours: [{...state.contacts.workingHours}]			
+					.map(hours => ({
+						opening_hours: hours.openingHours,
+						closing_hours: hours.closingHours
+					}))
+			} as ContactGetState;
+		}
 		const response = await axios.get('/api/contacts/');
 		return response.data as ContactGetState;
 	}
 );
   
 const initialState: ContactState = {
-	phones: [''],
-	emails: [''],
-	addresses: [''],
+	phones: [],
+	emails: [],
+	addresses: [],
 	workingHours: {
 		openingHours: Date.now(),
 		closingHours: Date.now()

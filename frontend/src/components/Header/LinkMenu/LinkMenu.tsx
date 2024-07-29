@@ -7,17 +7,15 @@ import CategoryList from '../CategoryList/CategoryList';
 import { useState } from 'react';
 
 const links: Link[] = [
-	{id: 1, link: '#', children: 'Главная', type: 'main', className: 'nav-menu' },
-	{id: 2, link: '#', children: 'Услуги', type: 'main', className: 'nav-menu' },
-	{id: 3, link: '#', children: 'Акции', type: 'main', className: 'nav-menu' },
-	{id: 4, link: '#', children: 'Галерея', type: 'main', className: 'nav-menu' },
-	{id: 5, link: '#', children: 'О компании', type: 'main', className: 'nav-menu' }
+	{id: 1, link: '/', children: 'Главная', type: 'main', className: 'nav-menu' },
+	{id: 2, link: '/service', children: 'Услуги', type: 'main', className: 'nav-menu' },
+	{id: 3, link: '/promotions', children: 'Акции', type: 'main', className: 'nav-menu' },
+	{id: 4, link: '/gallery', children: 'Галерея', type: 'main', className: 'nav-menu' },
+	{id: 5, link: '/about', children: 'О компании', type: 'main', className: 'nav-menu' }
 ];
 
 function LinkMenu() {
 	
-	
-
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const handleClick = () => {
@@ -38,7 +36,7 @@ function LinkMenu() {
 				</svg>
         Каталог
 			</Button>
-			<NavigationList links={links} className='link-menu' onMouseEnter={handleMouseLeave} />
+			<NavigationList links={links} className={cn(styles['link-menu'])} onMouseEnter={handleMouseLeave} />
 			<CategoryList isActive={isClicked} />
 		</div>
 	);

@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react';
 
 export interface Link {
-    link?: string | undefined,
+    link: string
     children?: string | undefined,
     type: 'main' | 'social',
     className?: string | undefined,

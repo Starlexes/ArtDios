@@ -1,4 +1,4 @@
-import NavItem from '../NavItem/NavItem';
+import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import styles from './NavSocial.module.css';
 import { NavSocialProps } from './NavSocial.props';
 import cn from 'classnames';
@@ -6,17 +6,17 @@ import cn from 'classnames';
 function NavSocial({className}: NavSocialProps) {
 	return (
 		<div className={cn(styles['messangers__header'], className)}>
-			<NavItem href='https://wa.me/+11111111111?text=Здравствуйте' className='social-item'>
+			<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['social-item'])} target='blank'>
 				<img src="/social/whatsapp logo.svg" alt="Логотип WhatsApp"/>
-			</NavItem>
+			</AnchorNavItem>
 
-			<NavItem href='viber://chat?number=+11111111111' className='social-item'>
+			<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['social-item'])} target='blank'>
 				<img src="/social/viber logo.svg" alt="Логотип Viber"/>
-			</NavItem>
+			</AnchorNavItem>
 
-			<NavItem href='https://t.me/+11111111111' className='social-item'>
+			<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['social-item'])} target='blank'>
 				<img src="/social/telegram logo.svg" alt="Логотип Telegram"/>
-			</NavItem>
+			</AnchorNavItem>
 			
 		</div>
 	);

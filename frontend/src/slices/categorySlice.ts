@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from '../store';
 
 export interface SubCategoryState {
     name: string,
@@ -10,7 +11,12 @@ export interface SubCategoryState {
 
 export const fetchCategory = createAsyncThunk<CategoryState[], void, object>(
 	'categories/fetchCategory',
-	async () => {
+	async (_, { getState  }) => {
+		const state= getState() as RootState;
+		
+		if (state.categories.length > 0) {
+			return state.categories;
+		}
 		const response = await axios.get('/api/classify/');
 		return response.data as CategoryState[];
 	}

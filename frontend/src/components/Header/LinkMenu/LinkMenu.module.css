@@ -7,3 +7,7 @@
     width: 100%;
     padding-left: min(calc(40 / 1200 * 100vw), 40px);
 }
+
+.link-menu {
+    gap: min(calc(40 / 1200 * 100vw), 40px);
+}

@@ -9,6 +9,7 @@ import { RootState } from '../../../store';
 import { useSelector} from 'react-redux';
 import { useMemo } from 'react';
 import { useAppSelector } from '../../../hooks';
+import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
@@ -26,7 +27,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<MenuTitle>Категории</MenuTitle>
 				{
 					categories.map((item) => (
-						<NavItem href={item.slug} key={item.name} className='contact-text'>{item.name}</NavItem>
+						<NavItem to={item.slug} key={item.name} className={cn(styles['contact-text'])}>{item.name}</NavItem>
 					)
 						
 					)
@@ -35,46 +36,47 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Информация</MenuTitle>
-				<NavItem href='#' className='contact-text'>Доставка и оплата</NavItem>
-				<NavItem href='#' className='contact-text'>Возврат товара</NavItem>
-				<NavItem href='#' className='contact-text'>Установка</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Доставка и оплата</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Возврат товара</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Установка</NavItem>
 			</MenuFooterItem>
 
 			<MenuFooterItem>
 				<MenuTitle>Социальные сети</MenuTitle>
-				<NavItem href='https://wa.me/+11111111111?text=Здравствуйте' className='contact-text'>
+				<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['contact-text'])}>
 					<FooterSocialItem>
 						<img src="/social/whatsapp logo.svg" alt="Логотип WhatsApp"/>   
                         WhatsApp
 					</FooterSocialItem>
-				</NavItem>
-				<NavItem href='viber://chat?number=+11111111111' className='contact-text'>
+				</AnchorNavItem>
+				<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['contact-text'])}>
 					<FooterSocialItem>
 						<img src="/social/viber logo.svg" alt="Логотип Viber"/>   
                         Viber
 					</FooterSocialItem>
-				</NavItem>
-				<NavItem href='https://t.me/+11111111111' className='contact-text'>
+				</AnchorNavItem>
+
+				<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['contact-text'])}>
 					<FooterSocialItem>
 						<img src="/social/telegram logo.svg" alt="Логотип Telegram"/>   
                         Telegram
 					</FooterSocialItem>
-				</NavItem>
+				</AnchorNavItem>
 					
 			</MenuFooterItem>
 
 			<MenuFooterItem>
 				<MenuTitle>Контакты</MenuTitle>
 				{memoizedPhones.map(item => (
-					<NavItem className='contact-text' href={`tel:${item}`} key={item}>
+					<AnchorNavItem className={cn(styles['contact-text'])} href={`tel:${item}`} key={item}>
 						{item}
-					</NavItem>
+					</AnchorNavItem>
 				))}
 
 				{memoizedEmails.map(item => (
-					<NavItem className='contact-text' href={`mailto:${item}`} key={item}>
+					<AnchorNavItem className={cn(styles['contact-text'])} href={`mailto:${item}`} key={item}>
 						{item}
-					</NavItem>
+					</AnchorNavItem>
 				))}
 			</MenuFooterItem>
 		</div>

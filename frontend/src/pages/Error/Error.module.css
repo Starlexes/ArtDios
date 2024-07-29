@@ -1,0 +1,33 @@
+.error-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: min(64 / 1200 * 100vw, 64px);
+    
+}
+
+.error-title {
+    
+    font-weight: 700;
+    font-size: clamp(34px, calc(44 / 1200 * 100vw), 44px);
+}
+
+.error-btn {
+    border-radius: 10px;
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 15px;
+    font-weight: 700;
+    font-size: clamp(14px, calc(20 / 1200 * 100vw), 20px);
+    color: var(--text-color);
+    background-color: var(--active-color);
+}
+
+.error-link {
+    width: min(calc(263 / 1200 * 100vw), 263px);
+}
+
+.error-btn:hover {
+    font-weight: 900;
+}

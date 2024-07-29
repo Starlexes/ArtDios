@@ -1,0 +1,9 @@
+.nav-item {
+    text-decoration: none;
+    font-size: clamp(14px, calc(15 / 1200 * 100vw), 15px);
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    color: var(--active-color);
+}

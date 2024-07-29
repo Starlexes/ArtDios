@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import MenuFooter from '../../components/Footer/MenuFooter/MenuFooter';
 import NavFooter from '../../components/Footer/NavFooter/NavFooter';
 import styles from './Footer.module.css';
 import cn from 'classnames';
 
-function Footer() {
+const Footer = memo(function Footer() {
 	return (
 		<footer className={cn(styles['footer'])}>
 			
@@ -13,6 +14,6 @@ function Footer() {
 			
 		</footer>
 	);
-}
+});
 
 export default Footer;

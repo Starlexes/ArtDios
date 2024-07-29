@@ -12,9 +12,9 @@ function NavigationList({links, className, onMouseEnter}: NavigationListProps) {
 		<nav>
 			<ul>
 				<div className={cn(styles['contacts__header'], {
-					[styles['link-menu']]: className === 'link-menu',
+					
 					[styles['nav-footer']]: className === 'nav-footer'
-				})} onMouseEnter={onMouseEnter}>
+				}, className)} onMouseEnter={onMouseEnter}>
 					{links.map((item, index) => (
 						<NavigationListItem key={item.id || index}>
 							{item.isText? (
@@ -22,7 +22,7 @@ function NavigationList({links, className, onMouseEnter}: NavigationListProps) {
 							):
 							
 								item.type === 'main' ? (
-									<NavItem className={item.className} href={item.link}>
+									<NavItem className={item.className} to={item.link}>
 										{item.children}
 									</NavItem>
 								) : (

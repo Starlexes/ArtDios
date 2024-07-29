@@ -11,7 +11,7 @@ function CategoryListItem({name, link, className,
 
 	return (
 		<li>
-			<NavItem href={link} className='category'>
+			<NavItem to={link} className='category'>
 				<div className={cn(styles['list-item'], {
 					[styles['border-item']]: className === 'border-item'
 				})} onMouseEnter={onMouseEnter ? () => onMouseEnter(name) : undefined}

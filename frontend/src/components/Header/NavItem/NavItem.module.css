@@ -1,6 +1,7 @@
 .contact__header {
     text-decoration: none;
     font-size: clamp(14px, calc(15 / 1200 * 100vw), 15px);
+    cursor: pointer;
 }
 
 .contact__header:hover {
@@ -19,9 +20,6 @@
     color: var(--text-color);
 }
 
-.social-item {
-    display: flex;
-}
 
 .logo-link {
     caret-color: transparent;
