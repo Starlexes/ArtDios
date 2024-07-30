@@ -13,10 +13,9 @@ import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
-	const phones = useSelector((state: RootState) => state.contacts.phones);
-	const emails = useSelector((state: RootState) => state.contacts.emails);
-
-	const categories = useAppSelector((state: RootState) => state.categories);
+	const {phones, emails} = useSelector((state: RootState) => state.contacts.contacts);
+	
+	const categories = useAppSelector((state: RootState) => state.categories.categories);
 
 	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
 	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
@@ -27,7 +26,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<MenuTitle>Категории</MenuTitle>
 				{
 					categories.map((item) => (
-						<NavItem to={item.slug} key={item.name} className={cn(styles['category'])}>{item.name}</NavItem>
+						<NavItem to={item.slug} key={item.name} className={cn(styles['contact-text'])}>{item.name}</NavItem>
 					)
 						
 					)
@@ -43,20 +42,20 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Социальные сети</MenuTitle>
-				<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['contact-text'])}>
+				<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['contact-text']) } target='blank'>
 					<FooterSocialItem>
 						<img src="/social/whatsapp logo.svg" alt="Логотип WhatsApp"/>   
                         WhatsApp
 					</FooterSocialItem>
 				</AnchorNavItem>
-				<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['contact-text'])}>
+				<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
 						<img src="/social/viber logo.svg" alt="Логотип Viber"/>   
                         Viber
 					</FooterSocialItem>
 				</AnchorNavItem>
 
-				<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['contact-text'])}>
+				<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
 						<img src="/social/telegram logo.svg" alt="Логотип Telegram"/>   
                         Telegram

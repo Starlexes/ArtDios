@@ -14,13 +14,15 @@ import SubCategoryList from '../SubCategoryList/SubCategoryList';
 function CategoryList({isActive=false, className}: CategoryListProps) {
 
 	const dispatch = useAppDispatch();
-	const categories = useAppSelector((state: RootState) => state.categories);
+	const { categories, isLoading }  = useAppSelector((state: RootState) => state.categories);
 
 	const [subActive, setSubActive] = useState<string | null>(null);
 
 	useEffect(() => {
-		dispatch(fetchCategory());
-	}, [dispatch]);
+		if (categories.length === 0 && !isLoading) {
+			dispatch(fetchCategory());
+		}
+	}, [dispatch, categories.length, isLoading]);
 
 	const renderArrow = () => (
 		<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +38,7 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 				.map((subcat, index, array) => (
 					<CategoryListItem
 						key={subcat.name}
-						borderItem={index === array.length - 1}
+						borderItem={index !== array.length - 1}
 						link={subcat.slug}
 					>
 						{subcat.name}
@@ -54,7 +56,7 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 					showSub={subActive === item.name}
 					onMouseEnter={() => setSubActive(item.name)}
 					subcategory={renderSubcategories(item.subcategory)}
-					borderItem={index === array.length - 1}
+					borderItem={index !== array.length - 1}
 					link={item.slug}
 				>
 					{item.name} {renderArrow()}

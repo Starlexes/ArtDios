@@ -11,7 +11,7 @@ const store = configureStore({
 	}
 });
 
-const phones = (state: RootState) => state.contacts.phones;
+const phones = (state: RootState) => state.contacts.contacts.phones;
 
 export const selectPhones = createSelector(
 	[phones],

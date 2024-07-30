@@ -15,12 +15,15 @@ import NavSocial from '../NavSocial/NavSocial';
 function Navigation({className}: NavigationProps) {
 
 	const phones = useAppSelector((state: RootState) => selectPhones(state));
+	const {contacts, isLoading} = useAppSelector((state: RootState) => state.contacts);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		if ((contacts.phones.length === 0 || contacts.emails.length === 0) && !isLoading) {
+			dispatch(fetchContacts());
+		}
 		
-		dispatch(fetchContacts());
-	}, [dispatch]);
+	},  [dispatch, contacts.phones.length, contacts.emails.length, isLoading]);
 
 
 

@@ -11,9 +11,9 @@ export interface ContactState {
 	openingHours: number,
 	closingHours: number
 	}
-  }
+}
   
-  interface ContactGetState {
+interface ContactGetState {
 	phones: {number: string}[],
 	emails: {email: string}[],
 	addresses: {address: string}[],
@@ -21,19 +21,26 @@ export interface ContactState {
 	opening_hours: number,
 	closing_hours: number
 	}[]
-  }
+}
+
+
+export interface ContactsState {
+	contacts: ContactState,
+	isLoading: boolean;
+    error: string | null;
+}
 
 export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 	'contacts/fetchContacts',
 	async (_, { getState, rejectWithValue  }) => {
 		const state= getState() as RootState ;
 		
-		if (state.contacts.phones.length > 0 || state.contacts.emails.length > 0) {
+		if (state.contacts.contacts.phones.length > 0 || state.contacts.contacts.emails.length > 0) {
 			return {
-				phones: state.contacts.phones.map(phone => ({ number: phone })),
-				emails: state.contacts.emails.map(email => ({ email })),
-				addresses: state.contacts.addresses.map(address => ({ address })),
-				working_hours: [{...state.contacts.workingHours}]			
+				phones: state.contacts.contacts.phones.map(phone => ({ number: phone })),
+				emails: state.contacts.contacts.emails.map(email => ({ email })),
+				addresses: state.contacts.contacts.addresses.map(address => ({ address })),
+				working_hours: [{...state.contacts.contacts.workingHours}]			
 					.map(hours => ({
 						opening_hours: hours.openingHours,
 						closing_hours: hours.closingHours
@@ -47,20 +54,22 @@ export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 				return rejectWithValue((error as Error).message);
 			}
 		}
-
-		
-	
 	}
 );
   
-const initialState: ContactState = {
-	phones: [],
-	emails: [],
-	addresses: [],
-	workingHours: {
-		openingHours: Date.now(),
-		closingHours: Date.now()
-	}
+const initialState: ContactsState = {
+	contacts: {
+		phones: [],
+		emails: [],
+		addresses: [],
+		workingHours: {
+			openingHours: Date.now(),
+			closingHours: Date.now()
+		}
+	},
+	isLoading: false,
+	error: null
+	
 };
 
 const contactSlice = createSlice({
@@ -68,30 +77,40 @@ const contactSlice = createSlice({
 	initialState,
 	reducers: {
 		setPhones(state, action: PayloadAction<string[]>) {
-			state.phones = action.payload;
+			state.contacts.phones = action.payload;
 		},
 		setEmails(state, action: PayloadAction<string[]>) {
-			state.emails = action.payload;
+			state.contacts.emails = action.payload;
 		},
 		setAddresses(state, action: PayloadAction<string[]>) {
-			state.addresses = action.payload;
+			state.contacts.addresses = action.payload;
 		},
 		setWorkingHours(state, action: PayloadAction<{ openingHours: number; closingHours: number }>) {
-			state.workingHours = action.payload;
+			state.contacts.workingHours = action.payload;
 		}
 	},
 	extraReducers: (builder) => {
+		builder.addCase(fetchContacts.pending, (state) => {
+			state.isLoading = true;
+			state.error = null;
+			
+		});
 		builder.addCase(fetchContacts.fulfilled, (state, action) => {
-			state.emails = action.payload.emails.map(item => item.email);
-			state.phones = action.payload.phones.map(item => item.number);
-			state.addresses = action.payload.addresses.map(item => item.address);
-			state.workingHours = { 
+			
+			state.contacts.emails = action.payload.emails.map(item => item.email);
+			state.contacts.phones = action.payload.phones.map(item => item.number);
+			state.contacts.addresses = action.payload.addresses.map(item => item.address);
+			state.contacts.workingHours = { 
 				...action.payload.working_hours[0],
 				openingHours: action.payload.working_hours[0].opening_hours,
 				closingHours: action.payload.working_hours[0].closing_hours
 			};
+			state.isLoading = false;
 		});
-		builder.addCase(fetchContacts.rejected, (_state, action) => {
+		
+		builder.addCase(fetchContacts.rejected, (state, action) => {
+			state.isLoading = false;
+			state.error = action.payload as string;
 			console.error('Error fetching contacts:', action.payload);
 		});
 	}
