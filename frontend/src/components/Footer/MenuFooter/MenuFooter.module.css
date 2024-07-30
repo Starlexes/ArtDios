@@ -14,3 +14,7 @@
     align-items: center;
     font-weight: 400;
 } 
+
+.category {
+    color: var(--text-color3);
+}

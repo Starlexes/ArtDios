@@ -19,3 +19,8 @@
     border-image-width: 0 0 2px 0;
 }
 
+.category {
+    font-weight: 400;
+    font-size: clamp(14px, calc(18 / 1200 * 100vw), 18px);
+    color: var(--text-color);
+}

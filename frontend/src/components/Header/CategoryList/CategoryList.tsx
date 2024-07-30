@@ -36,7 +36,7 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 				.map((subcat, index, array) => (
 					<CategoryListItem
 						key={subcat.name}
-						className={index === array.length - 1 ? undefined : 'border-item'}
+						borderItem={index === array.length - 1}
 						link={subcat.slug}
 					>
 						{subcat.name}
@@ -54,7 +54,7 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 					showSub={subActive === item.name}
 					onMouseEnter={() => setSubActive(item.name)}
 					subcategory={renderSubcategories(item.subcategory)}
-					className={index === array.length - 1 ? undefined : 'border-item'}
+					borderItem={index === array.length - 1}
 					link={item.slug}
 				>
 					{item.name} {renderArrow()}

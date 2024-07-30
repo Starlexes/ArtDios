@@ -1,15 +1,6 @@
-import { HTMLProps } from 'react';
-
-export interface Link {
-    link: string
-    children?: string | undefined,
-    type: 'main' | 'social',
-    className?: string | undefined,
-    isText?: boolean | undefined
-    id: number;
-}
+import { HTMLProps, ReactNode } from 'react';
 
 export interface NavigationListProps extends HTMLProps<HTMLDivElement>{
     className?: string | undefined,
-    links: Link[]
+    children: ReactNode
 }

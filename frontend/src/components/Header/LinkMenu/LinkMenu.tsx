@@ -1,18 +1,13 @@
 import styles from './LinkMenu.module.css';
 import NavigationList from '../NavigationList/NavigationList';
-import { Link } from '../NavigationList/NavigationList.props';
 import cn from 'classnames';
 import Button from '../Button/Button';
 import CategoryList from '../CategoryList/CategoryList';
 import { useState } from 'react';
+import NavigationListItem from '../NavigationListItem/NavigationListItem';
+import NavItem from '../NavItem/NavItem';
 
-const links: Link[] = [
-	{id: 1, link: '/', children: 'Главная', type: 'main', className: 'nav-menu' },
-	{id: 2, link: '/service', children: 'Услуги', type: 'main', className: 'nav-menu' },
-	{id: 3, link: '/promotions', children: 'Акции', type: 'main', className: 'nav-menu' },
-	{id: 4, link: '/gallery', children: 'Галерея', type: 'main', className: 'nav-menu' },
-	{id: 5, link: '/about', children: 'О компании', type: 'main', className: 'nav-menu' }
-];
+
 
 function LinkMenu() {
 	
@@ -36,7 +31,39 @@ function LinkMenu() {
 				</svg>
         Каталог
 			</Button>
-			<NavigationList links={links} className={cn(styles['link-menu'])} onMouseEnter={handleMouseLeave} />
+			<NavigationList className={cn(styles['link-menu'])} onMouseEnter={handleMouseLeave}>
+
+				<NavigationListItem key={1}>
+					<NavItem className={cn(styles['nav-menu'])} to={'/'}>
+						Главная
+					</NavItem>
+				</NavigationListItem>
+
+				<NavigationListItem key={2}>
+					<NavItem className={cn(styles['nav-menu'])} to={'/service'}>
+						Услуги
+					</NavItem>
+				</NavigationListItem>
+
+				<NavigationListItem key={3}>
+					<NavItem className={cn(styles['nav-menu'])} to={'/promotions'}>
+						Акции
+					</NavItem>
+				</NavigationListItem>
+
+				<NavigationListItem key={4}>
+					<NavItem className={cn(styles['nav-menu'])} to={'/gallery'}>
+						Галерея
+					</NavItem>
+				</NavigationListItem>
+
+				<NavigationListItem key={5}>
+					<NavItem className={cn(styles['nav-menu'])} to={'/about'}>
+						О компании
+					</NavItem>
+				</NavigationListItem>
+
+			</NavigationList>
 			<CategoryList isActive={isClicked} />
 		</div>
 	);

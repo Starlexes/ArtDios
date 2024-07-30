@@ -180,10 +180,10 @@ function ModalForm({ onSubmit, className }: ModalFormProps) {
 				<label htmlFor='agreement'>
 					<p>
 					Согласие на<br/>
-						<NavItem href='#' className='modal-label'>Обработку персональных данных</NavItem><br/>
-						<NavItem href='#' className='modal-label'>Пользовательское соглашение</NavItem><br/>
+						<NavItem to='/' className={cn(styles['modal-label'])}>Обработку персональных данных</NavItem><br/>
+						<NavItem to='/' className={cn(styles['modal-label'])}>Пользовательское соглашение</NavItem><br/>
 					
-						<NavItem href='#' className='modal-label'>Публичная оферта</NavItem>	
+						<NavItem to='/' className={cn(styles['modal-label'])}>Публичная оферта</NavItem>	
 					</p>			
 				</label>
 			</div>

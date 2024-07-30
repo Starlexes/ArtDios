@@ -4,14 +4,6 @@
     gap: min(calc(30 / 1200 * 100vw), 30px);
 }
 
-
-
-.nav-footer {
-    gap: min(calc(24 / 1200 * 100vw), 24px);
-    max-width: 724px;
-    width: calc(724 / 1200 * 100vw);
-}
-
 .contact-text {
     color: var(--text-color2);
     display: flex;

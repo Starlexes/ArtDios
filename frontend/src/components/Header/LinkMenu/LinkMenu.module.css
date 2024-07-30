@@ -11,3 +11,14 @@
 .link-menu {
     gap: min(calc(40 / 1200 * 100vw), 40px);
 }
+
+.nav-menu {
+    font-weight: 700;
+    font-size: clamp(16px, calc(18 / 1200 * 100vw), 18px);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav-menu:hover {
+    color: var(--active-color);
+}

@@ -27,7 +27,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<MenuTitle>Категории</MenuTitle>
 				{
 					categories.map((item) => (
-						<NavItem to={item.slug} key={item.name} className={cn(styles['contact-text'])}>{item.name}</NavItem>
+						<NavItem to={item.slug} key={item.name} className={cn(styles['category'])}>{item.name}</NavItem>
 					)
 						
 					)
@@ -36,9 +36,9 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Информация</MenuTitle>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Доставка и оплата</NavItem>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Возврат товара</NavItem>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Установка</NavItem>
+				<NavItem to='/' className='contact-text'>Доставка и оплата</NavItem>
+				<NavItem to='/' className='contact-text'>Возврат товара</NavItem>
+				<NavItem to='/' className='contact-text'>Установка</NavItem>
 			</MenuFooterItem>
 
 			<MenuFooterItem>

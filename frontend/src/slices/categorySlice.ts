@@ -11,14 +11,20 @@ export interface SubCategoryState {
 
 export const fetchCategory = createAsyncThunk<CategoryState[], void, object>(
 	'categories/fetchCategory',
-	async (_, { getState  }) => {
+	async (_, { getState, rejectWithValue }) => {
 		const state= getState() as RootState;
 		
 		if (state.categories.length > 0) {
 			return state.categories;
 		}
-		const response = await axios.get('/api/classify/');
-		return response.data as CategoryState[];
+
+		try {
+			const response = await axios.get('/api/classify/');
+			return response.data as CategoryState[];
+		} catch (error) {
+			return rejectWithValue((error as Error).message);
+		}
+		
 	}
 );
 
@@ -49,6 +55,9 @@ const categorySlice = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(fetchCategory.fulfilled, (_state, action) => {
 			return action.payload;
+		});
+		builder.addCase(fetchCategory.rejected, (_state, action) => {
+			console.error('Error fetching contacts:', action.payload);
 		});
 	}
 });

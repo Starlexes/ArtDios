@@ -9,3 +9,21 @@
     padding-top: 33px;
     padding-bottom: 33px;
 }
+
+.nav-footer-list {
+    gap: min(calc(24 / 1200 * 100vw), 24px);
+    max-width: 724px;
+    width: calc(724 / 1200 * 100vw);
+}
+
+.nav-footer-link {
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.logo-footer {
+    width: calc(340 / 1200 * 100vw);
+    max-width: 340px;
+}

@@ -25,7 +25,7 @@ export interface ContactState {
 
 export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 	'contacts/fetchContacts',
-	async (_, { getState  }) => {
+	async (_, { getState, rejectWithValue  }) => {
 		const state= getState() as RootState ;
 		
 		if (state.contacts.phones.length > 0 || state.contacts.emails.length > 0) {
@@ -39,9 +39,17 @@ export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 						closing_hours: hours.closingHours
 					}))
 			} as ContactGetState;
+		} else {
+			try {
+				const response = await axios.get('/api/contacts/');
+				return response.data as ContactGetState;
+			} catch (error) {
+				return rejectWithValue((error as Error).message);
+			}
 		}
-		const response = await axios.get('/api/contacts/');
-		return response.data as ContactGetState;
+
+		
+	
 	}
 );
   
@@ -82,6 +90,9 @@ const contactSlice = createSlice({
 				openingHours: action.payload.working_hours[0].opening_hours,
 				closingHours: action.payload.working_hours[0].closing_hours
 			};
+		});
+		builder.addCase(fetchContacts.rejected, (_state, action) => {
+			console.error('Error fetching contacts:', action.payload);
 		});
 	}
 });

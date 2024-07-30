@@ -7,10 +7,8 @@ import cn from 'classnames';
 
 function Logo({isFooter, className}: LogoProps) {
 	return (
-		<div className={cn(styles['logo-link'], {
-			[styles['logo-footer']]: className === 'logo-footer'
-		})}>
-			<NavItem href='#' className='logo-link'>
+		<div className={cn(styles['logo-link'], className)}>
+			<NavItem to='/' className={cn(styles['logo-link'])}>
 				<LogoImage isFooter={isFooter}/>
 			</NavItem>
 		</div>

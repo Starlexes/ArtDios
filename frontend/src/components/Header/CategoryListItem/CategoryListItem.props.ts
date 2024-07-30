@@ -9,4 +9,5 @@ export interface CategoryListItemProps {
     name?: string |undefined,
     onMouseEnter?: ((name: string | undefined) => void) | undefined,
     onMouseLeave?: () => void,
+    borderItem: boolean
 }

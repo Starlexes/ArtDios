@@ -6,3 +6,8 @@
     max-width: 1200px;
     width: 100%;
 }
+
+.phone-num {
+    font-weight: 700;
+    color: var(--text-color);
+}

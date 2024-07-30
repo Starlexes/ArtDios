@@ -6,15 +6,15 @@ import cn from 'classnames';
 
 function CategoryListItem({name, link, className,
 	subcategory, children, showSub,
-	onMouseEnter, onMouseLeave}: CategoryListItemProps) {
+	onMouseEnter, onMouseLeave, borderItem}: CategoryListItemProps) {
 
 
 	return (
 		<li>
-			<NavItem to={link} className='category'>
+			<NavItem to={link} className={cn(styles['category'])}>
 				<div className={cn(styles['list-item'], {
-					[styles['border-item']]: className === 'border-item'
-				})} onMouseEnter={onMouseEnter ? () => onMouseEnter(name) : undefined}
+					[styles['border-item']]: borderItem
+				}, className)} onMouseEnter={onMouseEnter ? () => onMouseEnter(name) : undefined}
 				onMouseLeave={onMouseLeave}
 				>
 					{ children}			
