@@ -3,3 +3,19 @@
     flex-direction: column;
     gap: min(calc(14 / 1200 * 100vw), 14px);
 }
+
+@media (max-width: 880px) {
+    .menu-item {
+        width: calc(250 / 880 * 100vw);
+        max-width: 250px;
+        gap: 10px;  
+    }
+}
+
+@media (max-width: 510px) {
+    .menu-item {
+        width: auto;
+        max-width: 200px;
+        gap: 14px;  
+    }
+}

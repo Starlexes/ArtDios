@@ -35,9 +35,9 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Информация</MenuTitle>
-				<NavItem to='/' className='contact-text'>Доставка и оплата</NavItem>
-				<NavItem to='/' className='contact-text'>Возврат товара</NavItem>
-				<NavItem to='/' className='contact-text'>Установка</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Доставка и оплата</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Возврат товара</NavItem>
+				<NavItem to='/' className={cn(styles['contact-text'])}>Установка</NavItem>
 			</MenuFooterItem>
 
 			<MenuFooterItem>

@@ -7,3 +7,15 @@
 .nav-item:hover {
     color: var(--active-color);
 }
+
+@media (max-width: 880px) {
+    .nav-item {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 510px) {
+    .nav-item {
+        font-size: 14px;
+    }
+}

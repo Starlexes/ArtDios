@@ -1,0 +1,4 @@
+.media-panel {
+    display: flex;
+    gap: min(calc(24 / 1200 * 100vw), 24px);
+}

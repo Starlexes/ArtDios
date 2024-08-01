@@ -8,8 +8,8 @@ import cn from 'classnames';
 function Search({className}: SearchProps) {
 	return (
 		<div className={cn(styles['search'], className)}>
-			<Input placeholder='Поиск' className='search-input'/>
-			<Button className='search-btn'>
+			<Input placeholder='Поиск' className={cn(styles['search-input'])}/>
+			<Button className={cn(styles['search-btn'])}>
 				<img src="/other/loupe.svg" alt="Иконка лупы"/>
 			</Button>
 		</div>

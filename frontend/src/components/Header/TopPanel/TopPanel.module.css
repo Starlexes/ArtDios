@@ -14,3 +14,58 @@
     gap: min(calc(42 / 1200 * 100vw), 42px);
     padding-left: min(calc(62 / 1200 * 100vw), 62px);
 }
+
+@media (max-width: 880px) {
+
+    .main__header {
+        height: 90px;
+        z-index: 1;
+    }
+    .main-inner__header {
+        max-width: 880px;
+        gap: min(calc(138 / 880 * 100vw), 138px);
+        padding-left: min(calc(62 / 880 * 100vw), 62px);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .main-inner__header {
+        gap: min(calc(72 / 768 * 100vw), 72px);
+        padding-left: min(calc(50 / 768 * 100vw), 50px);
+    }
+}
+
+
+@media (max-width: 650px) {
+    .main-inner__header {
+        gap: min(calc(40 / 650 * 100vw), 40px);
+       
+    }
+}
+
+@media (max-width: 568px) {
+    .main__header {
+        height: 74px;
+    }
+
+    .main-inner__header {
+        gap: 5vw;
+        padding-left: 6vw;
+    }
+}
+
+
+@media (max-width: 510px) {
+    .main-inner__header {
+        gap: 8vw;
+        padding-left: 7vw;
+    }
+}
+
+@media (max-width: 445px)  {
+    .main-inner__header {
+        gap: 10vw;
+  
+    }
+}

@@ -15,3 +15,47 @@
     border: none;
     width: 300px;
 }
+
+@media (max-width: 880px) {
+    .logo-two {
+        width: auto;
+        max-width: 206px;
+        font-size: 16px;
+    }
+
+    .logo-footer {
+        font-size: 18px;
+        width: 226px;
+        max-width: 226px;
+    }
+}
+
+@media (max-width: 650px) {
+    .logo-two {
+
+        max-width: 180px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 568px) {
+    .logo-two {
+      
+        max-width: 130px;
+        font-size: 10px;
+        font-weight: 300;
+    }
+
+    .logo-footer {
+        font-size: 12px;
+        width: 155px;
+        max-width: max-content;
+        font-weight: 400;
+    }
+}
+
+@media (max-width: 445px) {
+    .logo-two  {
+        border: none;
+    }
+}

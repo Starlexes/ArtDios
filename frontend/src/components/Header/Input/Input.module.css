@@ -1,22 +1,4 @@
-.search-input {
-    padding: 11px 9px;
-    width: 100%;
-    border: none;
-    border-radius: 10px 0 0 10px;
-    line-height: normal;
-    font-weight: 400;
-    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
-}
 
-.search-input:focus {
-    outline: none;
-}
-
-.search-input::-webkit-input-placeholder {
-    color: #9f9f9f;
-    font-weight: 400;
-    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
-}
 
 .modal-input {
     padding: 13px 15px;

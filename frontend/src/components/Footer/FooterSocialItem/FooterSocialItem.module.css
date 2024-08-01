@@ -8,3 +8,23 @@
     width: 34px;
     height: 34px;
 }
+
+@media (max-width: 880px) {
+    .social-item {
+        font-size: 18px;
+    }
+    .social-item img {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 510px) {
+    .social-item {
+        font-size: 14px;
+    }
+    .social-item img {
+        width: 34px;
+        height: 34px;
+    }
+}

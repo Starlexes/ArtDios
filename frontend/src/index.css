@@ -26,7 +26,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     width: 100vw;
-  
 }
 
 #root {
@@ -35,4 +34,10 @@ body {
     align-items: center;
     width: 100%;  
     min-height: 100vh;
+}
+
+@media (max-width: 880px) {
+    body {
+        overflow-x: hidden;
+    }
 }

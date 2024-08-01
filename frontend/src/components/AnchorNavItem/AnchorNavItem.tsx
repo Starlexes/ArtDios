@@ -7,9 +7,7 @@ import cn from 'classnames';
 function AnchorNavItem({children, className, href,...props}: AnchorNavItemProps) {
 	return (
 		
-		<a href={href} className={cn(styles['nav-item'], {
-            
-		}, className)} {...props}>{children}
+		<a href={href} className={cn(styles['nav-item'], className)} {...props}>{children}
 		</a>
 		
 	);
