@@ -7,8 +7,6 @@ function Button({children,className, isActive = false, ...props}: ButtonProps) {
 		<button className={cn(styles['main-btn'], {
 			[styles['order-btn']]: className === 'order-btn',
 			[styles['catalog']]: className === 'catalog',
-			
-			[styles['close-thank']]: className === 'close-thank',
 			[styles['active']]: isActive
 		}, className)} {...props}>{children}</button>
 	);

@@ -23,18 +23,16 @@ function ButtonOrderCall({className, children}: ButtonOrderCallProps) {
 	const matches = useMediaPredicate('(min-width: 881px)');
 
 	const onClick = () => {
-		setModalIsOpen(true);
+		// setModalIsOpen(true);
+		setModalThankIsOpen(true);
 		dispatch(setMediaSearchClick(false));
 	};
 
 
 	const closeModal = (isSubmit: boolean = false) => {
-		if (isSubmit) {
-			setModalIsOpen(false);
+		setModalIsOpen(false);
+		if (isSubmit) {	
 			setModalThankIsOpen(true);
-			
-		} else {
-			setModalIsOpen(false);
 		}
 	
 	};

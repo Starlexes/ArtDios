@@ -5,12 +5,17 @@
 .thank-title {
     display: inline-block;
     width: 100%;
+    font-size: 36px;
 }
 
 @media (max-width: 880px) {
     .modal-title {
         text-align: center;
-        font-size: max(calc(36 / 880 * 100vw), 20px);
+        font-size: max(calc(36 / 880 * 100vw), 18px);
+    }
+
+    .thank-title {
+        text-align: start;
     }
     
 }

@@ -4,11 +4,9 @@
     width: 100%;
 }
 
-.modal-content img {
-    max-width: 65px;
-    max-height: 65px;
-    width: (65 / 1200 * 100vw);
-    height: (65 / 1200 * 100vw);
+.modal-window img {
+    width: 65px;
+    height: 65px;
     position: absolute;
     right: 27px;
     bottom: 16px;
@@ -20,12 +18,46 @@
     top: 30%;
     left: 50%;
     border-radius: 10px 10px 40px 10px;
-    width: calc(510 / 1200 * 100vw);
-    max-width: 510px;
-    min-height: 188px;
+    width: 510px;
+    height: 188px;
     position: relative;
     display: flex;
     padding-bottom: 54px;
     padding-top: 45px;
     padding-left: 24px;
+}
+
+.close-thank {
+    right: 16px;
+    top: 16px;
+}
+
+.head-thank {
+    gap: 7px;
+    min-width: 100%;
+    align-items: start;
+}
+
+@media (max-width: 880px) {
+    .modal-window img {
+        width: max(calc(65 / 880 * 100vw), 53px);
+        height: max(calc(65 / 880 * 100vw), 53px);
+        right: max(calc(27 / 880 * 100vw), 16px);
+        bottom: max(calc(19 / 880 * 100vw), 11px);
+    }
+    
+    .modal-window {     
+        width: calc(510 / 880 * 100vw);
+        height: calc(188 / 880 * 100vw);
+        min-width: 284px;
+        min-height: 122px;
+        padding-bottom: max(calc(54 / 880 * 100vw), 42px);
+        padding-top: max(calc(45 / 880 * 100vw), 29px);
+        padding-left: max(calc(24 / 880 * 100vw), 20px);
+    }
+
+    .close-thank {
+        right: max(calc(16 / 880 * 100vw), 12px);
+        top: max(calc(16 / 880 * 100vw), 12px);
+    }
 }

@@ -6,7 +6,7 @@
 
 .modal-thank {
     font-weight: 300;
-    font-size: clamp(18px, calc(24 / 1200 * 100vw), 24px);
+    font-size: 24px;
     color: var(--default-color);
 }
 
@@ -16,6 +16,6 @@
     }
     
     .modal-thank {
-        font-size: max(calc(24 / 880 * 100vw), 18px);
+        font-size: max(calc(24 / 880 * 100vw), 14px);
     }
 }

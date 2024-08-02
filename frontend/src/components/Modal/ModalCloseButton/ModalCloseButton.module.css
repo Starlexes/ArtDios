@@ -1,0 +1,10 @@
+.close-modal {
+    background: none;
+    position: absolute;
+    min-height: max-content;
+}
+
+.close-modal:hover rect {
+    fill: #a4a2a2;
+}
+

@@ -32,21 +32,13 @@
     height: 804px;
 }
 
-.close-modal {
-    background: none;
-    position: absolute;
-    right: clamp(20px, calc(30 / 1200 * 100vw), 30px);
-    top: clamp(20px, calc(28 / 1200 * 100vw), 28px);
+.modal-order {
+    right: 30px;
+    top: 28px;
 }
-
-.close-modal:hover rect {
-    fill: #a4a2a2;
-}
-
 
 @media (max-width: 880px) {
    
-
     .modal-content {
         gap: calc(34 / 880 * 100vw);
     }
@@ -59,10 +51,6 @@
         height: max(calc(804 / 880 * 100vw), 740px);
     }
 
-    .close-modal {
-        right: clamp(20px, calc(30 / 880 * 100vw), 30px);
-        top: clamp(20px, calc(28 / 880 * 100vw), 28px);
-    }
 
     .modal-errors {
         min-height: 804px;
@@ -85,11 +73,12 @@
     .modal-errors {
         min-height:730px;
     }
-
-    .close-modal {
+    .modal-order {
         right: 20px;
-        top: 10px;
+        top: 20px;
     }
+
+  
 }
 
 @media (max-width: 376px) {

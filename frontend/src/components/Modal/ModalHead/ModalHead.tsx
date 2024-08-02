@@ -6,14 +6,12 @@ import { ModalHeadProps } from './ModalHead.props';
 import cn from 'classnames';
 
 
-function ModalHead({modalTitle, modalText, className, textClass }: ModalHeadProps) {
+function ModalHead({modalTitle, titleClass, modalText, className, textClass }: ModalHeadProps) {
 
 	return (
-		<div className={cn(styles['modal-head'], {
-			[styles['modal-thank']]: className === 'modal-thank'
-		}, className)}>
+		<div className={cn(styles['modal-head'], className)}>
 
-			<ModalTitle className='thank-title'>{modalTitle}</ModalTitle>
+			<ModalTitle className={titleClass}>{modalTitle}</ModalTitle>
 				
 			<ModalText className={textClass}>{modalText}</ModalText>
 		</div>
