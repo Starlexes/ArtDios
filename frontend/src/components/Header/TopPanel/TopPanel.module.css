@@ -65,7 +65,7 @@
 
 @media (max-width: 445px)  {
     .main-inner__header {
-        gap: 10vw;
-  
+        justify-content: space-between;
+        padding-right: 5vw;
     }
 }

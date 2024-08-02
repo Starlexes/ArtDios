@@ -9,3 +9,13 @@
     font-size: clamp(18px, calc(24 / 1200 * 100vw), 24px);
     color: var(--default-color);
 }
+
+@media (max-width: 880px) {
+    .modal-text {
+        font-size: max(calc(16 / 880 * 100vw), 12px);
+    }
+    
+    .modal-thank {
+        font-size: max(calc(24 / 880 * 100vw), 18px);
+    }
+}

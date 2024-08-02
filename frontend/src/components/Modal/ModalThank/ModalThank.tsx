@@ -3,45 +3,23 @@ import Button from '../../Header/Button/Button';
 import ModalHead from '../ModalHead/ModalHead';
 import styles from './ModalThank.module.css';
 import { ModalThankProps } from './ModalThank.props';
+import overlayStyles from '../ModalStyles/ModalOverlay.module.css';
 import cn from 'classnames';
 import Modal from 'react-modal';
 
 
 Modal.setAppElement('#root');
 
-function ModalThank({isOpen = false, closeModal, className}: ModalThankProps) {
+function ModalThank({isOpen = false, closeModal}: ModalThankProps) {
 
-	const modalStyles = {
-		overlay: {
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0,
-			backgroundColor: 'rgba(21, 21, 21, 0.79)'	
-		},
-
-		content: {
-			transform: 'translateX(-50%)',
-			top: '30%',
-			left: '50%',
-			borderRadius: '10px 10px 40px 10px',
-			width: 'calc(510 / 1200 * 100vw)',
-			maxWidth: '510px',
-			minHeight: '188px',
-			position: 'relative',
-			display: 'flex',
-			paddingBottom: '54px',
-			paddingTop: '45px'
-		} as React.CSSProperties
-	} ;
-
+	
 	return (
 		
 		<Modal
 			isOpen={isOpen}
 			onRequestClose={() => closeModal(false)}
-			className={cn(className)}
-			style={modalStyles}
+			className={cn(styles['modal-window'])}
+			overlayClassName={cn(overlayStyles['modal-overlay'])}
 		>
 			<div className={cn(styles['modal-content'])}>
 				<ModalHead 

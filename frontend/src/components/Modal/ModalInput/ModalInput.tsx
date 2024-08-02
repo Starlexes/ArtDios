@@ -1,14 +1,18 @@
 import Input from '../../Header/Input/Input';
-
-
+import styles from './ModalInput.module.css';
 import { ModalInputProps } from './ModalInput.props';
-
+import cn from 'classnames';
 
 function ModalInput({hasError=false, name, onInput, onChange, placeholder, type}: ModalInputProps) {
 
 	return (
-		<Input hasError={hasError} onInput={onInput} name={name} onChange={onChange} type={type} placeholder={placeholder} className='modal-input'/>
+		<Input onInput={onInput} name={name} onChange={onChange} type={type} placeholder={placeholder} className={cn(styles['modal-input'], {
+			[styles['modal-checkbox']]: type==='checkbox',
+			[styles['error']]: hasError,
+			[styles['modal-checkbox-error']]: hasError && (type==='checkbox')
+		})}/>
 	);
 }
+
 
 export default ModalInput;

@@ -6,11 +6,11 @@ import cn from 'classnames';
 import ModalInput from '../ModalInput/ModalInput';
 import Button from '../../Header/Button/Button';
 import ModalTextArea from '../ModalTextArea/ModalTextArea';
-import Input from '../../Header/Input/Input';
 import NavItem from '../../Header/NavItem/NavItem';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { getCsrfToken } from '../../../utils/csrf';
 import axiosInstance from '../../../utils/axiosInstance';
+import { ErrorData } from '../ModalOrderCall/ModalOrderCall';
 
 
 interface FormData {
@@ -21,11 +21,7 @@ interface FormData {
 	agreement: boolean
 }
 
-interface ErrorData {
-	name?: string,
-	tel?: string,
-	agreement?: boolean
-}
+
 
 interface PostData {
 	name: string,
@@ -44,12 +40,12 @@ const initialFormData: FormData =
 	};
 
 
-function ModalForm({ onSubmit, className }: ModalFormProps) {
+function ModalForm({errors, setErrors, onSubmit, className }: ModalFormProps) {
 
 	
 	const [formData, setFormData] = useState<FormData>(initialFormData);
 
-	const [errors, setErrors] = useState<ErrorData>({});
+	
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitAttempted, setIsSubmitAttempted] = useState(false);
 
@@ -171,11 +167,11 @@ function ModalForm({ onSubmit, className }: ModalFormProps) {
 				</label>
 			</div>
 
-			<Button className='submit' disabled={isSubmitting} type="submit">Отправить</Button>
+			<Button className={cn(styles['submit'])} disabled={isSubmitting} type="submit">Отправить</Button>
 
 			<div className={cn(styles['checkbox-block'])}>
-				<Input checked={formData.agreement} name='agreement'
-					type='checkbox' className={'modal-checkbox'}
+				<ModalInput checked={formData.agreement} name='agreement'
+					type='checkbox'
 					onChange={handleChange} hasError={(isSubmitAttempted && errors.agreement) as boolean}/>
 				<label htmlFor='agreement'>
 					<p>

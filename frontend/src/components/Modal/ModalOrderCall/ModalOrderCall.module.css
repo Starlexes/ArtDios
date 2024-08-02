@@ -1,12 +1,5 @@
 
-.modal-form {
-    width: calc(350 / 1200 * 100vw);
-    max-width: 350px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: auto;
-}
+
 
 
 .modal-content {
@@ -15,5 +8,96 @@
     gap: min(calc(34 / 1200 * 100vw), 34px);
     align-items: center;
     width: 100%;
+    
 }
 
+.modal-window {
+    transform: translateX(-50%);
+    left: 50%;
+    border-radius: 40px;
+    width: calc(484 / 1200 * 100vw);
+    max-width: 484px;
+    height: max(calc(804 / 1200 * 100vw), 730px);
+    max-height: 804px;
+    background-color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    padding-top: min(calc(49 / 1200 * 100vw), 49px);
+    position: relative;
+    top: min(10vw, 120px);
+}
+
+.modal-errors {
+    height: 804px;
+}
+
+.close-modal {
+    background: none;
+    position: absolute;
+    right: clamp(20px, calc(30 / 1200 * 100vw), 30px);
+    top: clamp(20px, calc(28 / 1200 * 100vw), 28px);
+}
+
+.close-modal:hover rect {
+    fill: #a4a2a2;
+}
+
+
+@media (max-width: 880px) {
+   
+
+    .modal-content {
+        gap: calc(34 / 880 * 100vw);
+    }
+    
+    .modal-window {
+        width: max(calc(484 / 880 * 100vw), 336px);
+        top: min(13vw, 120px);
+        padding-top: max(calc(49 / 880 * 100vw), 30px);
+        max-height: 804px;
+        height: max(calc(804 / 880 * 100vw), 740px);
+    }
+
+    .close-modal {
+        right: clamp(20px, calc(30 / 880 * 100vw), 30px);
+        top: clamp(20px, calc(28 / 880 * 100vw), 28px);
+    }
+
+    .modal-errors {
+        min-height: 804px;
+    }
+    
+}
+
+@media (max-width: 510px) {
+    .modal-window {
+        border-radius: 10px;
+        height: 688px;
+        top: 10px;
+
+    }
+
+    .modal-content {
+        gap: 24px;
+    }
+
+    .modal-errors {
+        min-height:730px;
+    }
+
+    .close-modal {
+        right: 20px;
+        top: 10px;
+    }
+}
+
+@media (max-width: 376px) {
+   
+    
+    .modal-window {
+        width: max(calc(336 / 376 * 100vw), 280px);
+        height: 600px;
+    }
+
+}

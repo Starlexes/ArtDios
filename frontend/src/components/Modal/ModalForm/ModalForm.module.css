@@ -51,3 +51,81 @@
     color: #444;
     text-decoration: underline; 
 }
+
+.submit {
+    height: 58px;
+    width: 100%;
+    border-radius: 10px;
+    color: var(--text-color);
+    background-color: var(--btn-success);
+    font-weight: 700;
+    font-size: clamp(20px, calc(24 / 1200 * 100vw), 24px);
+    line-height: 100%;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.submit:hover {
+    background-color: #36b121;
+}
+
+
+@media (max-width: 880px) {
+    .modal-form {
+        gap: 34px;
+        width: max(calc(300 / 880 * 100vw), 240px);
+    }
+    
+    .form-inputs {
+        gap: 24px;
+    }
+       
+    .checkbox-block {
+        max-width: 300;
+        width: auto;
+    }
+
+    .checkbox-block p {
+        width: 300px;
+    }
+    
+    .error-msg { 
+        font-size: clamp(10px, calc(12 / 880 * 100vw), 12px);
+    }
+
+    .submit {     
+        font-size: clamp(20px, calc(24 / 880 * 100vw), 24px);
+    }
+
+    .checkbox-block {
+        max-width: 240;
+        width: auto;
+    }
+}
+
+@media (max-width: 510px)  {
+    .modal-form {
+        gap: 24px;
+    }
+
+    .submit {
+        height: 48px;
+    }
+
+}
+
+@media (max-width: 376px) {
+    .modal-form { 
+        width: max(calc(240 / 376 * 100vw), 200px);
+    }
+
+    .checkbox-block, .modal-label{
+        font-size: 10px;
+    }
+
+    .checkbox-block p {
+        width: 210px;
+    }
+
+   
+}

@@ -46,16 +46,6 @@
     fill: var(--active-color);
 }
 
-.close-modal {
-    background: none;
-    position: absolute;
-    left: calc(434 / 484 *100%);
-    top: 28px;
-}
-
-.close-modal:hover rect {
-    fill: #a4a2a2;
-}
 
 .close-thank {
     left: calc(472 / 510 *100%);
@@ -63,19 +53,3 @@
 }
 
 
-.submit {
-    height: 58px;
-    width: 100%;
-    border-radius: 10px;
-    color: var(--text-color);
-    background-color: var(--btn-success);
-    font-weight: 700;
-    font-size: clamp(20px, calc(24 / 1200 * 100vw), 24px);
-    line-height: 100%;
-    text-align: center;
-    transition: background-color 0.2s;
-}
-
-.submit:hover {
-    background-color: #36b121;
-}

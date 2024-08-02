@@ -7,10 +7,11 @@ import cn from 'classnames';
 
 
 
-function MediaButtonOrderCall({className}: MediaButtonOrderCallProps) {
+function MediaButtonOrderCall({className, ...props}: MediaButtonOrderCallProps) {
 
+	
 	return (
-		<MediaButton className={cn(styles['media-order'], className)}>
+		<MediaButton className={cn(styles['media-order'], className)} {...props}>
 			<img src="media/phone.svg" alt="Иконка телефона" />
 		</MediaButton>
 	);

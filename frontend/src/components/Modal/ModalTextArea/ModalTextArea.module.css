@@ -7,7 +7,6 @@
     font-weight: 400;
     font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
     color: var(--default-color);
-
     resize: none;
     min-height: 134px;
 }
@@ -18,8 +17,26 @@
     border: 1px solid #1A50DA;
 }
 
-.modal-textarea::-webkit-input-placeholder {
+.modal-textarea::placeholder {
     font-weight: 400;
     font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
     color: #444;
+}
+
+@media (max-width: 880px) {
+    .modal-textarea {
+        font-size: clamp(12px, calc(16 / 1200 * 100vw), 16px);
+    }
+    
+    .modal-textarea::placeholder {
+       font-size: clamp(12px, calc(16 / 1200 * 100vw), 16px);
+    }
+    
+}
+
+
+@media (max-width: 510px) {
+    .modal-textarea {
+        min-height: 100px;
+    }
 }

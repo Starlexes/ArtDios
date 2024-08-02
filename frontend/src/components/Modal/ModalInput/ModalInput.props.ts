@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 
 export interface ModalInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    hasError?: boolean
+    hasError?: boolean,
+    isCheckbox?: boolean
 }

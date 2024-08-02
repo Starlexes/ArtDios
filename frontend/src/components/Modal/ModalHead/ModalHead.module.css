@@ -11,6 +11,24 @@
 .modal-thank {
     gap: min(calc(7 / 1200 * 100vw), 7px);
     min-width: 100%;
-
+    
     align-items: start;
+}
+
+@media (max-width: 880px) {
+    .modal-head {
+        gap: calc(21 / 880 * 100vw);
+        width: max(calc(300 / 880 * 100vw), 237px);
+        
+    }
+    
+    .modal-thank {
+        gap: min(calc(7 / 880 * 100vw), 7px);
+    }
+}
+
+@media (max-width: 376px) {
+    .modal-head {
+        width: calc(222 / 376 * 100vw);
+    }
 }
