@@ -21,9 +21,7 @@ function LinkMenu({className}: LinkMenuProps) {
   
 	const matches = useMediaPredicate('(min-width: 881px)');
   
-
 	const [isClicked, setIsClicked] = useState<boolean>(false);
-
 
 	const handleClick = () => {
 		setIsClicked(prevState => !prevState);
@@ -33,15 +31,11 @@ function LinkMenu({className}: LinkMenuProps) {
 		setIsClicked(false);
 	};
 
-
-
 	return (
 
 		<div className={cn(styles.bottom__header, {
 			[styles['active']]: isClickedState,
 			[styles['disactive']]: !initial && !isClickedState
-			
-
 		},className)} onMouseLeave={handleMouseLeave}>
 			{ matches?
 				<>

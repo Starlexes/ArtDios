@@ -1,0 +1,35 @@
+.modal-content {
+    display: flex;
+    flex-direction: column; 
+    width: 100%;
+    align-items: center;
+}
+
+.modal-window {
+    background-color: var(--primary-bgc);
+    top: 0;
+    width: 376px;
+    position: relative;
+    display: flex;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease;
+}
+
+.active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.disactive {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+@media (max-width: 376px) {
+    .modal-window {
+        width: 300px;
+    }
+}

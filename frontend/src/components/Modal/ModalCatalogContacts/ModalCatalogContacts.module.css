@@ -1,0 +1,32 @@
+.phone-num {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.modal-contacts {
+    padding: 7px;
+    background-color: #424242;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.contacts-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: max-content;
+    gap: 10px;
+}
+
+.social-logo {
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.social-logo img{
+    width: 34px;
+    height: 34px;
+}

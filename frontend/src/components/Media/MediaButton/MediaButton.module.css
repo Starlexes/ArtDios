@@ -10,9 +10,9 @@
     border-radius: 10px;
 }
 
-.media-btn img {
-    width: calc(38 / 880 * 100vw);
-    height: calc(38 / 880 * 100vw);
+.media-btn img, .media-btn svg {
+    width: max(calc(38 / 880 * 100vw), 23px);
+    height: max(calc(38 / 880 * 100vw), 23px);
     max-width: 38px;
     max-height: 38px;
 }
@@ -24,23 +24,11 @@
         width: calc(42 / 600 * 100vw);
         height: calc(42 / 600 * 100vw);
     }
-
-    .media-btn img {
-        width: calc(23 / 600 * 100vw);
-        height: calc(23 / 600 * 100vw);
-        max-width: 23px;
-        max-height: 23px;
-    }
 }
 
 @media (max-width: 568px) {
     .media-btn {
         height: 40px;
         width: 40px;
-    }
-
-    .media-btn img {
-        width: 23px;
-        height: 23px;
     }
 }

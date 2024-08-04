@@ -1,0 +1,64 @@
+.modal-window {
+    background-color: transparent;
+    width: 376px;
+}
+
+
+.subcategory {
+    background-color: var(--primary-bgc);
+    padding: 0 24px;
+    position: relative;
+    animation: subcategory 0.3s forwards;
+}
+
+@keyframes subcategory {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+  }
+
+.subcategory ul {
+    list-style: none;
+}
+
+
+.subcategory svg {
+    transform: scaleX(-1);
+}
+
+.subcat-link {
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+.back-btn {
+    min-height: max-content;
+    background: none;
+    width: 55px;
+    height: 53px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.subcat-item {
+    justify-content: start;
+    min-height: 53px;
+    padding-left: 50px;  
+    
+}
+
+.subcat-item:active rect {
+    fill: var(--text-color);
+}
+
+@media (max-width: 376px) {
+    .modal-window {
+        width: 300px;
+    }
+}

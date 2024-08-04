@@ -45,7 +45,7 @@
     
     .modal-window {
         width: max(calc(484 / 880 * 100vw), 336px);
-        top: min(13vw, 120px);
+        top: min(3vw, 120px);
         padding-top: max(calc(49 / 880 * 100vw), 30px);
         max-height: 804px;
         height: max(calc(804 / 880 * 100vw), 740px);

@@ -8,7 +8,7 @@ import cn from 'classnames';
 import { useMediaPredicate } from 'react-media-hook';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { setMediaSearchClick, setMediaSearchInitial } from '../../slices/buttonSlice';
+import { setMediaBurgerClick, setMediaSearchClick, setMediaSearchInitial } from '../../slices/buttonSlice';
 
 
 const Header = memo(function Header() {
@@ -22,6 +22,7 @@ const Header = memo(function Header() {
 		if (matches) {
 			dispatch(setMediaSearchClick(false));
 			dispatch(setMediaSearchInitial(true));
+			dispatch(setMediaBurgerClick(false));
 		}
 				
 	}, [matches, dispatch]);
@@ -29,7 +30,6 @@ const Header = memo(function Header() {
 	useEffect(() => {
 		if (isClicked) {
 			dispatch(setMediaSearchInitial(false));
-			
 		}
 	
 	}, [isClicked, dispatch]);

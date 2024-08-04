@@ -1,3 +1,5 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export interface ModalCloseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface ModalCloseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children?: ReactNode
+}

@@ -1,0 +1,17 @@
+.list-item {
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.border-item {
+    border-bottom: 1px solid #838383;
+}
+
+.list-item:active, .list-item:active rect {
+    color: var(--active-color);
+    fill:  var(--active-color);
+}

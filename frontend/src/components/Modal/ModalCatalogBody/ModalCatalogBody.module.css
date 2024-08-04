@@ -1,0 +1,10 @@
+.modal-body {
+    width: 330px;
+    padding: 16px 0;
+}
+
+@media (max-width: 376px) {
+    .modal-body {
+        width: 254px;
+    }
+}
