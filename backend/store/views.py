@@ -300,18 +300,22 @@ class ProductView(APIView):
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
     
-            if admin:
-                if category:
-                    products = Product.objects.filter(category__parent__name=category)
-                elif subcategory:
-                    products = Product.objects.filter(category__name=subcategory)
+            products = Product.objects.all()
+
+            if not admin:
+                products = products.filter(category__is_show=True)
+
+            if category:
+                if admin:
+                    products = products.filter(category__parent__name=category)
                 else:
-                    products = Product.objects.all()
-            else:
-                if category:
-                    products = Product.objects.filter(category__parent__is_show=True, category__parent__name=category)
+                    products = products.filter(category__parent__name=category)
+            elif subcategory:
+                if admin:
+                    products = products.filter(category__name=subcategory)
                 else:
-                    products = Product.objects.filter(category__is_show=True, category__name=subcategory)
+                    products = products.filter(category__name=subcategory)
+
                 
 
             if search:
