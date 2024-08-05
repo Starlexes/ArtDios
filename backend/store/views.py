@@ -305,18 +305,12 @@ class ProductView(APIView):
             if not admin:
                 products = products.filter(category__is_show=True)
 
-            if category:
-                if admin:
-                    products = products.filter(category__parent__name=category)
-                else:
-                    products = products.filter(category__parent__name=category)
-            elif subcategory:
-                if admin:
-                    products = products.filter(category__name=subcategory)
-                else:
-                    products = products.filter(category__name=subcategory)
-
-                
+            if category:  
+                products = products.filter(category__parent__slug=category)
+  
+            elif subcategory:   
+                products = products.filter(category__slug=subcategory)
+               
 
             if search:
                 search_vector = SearchVector('name', 'description', 'code') + \
