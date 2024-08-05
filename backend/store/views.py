@@ -296,16 +296,23 @@ class ProductView(APIView):
             max_price = request.query_params.get('max-price', '')
             characteristic_names = request.query_params.getlist('characteristic', '')
             category = request.query_params.get('category', '')
+            subcategory = request.query_params.get('subcategory', '')
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
     
-            if admin.lower() == 'true':
+            if admin:
                 if category:
                     products = Product.objects.filter(category__parent__name=category)
+                elif subcategory:
+                    products = Product.objects.filter(category__name=subcategory)
                 else:
                     products = Product.objects.all()
             else:
-                products = Product.objects.filter(category__is_show=True)
+                if category:
+                    products = Product.objects.filter(category__parent__is_show=True, category__parent__name=category)
+                else:
+                    products = Product.objects.filter(category__is_show=True, category__name=subcategory)
+                
 
             if search:
                 search_vector = SearchVector('name', 'description', 'code') + \
