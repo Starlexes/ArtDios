@@ -15,9 +15,16 @@ const store = configureStore({
 
 const phones = (state: RootState) => state.contacts.contacts.phones;
 
+const filteredCategory = (state: RootState) => state.categories.categories;
+
 export const selectPhones = createSelector(
 	[phones],
 	(phones) => phones.slice(0, 2)
+);
+
+export const selectFilteredCategory = createSelector(
+	[filteredCategory],
+	(category) => category.filter((item) => item.is_show)
 );
 
 export type RootState = ReturnType<typeof store.getState>;

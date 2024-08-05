@@ -1,6 +1,7 @@
 .list-item {
     padding: 14px 0;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
     width: 100%;
     align-items: center;
@@ -14,4 +15,9 @@
 .list-item:active, .list-item:active rect {
     color: var(--active-color);
     fill:  var(--active-color);
+}
+
+.list-item svg {
+    min-width: 9px;
+    min-height: 15px;
 }

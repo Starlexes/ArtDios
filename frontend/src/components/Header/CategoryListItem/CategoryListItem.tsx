@@ -11,17 +11,19 @@ function CategoryListItem({name, link, className,
 
 	return (
 		<li>
-			<NavItem to={link} className={cn(styles['category'])}>
-				<div className={cn(styles['list-item'], {
-					[styles['border-item']]: borderItem
-				}, className)} onMouseEnter={onMouseEnter ? () => onMouseEnter(name) : undefined}
-				onMouseLeave={onMouseLeave}
-				>
-					{ children}			
-				</div>
-			</NavItem>
+			<div className={cn(styles['item-content'])}>
+				<NavItem to={link} className={cn(styles['category'])}>
+					<div className={cn(styles['list-item'], {
+						[styles['border-item']]: borderItem
+					}, className)} onMouseEnter={onMouseEnter ? () => onMouseEnter(name) : undefined}
+					onMouseLeave={onMouseLeave}
+					>
+						{ children}			
+					</div>
+				</NavItem>
 			
-			{showSub && subcategory}
+				{showSub && subcategory}
+			</div>
 			
 		</li>
 				

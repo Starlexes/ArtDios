@@ -17,7 +17,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--main-font);
-    
+    outline: 0;
 }
 
 
@@ -25,7 +25,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100vw;
 }
 
 #root {
@@ -33,11 +32,5 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;  
-    min-height: 100vh;
-}
-
-@media (max-width: 880px) {
-    body {
-        overflow-x: hidden;
-    }
+    height: 100%;
 }

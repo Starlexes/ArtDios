@@ -80,7 +80,8 @@ function LinkMenu({className}: LinkMenuProps) {
 						</NavigationListItem>
 
 					</NavigationList>
-					<CategoryList isActive={isClicked} />
+					{isClicked && <CategoryList/>}
+					
 				</> : <Search/>
 			}
 		</div>

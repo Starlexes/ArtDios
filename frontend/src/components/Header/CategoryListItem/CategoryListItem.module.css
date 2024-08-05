@@ -2,13 +2,23 @@
 .list-item {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     align-items: center;
     height: 100%;
     padding: 10px 18px 10px 20px;
 }
 
+.item-content {
+    position: relative;
+}
+
 .list-item:hover rect {
     fill: var(--active-color);
+}
+
+.list-item svg {
+    min-width: 9px;
+    min-height: 15px;
 }
 
 .border-item {

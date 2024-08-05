@@ -61,7 +61,7 @@
 @media (max-width: 510px) {
     .modal-window {
         border-radius: 10px;
-        height: 688px;
+        height: 650px;
         top: 10px;
 
     }
@@ -87,6 +87,10 @@
     .modal-window {
         width: max(calc(336 / 376 * 100vw), 280px);
         height: 600px;
+    }
+
+    .modal-errors {
+        min-height:630px;
     }
 
 }

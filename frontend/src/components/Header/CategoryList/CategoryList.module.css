@@ -1,21 +1,14 @@
 .category-list {
     background-color: #252525;
-    max-width: 306px;
-    width: calc(306 / 1200 * 100vw);
+    width: 306px;
     z-index: 1;
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    left: auto;
-    top: 204px;
-    
+    top: 100%;
 }
 
 .category-list li {
     list-style-type: none;
-    max-height: 44px;
-    height: 44px;
-}
-.active {
-    display: flex;
-    flex-direction: column;
+    min-height: 44px;
 }

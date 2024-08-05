@@ -4,17 +4,18 @@ import { CategoryListProps } from './CategoryList.props';
 import cn from 'classnames';
 import CategoryListItem from '../CategoryListItem/CategoryListItem';
 import { useEffect, useState } from 'react';
-import { RootState } from '../../../store';
+import { RootState, selectFilteredCategory } from '../../../store';
 import { fetchCategory, SubCategoryState } from '../../../slices/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import SubCategoryList from '../SubCategoryList/SubCategoryList';
 import { renderArrow } from '../../../utils/constants';
 
 
-function CategoryList({isActive=false, className}: CategoryListProps) {
+function CategoryList({className}: CategoryListProps) {
 
 	const dispatch = useAppDispatch();
-	const { categories, isLoading }  = useAppSelector((state: RootState) => state.categories);
+	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
+	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
 
 	const [subActive, setSubActive] = useState<string | null>(null);
 
@@ -29,7 +30,6 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 	const renderSubcategories = (subcategory: SubCategoryState[]) => (
 		<SubCategoryList>
 			{subcategory
-				.filter((item) => item.is_show)
 				.map((subcat, index, array) => (
 					<CategoryListItem
 						key={subcat.name}
@@ -62,7 +62,7 @@ function CategoryList({isActive=false, className}: CategoryListProps) {
 
 	return (
 		<div
-			className={cn(styles['category-list'], { [styles['active']]: isActive }, className)}
+			className={cn(styles['category-list'], className)}
 			onMouseLeave={() => setSubActive(null)}
 		>
 			<nav>{renderCategories()}</nav>

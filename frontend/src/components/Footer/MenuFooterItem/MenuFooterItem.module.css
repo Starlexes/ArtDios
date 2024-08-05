@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: min(calc(14 / 1200 * 100vw), 14px);
+    max-width: 175px;
 }
 
 @media (max-width: 880px) {
@@ -15,7 +16,7 @@
 @media (max-width: 510px) {
     .menu-item {
         width: auto;
-        max-width: 200px;
+        max-width: 160px;
         gap: 14px;  
     }
 }

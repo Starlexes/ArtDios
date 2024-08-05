@@ -5,20 +5,39 @@ import MenuTitle from '../MenuTitle/MenuTitle';
 import styles from './MenuFooter.module.css';
 import { MenuFooterProps } from './MenuFooter.props';
 import cn from 'classnames';
-import { RootState } from '../../../store';
+import { RootState, selectFilteredCategory } from '../../../store';
 import { useSelector} from 'react-redux';
-import { useMemo } from 'react';
-import { useAppSelector } from '../../../hooks';
+import { useEffect, useMemo } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
+import { fetchCategory } from '../../../slices/categorySlice';
+import { fetchContacts } from '../../../slices/contactSlice';
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
 	const {phones, emails} = useSelector((state: RootState) => state.contacts.contacts);
 	
-	const categories = useAppSelector((state: RootState) => state.categories.categories);
+	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
+
+	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
+
+	const dispatch = useAppDispatch();
 
 	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
 	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
+
+	useEffect(() => {
+		if (categories.length === 0 && !isLoading) {
+			dispatch(fetchCategory());
+		}
+	}, [dispatch, categories.length, isLoading]);
+
+	useEffect(() => {
+		if ((phones.length === 0 || emails.length === 0) && !isLoading) {
+			dispatch(fetchContacts());
+		}
+		
+	},  [dispatch, phones.length, emails.length, isLoading]);
 
 	return (
 		<div className={cn(styles['menu-footer'], className)} {...props}>
@@ -83,3 +102,4 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 }
 
 export default MenuFooter;
+
