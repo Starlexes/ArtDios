@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.db.models import F
+from django.db.models import F, Q
 from django.core.files.storage import default_storage
 
 from rest_framework.views import APIView
@@ -296,7 +296,6 @@ class ProductView(APIView):
             max_price = request.query_params.get('max-price', '')
             characteristic_names = request.query_params.getlist('characteristic', '')
             category = request.query_params.get('category', '')
-            subcategory = request.query_params.get('subcategory', '')
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
     
@@ -306,10 +305,7 @@ class ProductView(APIView):
                 products = products.filter(category__is_show=True)
 
             if category:  
-                products = products.filter(category__parent__slug=category)
-  
-            elif subcategory:   
-                products = products.filter(category__slug=subcategory)
+                products = products.filter(Q(category__parent__slug=category) | Q(category__slug=category))
                
 
             if search:
