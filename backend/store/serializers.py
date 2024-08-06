@@ -29,6 +29,11 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['category_name'] = instance.category_name
+        return representation
+
 class CharacteristicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Characteristic

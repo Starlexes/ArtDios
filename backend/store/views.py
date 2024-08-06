@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.db.models import F, Q
+from django.db.models import F, Q, Case, When, Value, CharField
 from django.core.files.storage import default_storage
 
 from rest_framework.views import APIView
@@ -305,8 +305,18 @@ class ProductView(APIView):
                 products = products.filter(category__is_show=True)
 
             if category:  
-                products = products.filter(Q(category__parent__slug=category) | Q(category__slug=category))
-               
+                products = products.filter(
+                    Q(category__parent__slug=category) | Q(category__slug=category)
+                ).annotate(
+                    category_name=Case(
+                        When(category__parent__slug=category, then='category__parent__name'),
+                        When(category__slug=category, then='category__name'),
+                        default=Value(''),
+                        output_field=CharField(),
+                    )
+                )
+            
+            
 
             if search:
                 search_vector = SearchVector('name', 'description', 'code') + \
