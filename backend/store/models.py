@@ -2,8 +2,7 @@ from django.db import models
 from django.db.models import Index
 import slugify
 from transliterate import translit
-
-from .utils import IMAGE_FIELDS, delete_image_field, upload_products, upload_gallery, upload_pop_product, upload_promo, move_image_to_new_path
+from .utils import IMAGE_FIELDS, delete_image_field, upload_products, upload_gallery, upload_pop_product, upload_promo
 
 # Create your models here.
 class ProductType(models.Model):
