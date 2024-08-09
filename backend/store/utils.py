@@ -3,21 +3,32 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.core.files.storage import default_storage
 from django.conf import settings
-
+from django.utils import timezone
 import os
+import uuid
 
+def get_unique_name(filename):
+    base, extension = os.path.splitext(filename)
+    base = base.split('_')[0]
+    unique_id = uuid.uuid4().hex
+    timestamp = timezone.now().strftime('%Y%m%d')
+    return (base, extension, timestamp, unique_id)
 
 def upload_products(instance, filename):
-    return f'products/{instance.category}/{instance.name}/{filename}'
+    base, extension, timestamp, unique_id = get_unique_name(filename)
+    return f'products/{instance.category}/{instance.name}/{base}_{timestamp}_{unique_id[:6]}{extension}'
 
 def upload_promo(instance, filename):
-    return f'promotions/{instance.name}/{filename}'
+    base, extension, timestamp, unique_id = get_unique_name(filename)
+    return f'promotions/{instance.name}/{base}_{timestamp}_{unique_id[:6]}{extension}'
 
 def upload_gallery(instance, filename):
-    return f'gallery/{instance.name}/{filename}'
+    base, extension, timestamp, unique_id = get_unique_name(filename)
+    return f'gallery/{instance.name}/{base}_{timestamp}_{unique_id[:6]}{extension}'
 
 def upload_pop_product(instance, filename):
-    return f'popular-products/{instance.category}/{filename}'
+    base, extension, timestamp, unique_id = get_unique_name(filename)
+    return f'popular-products/{instance.category}/{base}_{timestamp}_{unique_id[:6]}{extension}'
 
 def delete_image_field(instance, field_name):
     if hasattr(instance, field_name):
