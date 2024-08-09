@@ -17,8 +17,6 @@ from .models import *
 from .serializers import *
 from .utils import delete_image_field
 
-IMAGE_FIELDS = ['image', 'main_image', 'second_image', 'third_image']
-
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
@@ -90,10 +88,6 @@ def delete_method(model, pk=None):
     try:
         instance = get_object_or_404(model, pk=pk)
         
-        
-        for field in IMAGE_FIELDS:
-            delete_image_field(instance, field)
-
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     except Exception:

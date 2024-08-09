@@ -1,66 +1,32 @@
-import time
-from django.conf import settings
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from .models import Product
-from .utils import upload_products
-import os
+from .models import Gallery, PopularProduct, Product, Promotion
+from .utils import check_products, check_promo, \
+                    check_pop_product, check_gallery,\
+                    move_image_to_new_path, upload_products, \
+                    upload_promo, upload_gallery, upload_pop_product
+
 
 @receiver(pre_save, sender=Product)
 def update_product_images(sender, instance, **kwargs):
-    if instance.pk:
-        old_instance = Product.objects.get(pk=instance.pk)
-        for field in ['image', 'second_image', 'third_image']:
-            old_image_field = getattr(old_instance, field)
-            new_image_field = getattr(instance, field)
+    image_fields = ['image', 'second_image', 'third_image']
+    for field in image_fields:
+        move_image_to_new_path(instance, Product, check_products, upload_products, field)
 
-            if old_image_field and new_image_field: 
-                instance._old_image_path = old_image_field.path
-            
-                old_image_name = os.path.basename(old_image_field.name)
-                new_image_name = os.path.basename(new_image_field.name) 
 
-                if any([old_instance.category != instance.category, \
-                old_instance.name != instance.name, \
-                old_image_name != new_image_name]):
-                    
-                    new_path = upload_products(instance, new_image_name)
-                    new_full_path = os.path.join(settings.MEDIA_ROOT, new_path)
-            
-                    if not os.path.exists(os.path.dirname(new_full_path)):
-                        os.makedirs(os.path.dirname(new_full_path))                   
-                    
-                    try:
-                        getattr(instance, field).save(
-                            os.path.basename(new_full_path),
-                            new_image_field.file, 
-                            save=False
-                        )
-                    finally:
-                        if hasattr(new_image_field.file, 'close'):
-                            new_image_field.file.close()
-                            
-                    if hasattr(instance, '_old_image_path'):
-                        image_path = instance._old_image_path
+@receiver(pre_save, sender=Promotion)
+def update_promotion_images(sender, instance, **kwargs):
+    image_fields = ['main_image', 'second_image']
+    for field in image_fields:
+        move_image_to_new_path(instance, Promotion, check_promo, upload_promo, field)         
 
-                        if os.path.exists(image_path):
-                            os.remove(image_path)
-   
-                        image_dir = os.path.dirname(image_path)
-                        if not os.listdir(image_dir):
-                            os.rmdir(image_dir)
+@receiver(pre_save, sender=PopularProduct)
+def update_pop_product_images(sender, instance, **kwargs):
+    field = 'image'  
+    move_image_to_new_path(instance, PopularProduct, check_pop_product, upload_pop_product, field)  
 
-                        category_dir = os.path.dirname(image_dir)
-                        if not os.listdir(category_dir):
-                            os.rmdir(category_dir)
-            
 
-    
-                
-
-                    
-                    
-                 
-            
-        
-            
+@receiver(pre_save, sender=Gallery)
+def update_gallery_images(sender, instance, **kwargs):
+    field = 'image'  
+    move_image_to_new_path(instance, Gallery, check_gallery, upload_gallery, field)   
