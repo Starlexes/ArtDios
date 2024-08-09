@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F, Q, Case, When, Value, CharField
-from django.core.files.storage import default_storage
+
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,8 +15,9 @@ import os
 
 from .models import *
 from .serializers import *
+from .utils import delete_image_field
 
-
+IMAGE_FIELDS = ['image', 'main_image', 'second_image', 'third_image']
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
@@ -51,6 +52,7 @@ def post_method(request, model_serializer):
     except Exception:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
+    
 def put_method(request, model, model_serializer, pk=None):
     try:
         if pk:
@@ -83,25 +85,13 @@ def put_method(request, model, model_serializer, pk=None):
     
     except Exception:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
-def delete_image_field(instance, field_name):
-    if hasattr(instance, field_name):
-        image_field = getattr(instance, field_name)
-        if image_field:
-            image_path = image_field.path
-            image_dir = os.path.dirname(image_path)
-            if default_storage.exists(image_path):
-                default_storage.delete(image_path)
-                if not os.listdir(image_dir):
-                    os.rmdir(image_dir)
-    
+        
 def delete_method(model, pk=None):
     try:
         instance = get_object_or_404(model, pk=pk)
         
-        image_fields = ['image', 'main_image', 'second_image', 'third_image']
         
-        for field in image_fields:
+        for field in IMAGE_FIELDS:
             delete_image_field(instance, field)
 
         instance.delete()
@@ -345,6 +335,8 @@ class ProductView(APIView):
 
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
+            print('*'* 50)
+            print(e)
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
          
     

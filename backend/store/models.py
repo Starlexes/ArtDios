@@ -3,18 +3,7 @@ from django.db.models import Index
 import slugify
 from transliterate import translit
 
-
-def upload_products(instance, filename):
-    return f'products/{instance.category}/{instance.name}/{filename}'
-
-def upload_promo(instance, filename):
-    return f'promotions/{instance.name}/{filename}'
-
-def upload_gallery(instance, filename):
-    return f'gallery/{instance.name}/{filename}'
-
-def upload_pop_product(instance, filename):
-    return f'popular-products/{instance.category}/{filename}'
+from .utils import upload_products, upload_gallery, upload_pop_product, upload_promo, move_image_to_new_path
 
 # Create your models here.
 class ProductType(models.Model):
@@ -81,12 +70,11 @@ class Product(models.Model):
     price = models.IntegerField()
     new_price = models.IntegerField(null=True, blank=True)
     code = models.CharField(max_length=255, null=True)
-    image = models.ImageField(upload_to=upload_products)
-    second_image = models.ImageField(upload_to=upload_products, null=True)
-    third_image = models.ImageField(upload_to=upload_products, null=True)
+    image = models.ImageField(upload_to=upload_products, max_length=300)
+    second_image = models.ImageField(upload_to=upload_products, null=True, blank=True, max_length=300)
+    third_image = models.ImageField(upload_to=upload_products, null=True, blank=True, max_length=300)
 
     def save(self, *args, **kwargs):
-        
         self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Product, self).save(*args, **kwargs)
 

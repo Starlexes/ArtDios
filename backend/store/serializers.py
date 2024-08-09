@@ -31,7 +31,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['category_name'] = instance.category_name
+        if hasattr(instance, 'category_name'):
+            representation['category_name'] = instance.category_name
         return representation
 
 class CharacteristicSerializer(serializers.ModelSerializer):
