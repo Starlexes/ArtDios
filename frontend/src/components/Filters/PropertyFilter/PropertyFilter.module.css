@@ -1,0 +1,53 @@
+.property {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: start;
+}
+
+.property-item {
+    width: 100%;   
+}
+
+.filter-list {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+    /* scrollbar-width: 4px;
+    scrollbar-color: #E0E0E0 transparent; */
+}
+
+.filter-list::-webkit-scrollbar {
+    position: absolute;
+    width: 4px;
+    right: 0;
+}
+  
+.filter-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+.filter-list::-webkit-scrollbar-thumb {
+    background: #E0E0E0;
+    border-radius: 10px;
+}
+  
+.filter-list::-webkit-scrollbar-thumb:hover {
+    background: #b9b9b9;
+}
+
+
+
+
+.show-btn {
+    min-height: max-content;
+    background: none;
+    font-weight: 300;
+    font-size: 14px;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #676767;
+}
+

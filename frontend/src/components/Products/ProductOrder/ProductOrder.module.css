@@ -1,0 +1,9 @@
+.order-btn {
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-color);
+    min-height: 33px;
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+}

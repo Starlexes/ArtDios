@@ -3,7 +3,7 @@ import NavigationList from '../NavigationList/NavigationList';
 import cn from 'classnames';
 import Button from '../Button/Button';
 import CategoryList from '../CategoryList/CategoryList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavigationListItem from '../NavigationListItem/NavigationListItem';
 import NavItem from '../NavItem/NavItem';
 import { useMediaPredicate } from 'react-media-hook';
@@ -30,6 +30,14 @@ function LinkMenu({className}: LinkMenuProps) {
 	const handleMouseLeave = () => {
 		setIsClicked(false);
 	};
+
+	const onClickLink = () => {
+		setIsClicked(false);
+	};
+
+	useEffect(() => {
+		setIsClicked(false);
+	}, [matches]);
 
 	return (
 
@@ -80,7 +88,7 @@ function LinkMenu({className}: LinkMenuProps) {
 						</NavigationListItem>
 
 					</NavigationList>
-					{isClicked && <CategoryList/>}
+					{isClicked && <CategoryList onClickLink={onClickLink}/>}
 					
 				</> : <Search/>
 			}

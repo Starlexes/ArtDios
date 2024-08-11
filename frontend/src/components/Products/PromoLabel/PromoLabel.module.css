@@ -1,0 +1,15 @@
+.promo-label {
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 10px;
+    display: flex;
+    width: 46px;
+    height: 18px;
+    color: var(--text-color);
+    background: var(--promo);
+    position: absolute;
+    top: -9px;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+}

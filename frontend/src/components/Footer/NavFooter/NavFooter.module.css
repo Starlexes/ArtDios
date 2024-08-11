@@ -55,8 +55,8 @@
         color: var(--text-color);
         text-decoration: underline;
         display: inline-block;
-        width: calc(311 / 880 * 100vw);
-        max-width: 311px;
+        width: calc(280 / 880 * 100vw);
+        max-width: 280px;
     }
     
     .logo-footer {

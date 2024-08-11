@@ -21,7 +21,7 @@ function MediaSearchButton({className}: MediaSearchButtonProps) {
 	return (
 		<MediaButton onClick={onClick} className={cn(styles['media-search'], className)}>
 			{isClicked? renderCross()
-				: <img src="media/loupe.svg" alt="Иконка лупы"/> }
+				: <img src="/media/loupe.svg" alt="Иконка лупы"/> }
 			
 		</MediaButton>
 	);

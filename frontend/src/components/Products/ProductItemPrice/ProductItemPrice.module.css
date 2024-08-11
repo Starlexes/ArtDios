@@ -1,0 +1,29 @@
+.product-price {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.price {
+    color: var(--primary-bgc2);
+}
+
+.old-price {
+    color: var(--promo-text);
+    position: relative;
+}
+
+.old-price::before {
+    content: '';
+    position: absolute;
+    left: -25%;
+    top: 50%;
+    
+    height: 1px;
+    width: 75px;
+    background-color: var(--default-color);
+    transform: rotate(-15deg);
+   
+   
+}

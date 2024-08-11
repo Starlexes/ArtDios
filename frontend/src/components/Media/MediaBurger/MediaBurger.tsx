@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 function MediaBurger({className}: MediaBurgerProps) {
 
 	const isClicked = useSelector((state: RootState) => state.buttons.modalBurgerButton.isClicked);
-	
+
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const dispatch = useDispatch();
@@ -35,8 +35,7 @@ function MediaBurger({className}: MediaBurgerProps) {
 
 
 	const onClick = () => {
-		dispatch(setMediaBurgerClick(!isClicked));
-		
+		dispatch(setMediaBurgerClick(!isClicked));		
 	};
 
 	const closeModal = () => {
@@ -54,7 +53,7 @@ function MediaBurger({className}: MediaBurgerProps) {
 	return (
 		<>
 			<MediaButton onClick={onClick} className={cn(styles['media-burger'], className)}>
-				<img src="media/burger.svg" alt="Бургер-меню" />
+				<img src="/media/burger.svg" alt="Бургер-меню" />
 			</MediaButton>
 
 			<ModalCatalog isOpen={isOpen} closeModal={closeModal} contentVisible={contentVisible}/>

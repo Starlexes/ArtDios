@@ -12,6 +12,9 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
 import { fetchContacts } from '../../../slices/contactSlice';
+import { catalog } from '../../../utils/constants';
+
+
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
@@ -45,7 +48,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<MenuTitle>Категории</MenuTitle>
 				{
 					categories.map((item) => (
-						<NavItem to={item.slug} key={item.name} className={cn(styles['contact-text'])}>{item.name}</NavItem>
+						<NavItem to={catalog+item.slug} key={item.name} className={cn(styles['contact-text'])} >{item.name}</NavItem>
 					)
 						
 					)

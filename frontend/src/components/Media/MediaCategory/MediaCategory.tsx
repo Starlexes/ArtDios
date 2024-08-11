@@ -47,7 +47,6 @@ function MediaCategory({onClose, className }: MediaCategoryProps) {
 							key={item.name}
 							name={item.name}
 							borderItem={index !== array.length - 1}
-							link={item.slug}
 							onClick={() => onClick(item.subcategory, item.slug)}
 						>
 							{item.name} {renderArrow()}

@@ -77,7 +77,7 @@ const categorySlice = createSlice({
 		builder.addCase(fetchCategory.rejected, (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload as string;
-			console.error('Error fetching contacts:', action.payload);
+			console.error('Error fetching category:', action.payload);
 		});
 	}
 });

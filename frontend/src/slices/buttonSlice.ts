@@ -44,9 +44,13 @@ const buttonSlice = createSlice({
 		setMediaBurgerClick(state, action: PayloadAction<boolean>) {
 			state.modalBurgerButton.isClicked = action.payload;
 		}
+	
 
 	}
 });
 
-export const { setMediaSearchClick, setMediaSearchInitial, setMediaBurgerClick } = buttonSlice.actions;
+export const {
+	setMediaSearchClick, setMediaSearchInitial, 
+	setMediaBurgerClick 
+} = buttonSlice.actions;
 export default buttonSlice.reducer;

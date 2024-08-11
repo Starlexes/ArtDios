@@ -1,0 +1,14 @@
+.sorting-order {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.sort-filter {
+    display: flex;
+    gap: 14px;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--title-color);
+    align-items: center;
+}

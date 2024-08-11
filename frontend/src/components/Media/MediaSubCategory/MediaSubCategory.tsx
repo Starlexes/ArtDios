@@ -4,12 +4,10 @@ import cn from 'classnames';
 import Modal from 'react-modal';
 import overlayStyles from '../../Modal/ModalStyles/ModalOverlay.module.css';
 import MediaCategoryItem from '../MediaCategoryItem/MediaCategoryItem';
-import { renderArrow } from '../../../utils/constants';
+import { catalog, renderArrow } from '../../../utils/constants';
 import NavItem from '../../Header/NavItem/NavItem';
 import Button from '../../Header/Button/Button';
 import ModalCatalogHead from '../../Modal/ModalCatalogHead/ModalCatalogHead';
-
-
 
 function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcategory, category }: MediaSubCategoryProps) {
 	return (
@@ -33,7 +31,7 @@ function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcate
 									{renderArrow()}
 								</Button>
 								
-								<NavItem to={category as string} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
+								<NavItem to={catalog+category} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
 									Все товары
 								</NavItem>
 
@@ -46,7 +44,7 @@ function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcate
 										borderItem={index !== array.length - 1}
 										className={cn(styles['subcat-item'])}
 									>						
-										<NavItem to={subcat.slug} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
+										<NavItem to={catalog+subcat.slug} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
 											{subcat.name}
 										</NavItem>
 									</MediaCategoryItem>

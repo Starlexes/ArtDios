@@ -7,10 +7,7 @@
     
 }
 
-.error-title {
-    font-weight: 700;
-    font-size: 44px;
-}
+
 
 .error-btn {
     border-radius: 10px;
@@ -37,9 +34,7 @@
         gap: calc(64 / 880 * 100vw);
     }
       
-    .error-title {
-        font-size: calc(44 / 880 * 100vw);
-    }
+  
     
     .error-btn {
         
@@ -57,10 +52,7 @@
         gap: calc(16 / 510 * 100vw);
        
     }
-      
-    .error-title {
-        font-size: max(calc(25 / 510 * 100vw), 17px);
-    }
+
     
     .error-btn {
         min-height: 28px;

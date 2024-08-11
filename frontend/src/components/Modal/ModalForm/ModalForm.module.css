@@ -32,7 +32,6 @@
 .checkbox-block p {
     position: absolute;
     top:0;
-    
     display: inline-block;
     width: 350px;
 }

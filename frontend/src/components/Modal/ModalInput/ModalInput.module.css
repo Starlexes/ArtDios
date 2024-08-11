@@ -62,10 +62,8 @@
   }
 
 .modal-checkbox:checked+label::before {
-    background-image: url('other/checkbox.svg');
-  }
-
- 
+    background-image: url('/other/checkbox.svg');
+}
 
 .error {
     border-color: var(--error);

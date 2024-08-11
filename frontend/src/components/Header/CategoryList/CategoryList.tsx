@@ -8,10 +8,10 @@ import { RootState, selectFilteredCategory } from '../../../store';
 import { fetchCategory, SubCategoryState } from '../../../slices/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import SubCategoryList from '../SubCategoryList/SubCategoryList';
-import { renderArrow } from '../../../utils/constants';
+import { catalog, renderArrow } from '../../../utils/constants';
 
 
-function CategoryList({className}: CategoryListProps) {
+function CategoryList({onClickLink, className}: CategoryListProps) {
 
 	const dispatch = useAppDispatch();
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
@@ -34,7 +34,8 @@ function CategoryList({className}: CategoryListProps) {
 					<CategoryListItem
 						key={subcat.name}
 						borderItem={index !== array.length - 1}
-						link={subcat.slug}
+						link={catalog+subcat.slug}
+						onClickLink={onClickLink}
 					>
 						{subcat.name}
 					</CategoryListItem>
@@ -52,7 +53,8 @@ function CategoryList({className}: CategoryListProps) {
 					onMouseEnter={() => setSubActive(item.name)}
 					subcategory={renderSubcategories(item.subcategory)}
 					borderItem={index !== array.length - 1}
-					link={item.slug}
+					link={catalog+item.slug}
+					onClickLink={onClickLink}
 				>
 					{item.name} {renderArrow()}
 				</CategoryListItem>

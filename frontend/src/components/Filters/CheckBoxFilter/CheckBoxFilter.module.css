@@ -1,0 +1,25 @@
+.checkbox-filter {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--default-color);
+}
+
+.checkbox-item {
+    opacity: 0;
+    width: 14px;
+    height: 14px;
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+}
+
+.checkbox-area {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--primary-bgc2);
+    border-radius: 4px;
+}

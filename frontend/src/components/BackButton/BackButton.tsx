@@ -26,7 +26,7 @@ function BackButton({ className }: BackButtonProps) {
 					</svg>
                 Назад
 				</div>
-					: <img src="media/mobile back.svg" alt="Назад"/>
+					: <img src="/media/mobile back.svg" alt="Назад"/>
 			}
 		</Button>
 	);
