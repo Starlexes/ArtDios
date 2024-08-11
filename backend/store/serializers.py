@@ -33,6 +33,8 @@ class ProductSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         if hasattr(instance, 'category_name'):
             representation['category_name'] = instance.category_name
+        if hasattr(instance, 'sort_order'):
+            representation['sort_order'] = instance.sort_order 
         return representation
 
 class CharacteristicSerializer(serializers.ModelSerializer):

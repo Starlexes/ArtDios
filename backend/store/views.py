@@ -1,21 +1,17 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import F, Q, Case, When, Value, CharField
-
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
-from django.http import JsonResponse
-from django.middleware.csrf import get_token
-
-import os
-
 from .models import *
 from .serializers import *
-from .utils import delete_image_field
+
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
@@ -255,7 +251,29 @@ class SubCategoryView(APIView):
 
 class CharacteristicView(APIView):
     def get(self, request, pk=None):
-        return get_method(request, Characteristic, CharacteristicSerializer, pk)
+        if pk:
+            return get_method(request, Characteristic, CharacteristicSerializer, pk)
+        try:
+            product = request.query_params.get('product', '')
+            category = request.query_params.get('category', '')
+
+    
+            chars = Characteristic.objects.all()
+
+            if category:  
+                chars = chars.filter(
+                    Q(product__category__parent__slug=category) | Q(product__category__slug=category)
+                )
+            
+            if product:
+                chars = chars.filter(product__slug=product)
+ 
+            serializer = CharacteristicSerializer(chars, many=True)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
+        
     
     def post(self, request):
         return post_method(request, CharacteristicSerializer)
@@ -320,17 +338,28 @@ class ProductView(APIView):
                     products = products.filter(characteristic__name=name, characteristic__description=description)
 
             if sort_by.lower() == 'asc':
-                products = products.order_by('price')
+                products = products.annotate(
+                    sort_order=Case(
+                        When(new_price__isnull=True, then='price'),
+                        When(new_price__isnull=False, then='new_price'),
+                        default=Value(None)
+                    )
+                ).order_by('sort_order')
+         
 
             elif sort_by.lower() == 'desc':
-                products = products.order_by('-price')
+                products = products.annotate(
+                    sort_order=Case(
+                        When(new_price__isnull=True, then='price'),
+                        When(new_price__isnull=False, then='new_price'),
+                        default=Value(None)
+                    )
+                ).order_by('-sort_order')
 
             serializer = ProductSerializer(products, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
-            print('*'* 50)
-            print(e)
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
          
     
