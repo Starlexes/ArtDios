@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.db.models import F, Q, Case, When, Value, CharField
+from django.db.models import F, Q, Case, When, Value, CharField, Max, Min, Count
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
@@ -314,12 +314,26 @@ class ProductView(APIView):
                         When(category__parent__slug=category, then='category__parent__name'),
                         When(category__slug=category, then='category__name'),
                         default=Value(''),
-                        output_field=CharField(),
+                        output_field=CharField()
                     )
                 )
+            aggregated_data = products.aggregate(
+                max_category_price=Max(
+                    Case(
+                        When(new_price__isnull=False, then='new_price'),
+                        When(new_price__isnull=True, then='price'),
+                        output_field=models.IntegerField()
+                    )
+                ),
+                min_category_price=Min(
+                    Case(
+                        When(new_price__isnull=False, then='new_price'),
+                        When(new_price__isnull=True, then='price'),
+                        output_field=models.IntegerField()
+                    )
+                )
+            )
             
-            
-
             if search:
                 search_vector = SearchVector('name', 'description', 'code') + \
                         SearchVector(F('category__name')) + \
@@ -330,12 +344,28 @@ class ProductView(APIView):
                 
             
             if min_price and max_price:
-                products = products.filter(price__gte=min_price, price__lte=max_price)
+                products = products.filter( 
+                Q(new_price__gte=min_price, new_price__lte=max_price) | 
+                Q(new_price__isnull=True, price__gte=min_price, price__lte=max_price)
+                )
 
             if characteristic_names:
-                for char in characteristic_names:
-                    name, description = char.split(':')
-                    products = products.filter(characteristic__name=name, characteristic__description=description)
+               
+                characteristic_filters = {}
+                for item in characteristic_names:
+                    key, value = item.split(':')
+                    if key not in characteristic_filters:
+                        characteristic_filters[key] = []
+                    characteristic_filters[key].append(value)
+
+                for key, values in characteristic_filters.items():
+                  
+                    products = products.filter(
+                        characteristic__name=key,
+                        characteristic__description__in=values
+                    )
+                
+                products = products.distinct()
 
             if sort_by.lower() == 'asc':
                 products = products.annotate(
@@ -358,8 +388,15 @@ class ProductView(APIView):
 
             serializer = ProductSerializer(products, many=True)
 
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            data = {
+                'products': serializer.data,
+                'minPrice': aggregated_data['min_category_price'],
+                'maxPrice': aggregated_data['max_category_price']
+            }
+
+            return Response(data, status=status.HTTP_200_OK)
         except Exception as e:
+
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
          
     
