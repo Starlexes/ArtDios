@@ -10,10 +10,30 @@ interface BurgerButtonState {
 	isClicked: boolean
 }
 
+interface ClearButtonState {
+	isClicked: boolean
+}
 
+interface CharsState {
+	name: string,
+	description: string
+}
+
+export interface SubmitFilterParams {
+	minPrice?: string | undefined,
+	maxPrice?: string | undefined,
+	chars?: CharsState[] | undefined
+}
+
+interface SubmitButtonState {
+	isClicked: boolean,
+	filterparams: SubmitFilterParams
+}
 export interface ButtonsState {
-    modalSearchButton: SearchButtonState
-	modalBurgerButton: BurgerButtonState
+    modalSearchButton: SearchButtonState,
+	modalBurgerButton: BurgerButtonState,
+	actionClearButton: ClearButtonState,
+	actionSubmitButton: SubmitButtonState
 }
 
 
@@ -24,6 +44,13 @@ const initialState: ButtonsState = {
 	},
 	modalBurgerButton: {
 		isClicked: false
+	},
+	actionClearButton: {
+		isClicked: false
+	},
+	actionSubmitButton: {
+		isClicked: false,
+		filterparams: {}
 	}
 
 };
@@ -43,14 +70,37 @@ const buttonSlice = createSlice({
 		},
 		setMediaBurgerClick(state, action: PayloadAction<boolean>) {
 			state.modalBurgerButton.isClicked = action.payload;
-		}
+		},
+		setClearClick(state, action: PayloadAction<boolean>) {
+			state.actionClearButton.isClicked = action.payload;
+			if (state.actionClearButton.isClicked){
+				state.actionSubmitButton.filterparams = {};
+			}
+			
+		},
+		setSubmitClick(state, action: PayloadAction<boolean>) {
+			state.actionSubmitButton.isClicked = action.payload;
+			
+		},
+		setSubmitFilterParams(state, action: PayloadAction<SubmitFilterParams>) {
 	
+			return {
+				...state,
+				actionSubmitButton: {
+					...state.actionSubmitButton,
+					filterparams: {
+						...state.actionSubmitButton.filterparams,
+						...action.payload
+					}
+				}
+			};
+		}
 
 	}
 });
 
 export const {
-	setMediaSearchClick, setMediaSearchInitial, 
-	setMediaBurgerClick 
+	setMediaSearchClick, setMediaSearchInitial, setMediaBurgerClick,
+	setClearClick, setSubmitClick, setSubmitFilterParams
 } = buttonSlice.actions;
 export default buttonSlice.reducer;

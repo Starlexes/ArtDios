@@ -1,0 +1,6 @@
+.filters-action {
+    display: flex;
+    flex-direction: column;
+    width: 185px;
+    gap: 14px;
+}

@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface BackButtonProps extends HTMLProps<HTMLDivElement> {}
+export interface BackButtonProps extends HTMLProps<HTMLButtonElement> {}

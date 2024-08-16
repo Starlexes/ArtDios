@@ -72,9 +72,7 @@ function ModalForm({errors, setErrors, onSubmit, className }: ModalFormProps) {
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		const { name, type, value } = e.target;
-
-		
+		const { name, type, value } = e.target;	
 		setFormData((prevFormData) => ({
 			...prevFormData,
 			[name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value

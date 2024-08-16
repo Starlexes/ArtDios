@@ -10,13 +10,14 @@ import ProductOrder from '../ProductOrder/ProductOrder';
 import { useState } from 'react';
 import NavItem from '../../Header/NavItem/NavItem';
 import { products } from '../../../utils/constants';
+import { useMediaPredicate } from 'react-media-hook';
 
 function ProductListItem({product, className }: ProductListItemProps) {
 
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const [showOrder, setShowOrder] = useState<boolean>(false);
-
+	const mediaMatches = useMediaPredicate('(min-width: 881px)');
 
 	const onMouseEnter = () => {	
 		setShowOrder(true);
@@ -27,16 +28,14 @@ function ProductListItem({product, className }: ProductListItemProps) {
 		setIsClicked(!isClicked);
 	};
 
-	const onMouseLeave = () => {	
-		
+	const onMouseLeave = () => {		
 		setShowOrder(false);
-		
 	};
 
 
 	return (
 		<div className={cn(styles['product-card'], {
-			[styles['product-card-selected']]: showOrder || isClicked
+			[styles['product-card-selected']]: showOrder || isClicked || !mediaMatches
 		}, className)} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
 			<NavItem to={products+product.slug}>
 				<ProductImage path={axios.defaults.baseURL+product.image} name={product.name} promo={product.new_price} />
@@ -48,7 +47,7 @@ function ProductListItem({product, className }: ProductListItemProps) {
 			</NavItem>
 			<div className={cn(styles['product-btn'])} onClick={onMouseLeave}>
 				{
-					(showOrder || isClicked) && 
+					(showOrder || isClicked || !mediaMatches) && 
 				<ProductOrder onClickProductOrder={onClickProductOrder}>
 					Заказать
 				</ProductOrder>

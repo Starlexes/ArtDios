@@ -16,52 +16,66 @@ export interface Product {
 	category_name: string
 }
 
-export interface Characteristic {
-    name: string,
-    description: string
-}
-
 export type Sorting = 'asc' | 'desc' | null
 
 export interface ProductParams {
     sortBy?: Sorting,
-    minPrice?: number,
-    maxPrice?: number,
-    characteristic?: Characteristic,
+    minPrice?: string | null,
+    maxPrice?: string | null,
+    characteristic?: string[] | null,
     category?: string,
     admin?: boolean,
     search?: string
 }
 
+export interface Products {
+	products: Product[],
+	minPrice: number,
+	maxPrice: number
+}
 
 export interface ProductState {
-    products: Product[],
+    products: Products,
 	category: string,
     isLoading: boolean,
 	error: string | null;
 }
 
 const initialState: ProductState = {
-	products: [],
+	products: {
+		products: [],
+		minPrice: 0,
+		maxPrice: 0
+	},
 	isLoading: false,
 	error: null,
 	category: ''
 };
 
 
-export const fetchProduct = createAsyncThunk<Product[], ProductParams, { rejectValue: string }>(
+export const fetchProduct = createAsyncThunk<Products, ProductParams, { rejectValue: string }>(
 	'product/fetchProduct',
 	async (params, { rejectWithValue }) => {
 		try {
+	
+			const { sortBy, maxPrice, minPrice, characteristic, category } = params;
 
-			const { sortBy, ...rest } = params;
-			
-			const apiParams = {
-				...rest,
-				'sort-by': sortBy
+			const queryParams = {
+				category: category,
+				'sort-by': sortBy,
+				'min-price': minPrice,
+				'max-price': maxPrice,
+				characteristic: characteristic
 			};
 			
-			const response = await axios.get('/api/product/', {params: apiParams} );
+			const queryString = Object.entries(queryParams)
+				.filter(([, value]) => Boolean(value))
+				.map(([key, value]) => !Array.isArray(value)? `${key}=${encodeURIComponent(value || '')}`: 
+					value.map(char => `${key}=${encodeURIComponent(char || '')}`).join('&'))
+				.join('&');
+
+
+			const response = await axios.get(`/api/product/?${queryString}`);
 			
 			return response.data;
 		} catch (error) {
@@ -91,7 +105,7 @@ const productSlice = createSlice({
 			state.error = null;
 			
 		});
-		builder.addCase(fetchProduct.fulfilled, (state, action: PayloadAction<Product[]>) => {
+		builder.addCase(fetchProduct.fulfilled, (state, action: PayloadAction<Products>) => {
 			state.products = action.payload;
 			state.isLoading = false;
 			state.error = null;

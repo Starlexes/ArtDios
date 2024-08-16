@@ -7,7 +7,9 @@ import cn from 'classnames';
 function PropertyTitle({children, className }: PropertyTitleProps) {
 
 	return (
-		<span className={cn(styles['property-title'], className)}>{children}</span>	
+		<label>
+			<span className={cn(styles['property-title'], className)}>{children}</span>	
+		</label>
 	);
 }
 

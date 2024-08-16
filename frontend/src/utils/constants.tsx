@@ -14,7 +14,7 @@ export const renderCross = () => (
 
 
 
-export const itemsPerPage = 7;
+export const itemsPerPage = 12;
 
 // Router names
 
@@ -82,5 +82,32 @@ export const checked = () => (
 	</svg>
 );
 
+export const selectArrow = () => (
+	<svg width="14.484375" height="8.484375" viewBox="0 0 14.4844 8.48438" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 23" x="14.484375" y="1.414062" rx="1.000000" width="10.000000" height="2.000000" transform="rotate(135 14.484375 1.414062)" fill="#181818" fillOpacity="1.000000"/>
+		<rect id="Rectangle 24" x="1.414062" rx="1.000000" width="10.000000" height="2.000000" transform="rotate(45 1.414062 0.000000)" fill="#181818" fillOpacity="1.000000"/>
+	</svg>
 
-export const countChars = 3;
+);
+
+export const filtersIcon = () => (
+	<svg width="16.000000" height="9.000000" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 427" y="1.000000" width="16.000000" height="1.000000" fill="#FFFFFF" fillOpacity="1.000000"/>
+		<rect id="Rectangle 428" x="16.000000" y="8.000000" width="16.000000" height="0.999999" transform="rotate(-180 16.000000 8.000000)" fill="#FFFFFF" fillOpacity="1.000000"/>
+		<circle id="Ellipse 69" cx="4.500000" cy="1.500000" r="1.500000" fill="#CF5C1C" fillOpacity="1.000000"/>
+		<circle id="Ellipse 69" cx="4.500000" cy="1.500000" r="1.000000" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000"/>
+		<circle id="Ellipse 70" r="1.500000" transform="matrix(-1 -8.74228e-08 8.74228e-08 -1 10.5 7.5)" fill="#CF5C1C" fillOpacity="1.000000"/>
+		<circle id="Ellipse 70" r="1.000000" transform="matrix(-1 -8.74228e-08 8.74228e-08 -1 10.5 7.5)" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000"/>
+	</svg>
+
+);
+
+export const closeFilters = () => (
+	<svg width="20.000000" height="20.000000" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 382" x="18.183594" rx="1.285624" width="2.571248" height="25.712486" transform="rotate(45.0005 18.183594 0.000000)" fill="#383838" fillOpacity="1.000000"/>
+		<rect id="Rectangle 383" y="1.816406" rx="1.285624" width="2.571248" height="25.712486" transform="rotate(-45.0005 0.000000 1.816406)" fill="#383838" fillOpacity="1.000000"/>
+	</svg>
+
+);
+
+export const countChars =5;

@@ -89,6 +89,7 @@ function LinkMenu({className}: LinkMenuProps) {
 
 					</NavigationList>
 					{isClicked && <CategoryList onClickLink={onClickLink}/>}
+			
 					
 				</> : <Search/>
 			}

@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 64px;
     align-items: center;
+    max-width: 880px;
+    width: calc( 880 / 1200 * 100vw);
 }
 
 .catalog {
@@ -14,5 +16,12 @@
 
 .catalog-body {
     display: flex;
-    gap: 50px;
+    gap: 32px;
+}
+
+@media (max-width: 880px) {
+    .product-items {
+        max-width: 800px;
+        width: calc( 800 / 880 * 100vw);;
+    }
 }

@@ -8,6 +8,7 @@
 
 .loader::before , .loader::after {
   content: "";
+  caret-color: transparent;
   position: absolute;
   inset: 0px;
   border-radius: 50%;
@@ -18,6 +19,7 @@
 .loader::after{
   transform: rotate3d(90, 90, 0, 180deg );
   border-color: var(--active-color);
+  caret-color: transparent;
 }
 
 @keyframes rotate {

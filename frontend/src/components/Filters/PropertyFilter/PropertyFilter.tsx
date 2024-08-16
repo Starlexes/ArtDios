@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavigationListItem from '../../Header/NavigationListItem/NavigationListItem';
 import CheckBoxFilter from '../CheckBoxFilter/CheckBoxFilter';
 import PropertyTitle from '../PropertyTitle/PropertyTitle';
@@ -8,20 +8,39 @@ import { PropertyFilterProps } from './PropertyFilter.props';
 import cn from 'classnames';
 import { countChars } from '../../../utils/constants';
 import Button from '../../Header/Button/Button';
+import { RootState } from '../../../store';
+import { useAppSelector } from '../../../hooks';
+import { setSubmitFilterParams } from '../../../slices/buttonSlice';
+import { useDispatch } from 'react-redux';
 
-function PropertyFilter({item, className }: PropertyFilterProps) {
+function PropertyFilter({item, className, decsParams}: PropertyFilterProps) {
 
 	const [showMore, setShowMore] = useState(false);
 	const [visibleParamsCount, setVisibleParamsCount] = useState(countChars);
-
+	const {chars} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
+	const dispatch = useDispatch();
 	const itemsLength = item.description.length;
-	const itemHeight = 26.5;
-	const charHeight = itemHeight * countChars;
+	const itemName = item.name;
 
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 		setVisibleParamsCount(showMore ? countChars : itemsLength);
 	};
+
+	useEffect(() => {
+		!showMore && item.description.slice(visibleParamsCount).map((desc) => {
+			const exists = chars?.some(obj => 
+				obj.name === itemName && obj.description === desc
+			);
+			if (exists) {
+				const updatedArray = chars?.filter(obj => 
+					!(obj.name === itemName && obj.description === desc)
+				);
+				
+				dispatch(setSubmitFilterParams({ chars: updatedArray }));
+			}
+		});
+	}, [showMore, chars, dispatch, item.description, itemName, visibleParamsCount]);
 
 	return (
 		
@@ -29,11 +48,11 @@ function PropertyFilter({item, className }: PropertyFilterProps) {
 			<PropertyTitle>{item.name}</PropertyTitle>
 			<div className={cn(styles['property-item'])}>
 				<ul>
-					<div className={cn(styles['filter-list'])} style={{ maxHeight: `${charHeight}px` }}>
+					<div className={cn(styles['filter-list'])}>
 						{item.description.slice(0, visibleParamsCount).map((desc, index) => 
 							(
 								<NavigationListItem key={index}>
-									<CheckBoxFilter name='filter' desc={desc}/>	
+									<CheckBoxFilter name='filter' desc={desc} propertyName={itemName} decsParams={decsParams}/>	
 								</NavigationListItem>
 							)
 						)}

@@ -6,7 +6,9 @@
     border-radius: 4px;
     padding: 18px;
     margin-top: 35px;
+    width: 234px;
 }
+
 
 .filters-title {
     font-weight: 700;
@@ -15,6 +17,22 @@
     text-align: center;
 }
 
-.main-filter {
-    width: 234px;
+.filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 880px) {
+    .main-filter {
+        margin: 0;
+    }
+    .close-filters {
+        display: flex;
+        min-height: max-content;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: none;
+    }
 }

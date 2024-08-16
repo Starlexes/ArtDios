@@ -29,3 +29,31 @@
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 880px) {
+    .page-arrows {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 510px) {
+    .page-arrows {
+        gap: 8px;
+    }
+
+    .page-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .page-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 350px) {
+    .pagination-text {
+        font-size: 22px;
+    }
+}

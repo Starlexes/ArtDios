@@ -15,8 +15,8 @@
     flex-direction: column;
     gap: 6px;
     overflow-y: auto;
-    /* scrollbar-width: 4px;
-    scrollbar-color: #E0E0E0 transparent; */
+    max-height: 162px;
+    
 }
 
 .filter-list::-webkit-scrollbar {
@@ -38,7 +38,12 @@
     background: #b9b9b9;
 }
 
-
+@supports (-moz-appearance: none) {
+    .filter-list {
+        scrollbar-width: thin;
+        scrollbar-color: #E0E0E0 transparent;
+    }
+}
 
 
 .show-btn {

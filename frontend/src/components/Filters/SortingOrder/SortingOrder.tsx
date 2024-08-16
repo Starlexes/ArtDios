@@ -9,12 +9,12 @@ function SortingOrder({ className }: SortingOrderProps) {
 
 	const location = useLocation();
 	const url = location.pathname;
-
+	const search = location.search.replace(/([&?])sort-by=[^&]*/g, '');
 	return (
 		<div className={cn(styles['sorting-order'], className)}>
 			<NavItem to={{
 				pathname: url,
-				search: '?sort-by=asc'}}>
+				search: `${search? search+'&': ''}sort-by=asc`}}>
 				<div className={cn(styles['sort-filter'])}>
 					{orderASC()}
                 Самые дешевые
@@ -23,7 +23,7 @@ function SortingOrder({ className }: SortingOrderProps) {
 
 			<NavItem to={{
 				pathname: url,
-				search: '?sort-by=desc'}}>
+				search: `${search? search+'&': '?'}sort-by=desc`}}>
 				<div className={cn(styles['sort-filter'])}>
 					{orderDSC()}
                 Самые дорогие

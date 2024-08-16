@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
 
 
-export interface SortingOrderProps  extends HTMLProps<HTMLDivElement>{
+export interface SortingOrderProps extends HTMLProps<HTMLDivElement>{
 }

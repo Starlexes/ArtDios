@@ -12,6 +12,6 @@
 @media (max-width: 510px) {
           
     .title {
-        font-size: max(calc(25 / 510 * 100vw), 17px);
+        font-size: max(calc(25 / 510 * 100vw), 20px);
     }
 }

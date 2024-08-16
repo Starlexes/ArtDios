@@ -1,0 +1,36 @@
+.modal-window {
+    top: 50px;
+    margin: 0 auto;
+    position: relative;
+    background-color: var(--text-color);
+    max-width: max-content;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+
+.modal-window::-webkit-scrollbar {
+    position: absolute;
+    width: 4px;
+    right: 0;
+}
+  
+.modal-window::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+.modal-window::-webkit-scrollbar-thumb {
+    background: #E0E0E0;
+    border-radius: 10px;
+}
+  
+.filter-list::-webkit-scrollbar-thumb:hover {
+    background: #b9b9b9;
+}
+
+@supports (-moz-appearance: none) {
+    .modal-window {
+        scrollbar-width: thin;
+        scrollbar-color: #E0E0E0 transparent;
+    }
+}

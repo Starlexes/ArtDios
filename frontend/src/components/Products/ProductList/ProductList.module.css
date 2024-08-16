@@ -1,5 +1,19 @@
 .products-list {
     display: flex;
-    gap: 24px;
+    gap: min(calc( 24 / 1200 * 100vw), 24px);
     flex-wrap: wrap;
+    align-items: start;
+   
+}
+
+@media (max-width: 880px) {
+    .products-list {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 455px) {
+    .products-list {
+        justify-content: center;
+    }
 }

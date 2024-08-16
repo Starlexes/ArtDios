@@ -1,8 +1,8 @@
 .main {
     width: 100%;
+    display: flex;
     flex: 1;
     max-width: 1200px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     margin: 64px 0;
@@ -11,6 +11,12 @@
 
 @media (max-width: 880px) {
     .main {
-        margin: 64px 0;
+        margin: 44px 0;
+    }
+}
+
+@media (max-width: 510px) {
+    .main {
+        margin: 32px 0;
     }
 }
