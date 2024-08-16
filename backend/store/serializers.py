@@ -24,10 +24,19 @@ class ClassificationsSerializer(serializers.ModelSerializer):
         fields = ['name', 'subcategory', 'is_show', 'slug']
         
 
+class CharacteristicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Characteristic
+        fields = '__all__'
+
 class ProductSerializer(serializers.ModelSerializer):
+
+    characteristics = CharacteristicSerializer(many=True, read_only=True)
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['product_id', 'slug', 'category', 'name',
+                  'description', 'price', 'new_price', 'code', 
+                  'image', 'second_image', 'third_image', 'characteristics']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -37,10 +46,7 @@ class ProductSerializer(serializers.ModelSerializer):
             representation['sort_order'] = instance.sort_order 
         return representation
 
-class CharacteristicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Characteristic
-        fields = '__all__'
+
 
 class PromotionSerializer(serializers.ModelSerializer):
     class Meta:

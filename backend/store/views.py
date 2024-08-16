@@ -16,13 +16,17 @@ from .serializers import *
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
-def get_method(request, model, model_serializer, pk=None):
+def get_method(request, model, model_serializer, pk=None, slug=None):
     try:
-        if pk:
-            obj = get_object_or_404(model, pk=pk)
+        if pk or slug:
+            if hasattr(model, 'slug') and slug:
+                obj = get_object_or_404(model, slug=slug)
+                
+            if pk:
+                obj = get_object_or_404(model, pk=pk)
+                
             obj = model_serializer(obj)
             return Response(obj.data, status=status.HTTP_200_OK)
-        
         only_show = request.GET.get('only-show', '')
         
         if only_show.lower() == 'true':
@@ -95,8 +99,8 @@ def index(request):
 
 
 class CategoryView(APIView):
-    def get(self, request, pk=None):
-        return get_method(request, Category, CategorySerializer, pk)
+    def get(self, request, pk=None, slug=None):
+        return get_method(request, Category, CategorySerializer, pk, slug)
     
     def post(self, request):
         return post_method(request, CategorySerializer)
@@ -108,7 +112,7 @@ class CategoryView(APIView):
         return delete_method(Category, pk=pk)
 
 class ProductTypeView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, ProductType, ProductTypeSerializer, pk)
     
     def post(self, request):
@@ -124,7 +128,7 @@ class PopularProductView(APIView):
 
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, PopularProduct, PopularProductSerializer, pk)
     
     def post(self, request):
@@ -139,7 +143,7 @@ class PopularProductView(APIView):
 class PromotionView(APIView):
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, Promotion, PromotionSerializer, pk)
     
     def post(self, request):
@@ -152,7 +156,7 @@ class PromotionView(APIView):
         return delete_method(Promotion, pk)
     
 class PhoneView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, Phone, PhoneSerializer, pk)
     
     def post(self, request):
@@ -165,7 +169,7 @@ class PhoneView(APIView):
         return delete_method(Phone, pk)
     
 class EmailView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, Email, EmailSerializer, pk)
     
     def post(self, request):
@@ -178,7 +182,7 @@ class EmailView(APIView):
         return delete_method(Email, pk)
     
 class AddressView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, Address, AddressSerializer, pk)
     
     def post(self, request):
@@ -192,7 +196,7 @@ class AddressView(APIView):
 
 
 class WorkingHoursView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, WorkingHours, WorkingHoursSerializer, pk)
     
     def post(self, request):
@@ -223,7 +227,7 @@ class ContactsView(APIView):
 
 
 class GalleryView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, Gallery, GallerySerializer, pk)
     
     def post(self, request):
@@ -236,7 +240,7 @@ class GalleryView(APIView):
         return delete_method(Gallery, pk)
 
 class SubCategoryView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         return get_method(request, SubCategory, SubCategorySerializer, pk)
     
     def post(self, request):
@@ -250,7 +254,7 @@ class SubCategoryView(APIView):
 
 
 class CharacteristicView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
         if pk:
             return get_method(request, Characteristic, CharacteristicSerializer, pk)
         try:
@@ -285,14 +289,25 @@ class CharacteristicView(APIView):
         return delete_method(Characteristic, pk)
 
 class ProductView(APIView):
-    def get(self, request, pk=None):
+    def get(self, request, pk=None, slug=None):
 
         try:
-            if pk:
-                obj = get_object_or_404(Product, pk=pk)
-                obj = ProductSerializer(obj)
-                return Response(obj.data, status=status.HTTP_200_OK)
-            
+            if pk or slug:
+                if slug:
+                    obj = get_object_or_404(Product, slug=slug)
+                    chars = Characteristic.objects.filter(product__slug=slug)
+                if pk:
+                    obj = get_object_or_404(Product, slug=slug)
+                    chars = Characteristic.objects.filter(product__pk=pk)
+                
+                chars_obj = CharacteristicSerializer(chars, many=True)
+                product_data = ProductSerializer(obj).data
+                data = {
+                    **product_data,
+                    'characteristics': chars_obj.data
+                }
+                return Response(data, status=status.HTTP_200_OK)
+                            
             sort_by = request.query_params.get('sort-by', '')
             min_price = request.query_params.get('min-price', '')
             max_price = request.query_params.get('max-price', '')
@@ -396,7 +411,6 @@ class ProductView(APIView):
 
             return Response(data, status=status.HTTP_200_OK)
         except Exception as e:
-
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
          
     
@@ -411,7 +425,7 @@ class ProductView(APIView):
 
 
 class ClassificationsView(APIView):
-    def get(self , request):
+    def get(self, request):
         return get_method(request, Category, ClassificationsSerializer)
 
 

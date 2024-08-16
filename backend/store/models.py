@@ -72,7 +72,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to=upload_products, max_length=300)
     second_image = models.ImageField(upload_to=upload_products, null=True, blank=True, max_length=300)
     third_image = models.ImageField(upload_to=upload_products, null=True, blank=True, max_length=300)
-
+    
     def save(self, *args, **kwargs):
         self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Product, self).save(*args, **kwargs)
