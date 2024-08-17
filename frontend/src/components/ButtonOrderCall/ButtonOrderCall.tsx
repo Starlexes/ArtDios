@@ -24,7 +24,7 @@ function ButtonOrderCall({isProduct=false, className, children, onClickProductOr
 	const matches = useMediaPredicate('(min-width: 881px)');
 
 	const onClick = () => {
-		isProduct && onClickProductOrder();
+		isProduct && onClickProductOrder && onClickProductOrder();
 		setModalIsOpen(true);
 		dispatch(setMediaSearchClick(false));
 		
@@ -32,7 +32,7 @@ function ButtonOrderCall({isProduct=false, className, children, onClickProductOr
 
 
 	const closeModal = (isSubmit: boolean = false) => {
-		!isSubmit && isProduct && onClickProductOrder();
+		!isSubmit && isProduct && onClickProductOrder && onClickProductOrder();
 		setModalIsOpen(false);
 		if (isSubmit) {	
 			setModalThankIsOpen(true);
@@ -41,7 +41,7 @@ function ButtonOrderCall({isProduct=false, className, children, onClickProductOr
 	};
 
 	const closeThank = () => {
-		isProduct && onClickProductOrder();
+		isProduct && onClickProductOrder && onClickProductOrder();
 		setModalThankIsOpen(false);
 	};
 

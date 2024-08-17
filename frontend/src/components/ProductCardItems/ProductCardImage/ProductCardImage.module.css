@@ -1,0 +1,22 @@
+.card-images {
+    display: flex;
+    gap: 32px;
+}
+
+@media (max-width: 880px) {
+    .card-images {
+        flex-direction: column-reverse;
+        justify-content: start;
+        gap: 34px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 750px) {
+    .card-images {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+

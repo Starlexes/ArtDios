@@ -1,0 +1,17 @@
+.image-btn {
+    padding: 14px 32px;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: #EAF0E8;
+    border: 1px solid transparent;
+}
+
+.image-btn img {
+    max-width: 34px;
+    max-height: 70px;
+}
+
+.image-btn:hover {
+    border: 1px solid #7E7E7E;
+}

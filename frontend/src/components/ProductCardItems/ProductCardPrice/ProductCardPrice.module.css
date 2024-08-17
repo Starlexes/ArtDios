@@ -1,0 +1,20 @@
+.price-card {
+    display: flex;
+    gap: 7px;
+    margin-top: 16px;
+    font-weight: 700;
+    align-items: center;
+    
+}
+
+.price-value {
+    font-size: 28px;
+    color: #101010;    
+}
+
+.price-count {
+    color: #999;
+    font-size: 10px;
+    margin-bottom: 20px;
+    
+}

@@ -25,7 +25,7 @@
     overflow-x: hidden;
     padding-top: min(calc(49 / 1200 * 100vw), 49px);
     position: relative;
-    top: min(10vw, 120px);
+    top: min(9vw, 32px);
 }
 
 .modal-errors {

@@ -70,8 +70,8 @@ function CheckBoxFilter({decsParams, propertyName, className, name, desc}: Check
 				checked={isChecked} className={cn(styles['checkbox-item'])}
 				onChange={onChange}
 			/>
-			<label>
-				<span>
+			<label className={cn(styles['checkbox-label'])}>
+				<span className={cn(styles['checkbox-desc'])}>
 					{desc}
 				</span>
 			</label>

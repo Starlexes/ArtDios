@@ -34,7 +34,12 @@
 }
 
 @media (max-width: 510px) {
-    .back-btn {
+    .back-content {
+        border-radius: 50%;
+        background-color: #ECEBEB;
         left: max(calc( 80 / 510 * 100vw), 50px);
+        justify-content: center;
+        width: max(calc( 30 / 510 * 100vw), 20px);
+        height: max(calc( 30 / 510 * 100vw), 20px);
     }
 }

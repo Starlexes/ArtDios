@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
+import { Characteristic } from './characteristicSlice';
 
 export interface Product {
     product_id: number,
@@ -13,7 +14,8 @@ export interface Product {
     second_image: string | null,
     third_image: string | null,
     category: number
-	category_name: string
+	category_name: string,
+	characteristics: Characteristic[]
 }
 
 export type Sorting = 'asc' | 'desc' | null

@@ -1,0 +1,12 @@
+.about-card {
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 750px) {
+    .about-card {
+        max-width: 270px;
+    }
+}

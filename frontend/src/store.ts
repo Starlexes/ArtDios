@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import contactReducer from './slices/contactSlice';
 import categoryReducer from './slices/categorySlice';
 import buttonReducer from './slices/buttonSlice';
-import productReducer, { Characteristic } from './slices/productSlice';
-import characteristicReducer, { CharacteristicClient } from './slices/characteristicSlice';
+import productReducer from './slices/productSlice';
+import productCardReducer from './slices/productCardSlice';
+import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
 
 
@@ -13,7 +14,8 @@ const store = configureStore({
 		categories: categoryReducer,
 		buttons: buttonReducer,
 		products: productReducer,
-		characteristics: characteristicReducer
+		characteristics: characteristicReducer,
+		productCard: productCardReducer
 	}
 });
 

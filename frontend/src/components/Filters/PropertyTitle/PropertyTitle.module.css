@@ -1,5 +1,8 @@
 .property-title {
+    display: flex;
     font-weight: 700;
     font-size: 16px;
     color: var(--default-color);
+    flex-wrap: wrap;
+    word-break: break-all;
 }
