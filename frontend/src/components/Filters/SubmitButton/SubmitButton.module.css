@@ -1,0 +1,9 @@
+.main-submit{
+    font-weight: 700;
+    background-color: var(--active-color);
+    color: var(--text-color);
+}
+
+.main-submit:hover {
+    font-weight: 900;
+}

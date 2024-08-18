@@ -3,8 +3,9 @@ import Button from '../../Header/Button/Button';
 import styles from './ActionsFilter.module.css';
 import { ActionsFilterProps } from './ActionsFilter.props';
 import cn from 'classnames';
-import { setClearClick, setSubmitClick} from '../../../slices/buttonSlice';
+import { setClearClick} from '../../../slices/buttonSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 function ActionsFilter({ className }: ActionsFilterProps) {
 
@@ -16,17 +17,12 @@ function ActionsFilter({ className }: ActionsFilterProps) {
 		navigate(location.pathname);
 	};
 
-	const onClickSubmit = () => {
-		dispatch(setSubmitClick(true));	
-	};
 
 	return (
 		
 		<div className={cn(styles['actions-filter'], className)}>
 			<label>
-				<Button className={cn(styles['submit-btn'])} onClick={onClickSubmit} type='submit'>
-                Применить
-				</Button>
+				<SubmitButton className={cn(styles['submit-btn'])} />
 			</label>
 
 			<label>

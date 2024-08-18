@@ -17,7 +17,7 @@ function SortingOrder({ className }: SortingOrderProps) {
 				search: `${search? search+'&': ''}sort-by=asc`}}>
 				<div className={cn(styles['sort-filter'])}>
 					{orderASC()}
-                Самые дешевые
+                По возрастанию цены
 				</div>
 			</NavItem>
 
@@ -26,7 +26,7 @@ function SortingOrder({ className }: SortingOrderProps) {
 				search: `${search? search+'&': '?'}sort-by=desc`}}>
 				<div className={cn(styles['sort-filter'])}>
 					{orderDSC()}
-                Самые дорогие
+					По убыванию цены
 				</div>
 			</NavItem>
 			

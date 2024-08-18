@@ -5,6 +5,7 @@ import NavItem from '../../Header/NavItem/NavItem';
 import styles from './ModalLinksMenu.module.css';
 import cn from 'classnames';
 import { ModalLinksMenuProps } from './ModalLinksMenu.props';
+import { galleryRoute } from '../../../utils/constants';
 
 function ModalLinksMenu({ className }: ModalLinksMenuProps) {
 
@@ -30,7 +31,7 @@ function ModalLinksMenu({ className }: ModalLinksMenuProps) {
 				</NavigationListItem>
 
 				<NavigationListItem key={4}>
-					<NavItem className={cn(styles['nav-menu'])} to={'/gallery'}>
+					<NavItem className={cn(styles['nav-menu'])} to={galleryRoute}>
 				Галерея
 					</NavItem>
 				</NavigationListItem>

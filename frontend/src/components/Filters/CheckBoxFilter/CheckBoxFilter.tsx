@@ -9,6 +9,7 @@ import { RootState } from '../../../store';
 import { useDispatch } from 'react-redux';
 import { setClearClick, setSubmitFilterParams } from '../../../slices/buttonSlice';
 
+
 function CheckBoxFilter({decsParams, propertyName, className, name, desc}: CheckBoxFilterProps) {
 	const dispatch = useDispatch();
 	const descExists = decsParams.find(item => item === desc);
@@ -62,6 +63,8 @@ function CheckBoxFilter({decsParams, propertyName, className, name, desc}: Check
 
 
 	return (
+		
+			
 		<div className={cn(styles['checkbox-filter'], className)}>
 			<div className={cn(styles['checkbox-area'])}>
 				{isChecked && checked()}
@@ -76,7 +79,7 @@ function CheckBoxFilter({decsParams, propertyName, className, name, desc}: Check
 				</span>
 			</label>
 		</div>
-		
+	
 		
 	);
 }

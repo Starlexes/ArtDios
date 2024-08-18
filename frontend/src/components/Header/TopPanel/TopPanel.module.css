@@ -19,7 +19,7 @@
 
     .main__header {
         height: 90px;
-        z-index: 1;
+        z-index: 3;
     }
     .main-inner__header {
         max-width: 880px;

@@ -11,13 +11,12 @@
 
 .filter-list {
     display: flex;
-    position: relative;
     flex-direction: column;
     gap: 6px;
     overflow-y: auto;
-    max-height: 162px;
-    
+    max-height: 162px;  
 }
+
 
 .filter-list::-webkit-scrollbar {
     position: absolute;
@@ -37,6 +36,7 @@
 .filter-list::-webkit-scrollbar-thumb:hover {
     background: #b9b9b9;
 }
+
 
 @supports (-moz-appearance: none) {
     .filter-list {

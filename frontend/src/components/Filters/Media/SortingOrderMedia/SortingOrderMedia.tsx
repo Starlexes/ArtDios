@@ -13,9 +13,10 @@ interface OptionType {
 
 const options: OptionType[] = [
 	{value: '', label: 'Сортировка'},
-	{ value: 'asc', label: 'Самые дешевые' },
-	{ value: 'desc', label: 'Самые дорогие' }
+	{ value: 'asc', label: 'По возрастанию цены' },
+	{ value: 'desc', label: 'По убыванию цены' }
 ];
+
 
 function SortingOrderMedia({ className }: SortingOrderMediaProps) {
 

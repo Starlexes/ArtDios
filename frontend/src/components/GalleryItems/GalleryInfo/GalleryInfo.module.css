@@ -1,0 +1,13 @@
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    color: #0C0C0C;
+}
+
+@media (max-width: 510px) {
+    .gallery-item {
+        gap: 8px;
+    }
+}

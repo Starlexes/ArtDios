@@ -9,20 +9,17 @@
 
 .submit-btn, .clear-btn {
     border-radius: 10px;
-    font-weight: 700;
     font-size: 20px;
     width: 180px;
     padding: 8px 28px;
 }
 
-.submit-btn:hover, .clear-btn:hover {
-    font-weight: 900;
+.clear-btn {
+    font-weight: 700;
 }
 
-.submit-btn {
-    background-color: var(--active-color);
-    color: var(--text-color);
-    
+.clear-btn:hover {
+    font-weight: 900;
 }
 
 .clear-btn {

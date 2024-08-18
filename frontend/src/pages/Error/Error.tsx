@@ -4,6 +4,7 @@ import { ErrorProps } from './Error.props';
 import Button from '../../components/Header/Button/Button';
 import NavItem from '../../components/Header/NavItem/NavItem';
 import PageHead from '../../components/PageHead/PageHead';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function Error({className}: ErrorProps) {
 
@@ -11,6 +12,11 @@ function Error({className}: ErrorProps) {
 	return (
 	
 		<div className={cn(styles['error-page'], className)}>
+			<HelmetProvider>
+				<Helmet>
+					<title>Ошибка</title>
+				</Helmet>
+			</HelmetProvider>
 			<PageHead>
 				Страница не найдена
 			</PageHead>

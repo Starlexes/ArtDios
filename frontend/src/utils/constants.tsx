@@ -22,6 +22,8 @@ export const catalog = '/catalog/';
 
 export const products = '/products/';
 
+export const galleryRoute = '/gallery/';
+
 
 // Pagination
 
@@ -115,16 +117,16 @@ export const countChars =5;
 //Product Card
 export const leftArrowImage = () => (
 	<svg width="22.941406" height="39.941406" viewBox="0 0 22.9414 39.9414" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<rect id="Rectangle 4194" rx="2.000000" width="4.000000" height="28.000000" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 22.9414 2.82812)" fill="#2B2C30" fill-opacity="1.000000"/>
-		<rect id="Rectangle 4195" rx="2.000000" width="4.000000" height="28.000000" transform="matrix(-0.707107 0.707107 0.707107 0.707107 2.82812 17.3125)" fill="#2B2C30" fill-opacity="1.000000"/>
+		<rect id="Rectangle 4194" rx="2.000000" width="4.000000" height="28.000000" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 22.9414 2.82812)" fill="#2B2C30" fillOpacity="1.000000"/>
+		<rect id="Rectangle 4195" rx="2.000000" width="4.000000" height="28.000000" transform="matrix(-0.707107 0.707107 0.707107 0.707107 2.82812 17.3125)" fill="#2B2C30" fillOpacity="1.000000"/>
 	</svg>
 
 );
 
 export const rightArrowImage = () => (
 	<svg width="22.941406" height="39.941406" viewBox="0 0 22.9414 39.9414" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<rect id="Rectangle 4194" y="2.828125" rx="2.000000" width="4.000000" height="28.000000" transform="rotate(-45 0.000000 2.828125)" fill="#2B2C30" fill-opacity="1.000000"/>
-		<rect id="Rectangle 4195" x="20.113281" y="17.312500" rx="2.000000" width="4.000000" height="28.000000" transform="rotate(45 20.113281 17.312500)" fill="#2B2C30" fill-opacity="1.000000"/>
+		<rect id="Rectangle 4194" y="2.828125" rx="2.000000" width="4.000000" height="28.000000" transform="rotate(-45 0.000000 2.828125)" fill="#2B2C30" fillOpacity="1.000000"/>
+		<rect id="Rectangle 4195" x="20.113281" y="17.312500" rx="2.000000" width="4.000000" height="28.000000" transform="rotate(45 20.113281 17.312500)" fill="#2B2C30" fillOpacity="1.000000"/>
 	</svg>
 
 

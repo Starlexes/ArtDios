@@ -23,6 +23,7 @@ import ProductCardImageButtonsMenu from '../../components/ProductCardItems/Produ
 import BackButton from '../../components/BackButton/BackButton';
 import { useMediaPredicate } from 'react-media-hook';
 import ProductCardArrowButton from '../../components/ProductCardItems/ProductCardArrowButton/ProductCardArrowButton';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function ProductCard({className }: ProductCardProps) {
 
@@ -44,8 +45,8 @@ function ProductCard({className }: ProductCardProps) {
 
 	const [currentImage, setCurrentImage] = useState<string>('');
 	const [currentImageNumber, setCurrentImageNumber] = useState<number>(0);
-	const images = [mainImagePath, secondImagePath, thirdImagePath];
-
+	const images = [mainImagePath, secondImagePath, thirdImagePath].filter(item => item);
+	
 	useEffect(() => {
 		if (currentProduct !== productParam) {
 			setCurrentProduct(productParam as string);
@@ -83,24 +84,33 @@ function ProductCard({className }: ProductCardProps) {
 	return (
 		isLoading? <Spinner/>: 
 			<div className={cn(styles['product-card'], className)}>
+				<HelmetProvider>
+					<Helmet>
+						<title>{product.name}</title>
+					</Helmet>
+				</HelmetProvider>
 				<ProductCardImage>		
 					{	matches &&	
 						<ProductCardImageButtonsMenu>
 							<ProductCardImageButton imagePath={mainImagePath} imageName={product.name} value='main' onClick={onClick}/>
+							{secondImagePath  &&
 							<ProductCardImageButton imagePath={secondImagePath} imageName={product.name} value='second' onClick={onClick}/>
-							<ProductCardImageButton imagePath={thirdImagePath} imageName={product.name} value='third' onClick={onClick}/>
+							}
+							{ thirdImagePath &&
+								<ProductCardImageButton imagePath={thirdImagePath} imageName={product.name} value='third' onClick={onClick}/>
+							}
 						</ProductCardImageButtonsMenu>
 					}
 					{
-						!matches && <ProductCardArrowButton typeArrow='left' onClick={prevImage}/>
-						
+						!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='left' onClick={prevImage}/>						
 					}
+
 					<div className={cn(styles['selected-image'])}>
 						<img src={matches? currentImage: images[currentImageNumber]} alt={product.name} />
 					</div>
 
 					{
-						!matches && <ProductCardArrowButton typeArrow='right' onClick={nextImage}/>
+						!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='right' onClick={nextImage}/>
 					}
 						
 				</ProductCardImage>

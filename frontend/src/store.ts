@@ -4,6 +4,7 @@ import categoryReducer from './slices/categorySlice';
 import buttonReducer from './slices/buttonSlice';
 import productReducer from './slices/productSlice';
 import productCardReducer from './slices/productCardSlice';
+import galleryReducer from './slices/gallerySlice';
 import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
 
@@ -15,7 +16,8 @@ const store = configureStore({
 		buttons: buttonReducer,
 		products: productReducer,
 		characteristics: characteristicReducer,
-		productCard: productCardReducer
+		productCard: productCardReducer,
+		gallery: galleryReducer
 	}
 });
 

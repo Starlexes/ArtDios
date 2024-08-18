@@ -51,7 +51,7 @@ function PropertyFilter({item, className, decsParams}: PropertyFilterProps) {
 					<div className={cn(styles['filter-list'])}>
 						{item.description.slice(0, visibleParamsCount).map((desc, index) => 
 							(
-								<NavigationListItem key={index}>
+								<NavigationListItem key={index} className={cn(styles['list-item'])}>
 									<CheckBoxFilter name='filter' desc={desc} propertyName={itemName} decsParams={decsParams}/>	
 								</NavigationListItem>
 							)

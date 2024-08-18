@@ -1,0 +1,11 @@
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+@media (max-width: 510px) {
+    .gallery {
+        gap: 32px;
+    }
+}

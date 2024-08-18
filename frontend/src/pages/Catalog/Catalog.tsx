@@ -20,6 +20,7 @@ import { useMediaPredicate } from 'react-media-hook';
 import SortingOrderMedia from '../../components/Filters/Media/SortingOrderMedia/SortingOrderMedia';
 import CatalogActions from '../../components/Filters/Media/CatalogActions/CatalogActions';
 import FiltersButton from '../../components/Filters/Media/FiltersButton/FiltersButton';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 
@@ -104,6 +105,11 @@ function Catalog({className}: CatalogProps) {
 		isLoading && isError ? <Spinner/>:
 
 			<section>
+				<HelmetProvider>
+					<Helmet>
+						<title>{categoryName}</title>
+					</Helmet>
+				</HelmetProvider>
 				<div className={cn(styles['catalog'], className)}>
 						
 					{products.length?
