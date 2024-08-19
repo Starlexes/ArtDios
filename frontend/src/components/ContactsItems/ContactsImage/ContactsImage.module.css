@@ -1,0 +1,21 @@
+.contacts-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--primary-bgc);
+    min-width: 100px;
+    min-height: 100px;
+}
+
+@media (max-width: 880px) {
+    .contacts-image {
+        min-width: max(calc( 100 / 880 * 100vw), 60px);
+        min-height: max(calc( 100 / 880 * 100vw), 60px);
+    }
+    .contacts-image svg {
+        width: max(calc( 40 / 880 * 100vw), 24px);
+        height: max(calc( 40 / 880 * 100vw), 24px);
+    }
+}
+

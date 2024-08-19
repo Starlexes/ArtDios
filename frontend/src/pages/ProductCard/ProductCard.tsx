@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 import { ProductCardProps } from './ProductCard.props';
@@ -80,17 +79,17 @@ function ProductCard({className }: ProductCardProps) {
 		);
 	};
 
-	
 	return (
 		isLoading? <Spinner/>: 
-			<div className={cn(styles['product-card'], className)}>
-				<HelmetProvider>
-					<Helmet>
-						<title>{product.name}</title>
-					</Helmet>
-				</HelmetProvider>
-				<ProductCardImage>		
-					{	matches &&	
+			<section>
+				<div className={cn(styles['product-card'], className)}>
+					<HelmetProvider>
+						<Helmet>
+							<title>{product.name}</title>
+						</Helmet>
+					</HelmetProvider>
+					<ProductCardImage>		
+						{	matches &&	
 						<ProductCardImageButtonsMenu>
 							<ProductCardImageButton imagePath={mainImagePath} imageName={product.name} value='main' onClick={onClick}/>
 							{secondImagePath  &&
@@ -100,35 +99,36 @@ function ProductCard({className }: ProductCardProps) {
 								<ProductCardImageButton imagePath={thirdImagePath} imageName={product.name} value='third' onClick={onClick}/>
 							}
 						</ProductCardImageButtonsMenu>
-					}
-					{
-						!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='left' onClick={prevImage}/>						
-					}
+						}
+						{
+							!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='left' onClick={prevImage}/>						
+						}
 
-					<div className={cn(styles['selected-image'])}>
-						<img src={matches? currentImage: images[currentImageNumber]} alt={product.name} />
-					</div>
+						<div className={cn(styles['selected-image'])}>
+							<img src={matches? currentImage: images[currentImageNumber]} alt={product.name} />
+						</div>
 
-					{
-						!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='right' onClick={nextImage}/>
-					}
+						{
+							!matches && images.length !== 1 && <ProductCardArrowButton typeArrow='right' onClick={nextImage}/>
+						}
 						
-				</ProductCardImage>
+					</ProductCardImage>
 				
-				<div className={cn(styles['product-info'])}>
-					<ProductCardAbout>
-						<BackButton className={cn(styles['back-btn-content'])} btnClassName={cn(styles['back-btn'])}/>
-						<ProductCardTitle>{product.name}</ProductCardTitle>
-						<ProductCardCode>{product.code}</ProductCardCode>
-						<ProductCardDesc>{product.description}</ProductCardDesc>
-						<ProductCardPrice>{formattedPrice}</ProductCardPrice>
-						<ProductOrder className={cn(styles['order-card'])}>Заказать</ProductOrder>
-					</ProductCardAbout>
-					<ProductCardCharacteristics chars={product.characteristics}/>
-				</div>
+					<div className={cn(styles['product-info'])}>
+						<ProductCardAbout>
+							<BackButton className={cn(styles['back-btn-content'])} btnClassName={cn(styles['back-btn'])}/>
+							<ProductCardTitle>{product.name}</ProductCardTitle>
+							<ProductCardCode>{product.code}</ProductCardCode>
+							<ProductCardDesc>{product.description}</ProductCardDesc>
+							<ProductCardPrice>{formattedPrice}</ProductCardPrice>
+							<ProductOrder className={cn(styles['order-card'])}>Заказать</ProductOrder>
+						</ProductCardAbout>
+						<ProductCardCharacteristics chars={product.characteristics}/>
+					</div>
 				
 				
-			</div>	
+				</div>	
+			</section>
 	);
 }
 

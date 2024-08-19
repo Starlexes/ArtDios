@@ -12,3 +12,7 @@
 .social-item {
     display: flex;
 }
+
+.social-item:hover {
+    opacity: .7;
+}

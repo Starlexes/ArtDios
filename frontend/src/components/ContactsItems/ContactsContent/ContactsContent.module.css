@@ -1,0 +1,13 @@
+.contacts-content {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2F2F2F;
+    width: 564px;
+}
+
+@media (max-width: 880px) {
+    .contacts-content {
+        font-size: max(calc( 20 / 880 * 100vw), 14px);
+        width: max(calc( 564 / 880 * 100vw), 168px);
+    }
+}

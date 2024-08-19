@@ -9,6 +9,10 @@
     height: 34px;
 }
 
+.social-item:hover img {
+    opacity: .7;
+}
+
 @media (max-width: 880px) {
     .social-item {
         font-size: 18px;

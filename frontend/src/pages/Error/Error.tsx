@@ -10,22 +10,23 @@ function Error({className}: ErrorProps) {
 
 	
 	return (
-	
-		<div className={cn(styles['error-page'], className)}>
-			<HelmetProvider>
-				<Helmet>
-					<title>Ошибка</title>
-				</Helmet>
-			</HelmetProvider>
-			<PageHead>
+		<section>
+			<div className={cn(styles['error-page'], className)}>
+				<HelmetProvider>
+					<Helmet>
+						<title>Ошибка</title>
+					</Helmet>
+				</HelmetProvider>
+				<PageHead>
 				Страница не найдена
-			</PageHead>
+				</PageHead>
 
-			<NavItem className={cn(styles['error-link'])} to={'/'}>
-				<Button className={cn(styles['error-btn'])}>Перейти на главную</Button>
-			</NavItem>
+				<NavItem className={cn(styles['error-link'])} to={'/'}>
+					<Button className={cn(styles['error-btn'])}>Перейти на главную</Button>
+				</NavItem>
 			
-		</div>
+			</div>
+		</section>
 	);
 }
 

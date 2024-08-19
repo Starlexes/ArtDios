@@ -1,0 +1,120 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+div.phones-content {
+    display: flex;
+    gap: 64px;
+}
+
+.link-content {
+    font-size: 1em;
+    color: inherit;
+}
+
+div.phones-content .phone-link {
+    color: #666666;  
+}
+
+div.phones-content .phone-link:hover {
+    color: var(--active-color)
+}
+
+div.hours-item, div.social-item {
+    width: 358px;
+}
+
+div.social-item {
+    border-radius: 100px 0px 0px 100px;  
+}
+
+.social-links {
+    gap: 24px;
+}
+
+div.social-content {
+   
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: center;
+    gap: 20px;
+    color: #666666;
+}
+
+.social-content img {
+    width: 40px;
+    height: 40px;
+}
+
+div.hours-item {
+    border-radius: 0 100px 100px 0px;
+    flex-direction: row-reverse;
+}
+
+div.hours-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.bottom-item {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 880px) {
+
+    div.hours-item, div.social-item {
+        width: calc(358 / 880 * 100vw);
+    }
+    div.phones-content {
+        gap: max(calc( 64 / 880 * 100vw) , 24px);
+    }
+
+    .social-content img {
+        width: max(calc(40 / 880 * 100vw), 24px);
+        height: max(calc(40 / 880 * 100vw), 24px);
+    }
+
+    .bottom-item {
+        gap: calc( 20 / 880 * 100vw);
+    }
+}
+
+@media (max-width: 640px) {
+    .contacts {
+        gap: 16px;
+    }
+    div.phones-content {
+        flex-direction: column;
+    }
+
+    div.hours-item, div.social-item {
+        width: max(calc( 736 / 880 * 100vw), 296px);
+    }
+
+    .bottom-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    div.social-content, div.hours-content, div.phones-content {
+        gap: 16px;
+    }
+
+    .social-content img {
+        width: 24px;
+        height: 24px;
+    }
+
+    div.hours-item, div.social-item {
+        border-radius: 100px;
+    }
+
+    div.hours-item {        
+        flex-direction: row;
+    }
+}

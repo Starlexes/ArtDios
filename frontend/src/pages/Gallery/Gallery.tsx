@@ -25,20 +25,22 @@ function Gallery({className }: GalleryProps) {
 	return (
 		!error? 
 			isLoading? <Spinner/>: 
-				<div className={cn(styles['gallery'], className)}>
-					<HelmetProvider>
-						<Helmet>
-							<title>Галерея</title>
-						</Helmet>
-					</HelmetProvider>
-					<PageHead>
+				<section>
+					<div className={cn(styles['gallery'], className)}>
+						<HelmetProvider>
+							<Helmet>
+								<title>Галерея</title>
+							</Helmet>
+						</HelmetProvider>
+						<PageHead>
                         Галерея
-					</PageHead>
-					{gallery.map((item, index) => (
-						<GalleryItem key={index} gallery={item}
-							type={index % 2 === 0? 'even': 'odd'}/>
-					))}
-				</div>	
+						</PageHead>
+						{gallery.map((item, index) => (
+							<GalleryItem key={index} gallery={item}
+								type={index % 2 === 0? 'even': 'odd'}/>
+						))}
+					</div>	
+				</section>
 			: <Error/>
 	);
 

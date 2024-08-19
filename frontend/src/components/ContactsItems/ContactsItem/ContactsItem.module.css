@@ -1,0 +1,24 @@
+.contacts-item {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: 736px;
+    min-height: 140px;
+    padding: 20px;
+    border-radius: 100px;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 880px) {
+    .contacts-item {
+        width: max(calc( 736 / 880 * 100vw), 296px);
+        gap: calc( 32 / 880 * 100vw);
+    }
+}
+
+@media (max-width: 640px) {
+    .contacts-item {
+        padding: 8px;
+        min-height: 76px;
+    }
+}

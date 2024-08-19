@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NavigationListItem from '../NavigationListItem/NavigationListItem';
 import NavItem from '../NavItem/NavItem';
 import NavSocial from '../NavSocial/NavSocial';
+import { contactsRoute } from '../../../utils/constants';
 
 
 function Navigation({className}: NavigationProps) {
@@ -43,7 +44,7 @@ function Navigation({className}: NavigationProps) {
 				</NavigationListItem>
 
 				<NavigationListItem key={3}>
-					<NavItem className='contact-text' to={'/contacts'}>
+					<NavItem className='contact-text' to={contactsRoute}>
 						Контакты
 					</NavItem>
 				</NavigationListItem>
