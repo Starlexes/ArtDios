@@ -1,0 +1,36 @@
+.promotions {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.promo-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);; 
+    row-gap: 45px;
+}
+
+@media (max-width: 1200px) {
+    .promo-items {
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 880px) {
+    .promotions {
+        gap: max(calc( 64 / 880 * 100vw), 24px);
+    }
+    .promo-items {
+        column-gap: max(calc( 64 / 880 * 100vw), 32px);
+        row-gap: max(calc( 45 / 880 * 100vw), 32px);
+    }
+}
+
+@media (max-width: 510px) {
+    .promo-items {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

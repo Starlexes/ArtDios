@@ -1,0 +1,11 @@
+
+.lending, .lending-head, .lending-items{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.lending-head, .lending-items {
+    gap: 64px;
+}
+

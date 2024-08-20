@@ -2,7 +2,8 @@
     background: none;
     min-height: auto;
     position: absolute;
-    left: min(calc( 131 / 1200 * 100vw), 131px);
+    top: 80px;
+    left: min(calc( 62 / 1200 * 100vw), 62px);
 }
 
 .back-btn:hover .back-content {
@@ -24,7 +25,8 @@
 
 @media (max-width: 880px) {
     .back-btn {
-        left: calc( 95 / 880 * 100vw);
+        top: 50px;
+        left: calc( 62 / 880 * 100vw);
     }
 
     .back-content {
@@ -34,6 +36,9 @@
 }
 
 @media (max-width: 510px) {
+    .back-btn {
+        top: 30px;
+    }
     .back-content {
         border-radius: 50%;
         background-color: #ECEBEB;

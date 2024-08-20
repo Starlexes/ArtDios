@@ -1,6 +1,19 @@
 .page-head {
-
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+.page-title {
+    display: flex;
+    justify-content: center;
+    max-width: 670px;
+    width: calc(670 / 1200 * 100vw);
+}
+
+@media (max-width: 510px)  {
+    .page-title {
+        width: 230px;
+    }
 }

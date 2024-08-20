@@ -3,6 +3,7 @@ import axios from 'axios';
 import { RootState } from '../store';
 
 export interface SubCategoryState {
+	id: number,
     name: string,
 	discount?: number | undefined,
     is_show: boolean,
@@ -10,6 +11,7 @@ export interface SubCategoryState {
 }
 
 export interface CategoryState {
+	id: number,
     name: string,
 	subcategory: SubCategoryState[],
     is_show: boolean,

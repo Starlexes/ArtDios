@@ -9,9 +9,12 @@ function PageHead({className, children}: PageHeadProps) {
 	return (	
 		<div className={cn(styles['page-head'], className)}>
 			<BackButton/>
-			<PageTitle>
-				{children}
-			</PageTitle>
+
+			<div className={cn(styles['page-title'], className)}>
+				<PageTitle>
+					{children}
+				</PageTitle>
+			</div>
 		</div>
 	);
 }

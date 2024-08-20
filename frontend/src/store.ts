@@ -5,6 +5,9 @@ import buttonReducer from './slices/buttonSlice';
 import productReducer from './slices/productSlice';
 import productCardReducer from './slices/productCardSlice';
 import galleryReducer from './slices/gallerySlice';
+import popProductsReducer from './slices/popularProductSlice';
+import promotionReducer from './slices/promotionSlice';
+import promotionCardReducer from './slices/promotionCardSlice';
 import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
 
@@ -17,7 +20,10 @@ const store = configureStore({
 		products: productReducer,
 		characteristics: characteristicReducer,
 		productCard: productCardReducer,
-		gallery: galleryReducer
+		gallery: galleryReducer,
+		popProducts: popProductsReducer,
+		promotions: promotionReducer,
+		promotionCard: promotionCardReducer
 	}
 });
 

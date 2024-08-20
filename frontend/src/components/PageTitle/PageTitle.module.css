@@ -1,17 +1,19 @@
 .title {
+    display: inline-block;
     font-weight: 700;
     font-size: 44px;
+    
 }
 
 @media (max-width: 880px) {
     .title {
-        font-size: calc(44 / 880 * 100vw);
+        font-size: calc(32 / 880 * 100vw);
     }
 }
 
 @media (max-width: 510px) {
           
     .title {
-        font-size: max(calc(25 / 510 * 100vw), 20px);
+        font-size: 14px;
     }
 }

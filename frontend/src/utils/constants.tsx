@@ -26,6 +26,8 @@ export const galleryRoute = '/gallery/';
 
 export const contactsRoute = '/contacts/';
 
+export const promotionRoute = '/promotions/';
+
 // Pagination
 
 export const nextSinglePage = () => (
