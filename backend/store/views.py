@@ -21,7 +21,6 @@ def get_method(request, model, model_serializer, pk=None, slug=None):
         if pk or slug:
             if hasattr(model, 'slug') and slug:
                 obj = get_object_or_404(model, slug=slug)
-                
             if pk:
                 obj = get_object_or_404(model, pk=pk)
                 
@@ -144,7 +143,7 @@ class PromotionView(APIView):
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get(self, request, pk=None, slug=None):
-        return get_method(request, Promotion, PromotionSerializer, pk)
+        return get_method(request, Promotion, PromotionSerializer, pk, slug)
     
     def post(self, request):
         return post_method(request, PromotionSerializer)
