@@ -50,5 +50,7 @@ urlpatterns = [
     path('api/product/<slug:slug>', ProductView.as_view()),
 
     path('api/classify/', ClassificationsView.as_view()),
+
+    path('api/suggestions/', SearchingSuggestionsView.as_view())
 ]
 

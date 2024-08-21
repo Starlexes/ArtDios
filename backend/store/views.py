@@ -352,10 +352,17 @@ class ProductView(APIView):
                 search_vector = SearchVector('name', 'description', 'code') + \
                         SearchVector(F('category__name')) + \
                         SearchVector(F('category__parent__name'))
-                search_query = SearchQuery(search)
-                products = Product.objects.annotate(search=search_vector, rank=SearchRank(search_vector, search_query)
-                            ).filter(search=search_query).order_by("-rank")
-                
+                products = Product.objects.filter(
+                    Q(name__icontains=search) |
+                    Q(description__icontains=search) | 
+                    Q(category__name__icontains=search) |
+                    Q(category__parent__name__icontains=search) | 
+                    Q(code=search)
+                ).annotate(
+                    search=search_vector,
+                    rank=SearchRank(search_vector, SearchQuery(search))
+                ).order_by('-rank')
+
             
             if min_price and max_price:
                 products = products.filter( 
@@ -428,4 +435,27 @@ class ClassificationsView(APIView):
         return get_method(request, Category, ClassificationsSerializer)
 
 
+class SearchingSuggestionsView(APIView):
+    def get(self, request):
+        try:
+            query = request.query_params.get('query', '')
+            if query:
+                category = Category.objects.filter(name__icontains=query, is_show=True)
+                subcategory = SubCategory.objects.filter(name__icontains=query, is_show=True)
+                
+                cat_data = [{'name': cat.name, 'slug': cat.slug} for cat in category] if category else []
+                subcat_data = [{'name': cat.name, 'slug': cat.slug} for cat in subcategory] if subcategory else []
 
+                if cat_data and not subcat_data:            
+                    return JsonResponse(cat_data, safe=False)
+                if subcat_data and not cat_data:
+                    return JsonResponse(subcat_data, safe=False)
+                if subcat_data and cat_data:
+                    suggestions = cat_data + subcat_data                  
+                    return JsonResponse(suggestions, safe=False)
+                if not cat_data and not subcat_data:
+                    return JsonResponse([], safe=False)
+            else:
+                return Response([], status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
