@@ -60,14 +60,15 @@ export const fetchProduct = createAsyncThunk<Products, ProductParams, { rejectVa
 	async (params, { rejectWithValue }) => {
 		try {
 	
-			const { sortBy, maxPrice, minPrice, characteristic, category } = params;
+			const { sortBy, maxPrice, minPrice, characteristic, category, search} = params;
 
 			const queryParams = {
 				category: category,
 				'sort-by': sortBy,
 				'min-price': minPrice,
 				'max-price': maxPrice,
-				characteristic: characteristic
+				characteristic: characteristic,
+				search: search
 			};
 			
 			const queryString = Object.entries(queryParams)

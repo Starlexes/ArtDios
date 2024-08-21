@@ -13,18 +13,21 @@ function ActionsFilter({ className }: ActionsFilterProps) {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const onClickClear = () => {
+		const search = new URLSearchParams(location.search).get('s');
 		dispatch(setClearClick(true));
-		navigate(location.pathname);
+		search? navigate(`${location.pathname}?s=${search}`) : navigate(location.pathname);
 	};
 
 
 	return (
 		
 		<div className={cn(styles['actions-filter'], className)}>
+
+		
 			<label>
 				<SubmitButton className={cn(styles['submit-btn'])} />
 			</label>
-
+			
 			<label>
 				<Button className={cn(styles['clear-btn'])} onClick={onClickClear}>
                 Сбросить

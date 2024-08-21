@@ -21,6 +21,7 @@ import SortingOrderMedia from '../../components/Filters/Media/SortingOrderMedia/
 import CatalogActions from '../../components/Filters/Media/CatalogActions/CatalogActions';
 import FiltersButton from '../../components/Filters/Media/FiltersButton/FiltersButton';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import Error from '../Error/Error';
 
 
 
@@ -38,6 +39,8 @@ function Catalog({className}: CatalogProps) {
 	
 	const searchParams = new URLSearchParams(location.search);
 	const page = searchParams.get('p');
+
+	const searchResults = searchParams.get('s');
 
 	const chars = useAppSelector((state: RootState) => convertedChars(state));
 
@@ -93,63 +96,67 @@ function Catalog({className}: CatalogProps) {
 			setCurrentSearchParams(location.search);
 			dispatch(fetchProduct({ category: catParam, sortBy: sortBy,
 				maxPrice: maxPriceParam, minPrice: minPriceParam,
-				characteristic: charsParam
+				characteristic: charsParam, search: searchResults as string
 			}));
 		}
 	}, [dispatch, catParam, currentCategory,
 		sortBy, searchParams.size, maxPriceParam,
-		minPriceParam, charsParam, location.search, currentSearchParams, page]);
+		minPriceParam, charsParam, location.search, currentSearchParams, page, searchResults]);
 		
 	return (
 		
 		isLoading && isError ? <Spinner/>:
 
-			<section>
-				<HelmetProvider>
-					<Helmet>
-						<title>{categoryName}</title>
-					</Helmet>
-				</HelmetProvider>
-				<div className={cn(styles['catalog'], className)}>
+			categoryName || searchResults? 
+
+				<section>
+					<HelmetProvider>
+						<Helmet>
+							<title>{searchResults? 'Результаты поиска': categoryName}</title>
+						</Helmet>
+					</HelmetProvider>
+					<div className={cn(styles['catalog'], className)}>
 						
-					{products.length?
-						<>
-							<PageHead>
-								{categoryName}
-							</PageHead>
+						{products.length?
+							<>
+								<PageHead>
+									{searchResults? 'Результаты поиска:': categoryName}
+								</PageHead>
+								{ products.length > 1 && (
+									screenMatches ? <SortingOrder/>: 
+										<CatalogActions>
+											<FiltersButton maxPrice={String(maxPrice)} minPrice={String(minPrice)} chars={chars}/>
+											<SortingOrderMedia/>
+										</CatalogActions>
 							
-							{screenMatches? <SortingOrder/>: 
-								<CatalogActions>
-									<FiltersButton maxPrice={String(maxPrice)} minPrice={String(minPrice)} chars={chars}/>
-									<SortingOrderMedia/>
-								</CatalogActions>
-							}
+								)
+								}
 
-							<div className={cn(styles['catalog-body'])}>
+								<div className={cn(styles['catalog-body'])}>
 
-								<div className={cn(styles['product-items'])}>
-									<ProductList products={showProducts()}/>
+									<div className={cn(styles['product-items'])}>
+										<ProductList products={showProducts()}/>
 
-									{totalPages > 1 && 
+										{totalPages > 1 && 
 									<Pagination
 										totalPages={totalPages}
 										url={location.pathname}
 										currentPage={currentPage}
 										params={location.search}
 									/>
+										}
+									</div>
+									{ screenMatches && 
+									<CharsFilter maxPrice={String(maxPrice)} minPrice={String(minPrice)} chars={chars} productLength={products.length}/>
 									}
 								</div>
-								{ screenMatches &&
-									<CharsFilter maxPrice={String(maxPrice)} minPrice={String(minPrice)} chars={chars}/>
-								}
-							</div>
-						</> : <PageHead>
+							</> : <PageHead>
 									Товары не найдены
-						</PageHead>
-					}
-				</div>	
-			</section>	
-				
+							</PageHead>
+						}
+					</div>	
+				</section>	
+				: <Error/>		
 			
 	);
 }

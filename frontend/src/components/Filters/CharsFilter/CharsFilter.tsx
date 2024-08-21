@@ -14,7 +14,7 @@ import Button from '../../Header/Button/Button';
 import { closeFilters } from '../../../utils/constants';
 import { useMediaPredicate } from 'react-media-hook';
 
-function CharsFilter({minPrice, maxPrice, chars, className, closeModal }: CharsFilterProps) {
+function CharsFilter({minPrice, maxPrice, chars, className, closeModal, productLength}: CharsFilterProps) {
 	const {isClicked, filterparams} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -25,6 +25,7 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal }: CharsF
 	const decsParams = searchParams.getAll('characteristic').map(item => item.split(':')[1]);
 	const maxPriceSearch = searchParams.get('max-price');
 	const minPriceSearch = searchParams.get('min-price');
+	const searchResults= searchParams.get('s');
 
 	const mediaMatches = useMediaPredicate('(min-width: 881px)');
 
@@ -34,7 +35,9 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal }: CharsF
 			const convertedChars = new URLSearchParams(
 				charsParam?.map(item => ['characteristic', `${item.name}:${item.description}`])
 			);
-			navigate(`${url}?min-price=${minPriceParam}&max-price=${maxPriceParam}${charsParam? `&${convertedChars}`: ''}`);
+			const searchRoute = searchResults? `s=${searchResults}`: '';
+			const priceRoute = productLength > 1? `${searchRoute? '&': ''}min-price=${minPriceParam}&max-price=${maxPriceParam}`: '';
+			navigate(`${url}?${searchRoute}${priceRoute}${charsParam? `&${convertedChars}`: ''}`);
 			dispatch(setSubmitClick(false));
 			!mediaMatches && closeModal && closeModal();
 		}
@@ -52,14 +55,16 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal }: CharsF
 				<h2 className={cn(styles['filters-title'])}>Фильтр</h2>
 
 				<form onSubmit={handleSubmit} className={cn(styles['filters-form'])}>
-					
-					<PriceFilter minVal={minPrice} maxVal={maxPrice} maxPriceSearch={maxPriceSearch} minPriceSearch={minPriceSearch}/>
-					
+
+					{productLength > 1 && 						
+						<PriceFilter minVal={minPrice} maxVal={maxPrice} maxPriceSearch={maxPriceSearch} minPriceSearch={minPriceSearch}/>
+					}
 
 					{chars.map((item, index) => (
 						<PropertyFilter item={item} key={index} decsParams={decsParams} />
 					))}
-
+										
+					
 					<ActionsFilter/>
 				</form>
 				

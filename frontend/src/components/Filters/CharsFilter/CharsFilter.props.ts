@@ -6,5 +6,6 @@ export interface CharsFilterProps extends HTMLProps<HTMLDivElement>{
     chars: CharacteristicClient[],
     minPrice: string,
     maxPrice: string,
-    closeModal?: () => void
+    closeModal?: () => void,
+    productLength: number
 }

@@ -1,3 +1,3 @@
-export interface SearchProps {
-    className?: string | undefined;
-}
+import { HTMLProps } from 'react';
+
+export interface SearchProps extends HTMLProps<HTMLDivElement>{}

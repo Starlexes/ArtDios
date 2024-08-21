@@ -37,6 +37,11 @@
     font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
 }
 
+.matches {
+    color: var(--active-color);
+    font-weight: 600;
+}
+
 @media (max-width: 880px) {
     .search {
         width: 488px;

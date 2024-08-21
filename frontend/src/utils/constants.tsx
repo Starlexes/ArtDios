@@ -28,6 +28,8 @@ export const contactsRoute = '/contacts/';
 
 export const promotionRoute = '/promotions/';
 
+export const seachingRoute = 'search-results/';
+
 // Pagination
 
 export const nextSinglePage = () => (
@@ -64,20 +66,20 @@ export const prevSinglePage = () => (
 
 // Filters
 
-export const orderASC = () => (
-	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<circle cx="10" cy="10" r="10" fill="#40D128" />
-		<rect x="17.2969" y="7.16797" width="11.5621" height="1.65173" rx="0.825864" transform="rotate(135 17.2969 7.16797)" fill="white" />
-		<rect x="4.16406" y="8.47656" width="8.25864" height="1.65173" rx="0.825864" transform="rotate(45 4.16406 8.47656)" fill="white" />
+export const orderDSC  = () => (
+	<svg width="20.000000" height="20.000000" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<circle id="Ellipse 4" cx="10.000000" cy="10.000000" r="10.000000" fill="#40D128" fillOpacity="1.000000"/>
+		<path id="Vector 205" d="M5.04 6.88L10 11.83L14.95 6.88C15.34 6.49 15.96 6.49 16.36 6.88C16.75 7.28 16.75 7.9 16.36 8.29L10.71 13.95C10.31 14.35 9.68 14.35 9.28 13.95L3.63 8.29C3.24 7.9 3.24 7.28 3.63 6.88C4.03 6.49 4.65 6.49 5.04 6.88Z" fill="#FFFFFF" fillOpacity="1.000000" fillRule="evenodd"/>
 	</svg>
+
 );
 
-export const orderDSC = () => (
-	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<circle cx="10" cy="10" r="10" fill="#DA5F1A" />
-		<rect x="17.2969" y="7.16797" width="11.5621" height="1.65173" rx="0.825864" transform="rotate(135 17.2969 7.16797)" fill="white" />
-		<rect x="4.16406" y="8.47656" width="8.25864" height="1.65173" rx="0.825864" transform="rotate(45 4.16406 8.47656)" fill="white" />
+export const orderASC = () => (
+	<svg width="20.000000" height="20.000000" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<circle id="Ellipse 5" cx="10.000000" cy="10.000000" r="10.000000" fill="#DA5F1A" fillOpacity="1.000000"/>
+		<path id="Vector 205" d="M5.04 12.86L10 7.91L14.95 12.86C15.34 13.25 15.96 13.25 16.36 12.86C16.75 12.46 16.75 11.84 16.36 11.45L10.71 5.79C10.31 5.39 9.68 5.39 9.28 5.79L3.63 11.45C3.24 11.84 3.24 12.46 3.63 12.86C4.03 13.25 4.65 13.25 5.04 12.86Z" fill="#FFFFFF" fillOpacity="1.000000" fillRule="evenodd"/>
 	</svg>
+
 );
 
 export const checked = () => (

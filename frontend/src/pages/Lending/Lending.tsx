@@ -11,8 +11,7 @@ import PopularProducts from '../../components/PopularProductItems/PopularProduct
 import { fetchPopProduct } from '../../slices/popularProductSlice';
 import PromotionItems from '../../components/PromotionItems/PromotionItems/PromotionItems';
 import { fetchPromotion } from '../../slices/promotionSlice';
-import { HelmetProvider } from 'react-helmet-async';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 
 function Lending({className }: LendingProps) {
