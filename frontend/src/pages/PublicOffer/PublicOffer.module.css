@@ -1,0 +1,47 @@
+.offer-page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+}
+
+.offer-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--default-color);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 780px;
+    min-width: 300px;
+    width: calc( 780 / 1200 * 100vw);
+    line-height: 40px;
+}
+  
+.offer-text li {
+    margin-left: 20px;
+}
+
+.offer-text li::marker {
+    font-weight: 700;
+}
+  
+.offer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+  
+.offer-title {
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 510px) {
+    .offer-text {
+        font-size: 14px;
+        line-height: 30px;
+        gap: 24px;
+    }
+}

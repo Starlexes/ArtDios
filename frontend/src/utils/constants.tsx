@@ -30,6 +30,16 @@ export const promotionRoute = '/promotions/';
 
 export const seachingRoute = 'search-results/';
 
+export const opdPageRoute = '/opd-order/';
+
+export const publicOfferRoute = '/public-offer/';
+
+export const customContractRoute = '/custom-contract/';
+
+export const serviceRoute = '/service/';
+
+export const deliveryPaymentsRoute = '/delivery-and-payments/';
+
 // Pagination
 
 export const nextSinglePage = () => (

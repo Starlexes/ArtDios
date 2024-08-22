@@ -1,0 +1,32 @@
+.service-item {
+    display: flex;
+    gap: 30px;
+    width: 270px;
+   
+    font-size: 32px;
+    font-weight: 400;
+    border-radius: 40px 0px 0px 40px;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (max-width: 880px) {
+    .service-item {
+        gap: calc( 30 / 880 * 100vw);
+        width: calc( 270 / 880 * 100vw);
+        font-size: max(calc( 32 / 880 * 100vw), 24px);
+        padding: max(calc(20 / 880 * 100vw), 14px);
+    }
+
+    .service-item img {
+        width: max(calc(40 / 880 * 100vw), 32px);
+    }
+}
+
+@media (max-width: 510px) {
+    .service-item {
+        border-radius: 40px;
+        gap: 30px;
+        width: 240px;
+    }
+}

@@ -11,7 +11,7 @@ import { LinkMenuProps } from './LinkMenu.props';
 import Search from '../Search/Search';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { galleryRoute, promotionRoute } from '../../../utils/constants';
+import { galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
 
 
 function LinkMenu({className}: LinkMenuProps) {
@@ -65,7 +65,7 @@ function LinkMenu({className}: LinkMenuProps) {
 						</NavigationListItem>
 
 						<NavigationListItem key={2}>
-							<NavItem className={cn(styles['nav-menu'])} to={'/service'}>
+							<NavItem className={cn(styles['nav-menu'])} to={serviceRoute}>
 								Услуги
 							</NavItem>
 						</NavigationListItem>

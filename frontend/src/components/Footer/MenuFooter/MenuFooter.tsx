@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
 import { fetchContacts } from '../../../slices/contactSlice';
-import { catalog } from '../../../utils/constants';
+import { catalog, deliveryPaymentsRoute, serviceRoute } from '../../../utils/constants';
 
 
 
@@ -57,9 +57,9 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Информация</MenuTitle>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Доставка и оплата</NavItem>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Возврат товара</NavItem>
-				<NavItem to='/' className={cn(styles['contact-text'])}>Установка</NavItem>
+				<NavItem to={deliveryPaymentsRoute} className={cn(styles['contact-text'])}>Доставка и оплата</NavItem>
+				<NavItem to={deliveryPaymentsRoute+'#returning-product'} isHashLink={true}  className={cn(styles['contact-text'])}>Возврат товара</NavItem>
+				<NavItem to={serviceRoute} className={cn(styles['contact-text'])}>Услуги</NavItem>
 			</MenuFooterItem>
 
 			<MenuFooterItem>

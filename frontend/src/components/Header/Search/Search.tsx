@@ -1,5 +1,5 @@
 
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import SearchSuggestions from '../SearchSuggestions/SearchSuggestions';
@@ -49,6 +49,12 @@ function Search({className}: SearchProps) {
 		}
 	};
 
+	const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			onClickSearch();
+		}
+	};
+
 	const onMouseEnter = () => {
 		setOverSuggests(true);
 	};
@@ -95,7 +101,7 @@ function Search({className}: SearchProps) {
 	};
 
 	return (
-		<div className={cn(styles['search'], className)}>
+		<div className={cn(styles['search'], className)} onKeyDown={onKeyDown}>
 			<Input placeholder='Поиск' className={cn(styles['search-input'])}
 				onChange={handleChange} value={inputValue} onFocus={onFocus}
 				onBlur={onBlur}/>

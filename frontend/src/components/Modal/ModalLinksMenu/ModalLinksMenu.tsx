@@ -5,7 +5,7 @@ import NavItem from '../../Header/NavItem/NavItem';
 import styles from './ModalLinksMenu.module.css';
 import cn from 'classnames';
 import { ModalLinksMenuProps } from './ModalLinksMenu.props';
-import { galleryRoute, promotionRoute } from '../../../utils/constants';
+import { galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
 
 function ModalLinksMenu({ className }: ModalLinksMenuProps) {
 
@@ -19,7 +19,7 @@ function ModalLinksMenu({ className }: ModalLinksMenuProps) {
 				</NavigationListItem>
 
 				<NavigationListItem key={2}>
-					<NavItem className={cn(styles['nav-menu'])} to={'/service'}>
+					<NavItem className={cn(styles['nav-menu'])} to={serviceRoute}>
 				Услуги
 					</NavItem>
 				</NavigationListItem>

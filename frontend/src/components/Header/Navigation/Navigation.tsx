@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NavigationListItem from '../NavigationListItem/NavigationListItem';
 import NavItem from '../NavItem/NavItem';
 import NavSocial from '../NavSocial/NavSocial';
-import { contactsRoute } from '../../../utils/constants';
+import { contactsRoute, deliveryPaymentsRoute } from '../../../utils/constants';
 
 
 function Navigation({className}: NavigationProps) {
@@ -32,13 +32,13 @@ function Navigation({className}: NavigationProps) {
 		<div className={cn(styles['navigation__header'], className)}>
 			<NavigationList>
 				<NavigationListItem key={1}>
-					<NavItem className='contact-text' to={'/delivery-and-payments'}>
+					<NavItem className='contact-text' to={deliveryPaymentsRoute}>
 						Доставка и оплата
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={2}>
-					<NavItem className='contact-text' to={'/returning-product'}>
+					<NavItem isHashLink={true} className='contact-text' to={deliveryPaymentsRoute+'#returning-product'}>
 						Возврат товара
 					</NavItem>
 				</NavigationListItem>

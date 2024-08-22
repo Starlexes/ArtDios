@@ -11,6 +11,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { getCsrfToken } from '../../../utils/csrf';
 import axiosInstance from '../../../utils/axiosInstance';
 import { ErrorData } from '../ModalOrderCall/ModalOrderCall';
+import { customContractRoute, opdPageRoute, publicOfferRoute } from '../../../utils/constants';
 
 
 interface FormData {
@@ -174,10 +175,10 @@ function ModalForm({errors, setErrors, onSubmit, className }: ModalFormProps) {
 				<label htmlFor='agreement'>
 					<p>
 					Согласие на<br/>
-						<NavItem to='/' className={cn(styles['modal-label'])}>Обработку персональных данных</NavItem><br/>
-						<NavItem to='/' className={cn(styles['modal-label'])}>Пользовательское соглашение</NavItem><br/>
+						<NavItem to={opdPageRoute} className={cn(styles['modal-label'])}>Обработку персональных данных</NavItem><br/>
+						<NavItem to={customContractRoute} className={cn(styles['modal-label'])}>Пользовательское соглашение</NavItem><br/>
 					
-						<NavItem to='/' className={cn(styles['modal-label'])}>Публичная оферта</NavItem>	
+						<NavItem to={publicOfferRoute} className={cn(styles['modal-label'])}>Публичная оферта</NavItem>	
 					</p>			
 				</label>
 			</div>
