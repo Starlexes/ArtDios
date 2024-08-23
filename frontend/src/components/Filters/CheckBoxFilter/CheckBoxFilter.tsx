@@ -21,8 +21,6 @@ function CheckBoxFilter({decsParams, propertyName, className, name, desc}: Check
 	const {isClicked: toClear} = useAppSelector((state: RootState) => state.buttons.actionClearButton);
 	const {chars} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
 
-	
-
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const checked = e.target.checked;
 		setIsChecked(checked);
@@ -56,8 +54,7 @@ function CheckBoxFilter({decsParams, propertyName, className, name, desc}: Check
 
 	useEffect(() => {
 		if (toClear) {
-			setIsChecked(false);
-			
+			setIsChecked(false);			
 		}
 	}, [toClear]);
 

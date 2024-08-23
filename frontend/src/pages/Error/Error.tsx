@@ -6,7 +6,7 @@ import NavItem from '../../components/Header/NavItem/NavItem';
 import PageHead from '../../components/PageHead/PageHead';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-function Error({className}: ErrorProps) {
+function Error({className, onClickBack}: ErrorProps) {
 
 	
 	return (
@@ -17,12 +17,12 @@ function Error({className}: ErrorProps) {
 						<title>Ошибка</title>
 					</Helmet>
 				</HelmetProvider>
-				<PageHead>
+				<PageHead onClickBack={onClickBack}>
 				Страница не найдена
 				</PageHead>
 
 				<NavItem className={cn(styles['error-link'])} to={'/'}>
-					<Button className={cn(styles['error-btn'])}>Перейти на главную</Button>
+					<Button className={cn(styles['error-btn'])} onClick={onClickBack}>Перейти на главную</Button>
 				</NavItem>
 			
 			</div>

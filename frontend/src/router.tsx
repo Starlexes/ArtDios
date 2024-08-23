@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ClientLayout from './layout/ClientLayout/ClientLayout';
 import Error from './pages/Error/Error';
 import Catalog from './pages/Catalog/Catalog';
-import { catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
+import { aboutRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
 import ProductCard from './pages/ProductCard/ProductCard';
 import Gallery from './pages/Gallery/Gallery';
 import Contacts from './pages/Contacts/Contacts';
@@ -14,6 +14,7 @@ import PublicOffer from './pages/PublicOffer/PublicOffer';
 import CustomContract from './pages/CustomContract/CustomContract';
 import Service from './pages/Service/Service';
 import DeliveryPayments from './pages/DeliveryPayments/DeliveryPayments';
+import About from './pages/About/About';
 
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
 			{
 				path: `${deliveryPaymentsRoute}`,
 				element: <DeliveryPayments/>
+			},
+			{
+				path: `${aboutRoute}`,
+				element: <About/>
 			},
 			{
 				path: '*',

@@ -5,11 +5,12 @@ import { BackButtonProps } from './BackButton.props';
 import cn from 'classnames';
 import { useMediaPredicate } from 'react-media-hook';
 
-function BackButton({ className, btnClassName}: BackButtonProps) {
+function BackButton({ className, btnClassName, onClickBack}: BackButtonProps) {
 
 	const navigate = useNavigate();
 	
 	const onClick = () => {
+		onClickBack && onClickBack();
 		navigate(-1);
 	};
 

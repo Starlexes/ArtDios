@@ -40,6 +40,8 @@ export const serviceRoute = '/service/';
 
 export const deliveryPaymentsRoute = '/delivery-and-payments/';
 
+export const aboutRoute = '/about/';
+
 // Pagination
 
 export const nextSinglePage = () => (
@@ -151,7 +153,7 @@ export const rightArrowImage = () => (
 // Contacts 
 
 export const phoneContacts = () => (
-	<svg width="38.757812" height="38.667969" viewBox="0 0 38.7578 38.668" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path id="Vector 189" d="M2.25 5.29C0.14 7.4 -0.1 10.75 1.7 13.13L9.93 24.12C11.25 25.86 12.79 27.41 14.53 28.72L25.52 36.96C27.91 38.75 31.25 38.51 33.36 36.4L37.86 31.9C38.25 31.51 38.25 30.87 37.86 30.48L30.39 23.01C30 22.62 29.37 22.62 28.98 23.01L25.75 26.24C25.45 26.54 24.98 26.62 24.6 26.42L23.21 25.73C18.76 23.51 15.15 19.9 12.92 15.44L12.23 14.06C12.03 13.67 12.11 13.21 12.42 12.91L15.64 9.68C16.03 9.29 16.03 8.66 15.64 8.26L8.17 0.79C7.78 0.4 7.14 0.4 6.75 0.79L2.25 5.29Z" stroke="#F2F2F2" strokeOpacity="1.000000" strokeWidth="1.000000"/>
 	</svg>
 );
@@ -199,8 +201,6 @@ export const hoursContacts = () => (
 		<rect id="Rectangle 4206" width="40.000000" height="40.000000" fill="#C4C4C4" fillOpacity="0"/>
 		<rect id="Rectangle 4206" x="0.500000" y="0.500000" width="39.000000" height="39.000000" stroke="#000000" strokeOpacity="0" strokeWidth="1.000000"/>
 		<circle id="Ellipse 54" cx="20.000000" cy="19.000000" r="18.500000" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000"/>
-		<path id="Vector 64" d="M34 19L20.25 19C20.1 19 20 18.88 20 18.75L20 5" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000" stroke-linecap="round"/>
+		<path id="Vector 64" d="M34 19L20.25 19C20.1 19 20 18.88 20 18.75L20 5" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000" strokeLinecap="round"/>
 	</svg>
-
-
 );

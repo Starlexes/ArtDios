@@ -9,7 +9,9 @@ function ProductList({products, className }: ProductListProps) {
 		<div className={cn(styles['products-list'], className)}>
 			{
 				products.map(product => (
-					<ProductListItem key={product.slug} product={product}/>
+					<div key={product.slug}>
+						<ProductListItem product={product}/>
+					</div>
 				) )
 			}
 		</div>

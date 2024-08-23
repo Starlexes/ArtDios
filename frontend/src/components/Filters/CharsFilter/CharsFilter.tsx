@@ -37,7 +37,7 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal, productL
 			);
 			const searchRoute = searchResults? `s=${searchResults}`: '';
 			const priceRoute = productLength > 1? `${searchRoute? '&': ''}min-price=${minPriceParam}&max-price=${maxPriceParam}`: '';
-			navigate(`${url}?${searchRoute}${priceRoute}${charsParam? `&${convertedChars}`: ''}`);
+			navigate(`${url}?${searchRoute}${priceRoute}${charsParam?.length? `&${convertedChars}`: ''}`);
 			dispatch(setSubmitClick(false));
 			!mediaMatches && closeModal && closeModal();
 		}

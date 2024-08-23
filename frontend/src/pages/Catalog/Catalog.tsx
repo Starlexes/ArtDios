@@ -22,6 +22,7 @@ import CatalogActions from '../../components/Filters/Media/CatalogActions/Catalo
 import FiltersButton from '../../components/Filters/Media/FiltersButton/FiltersButton';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Error from '../Error/Error';
+import { clearSubmitFilterParams } from '../../slices/buttonSlice';
 
 
 
@@ -88,6 +89,12 @@ function Catalog({className}: CatalogProps) {
 	const categoryName = useMemo(() => {
 		return products[0]?.category_name;
 	}, [products]);
+
+	
+	const onClickBack = () => {
+		dispatch(clearSubmitFilterParams());
+	};
+		
 
 	useEffect(() => {	
 		if (currentCategory !== catParam || (currentSearchParams !== location.search && !page)) {		
@@ -156,7 +163,7 @@ function Catalog({className}: CatalogProps) {
 						}
 					</div>	
 				</section>	
-				: <Error/>		
+				: <Error onClickBack={onClickBack}/>		
 			
 	);
 }

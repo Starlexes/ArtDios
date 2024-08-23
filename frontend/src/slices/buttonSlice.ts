@@ -82,6 +82,9 @@ const buttonSlice = createSlice({
 			state.actionSubmitButton.isClicked = action.payload;
 			
 		},
+		clearSubmitFilterParams(state) {
+			state.actionSubmitButton.filterparams = {};
+		},
 		setSubmitFilterParams(state, action: PayloadAction<SubmitFilterParams>) {
 	
 			return {
@@ -101,6 +104,6 @@ const buttonSlice = createSlice({
 
 export const {
 	setMediaSearchClick, setMediaSearchInitial, setMediaBurgerClick,
-	setClearClick, setSubmitClick, setSubmitFilterParams
+	setClearClick, setSubmitClick, setSubmitFilterParams, clearSubmitFilterParams
 } = buttonSlice.actions;
 export default buttonSlice.reducer;

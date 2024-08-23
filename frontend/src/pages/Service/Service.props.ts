@@ -1,3 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface ServiceProps extends HTMLProps<HTMLDivElement>{}
+export interface ServiceProps extends HTMLProps<HTMLDivElement>{
+    className?: string
+}
