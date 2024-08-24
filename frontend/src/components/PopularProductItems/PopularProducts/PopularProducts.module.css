@@ -3,3 +3,9 @@
     flex-direction: column;
     gap: 32px;
 }
+
+@media (max-width: 880px) {
+    .popular-products {
+        gap: max(calc( 32 / 880 * 100vw), 16px);
+    }
+}

@@ -94,8 +94,7 @@ function Catalog({className}: CatalogProps) {
 	const onClickBack = () => {
 		dispatch(clearSubmitFilterParams());
 	};
-		
-
+	
 	useEffect(() => {	
 		if (currentCategory !== catParam || (currentSearchParams !== location.search && !page)) {		
 			setCurrentCategory(catParam);
@@ -104,7 +103,11 @@ function Catalog({className}: CatalogProps) {
 			dispatch(fetchProduct({ category: catParam, sortBy: sortBy,
 				maxPrice: maxPriceParam, minPrice: minPriceParam,
 				characteristic: charsParam, search: searchResults as string
-			}));
+			}));	
+		}
+
+		if (currentCategory !== catParam || searchResults) {
+			dispatch(clearSubmitFilterParams());
 		}
 	}, [dispatch, catParam, currentCategory,
 		sortBy, searchParams.size, maxPriceParam,

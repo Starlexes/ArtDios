@@ -1,0 +1,23 @@
+.cart-door {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 300;
+    color: #222222;
+    position: relative;
+    padding: 12px 22px 12px 40px;
+    border-radius: 100px;
+    background-color: #D4F5F9;
+    max-width: 200px;
+    max-height: 68px;
+}
+
+.cart-door::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #222222;
+}

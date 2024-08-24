@@ -41,12 +41,9 @@ const initialFormData: FormData =
 	};
 
 
-function ModalForm({errors, setErrors, onSubmit, className }: ModalFormProps) {
-
-	
+function ModalForm({onClickClose, errors, setErrors, onSubmit, className }: ModalFormProps) {
 	const [formData, setFormData] = useState<FormData>(initialFormData);
 
-	
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitAttempted, setIsSubmitAttempted] = useState(false);
 
@@ -175,10 +172,9 @@ function ModalForm({errors, setErrors, onSubmit, className }: ModalFormProps) {
 				<label htmlFor='agreement'>
 					<p>
 					Согласие на<br/>
-						<NavItem to={opdPageRoute} className={cn(styles['modal-label'])}>Обработку персональных данных</NavItem><br/>
-						<NavItem to={customContractRoute} className={cn(styles['modal-label'])}>Пользовательское соглашение</NavItem><br/>
-					
-						<NavItem to={publicOfferRoute} className={cn(styles['modal-label'])}>Публичная оферта</NavItem>	
+						<NavItem onClick={onClickClose} to={opdPageRoute} className={cn(styles['modal-label'])}>Обработку персональных данных</NavItem><br/>
+						<NavItem onClick={onClickClose} to={customContractRoute} className={cn(styles['modal-label'])}>Пользовательское соглашение</NavItem><br/>			
+						<NavItem onClick={onClickClose} to={publicOfferRoute} className={cn(styles['modal-label'])}>Публичная оферта</NavItem>	
 					</p>			
 				</label>
 			</div>

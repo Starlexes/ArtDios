@@ -27,15 +27,17 @@ function ModalOrderCall({isOpen = false, closeModal}: ModalOrderCallProps) {
 		setErrors({});
 	};
 
+	const onClickClose = () => {
+		closeModal(false);
+		setErrors({});
+	};
+
 	
 	return (
 		
 		<Modal
 			isOpen={isOpen}
-			onRequestClose={() => {
-				closeModal(false);
-				setErrors({});
-			}}
+			onRequestClose={onClickClose}
 			className={cn(styles['modal-window'], {
 				[styles['modal-errors']]: Object.keys(errors).length !== 0
 			})}
@@ -48,12 +50,9 @@ function ModalOrderCall({isOpen = false, closeModal}: ModalOrderCallProps) {
 					textClass='modal-text'					
 				/>
 
-				<ModalForm onSubmit={onSubmit} errors={errors} setErrors={setErrors}/>
+				<ModalForm onClickClose={onClickClose} onSubmit={onSubmit} errors={errors} setErrors={setErrors}/>
 			</div>
-			<ModalCloseButton onClick={() => {
-				closeModal(false);
-				setErrors({});
-			}} className={styles['modal-order']}/>
+			<ModalCloseButton onClick={onClickClose} className={styles['modal-order']}/>
 		</Modal>
 		
 	);

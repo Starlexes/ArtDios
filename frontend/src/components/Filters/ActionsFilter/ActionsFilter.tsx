@@ -6,13 +6,15 @@ import cn from 'classnames';
 import { setClearClick} from '../../../slices/buttonSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SubmitButton from '../SubmitButton/SubmitButton';
+import { MouseEvent } from 'react';
 
 function ActionsFilter({ className }: ActionsFilterProps) {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const onClickClear = () => {
+	const onClickClear = (e: MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
 		const search = new URLSearchParams(location.search).get('s');
 		dispatch(setClearClick(true));
 		search? navigate(`${location.pathname}?s=${search}`) : navigate(location.pathname);

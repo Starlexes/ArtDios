@@ -7,7 +7,7 @@
 
 .lending {
     align-items: center;
-    padding: 0 40px;
+    padding: 0 clamp(24px, calc(40 / 1200 * 100vw), 40px);
 }
 
 .lending-head {
@@ -18,12 +18,18 @@
     gap: 64px;
 }
 
+.service-items {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
 .services{
     display: flex;
     position: relative;
     height: 82px;
+    width: 100%;
 }
-
 
 .services .service-item {
     position: absolute;
@@ -148,34 +154,6 @@
     background-color: #DED4F9;
 }
 
-.cart-doors {
-    display: flex;
-    justify-content: space-between;
-}
-
-.cart-door {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 300;
-    color: #222222;
-    position: relative;
-    padding: 12px 22px 12px 40px;
-    border-radius: 100px;
-    background-color: #D4F5F9;
-    max-width: 200px;
-}
-
-.cart-door::before {
-    content: '';
-    position: absolute;
-    left: 12px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #222222;
-}
-
 
 .double-door{
     width: 100%;
@@ -206,12 +184,14 @@
     display: flex;
     align-items: center;
     justify-content: center; 
-    width: 632px;
+    width: 100%;
 }
 
 .double-door-image img {
     max-width: 272px;
+    width: max(calc(272 / 1200 * 100vw), 136px);
     max-height: 254px;
+    height: max(calc(254 / 1200 * 100vw), 128px);
 }
 
 
@@ -237,37 +217,6 @@
     max-width: 977px;
 }
 
-.size-cart-doors{
-    display: flex;
-    justify-content: space-between;
-}
-
-.size-cart-door{
-    background: #FDC2A1;  
-    border-radius: 100px 0 100px 100px;
-    width: 254px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 8px;
-    font-weight: 300;
-    font-size: 16px;
-    color: #0c0c0c;
-}
-
-.item-carts-title {
-    font-size: 20px;
-    font-weight: 500;
-}
-
-.product-carts {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    color:#0C0C0C;
-}
-
 .item-carts {
     display: flex;
     justify-content: space-between;
@@ -275,20 +224,15 @@
     font-weight: 400;
 }
 
-.item-cart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
 
 .door-list {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    line-height: 150%;
+    font-size: 24px;
+    font-weight: 300;
 }
-
 
 .door-list-content {
     list-style-type: decimal;
@@ -300,13 +244,6 @@
 
 .door-list-content, .door-list-title {
     color: #2d2d2d;
-}
-
-
-.door-list {
-    line-height: 150%;
-    font-size: 24px;
-    font-weight: 300;
 }
 
 .door-list ul {
@@ -321,6 +258,7 @@
 
 .double-image img {
     max-width: 548px;
+    width: max(calc(548 / 1200 * 100vw), 138px);
 }
 
 .window-list {
@@ -335,4 +273,169 @@
 
 .window-list ol li::marker {
     font-weight: 700;
+}
+
+@media (max-width: 1150px) {
+    .services{
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-content: space-between;
+        align-items: center;
+        position: unset;
+        height: auto;
+        row-gap: 32px;
+    }
+    
+    .services .service-item {
+        position: unset;
+        align-self: center;
+        
+    }
+}
+
+@media (max-width: 880px) {
+
+    .lending-head, .lending-items {
+        gap: max(calc(64 / 880 * 100vw), 32px);
+    }
+
+    .service-items {
+        gap: max(calc( 32 / 880 * 100vw), 16px);
+    }
+
+    .services {
+        row-gap: max(calc(32 / 880 * 100vw), 16px);
+    }
+
+    .services .service-item {
+        width: max(calc(340 / 880 * 100vw), 140px);
+        font-size: clamp(14px, calc(32 / 880 * 100vw), 32px);
+        gap: max(calc(24 / 880 * 100vw), 16px);
+    }
+
+    .services .service-item img {
+        width: max(calc( 40 / 880 * 100vw), 22px);
+    }
+    
+
+    .product-types {  
+        gap: max(calc( 64 / 880 * 100vw), 32px);
+    }
+    
+    .product-type {
+        gap: max(calc( 32 / 880 * 100vw), 16px);
+    }
+
+    .title-product {
+        font-size: max(calc( 44 / 880 * 100vw), 20px);
+    }
+    
+    .title-second {
+        font-size: max(calc( 32 / 880 * 100vw), 16px);
+    }
+
+    .product-desc {       
+        font-size: max(calc( 24 / 880 * 100vw), 14px);        
+    }
+    
+    .product-desc p{
+        padding-left: max(calc( 24 / 880 * 100vw), 10px);
+    }
+        
+    .product-desc > ul, .product-desc > ol {
+        margin-left: max(calc( 60 / 880 * 100vw), 10px);
+    }
+    
+    .product-desc ol ul {
+        margin-left: max(calc( 10 / 880 * 100vw), 5px);
+    }
+
+    .double-door-content{        
+        gap: max(calc(24 / 880 * 100vw), 16px);
+        padding: max(calc(32 / 880 * 100vw), 22px) 0;
+        padding-left: max(calc(32 / 880 * 100vw), 22px);
+        font-size: max(calc(20 / 880 * 100vw), 16px); 
+    }
+
+    .door-size{
+        font-size: max(calc(20 / 880 * 100vw), 16px); 
+    }
+        
+    .door-size-content {
+        gap: max(calc(24 / 880 * 100vw), 16px); 
+        padding: 22px 32px;
+    }
+
+    .door-list {
+        gap: max(calc(32 / 880 * 100vw), 16px);
+        font-size: max(calc(24 / 880 * 100vw), 16px);
+    }
+    
+    .door-list-content {
+        margin-left: calc(24 / 880 * 100vw);
+    }
+        
+    .door-list ul {
+        margin-left: calc(25 / 880 * 100vw);
+    }
+
+
+    .double-image {
+        gap: 20px;
+    }
+    
+
+}
+
+@media (max-width: 510px) {
+
+    .double-door {
+        flex-direction: column;
+    }
+    .double-door-content {
+        padding: 22px 46px;
+    }
+
+    .double-door-image {
+        padding: 20px;
+        border-radius: 20px 20px 0 0;
+    }
+    .services {
+        justify-content: center;
+        column-gap: 18px;
+    }
+
+    .product-desc::before {
+        width: 2px;
+    }
+
+    .door-size-title {
+        text-align: center;
+    }
+
+    div.product-carts-swiper {
+        padding: 0 calc(50 / 510 * 100vw); 
+    } 
+
+    .double-image {
+        justify-content: center;
+    }
+
+    .double-image img {
+        width: 138px;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+    div.product-carts-swiper {
+        padding: 0 0;
+    } 
+}
+
+@media (max-width: 376px) {
+    .double-image img {
+        width: calc(138 / 376 * 100vw);
+    }
 }

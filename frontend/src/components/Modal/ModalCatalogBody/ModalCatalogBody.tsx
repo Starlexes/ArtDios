@@ -12,7 +12,7 @@ function ModalCatalogBody({onClose, className }: ModalCatalogBodyProps) {
 		<div className={cn(styles['modal-body'], className)}>
 			<ModalCatalogContacts/>
 			<MediaCategory onClose={onClose}/>
-			<ModalLinksMenu/>
+			<ModalLinksMenu onClose={onClose}/>
 		</div>
 	);
 }

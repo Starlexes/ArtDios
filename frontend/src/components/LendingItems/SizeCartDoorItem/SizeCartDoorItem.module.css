@@ -1,0 +1,20 @@
+.size-cart-door{
+    background: #FDC2A1;  
+    border-radius: 100px 0 100px 100px;
+    width: 254px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    font-weight: 300;
+    font-size: 16px;
+    color: #0c0c0c;
+}
+
+@media (max-width: 400px) {
+    .size-cart-door {
+        width: calc(254 / 400 * 100vw);
+        font-size: calc(16 / 400 * 100vw);
+    }
+}

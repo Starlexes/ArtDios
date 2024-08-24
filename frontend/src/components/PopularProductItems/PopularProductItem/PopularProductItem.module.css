@@ -3,10 +3,12 @@
     position: relative;
     border-radius: 40px;
     overflow: hidden;
-    width: 360px;
-    min-width: 234px;
-    height: 360px;
-    min-height: 234px;
+    max-width: 360px;
+    width: calc(360 / 1200 * 100vw);
+    min-width: 100px;
+    height: calc(360 / 1200 * 100vw);
+    max-height: 360px;
+    min-height: 100px;
     transition: transform 0.2s; 
 }
 
@@ -21,14 +23,21 @@
 }
 
 @media (max-width: 880px) {
-    .product-item {
-        max-width: 360px;
-        width: calc( 360 / 880 * 100vw);
-        max-height: 360px;
-        height: calc( 360 / 880 * 100vw);
-    }
-
+ 
     .product-item:hover {
         transform: none;
+    }
+}
+
+@media (max-width: 510px) {
+    .product-item {
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .product-item {
+        width: 100px;
+        height: 100px;
     }
 }

@@ -31,7 +31,7 @@ function ButtonOrderCall({isProduct=false, className, children, onClickProductOr
 	};
 
 
-	const closeModal = (isSubmit: boolean = false) => {
+	const closeModal = (isSubmit = false) => {
 		!isSubmit && isProduct && onClickProductOrder && onClickProductOrder();
 		setModalIsOpen(false);
 		if (isSubmit) {	

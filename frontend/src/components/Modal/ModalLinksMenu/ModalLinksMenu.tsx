@@ -7,37 +7,37 @@ import cn from 'classnames';
 import { ModalLinksMenuProps } from './ModalLinksMenu.props';
 import { aboutRoute, galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
 
-function ModalLinksMenu({ className }: ModalLinksMenuProps) {
+function ModalLinksMenu({onClose, className }: ModalLinksMenuProps) {
 
 	return (
 		<div>
 			<NavigationList className={cn(styles['links-menu'], className)}>
 				<NavigationListItem key={1}>
-					<NavItem className={cn(styles['nav-menu'])} to={'/'}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={'/'}>
 				Главная
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={2}>
-					<NavItem className={cn(styles['nav-menu'])} to={serviceRoute}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={serviceRoute}>
 				Услуги
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={3}>
-					<NavItem className={cn(styles['nav-menu'])} to={promotionRoute}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={promotionRoute}>
 				Акции
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={4}>
-					<NavItem className={cn(styles['nav-menu'])} to={galleryRoute}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={galleryRoute}>
 				Галерея
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={5}>
-					<NavItem className={cn(styles['nav-menu'])} to={aboutRoute}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={aboutRoute}>
 				О компании
 					</NavItem>
 				</NavigationListItem>

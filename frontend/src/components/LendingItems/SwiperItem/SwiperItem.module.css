@@ -1,0 +1,20 @@
+
+ 
+.swiper-item {
+    justify-content: center;
+    padding: 0 max(calc(50 / 880 * 100vw), 35px);
+    width: 100%;
+}
+
+
+@media (max-width: 510px) {
+    .swiper-item {
+        padding: 0 calc(100 / 510 * 100vw);
+    }
+}
+
+@media (max-width: 376px) {
+    .swiper-item {
+        padding: 0 calc(50 / 376 * 100vw);
+    }
+}

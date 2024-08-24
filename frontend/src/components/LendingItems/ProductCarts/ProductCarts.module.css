@@ -1,0 +1,9 @@
+
+
+.product-carts {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    color:#0C0C0C;
+}
+

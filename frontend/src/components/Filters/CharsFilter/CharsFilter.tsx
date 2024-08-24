@@ -22,7 +22,6 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal, productL
 	const {maxPrice: maxPriceParam, minPrice: minPriceParam, chars: charsParam} = filterparams; 
 	const url = location.pathname;	
 	const searchParams = new URLSearchParams(location.search);
-	const decsParams = searchParams.getAll('characteristic').map(item => item.split(':')[1]);
 	const maxPriceSearch = searchParams.get('max-price');
 	const minPriceSearch = searchParams.get('min-price');
 	const searchResults= searchParams.get('s');
@@ -61,7 +60,7 @@ function CharsFilter({minPrice, maxPrice, chars, className, closeModal, productL
 					}
 
 					{chars.map((item, index) => (
-						<PropertyFilter item={item} key={index} decsParams={decsParams} />
+						<PropertyFilter item={item} key={index} />
 					))}
 										
 					

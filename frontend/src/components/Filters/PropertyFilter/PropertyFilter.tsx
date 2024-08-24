@@ -13,7 +13,7 @@ import { useAppSelector } from '../../../hooks';
 import { setSubmitFilterParams } from '../../../slices/buttonSlice';
 import { useDispatch } from 'react-redux';
 
-function PropertyFilter({item, className, decsParams}: PropertyFilterProps) {
+function PropertyFilter({item, className }: PropertyFilterProps) {
 
 	const [showMore, setShowMore] = useState(false);
 	const [visibleParamsCount, setVisibleParamsCount] = useState(countChars);
@@ -52,7 +52,7 @@ function PropertyFilter({item, className, decsParams}: PropertyFilterProps) {
 						{item.description.slice(0, visibleParamsCount).map((desc, index) => 
 							(
 								<NavigationListItem key={index} className={cn(styles['list-item'])}>
-									<CheckBoxFilter name='filter' desc={desc} propertyName={itemName} decsParams={decsParams}/>	
+									<CheckBoxFilter name='filter' desc={desc} propertyName={itemName}/>	
 								</NavigationListItem>
 							)
 						)}

@@ -4,3 +4,9 @@
     font-weight: 700;
     text-align: center;
 }
+
+@media (max-width: 880px) {
+    .lending-title {
+        font-size: max(calc(32 / 880 * 100vw), 20px);
+    }
+}

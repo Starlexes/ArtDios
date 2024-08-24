@@ -17,6 +17,7 @@ function PriceFilter({minPriceSearch, maxPriceSearch, minVal, maxVal, className 
 	const [maxPrice, setMaxPrice] = useState<string>('');
 	
 	const {isClicked} = useAppSelector((state: RootState) => state.buttons.actionClearButton);
+
 	const dispatch = useDispatch();
  
 	const handleChange = (event: FormEvent<HTMLInputElement>) => {
@@ -97,7 +98,6 @@ function PriceFilter({minPriceSearch, maxPriceSearch, minVal, maxVal, className 
 		if (minVal && maxVal && !minPriceSearch && !maxPriceSearch) {
 			setMinPrice(minVal);
 			setMaxPrice(maxVal);
-			
 		}
 	}, [minVal, maxVal, minPriceSearch, maxPriceSearch]);
 	

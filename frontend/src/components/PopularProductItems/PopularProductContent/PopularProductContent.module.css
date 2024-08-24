@@ -4,9 +4,10 @@
     justify-content: center;
     position: absolute;
     top: 0;
-    max-height: 100px;
-    padding: 32px 20px;
+    padding: clamp(6px, calc( 32 / 1200 * 100vw), 32px) clamp(12px, calc( 20 / 1200 * 100vw), 20px);
     width: 100%;
+    height: max(calc( 100 / 1200 * 100vw), 30px);
+    max-height: 100px;
     background-color: rgba(21, 21, 21, 0.78); 
 }
 
@@ -19,7 +20,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: wrap;
-    font-size: 26px;
+    font-size: clamp(10px, calc( 26 / 1200 * 100vw), 26px);
     font-weight: 500;
     color: var(--text-color);
     text-align: center;
@@ -38,12 +39,9 @@
     font-weight: 300;
 }
 
-@media (max-width: 880px) {
-    .product-content {
-        height: max(calc( 100 / 880 * 100vw), 62px);
-    }
-
+@media (max-width: 510px) {
     .product-content span {
-        font-size: max(calc( 26 / 880 * 100vw), 16px);
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
 }

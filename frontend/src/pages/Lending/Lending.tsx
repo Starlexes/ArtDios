@@ -16,6 +16,15 @@ import Spinner from '../../components/Spinner/Spinner';
 import NavItem from '../../components/Header/NavItem/NavItem';
 import { serviceRoute } from '../../utils/constants';
 import ServiceItem from '../../components/ServiceItem/ServiceItem';
+import LendingHeadTitle from '../../components/LendingItems/LendingHeadTitle/LendingHeadTitle';
+import CartsDoor from '../../components/LendingItems/CartsDoor/CartsDoor';
+import SizeCartDoor from '../../components/LendingItems/SizeCartDoor/SizeCartDoor';
+import ProductCartsTitle from '../../components/LendingItems/ProductCartsTitle/ProductCartsTitle';
+import ProductCartsItem from '../../components/LendingItems/ProductCartsItem/ProductCartsItem';
+import { useMediaPredicate } from 'react-media-hook';
+import SwiperItem from '../../components/LendingItems/SwiperItem/SwiperItem';
+import ProductCarts from '../../components/LendingItems/ProductCarts/ProductCarts';
+import { SwiperSlide } from 'swiper/react';
 
 
 function Lending({className }: LendingProps) {
@@ -31,6 +40,9 @@ function Lending({className }: LendingProps) {
 	
 	const showPopProducts = popProducts.filter(product => product.is_show).slice(0, 3);
 	const showPromo = promo.filter(item => item.is_show).slice(0, 3);
+
+	const matches = useMediaPredicate('(min-width: 1200px)');
+	const phoneMatches = useMediaPredicate('(min-width: 311px)'); 
 
 	useEffect(() => {
 		if (!categories.length) {
@@ -65,31 +77,34 @@ function Lending({className }: LendingProps) {
 					}
 					
 					<section>
-						<NavItem to={serviceRoute}>
-							<div className={cn(styles['services'])}>
-								<ServiceItem className={cn(styles['service-item'], styles['service1'])}>
-									<img src="/service/service1.png" alt="Подбор"/>
-									<span>Подбор</span>
-								</ServiceItem>
+						<div className={cn(styles['service-items'])}>
+							<LendingHeadTitle>Услуги</LendingHeadTitle>
+							<NavItem to={serviceRoute}>
+								<div className={cn(styles['services'])}>
+									<ServiceItem className={cn(styles['service-item'], styles['service1'])}>
+										<img src="/service/service1.png" alt="Подбор"/>
+										<span>Подбор</span>
+									</ServiceItem>
 							
-								<ServiceItem className={cn(styles['service-item'], styles['service2'])}>							
-									<img src="/service/service2.png" alt="Замеры" />
-									<span>Замеры</span>			
-								</ServiceItem>
+									<ServiceItem className={cn(styles['service-item'], styles['service2'])}>							
+										<img src="/service/service2.png" alt="Замеры" />
+										<span>Замеры</span>			
+									</ServiceItem>
 						
 						
-								<ServiceItem className={cn(styles['service-item'], styles['service3'])}>								
-									<img src="/service/service3.png" alt="Продажа"/>
-									<span>Продажа</span>                     
-								</ServiceItem>
+									<ServiceItem className={cn(styles['service-item'], styles['service3'])}>								
+										<img src="/service/service3.png" alt="Продажа"/>
+										<span>Продажа</span>                     
+									</ServiceItem>
 						
 						
-								<ServiceItem className={cn(styles['service-item'], styles['service4'])}>							
-									<img src="/service/service4.png" alt="Установка"/>
-									<span>Установка</span>								
-								</ServiceItem>												
-							</div>
-						</NavItem>
+									<ServiceItem className={cn(styles['service-item'], styles['service4'])}>							
+										<img src="/service/service4.png" alt="Установка"/>
+										<span>Установка</span>								
+									</ServiceItem>												
+								</div>
+							</NavItem>
+						</div>
 					</section>
 
 					{ isLoadingPromo? <Spinner/>: 
@@ -143,29 +158,7 @@ function Lending({className }: LendingProps) {
 							<img src="/lending/image-door3.png" alt="Раздвижные"/>
 						</div>
 
-						<div className={cn(styles['cart-doors'])}>
-							<div className={cn(styles['cart-door'])}>																	
-							Межкомнатные двери купе							
-							</div>
-
-							<div className={cn(styles['cart-door'])}>																	
-							Межкомнатные двери складные								
-							</div>
-
-							<div className={cn(styles['cart-door'])}>																
-							Межкомнатные двери гармошка
-														
-							</div>
-
-							<div className={cn(styles['cart-door'])}>																	
-							Межкомнатные скрытые двери							
-							</div>
-
-							<div className={cn(styles['cart-door'])}>																	
-							Межкомнатные двери без краски							
-							</div>
-					
-						</div>
+						<CartsDoor/>
 
 						<div className={cn(styles['double-door'])}>
 							<div className={cn(styles['double-door-content'])}>
@@ -206,111 +199,201 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 
-						</div>
+						</div>	
 
-						<div className={cn(styles['size-cart-doors'])}>
-							<div className={cn(styles['size-cart-door'])}>								
-								<img src="/lending/size-door1.png" alt="Подбор"/>
-								<span>Офисные двери</span>            
-							</div>
+						<SizeCartDoor/>
 
-							<div className={cn(styles['size-cart-door'])}>										
-								<img src="/lending/size-door2.png" alt="Подбор"/>
-								<span>Двери для ванной и туалета</span>								
-							</div>
-							<div className={cn(styles['size-cart-door'])}>								
-								<img src="/lending/size-door3.png" alt="Подбор"/>
-								<span>Двери для кухни</span>								
-							</div>
-							<div className={cn(styles['size-cart-door'])}>			
-								<img src="/lending/size-door4.png" alt="Подбор"/>
-								<span>Двери для гардеробной</span>				
-							</div>
-						</div> 
 
-						<div className={cn(styles['product-carts'])}>
-							<h3 className={cn(styles['item-carts-title'])}>Цвета межкомнатных дверей</h3>
-							<div className={cn(styles['item-carts'])}>
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color1.png" alt="Бежевый"/>
-									<span>Бежевый</span>
-								</div>
+						<ProductCarts>
+							<ProductCartsTitle>Цвета межкомнатных дверей</ProductCartsTitle>
+							{matches? 
+								<div className={cn(styles['item-carts'])}>
+								
+									<ProductCartsItem>
+										<img src="/lending/door-color1.png" alt="Бежевый"/>
+										<span>Бежевый</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color2.png" alt="Серый"/>
-									<span>Серый</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/door-color2.png" alt="Серый"/>
+										<span>Серый</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color3.png" alt="Винный"/>
-									<span>Винный</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/door-color3.png" alt="Винный"/>
+										<span>Винный</span>
+									</ProductCartsItem>
 							
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color4.png" alt="Ваниль"/>
-									<span>Ваниль</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/door-color4.png" alt="Ваниль"/>
+										<span>Ваниль</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color5.png" alt="Зеленый"/>
-									<span>Зеленый</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/door-color5.png" alt="Зеленый"/>
+										<span>Зеленый</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-color6.png" alt="Синий"/>
-									<span>Синий</span>
+									<ProductCartsItem>
+										<img src="/lending/door-color6.png" alt="Синий"/>
+										<span>Синий</span>
+									</ProductCartsItem>
 								</div>
-							</div>
+								:
+								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
 
-						</div>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color1.png" alt="Бежевый"/>
+											<span>Бежевый</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color2.png" alt="Серый"/>
+											<span>Серый</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color3.png" alt="Винный"/>
+											<span>Винный</span>
+										</ProductCartsItem>
+									</SwiperSlide>
 
-						<div className={cn(styles['product-carts'])}>
-							<h3 className={cn(styles['item-carts-title'])}>Материалы межкомнатных дверей</h3>
-							<div className={cn(styles['item-carts'])}>
-								<div className={cn(styles['item-cart'])}>
-									<img src=" /lending/door-matirial1.png" alt="Двери 
-							из ольхи"/>
-									<span>Двери 
-								из ольхи</span>
-								</div>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color4.png" alt="Ваниль"/>
+											<span>Ваниль</span>
+										</ProductCartsItem>
+									</SwiperSlide>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src=" /lending/door-matirial2.png" alt="Двери 
-							из бука"/>
-									<span>Двери 
-								из бука</span>
-								</div>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color5.png" alt="Зеленый"/>
+											<span>Зеленый</span>
+										</ProductCartsItem>
+									</SwiperSlide>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src=" /lending/door-matirial3.png" alt="Двери 
-							из дуба"/>
-									<span>Двери 
-								из дуба</span>
-								</div>
-							
-								<div className={cn(styles['item-cart'])}>
-									<img src=" /lending/door-matirial4.png" alt="Двери 
-							из экошпона"/>
-									<span>Двери 
-								из экошпона</span>
-								</div>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-color6.png" alt="Синий"/>
+											<span>Синий</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+								</SwiperItem>
+							}
+						</ProductCarts>
+								
 
-								<div className={cn(styles['item-cart'])}>
-									<img src=" /lending/door-matirial5.png" alt="Двери 
-							из сосны"/>
-									<span>Двери 
-								из сосны</span>
-								</div>
-
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/door-matirial6.png" alt="Двери 
-							из алюминия"/>
-									<span>Двери 
-								из алюминия</span>
-								</div>
 						
-							</div>   
-						</div>  
+						<ProductCarts>
+							<ProductCartsTitle>Материалы межкомнатных дверей</ProductCartsTitle>
+							{matches? 
+								<div className={cn(styles['item-carts'])}>
+									<ProductCartsItem>
+										<img src=" /lending/door-matirial1.png" alt="Двери 
+							из ольхи"/>
+										<span>Двери 
+								из ольхи</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src=" /lending/door-matirial2.png" alt="Двери 
+							из бука"/>
+										<span>Двери 
+								из бука</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src=" /lending/door-matirial3.png" alt="Двери 
+							из дуба"/>
+										<span>Двери 
+								из дуба</span>
+									</ProductCartsItem>
+							
+									<ProductCartsItem>
+										<img src=" /lending/door-matirial4.png" alt="Двери 
+							из экошпона"/>
+										<span>Двери 
+								из экошпона</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src=" /lending/door-matirial5.png" alt="Двери 
+							из сосны"/>
+										<span>Двери 
+								из сосны</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src="/lending/door-matirial6.png" alt="Двери 
+							из алюминия"/>
+										<span>Двери 
+								из алюминия</span>
+									</ProductCartsItem>
+						
+								</div>  
+								:
+								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src=" /lending/door-matirial1.png" alt="Двери 
+							из ольхи"/>
+											<span>Двери 
+								из ольхи</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src=" /lending/door-matirial2.png" alt="Двери 
+							из бука"/>
+											<span>Двери 
+								из бука</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src=" /lending/door-matirial3.png" alt="Двери 
+							из дуба"/>
+											<span>Двери 
+								из дуба</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src=" /lending/door-matirial4.png" alt="Двери 
+							из экошпона"/>
+											<span>Двери 
+								из экошпона</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src=" /lending/door-matirial5.png" alt="Двери 
+							из сосны"/>
+											<span>Двери 
+								из сосны</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/door-matirial6.png" alt="Двери 
+							из алюминия"/>
+											<span>Двери 
+								из алюминия</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+								</SwiperItem>
+							} 
+						</ProductCarts>
 					</div>
 				</section>
 
@@ -426,40 +509,86 @@ function Lending({className }: LendingProps) {
 							<img src="/lending/floor2.png" alt="Ламинат SPC"/>
 						</div>
 
-						<div className={cn(styles['product-carts'])}>
-							<h3 className={cn(styles['item-carts-title'])}>Материалы ламината</h3>
-							<div className={cn(styles['item-carts'])}>
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial1.png" alt="Венге"/>
-									<span>Венге</span>
-								</div>
+						<ProductCarts>
+							<ProductCartsTitle>Материалы ламината</ProductCartsTitle>
+							{ matches?
+								<div className={cn(styles['item-carts'])}>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial2.png" alt="Дуб светлый"/>
-									<span>Дуб светлый</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial1.png" alt="Венге"/>
+										<span>Венге</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial3.png" alt="Ольха"/>
-									<span>Ольха</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial2.png" alt="Дуб светлый"/>
+										<span>Дуб светлый</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial3.png" alt="Ольха"/>
+										<span>Ольха</span>
+									</ProductCartsItem>
                             
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial4.png" alt="Вишня"/>
-									<span>Вишня</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial4.png" alt="Вишня"/>
+										<span>Вишня</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial5.png" alt="Дуб"/>
-									<span>Дуб</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial5.png" alt="Дуб"/>
+										<span>Дуб</span>
+									</ProductCartsItem>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial6.png" alt="Орех"/>
-									<span>Орех</span>
-								</div>                                                
-							</div>   
-						</div>  
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial6.png" alt="Орех"/>
+										<span>Орех</span>
+									</ProductCartsItem>                                                
+								</div>
+								:
+
+								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial1.png" alt="Венге"/>
+											<span>Венге</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem style={{ position: 'relative', marginTop: '22px'}}>
+											<img src="/lending/lam-matirial2.png" alt="Дуб светлый"/>
+											<span>Дуб светлый</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial3.png" alt="Ольха"/>
+											<span>Ольха</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial4.png" alt="Вишня"/>
+											<span>Вишня</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial5.png" alt="Дуб"/>
+											<span>Дуб</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial6.png" alt="Орех"/>
+											<span>Орех</span>
+										</ProductCartsItem>  
+									</SwiperSlide>
+
+								</SwiperItem>
+							}  
+						</ProductCarts> 
 
 					</div>
 				</section>
@@ -576,45 +705,96 @@ function Lending({className }: LendingProps) {
 							<img src="/lending/roof4.png" alt="сатиновых натяжных потолков"/>
 						</div>
 
-						<div className={cn(styles['product-carts'])}>
-							<h3 className={cn(styles['item-carts-title'])}>Материалы изготовления натяжных потолков</h3>
-							<div className={cn(styles['item-carts'])}>
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/lam-matirial1.png" alt="Венге"/>
-									<span>Венге</span>
-								</div>
+						<ProductCarts>
+							<ProductCartsTitle>Материалы изготовления натяжных потолков</ProductCartsTitle>
+							{ matches? 
+								<div className={cn(styles['item-carts'])}>
 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial1.png" alt="Тканевые"/>
-									<span>Тканевые</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/lam-matirial1.png" alt="Венге"/>
+										<span>Венге</span>
+									</ProductCartsItem>
+
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial1.png" alt="Тканевые"/>
+										<span>Тканевые</span>
+									</ProductCartsItem>
     
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial2.png" alt="Пленка из ПВХ"/>
-									<span>Пленка из ПВХ</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial2.png" alt="Пленка из ПВХ"/>
+										<span>Пленка из ПВХ</span>
+									</ProductCartsItem>
     
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial3.png" alt="Матовые"/>
-									<span>Матовые</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial3.png" alt="Матовые"/>
+										<span>Матовые</span>
+									</ProductCartsItem>
                                 
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial4.png" alt="Текстурные"/>
-									<span>Текстурные</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial4.png" alt="Текстурные"/>
+										<span>Текстурные</span>
+									</ProductCartsItem>
     
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial5.png" alt="Прозрачные"/>
-									<span>Полупрозрачные</span>
-								</div>
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial5.png" alt="Прозрачные"/>
+										<span>Полупрозрачные</span>
+									</ProductCartsItem>
     
-								<div className={cn(styles['item-cart'])}>
-									<img src="/lending/roof-matirial6.png" alt="Сатиновые"/>
-									<span>Сатиновые</span>
-								</div>                           
-							</div>   
-						</div> 
+									<ProductCartsItem>
+										<img src="/lending/roof-matirial6.png" alt="Сатиновые"/>
+										<span>Сатиновые</span>
+									</ProductCartsItem>                          
+								</div>
+								:
+								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/lam-matirial1.png" alt="Венге"/>
+											<span>Венге</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/roof-matirial1.png" alt="Тканевые"/>
+											<span>Тканевые</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem style={{ position: 'relative', marginTop: '22px'}}>
+											<img src="/lending/roof-matirial2.png" alt="Пленка из ПВХ"/>
+											<span>Пленка из ПВХ</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/roof-matirial3.png" alt="Матовые"/>
+											<span>Матовые</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/roof-matirial4.png" alt="Текстурные"/>
+											<span>Текстурные</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem style={{position: 'relative', marginTop: '22px', wordBreak: 'break-all'}}>
+											<img src="/lending/roof-matirial5.png" alt="Прозрачные"/>
+											<span>Полупрозрачные</span>
+										</ProductCartsItem>
+									</SwiperSlide>
+									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
+										<ProductCartsItem>
+											<img src="/lending/roof-matirial6.png" alt="Сатиновые"/>
+											<span>Сатиновые</span>
+										</ProductCartsItem> 
+									</SwiperSlide>
+
+								</SwiperItem>   
+							}
+						</ProductCarts>
 
 						<div className={cn(styles['product-type'])}>
 							<h3 className={cn(styles['title-second'])}>Преимущества натяжных потолков</h3>

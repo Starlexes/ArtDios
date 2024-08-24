@@ -15,12 +15,7 @@
 
 @media (max-width: 880px) {
     .main {
-        padding: 44px 0;
+        padding: max(calc(44 / 880 * 100vw), 24px) 0;
     }
 }
 
-@media (max-width: 510px) {
-    .main {
-        padding: 32px 0;
-    }
-}

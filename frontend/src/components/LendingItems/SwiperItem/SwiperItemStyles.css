@@ -1,0 +1,20 @@
+div.next-btn,
+div.prev-btn {
+  width: max(calc(40 / 880 * 100vw), 20px);
+  height: max(calc(40 / 880 * 100vw), 20px);
+  cursor: pointer;
+  caret-color: transparent;
+  align-self: center;
+  top: 50%;
+  margin-top: 0;
+  transform: translateY(-50%);
+}
+
+.next-btn::after,
+.prev-btn::after {
+  display: none;
+}
+.next-btn img, .prev-btn img {
+  width: 100%;
+  height: 100%;
+}

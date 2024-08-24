@@ -10,16 +10,17 @@ import { useDispatch } from 'react-redux';
 import { setClearClick, setSubmitFilterParams } from '../../../slices/buttonSlice';
 
 
-function CheckBoxFilter({decsParams, propertyName, className, name, desc}: CheckBoxFilterProps) {
+function CheckBoxFilter({propertyName, className, name, desc}: CheckBoxFilterProps) {
 	const dispatch = useDispatch();
-	const descExists = decsParams.find(item => item === desc);
+	const {chars} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
 
+	const descExists = chars?.find(item => item.description === desc);
 	const initial = descExists? true: false;
 
 	const [isChecked, setIsChecked] = useState<boolean>(initial);
 
 	const {isClicked: toClear} = useAppSelector((state: RootState) => state.buttons.actionClearButton);
-	const {chars} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
+	
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const checked = e.target.checked;

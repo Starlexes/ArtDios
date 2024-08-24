@@ -1,0 +1,11 @@
+.size-cart-doors{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 650px) {
+    .cart-slider {
+        padding: 0 max(calc(80 / 880 * 100vw), 35px);
+    }
+}
