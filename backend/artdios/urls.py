@@ -18,11 +18,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('store.urls')),
-    path('api/notify/', include('notifications.urls'))
+    path('api/notify/', include('notifications.urls')),
+    path('api/jwt-token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/jwt-token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 if settings.DEBUG:

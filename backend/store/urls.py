@@ -51,6 +51,8 @@ urlpatterns = [
 
     path('api/classify/', ClassificationsView.as_view()),
 
-    path('api/suggestions/', SearchingSuggestionsView.as_view())
+    path('api/suggestions/', SearchingSuggestionsView.as_view()),
+
+    path('api/admin/login/', LoginView.as_view(), name='login'),
 ]
 

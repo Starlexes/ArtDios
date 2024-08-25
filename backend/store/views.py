@@ -1,13 +1,15 @@
 from django.shortcuts import render, get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.db.models import F, Q, Case, When, Value, CharField, Max, Min, Count
+from django.contrib.auth import authenticate
+from django.db.models import F, Q, Case, When, Value, CharField, Max, Min
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import *
 from .serializers import *
@@ -459,3 +461,22 @@ class SearchingSuggestionsView(APIView):
                 return Response([], status=status.HTTP_200_OK)
         except Exception as e:
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
+
+class LoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        username = serializer.validated_data['username']
+        password = serializer.validated_data['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            })
+        return Response({'error': 'Invalid Credentials'}, status=400)
