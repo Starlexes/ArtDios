@@ -4,8 +4,7 @@
     gap: 10px;
     padding: 25px;
     max-width: 578px;
-    min-width: 290px;
-    width: 100%;
+    width: 578px;
     border: 1px solid #E1E1E1;
     border-radius: 20px;
 }
@@ -49,9 +48,18 @@
     flex-wrap: wrap;
 }
 
+@media (max-width: 1200px) {
+    .chars-card {
+        width: 338px;
+    }
+}
+
 @media (max-width: 880px) {
     .char-item {
         font-size: 12px;
+    }
+    .chars-card {
+        width: calc(338 / 880 * 100vw);
     }
 }
 

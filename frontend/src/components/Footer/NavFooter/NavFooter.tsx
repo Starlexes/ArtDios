@@ -10,13 +10,18 @@ import { NavFooterProps } from './NavFooter.props';
 import cn from 'classnames';
 import { customContractRoute, opdPageRoute, publicOfferRoute } from '../../../utils/constants';
 
+
 function NavFooter({className, ...props }: NavFooterProps) {
 
 	const matches = useMediaPredicate('(min-width: 881px)');
 
+	const onClick = () => {
+		window.scrollTo(0, 0);
+	};
+
 	const logoItem = (
 		<NavigationListItem key={0}>
-			<Logo className={cn(styles['logo-footer'])} isFooter={true}/>
+			<Logo className={cn(styles['logo-footer'])} isFooter={true} onClick={onClick}/>
 		</NavigationListItem>
 	);
 
