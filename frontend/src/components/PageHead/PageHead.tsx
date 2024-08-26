@@ -4,11 +4,11 @@ import { PageHeadProps } from './PageHead.props';
 import PageTitle from '../PageTitle/PageTitle';
 import BackButton from '../BackButton/BackButton';
 
-function PageHead({className, children, titleClassName, onClickBack}: PageHeadProps) {
+function PageHead({className, children, titleClassName, backClassName, onClickBack}: PageHeadProps) {
 
 	return (	
 		<div className={cn(styles['page-head'], className)}>
-			<BackButton onClickBack={onClickBack}/>
+			<BackButton onClickBack={onClickBack} btnClassName={backClassName}/>
 
 			<div className={cn(styles['page-title'], titleClassName)}>
 				<PageTitle>

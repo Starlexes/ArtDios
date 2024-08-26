@@ -1,5 +1,3 @@
-
-
 import styles from './ModalForm.module.css';
 import { ModalFormProps } from './ModalForm.props';
 import cn from 'classnames';

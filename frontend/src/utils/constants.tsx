@@ -42,6 +42,14 @@ export const deliveryPaymentsRoute = '/delivery-and-payments/';
 
 export const aboutRoute = '/about/';
 
+// Admin routes
+
+export const adminRoute = '/admin/';
+
+export const adminHomeRoute = 'home';
+
+export const adminLoginRoute = 'login';
+
 // Pagination
 
 export const nextSinglePage = () => (

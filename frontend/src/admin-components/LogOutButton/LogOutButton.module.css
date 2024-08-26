@@ -1,0 +1,12 @@
+.log-out {
+    width: 180px;
+    background-color: var(--btn-success);
+    color: var(--primary-bgc2);
+    font-size: 20px;
+    font-weight: 700;
+    height: 32px;
+}
+
+.log-out:hover {
+    font-weight: 900;
+}
