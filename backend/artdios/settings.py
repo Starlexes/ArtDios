@@ -153,11 +153,16 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
+
+
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', "http://localhost:3000",]
 
 
 STATIC_URL = '/static/'
@@ -180,12 +185,12 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'")
+CSP_DEFAULT_SRC = ("'self'")
+CSP_SCRIPT_SRC = ("'self'",  "http://localhost:8000", "http://localhost:3000")
 CSP_STYLE_SRC = ("'self'", "https://fonts.googleapis.com")
-CSP_IMG_SRC = ("'self'")
-CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com")
-CSP_CONNECT_SRC = ("'self'")
+CSP_IMG_SRC = ("'self'", "http://localhost:8000")
+CSP_FONT_SRC = ("'self'", "https://fonts.gstatic.com", "http://localhost:8000")
+CSP_CONNECT_SRC = ("'self'", "http://localhost:8000", "http://localhost:3000") 
 CSP_OBJECT_SRC = ("'none'",)
 CSP_FRAME_SRC = ("'self'",)
 CSP_FRAME_ANCESTORS = ("'self'",)

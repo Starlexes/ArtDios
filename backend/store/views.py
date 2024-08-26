@@ -94,10 +94,6 @@ def delete_method(model, pk=None):
     except Exception:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-# Create your views here.
-def index(request):
-    return render(request, 'react/index.html')
-
 
 class CategoryView(APIView):
     def get(self, request, pk=None, slug=None):

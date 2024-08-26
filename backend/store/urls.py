@@ -3,7 +3,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('', index, name='index'),
+
     path('api/csrf-token/', get_csrf_token),
 
     path('api/category/', CategoryView.as_view()),
