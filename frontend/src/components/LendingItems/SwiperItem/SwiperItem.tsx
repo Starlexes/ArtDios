@@ -6,6 +6,7 @@ import './SwiperItemStyles.css';
 import 'swiper/swiper-bundle.css';
 import { Navigation } from 'swiper/modules';
 import cn from 'classnames';
+import { mediaImagesPath } from '../../../utils/constants';
 
 
 function SwiperItem({children, className, sliderCount, betweenSlider, slidesPerView }: SwiperItemProps) {
@@ -30,8 +31,8 @@ function SwiperItem({children, className, sliderCount, betweenSlider, slidesPerV
 		>
               
 			{children}
-			<div className='next-btn swiper-button-next'><img src="/lending/right-arrow.svg" alt="Вправо"/></div>
-			<div className='prev-btn swiper-button-prev'><img src="/lending/left-arrow.svg" alt="Влево"/></div>
+			<div className='next-btn swiper-button-next'><img src={mediaImagesPath+'/lending/right-arrow.svg'} alt="Вправо"/></div>
+			<div className='prev-btn swiper-button-prev'><img src={mediaImagesPath+'/lending/left-arrow.svg'} alt="Влево"/></div>
 		</Swiper>
 
 	);

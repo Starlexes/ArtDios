@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { setMediaBurgerClick } from '../../../slices/buttonSlice';
 import { useEffect, useState } from 'react';
+import { mediaImagesPath } from '../../../utils/constants';
 
 
 function MediaBurger({className}: MediaBurgerProps) {
@@ -53,7 +54,7 @@ function MediaBurger({className}: MediaBurgerProps) {
 	return (
 		<>
 			<MediaButton onClick={onClick} className={cn(styles['media-burger'], className)}>
-				<img src="/media/burger.svg" alt="Бургер-меню" />
+				<img src={mediaImagesPath+'/media/burger.svg'} alt="Бургер-меню" />
 			</MediaButton>
 
 			<ModalCatalog isOpen={isOpen} closeModal={closeModal} contentVisible={contentVisible}/>

@@ -135,7 +135,8 @@ function Catalog({className}: CatalogProps) {
 								{ products.length > 1 && (
 									screenMatches ? <SortingOrder/>: 
 										<CatalogActions>
-											<FiltersButton maxPrice={String(maxPrice)} minPrice={String(minPrice)} chars={chars}/>
+											<FiltersButton maxPrice={String(maxPrice)} minPrice={String(minPrice)}
+												chars={chars} productLength={products.length}/>
 											<SortingOrderMedia/>
 										</CatalogActions>
 							

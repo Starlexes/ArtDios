@@ -1,5 +1,6 @@
 
 import PageHead from '../../components/PageHead/PageHead';
+import { mediaImagesPath } from '../../utils/constants';
 import styles from './DeliveryPayments.module.css';
 import { DeliveryPaymentsProps } from './DeliveryPayments.props';
 import cn from 'classnames';
@@ -34,7 +35,7 @@ function DeliveryPayments({className }: DeliveryPaymentsProps) {
                       от подъезда, дома. Подъем на этаж).
 								</p>
 							</div>
-							<img src="/delivery-pays/delivery1.png" alt="Скидка 5%" />
+							<img src={mediaImagesPath+'/delivery-pays/delivery1.png'} alt="Скидка 5%" />
 						</div>	
 						<p>
                   Так же доставляем заказы по России. (Стоимость зависит
@@ -74,7 +75,7 @@ function DeliveryPayments({className }: DeliveryPaymentsProps) {
                       являются собственниками карты.
 								</p>
 							</div>
-							<img src="/delivery-pays/delivery2.png" alt="Скидка 4%" />
+							<img src={mediaImagesPath+'/delivery-pays/delivery2.png'} alt="Скидка 4%" />
 						</div>
 						<p>
 							<b>Безналичный расчет</b> – этим способом может

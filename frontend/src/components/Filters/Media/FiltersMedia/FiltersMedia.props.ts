@@ -6,5 +6,6 @@ export interface FiltersMediaProps {
     closeModal: () => void,
     chars: CharacteristicClient[],
     minPrice: string,
-    maxPrice: string
+    maxPrice: string,
+    productLength: number
 }

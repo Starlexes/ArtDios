@@ -18,7 +18,8 @@
     "react-modal": "^3.16.1",
     "react-router-hash-link": "^2.4.3",
     "react-select": "^5.8.0",
-    "react-slider": "^2.0.6"
+    "react-slider": "^2.0.6",
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^2.2.6",

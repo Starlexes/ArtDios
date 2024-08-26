@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
 import { fetchContacts } from '../../../slices/contactSlice';
-import { catalog, deliveryPaymentsRoute, serviceRoute } from '../../../utils/constants';
+import { catalog, deliveryPaymentsRoute, mediaImagesPath, serviceRoute } from '../../../utils/constants';
 
 
 
@@ -66,20 +66,20 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 				<MenuTitle>Социальные сети</MenuTitle>
 				<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['contact-text']) } target='blank'>
 					<FooterSocialItem>
-						<img src="/social/whatsapp logo.svg" alt="Логотип WhatsApp"/>   
+						<img src={mediaImagesPath+'/social/whatsapp logo.svg'} alt="Логотип WhatsApp"/>   
                         WhatsApp
 					</FooterSocialItem>
 				</AnchorNavItem>
 				<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
-						<img src="/social/viber logo.svg" alt="Логотип Viber"/>   
+						<img src={mediaImagesPath+'/social/viber logo.svg'} alt="Логотип Viber"/>   
                         Viber
 					</FooterSocialItem>
 				</AnchorNavItem>
 
 				<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
-						<img src="/social/telegram logo.svg" alt="Логотип Telegram"/>   
+						<img src={mediaImagesPath+'/social/telegram logo.svg'} alt="Логотип Telegram"/>   
                         Telegram
 					</FooterSocialItem>
 				</AnchorNavItem>

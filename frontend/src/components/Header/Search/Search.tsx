@@ -9,7 +9,7 @@ import cn from 'classnames';
 import SearchSuggestionsItem from '../SearchSuggestionsItem/SearchSuggestionsItem';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { catalog, seachingRoute } from '../../../utils/constants';
+import { catalog, mediaImagesPath, seachingRoute } from '../../../utils/constants';
 
 export interface Suggestion {
 	name: string,
@@ -106,7 +106,7 @@ function Search({className}: SearchProps) {
 				onChange={handleChange} value={inputValue} onFocus={onFocus}
 				onBlur={onBlur}/>
 			<Button className={cn(styles['search-btn'])} onClick={onClickSearch}>
-				<img src="/other/loupe.svg" alt="Иконка лупы"/>
+				<img src={mediaImagesPath+'/other/loupe.svg'} alt="Иконка лупы"/>
 			</Button>
 
 			{suggestsActive && suggestions.length > 0 && inputValue && 

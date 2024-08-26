@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { SocialWidgetProps } from './SocialWidget.props';
 import NavSocial from '../Header/NavSocial/NavSocial';
 import { useState } from 'react';
+import { mediaImagesPath } from '../../utils/constants';
 
 
 function SocialWidget({ className }: SocialWidgetProps) {
@@ -28,7 +29,7 @@ function SocialWidget({ className }: SocialWidgetProps) {
 			<div className={cn(styles['widget-icon'], {
 				[styles['open-widget']]: isOpenSocial
 			})} onClick={onClick}>
-				<img src="/media/phone.svg" alt="Иконка телефона" />
+				<img src={mediaImagesPath+'/media/phone.svg'} alt="Иконка телефона" />
 			</div>
 			
 		</div>

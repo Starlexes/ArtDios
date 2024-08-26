@@ -5,6 +5,7 @@ import overlayStyles from '../ModalStyles/ModalOverlay.module.css';
 import cn from 'classnames';
 import Modal from 'react-modal';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
+import { mediaImagesPath } from '../../../utils/constants';
 
 
 Modal.setAppElement('#root');
@@ -31,7 +32,7 @@ function ModalThank({isOpen = false, closeModal}: ModalThankProps) {
 				
 			</div>
 
-			<img src="/other/smile.png" alt="Smile" />
+			<img src={mediaImagesPath+'/other/smile.png'} alt="Smile" />
 
 			<ModalCloseButton className={cn(styles['close-thank'])} onClick={() => closeModal(false)}/>
 		</Modal>

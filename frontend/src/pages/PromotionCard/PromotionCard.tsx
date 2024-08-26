@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import { fetchPromotionCard } from '../../slices/promotionCardSlice';
 import PageHead from '../../components/PageHead/PageHead';
 import axios from 'axios';
+import { mediaImagesPath } from '../../utils/constants';
 
 
 function PromotionCard({className }: PromotionCardProps) {
@@ -43,7 +44,7 @@ function PromotionCard({className }: PromotionCardProps) {
 						</HelmetProvider>
 						<PageHead>{promotion.name}</PageHead>
 						<div className={cn(styles['promotion-content'], className)}>
-							<img src="/other/promo-cover.png" alt="Promo cover"className={cn(styles['promotion-cover'])} />
+							<img src={mediaImagesPath+'/other/promo-cover.png'} alt="Promo cover"className={cn(styles['promotion-cover'])} />
 							<div className={cn(styles['promotion-image'])}>
 								<img src={axios.defaults.baseURL+promotion.main_image} alt={promotion.name}/>
 							</div>

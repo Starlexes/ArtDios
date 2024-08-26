@@ -12,7 +12,7 @@ export const renderCross = () => (
 	</svg>
 );
 
-
+export const mediaImagesPath = '';
 
 export const itemsPerPage = 12;
 

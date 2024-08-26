@@ -14,7 +14,7 @@ import { fetchPromotion } from '../../slices/promotionSlice';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Spinner from '../../components/Spinner/Spinner';
 import NavItem from '../../components/Header/NavItem/NavItem';
-import { serviceRoute } from '../../utils/constants';
+import { mediaImagesPath, serviceRoute } from '../../utils/constants';
 import ServiceItem from '../../components/ServiceItem/ServiceItem';
 import LendingHeadTitle from '../../components/LendingItems/LendingHeadTitle/LendingHeadTitle';
 import CartsDoor from '../../components/LendingItems/CartsDoor/CartsDoor';
@@ -82,24 +82,24 @@ function Lending({className }: LendingProps) {
 							<NavItem to={serviceRoute}>
 								<div className={cn(styles['services'])}>
 									<ServiceItem className={cn(styles['service-item'], styles['service1'])}>
-										<img src="/service/service1.png" alt="Подбор"/>
+										<img src={mediaImagesPath+'/service/service1.png'} alt="Подбор"/>
 										<span>Подбор</span>
 									</ServiceItem>
 							
 									<ServiceItem className={cn(styles['service-item'], styles['service2'])}>							
-										<img src="/service/service2.png" alt="Замеры" />
+										<img src={mediaImagesPath+'/service/service2.png'} alt="Замеры" />
 										<span>Замеры</span>			
 									</ServiceItem>
 						
 						
 									<ServiceItem className={cn(styles['service-item'], styles['service3'])}>								
-										<img src="/service/service3.png" alt="Продажа"/>
+										<img src={mediaImagesPath+'/service/service3.png'} alt="Продажа"/>
 										<span>Продажа</span>                     
 									</ServiceItem>
 						
 						
 									<ServiceItem className={cn(styles['service-item'], styles['service4'])}>							
-										<img src="/service/service4.png" alt="Установка"/>
+										<img src={mediaImagesPath+'/service/service4.png'} alt="Установка"/>
 										<span>Установка</span>								
 									</ServiceItem>												
 								</div>
@@ -130,7 +130,7 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 						
-							<img src="/lending/image-door1.png" alt="Распашные"/>
+							<img src={mediaImagesPath+'/lending/image-door1.png'} alt="Распашные"/>
 						</div>
 
 						<div className={cn(styles['product-type'])}>
@@ -142,7 +142,7 @@ function Lending({className }: LendingProps) {
 								</p>
 						
 							</div>
-							<img src="/lending/image-door2.png" alt="Раздвижные"/>
+							<img src={mediaImagesPath+'/lending/image-door2.png'} alt="Раздвижные"/>
 						</div>
 						<div className={cn(styles['product-type'])}>
 							<div className={cn(styles['product-desc'], styles['door-desc'])}>
@@ -155,7 +155,7 @@ function Lending({className }: LendingProps) {
 								</p>
 						
 							</div>
-							<img src="/lending/image-door3.png" alt="Раздвижные"/>
+							<img src={mediaImagesPath+'/lending/image-door3.png'} alt="Раздвижные"/>
 						</div>
 
 						<CartsDoor/>
@@ -170,7 +170,7 @@ function Lending({className }: LendingProps) {
 								это ширина проёма, у разных дверей она может отличаться.</p>
 							</div>
 							<div className={cn(styles['double-door-image'])}>
-								<img src="/lending/double-door.png" alt="Двустворчатые межкомнатные двери"/>
+								<img src={mediaImagesPath+'/lending/double-door.png'} alt="Двустворчатые межкомнатные двери"/>
 							</div>
 						</div>
 
@@ -186,7 +186,7 @@ function Lending({className }: LendingProps) {
 						</div>
 
 						<div className={cn(styles['door-size'])}>
-							<img src="/lending/ruler.png" alt="Размеры дверей"/>
+							<img src={mediaImagesPath+'/lending/ruler.png'} alt="Размеры дверей"/>
 							<div className={cn(styles['door-size-content'])}>
 								<h3 className={cn(styles['title-second'], styles['door-size-title'])}>Размеры дверей</h3>
 								<p>Межкомнатные и входные двери подразделяют на две категории: 
@@ -210,32 +210,32 @@ function Lending({className }: LendingProps) {
 								<div className={cn(styles['item-carts'])}>
 								
 									<ProductCartsItem>
-										<img src="/lending/door-color1.png" alt="Бежевый"/>
+										<img src={mediaImagesPath+'/lending/door-color1.png'} alt="Бежевый"/>
 										<span>Бежевый</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/door-color2.png" alt="Серый"/>
+										<img src={mediaImagesPath+'/lending/door-color2.png'} alt="Серый"/>
 										<span>Серый</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/door-color3.png" alt="Винный"/>
+										<img src={mediaImagesPath+'/lending/door-color3.png'} alt="Винный"/>
 										<span>Винный</span>
 									</ProductCartsItem>
 							
 									<ProductCartsItem>
-										<img src="/lending/door-color4.png" alt="Ваниль"/>
+										<img src={mediaImagesPath+'/lending/door-color4.png'} alt="Ваниль"/>
 										<span>Ваниль</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/door-color5.png" alt="Зеленый"/>
+										<img src={mediaImagesPath+'/lending/door-color5.png'} alt="Зеленый"/>
 										<span>Зеленый</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/door-color6.png" alt="Синий"/>
+										<img src={mediaImagesPath+'/lending/door-color6.png'} alt="Синий"/>
 										<span>Синий</span>
 									</ProductCartsItem>
 								</div>
@@ -244,42 +244,42 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color1.png" alt="Бежевый"/>
+											<img src={mediaImagesPath+'/lending/door-color1.png'} alt="Бежевый"/>
 											<span>Бежевый</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color2.png" alt="Серый"/>
+											<img src={mediaImagesPath+'/lending/door-color2.png'} alt="Серый"/>
 											<span>Серый</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color3.png" alt="Винный"/>
+											<img src={mediaImagesPath+'/lending/door-color3.png'} alt="Винный"/>
 											<span>Винный</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color4.png" alt="Ваниль"/>
+											<img src={mediaImagesPath+'/lending/door-color4.png'} alt="Ваниль"/>
 											<span>Ваниль</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color5.png" alt="Зеленый"/>
+											<img src={mediaImagesPath+'/lending/door-color5.png'} alt="Зеленый"/>
 											<span>Зеленый</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-color6.png" alt="Синий"/>
+											<img src={mediaImagesPath+'/lending/door-color6.png'} alt="Синий"/>
 											<span>Синий</span>
 										</ProductCartsItem>
 									</SwiperSlide>
@@ -294,42 +294,42 @@ function Lending({className }: LendingProps) {
 							{matches? 
 								<div className={cn(styles['item-carts'])}>
 									<ProductCartsItem>
-										<img src=" /lending/door-matirial1.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial1.png'} alt="Двери 
 							из ольхи"/>
 										<span>Двери 
 								из ольхи</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src=" /lending/door-matirial2.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial2.png'} alt="Двери 
 							из бука"/>
 										<span>Двери 
 								из бука</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src=" /lending/door-matirial3.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial3.png'}alt="Двери 
 							из дуба"/>
 										<span>Двери 
 								из дуба</span>
 									</ProductCartsItem>
 							
 									<ProductCartsItem>
-										<img src=" /lending/door-matirial4.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial4.png'} alt="Двери 
 							из экошпона"/>
 										<span>Двери 
 								из экошпона</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src=" /lending/door-matirial5.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial5.png'} alt="Двери 
 							из сосны"/>
 										<span>Двери 
 								из сосны</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/door-matirial6.png" alt="Двери 
+										<img src={mediaImagesPath+'/lending/door-matirial6.png'} alt="Двери 
 							из алюминия"/>
 										<span>Двери 
 								из алюминия</span>
@@ -340,7 +340,7 @@ function Lending({className }: LendingProps) {
 								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src=" /lending/door-matirial1.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial1.png'} alt="Двери 
 							из ольхи"/>
 											<span>Двери 
 								из ольхи</span>
@@ -349,7 +349,7 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src=" /lending/door-matirial2.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial2.png'} alt="Двери 
 							из бука"/>
 											<span>Двери 
 								из бука</span>
@@ -358,7 +358,7 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src=" /lending/door-matirial3.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial3.png'} alt="Двери 
 							из дуба"/>
 											<span>Двери 
 								из дуба</span>
@@ -367,7 +367,7 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src=" /lending/door-matirial4.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial4.png'} alt="Двери 
 							из экошпона"/>
 											<span>Двери 
 								из экошпона</span>
@@ -376,7 +376,7 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src=" /lending/door-matirial5.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial5.png'} alt="Двери 
 							из сосны"/>
 											<span>Двери 
 								из сосны</span>
@@ -385,7 +385,7 @@ function Lending({className }: LendingProps) {
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/door-matirial6.png" alt="Двери 
+											<img src={mediaImagesPath+'/lending/door-matirial6.png'} alt="Двери 
 							из алюминия"/>
 											<span>Двери 
 								из алюминия</span>
@@ -411,7 +411,7 @@ function Lending({className }: LendingProps) {
 								</p>
 								
 							</div>
-							<img src=" /lending/enter-door1.png" alt="Распашные"/>
+							<img src={mediaImagesPath+'/lending/enter-door1.png'} alt="Распашные"/>
 						</div>
 
 						<div className={cn(styles['product-type'])}>
@@ -430,7 +430,7 @@ function Lending({className }: LendingProps) {
 										отличается увеличенной стоимостью.
 								</p>
 							</div>
-							<img src=" /lending/enter-door2.png" alt="Распашные"/>
+							<img src={mediaImagesPath+'/lending/enter-door2.png'} alt="Распашные"/>
 						</div>
 
 						<div className={cn(styles['product-type'])}>
@@ -445,7 +445,7 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 
-							<img src=" /lending/enter-door3.png" alt="Распашные"/>
+							<img src={mediaImagesPath+'/lending/enter-door3.png'} alt="Распашные"/>
 
 						</div>
 					</div>
@@ -479,7 +479,7 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 
-							<img src="/lending/floor1.png" alt="Ламинат"/>
+							<img src={mediaImagesPath+'/lending/floor1.png'} alt="Ламинат"/>
 						</div>
 
 						<div className={cn(styles['product-type'])}>
@@ -506,7 +506,7 @@ function Lending({className }: LendingProps) {
 								</ul>
 							</div>
 
-							<img src="/lending/floor2.png" alt="Ламинат SPC"/>
+							<img src={mediaImagesPath+'/lending/floor2.png'} alt="Ламинат SPC"/>
 						</div>
 
 						<ProductCarts>
@@ -515,32 +515,32 @@ function Lending({className }: LendingProps) {
 								<div className={cn(styles['item-carts'])}>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial1.png" alt="Венге"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial1.png'} alt="Венге"/>
 										<span>Венге</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial2.png" alt="Дуб светлый"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial2.png'} alt="Дуб светлый"/>
 										<span>Дуб светлый</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial3.png" alt="Ольха"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial3.png'} alt="Ольха"/>
 										<span>Ольха</span>
 									</ProductCartsItem>
                             
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial4.png" alt="Вишня"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial4.png'} alt="Вишня"/>
 										<span>Вишня</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial5.png" alt="Дуб"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial5.png'} alt="Дуб"/>
 										<span>Дуб</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial6.png" alt="Орех"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial6.png'} alt="Орех"/>
 										<span>Орех</span>
 									</ProductCartsItem>                                                
 								</div>
@@ -549,39 +549,39 @@ function Lending({className }: LendingProps) {
 								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial1.png" alt="Венге"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial1.png'} alt="Венге"/>
 											<span>Венге</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem style={{ position: 'relative', marginTop: '22px'}}>
-											<img src="/lending/lam-matirial2.png" alt="Дуб светлый"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial2.png'} alt="Дуб светлый"/>
 											<span>Дуб светлый</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial3.png" alt="Ольха"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial3.png'} alt="Ольха"/>
 											<span>Ольха</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial4.png" alt="Вишня"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial4.png'} alt="Вишня"/>
 											<span>Вишня</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial5.png" alt="Дуб"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial5.png'} alt="Дуб"/>
 											<span>Дуб</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial6.png" alt="Орех"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial6.png'} alt="Орех"/>
 											<span>Орех</span>
 										</ProductCartsItem>  
 									</SwiperSlide>
@@ -608,7 +608,7 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 
-							<img src="/lending/Vinil1.png" alt="Ламинат"/>
+							<img src={mediaImagesPath+'/lending/Vinil1.png'} alt="Ламинат"/>
 						</div>
 
 						<div className={cn(styles['product-type'])}>
@@ -636,7 +636,7 @@ function Lending({className }: LendingProps) {
                                 
 								</ul>
 							</div>
-							<img src="/lending/Vinil2.png" alt="Ламинат SPC"/>
+							<img src={mediaImagesPath+'/lending/Vinil2.png'} alt="Ламинат SPC"/>
 
 							<div className={cn(styles['product-desc'], styles['floor-desc'])}>
 								<ul>
@@ -650,7 +650,7 @@ function Lending({className }: LendingProps) {
 								</ul>
 							</div>
 
-							<img src="/lending/Vinil3.png" alt="Ламинат SPC2"/>
+							<img src={mediaImagesPath+'/lending/Vinil3.png'} alt="Ламинат SPC2"/>
 						</div>
 					</div>
 				</section>
@@ -669,8 +669,8 @@ function Lending({className }: LendingProps) {
 							</div>
 
 							<div className={cn(styles['double-image'])}>
-								<img src="/lending/roof2.png" alt="Глянцевые натяжные потолки"/>
-								<img src="/lending/roof3.png" alt="Матовые натяжные потолки"/>
+								<img src={mediaImagesPath+'/lending/roof2.png'} alt="Глянцевые натяжные потолки"/>
+								<img src={mediaImagesPath+'/lending/roof3.png'} alt="Матовые натяжные потолки"/>
 							</div>
 						</div>
 
@@ -702,7 +702,7 @@ function Lending({className }: LendingProps) {
                                 монтировать такой потолок можно только в отапливаемых помещениях.  
 								</p>
 							</div>
-							<img src="/lending/roof4.png" alt="сатиновых натяжных потолков"/>
+							<img src={mediaImagesPath+'/lending/roof4.png'} alt="сатиновых натяжных потолков"/>
 						</div>
 
 						<ProductCarts>
@@ -711,37 +711,37 @@ function Lending({className }: LendingProps) {
 								<div className={cn(styles['item-carts'])}>
 
 									<ProductCartsItem>
-										<img src="/lending/lam-matirial1.png" alt="Венге"/>
+										<img src={mediaImagesPath+'/lending/lam-matirial1.png'} alt="Венге"/>
 										<span>Венге</span>
 									</ProductCartsItem>
 
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial1.png" alt="Тканевые"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial1.png'} alt="Тканевые"/>
 										<span>Тканевые</span>
 									</ProductCartsItem>
     
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial2.png" alt="Пленка из ПВХ"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial2.png'} alt="Пленка из ПВХ"/>
 										<span>Пленка из ПВХ</span>
 									</ProductCartsItem>
     
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial3.png" alt="Матовые"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial3.png'} alt="Матовые"/>
 										<span>Матовые</span>
 									</ProductCartsItem>
                                 
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial4.png" alt="Текстурные"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial4.png'} alt="Текстурные"/>
 										<span>Текстурные</span>
 									</ProductCartsItem>
     
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial5.png" alt="Прозрачные"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial5.png'} alt="Прозрачные"/>
 										<span>Полупрозрачные</span>
 									</ProductCartsItem>
     
 									<ProductCartsItem>
-										<img src="/lending/roof-matirial6.png" alt="Сатиновые"/>
+										<img src={mediaImagesPath+'/lending/roof-matirial6.png'} alt="Сатиновые"/>
 										<span>Сатиновые</span>
 									</ProductCartsItem>                          
 								</div>
@@ -749,45 +749,45 @@ function Lending({className }: LendingProps) {
 								<SwiperItem slidesPerView={3} betweenSlider={phoneMatches? 30: 100} className={cn(styles['product-carts-swiper'])}>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/lam-matirial1.png" alt="Венге"/>
+											<img src={mediaImagesPath+'/lending/lam-matirial1.png'} alt="Венге"/>
 											<span>Венге</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/roof-matirial1.png" alt="Тканевые"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial1.png'} alt="Тканевые"/>
 											<span>Тканевые</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem style={{ position: 'relative', marginTop: '22px'}}>
-											<img src="/lending/roof-matirial2.png" alt="Пленка из ПВХ"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial2.png'} alt="Пленка из ПВХ"/>
 											<span>Пленка из ПВХ</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/roof-matirial3.png" alt="Матовые"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial3.png'} alt="Матовые"/>
 											<span>Матовые</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/roof-matirial4.png" alt="Текстурные"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial4.png'} alt="Текстурные"/>
 											<span>Текстурные</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem style={{position: 'relative', marginTop: '22px', wordBreak: 'break-all'}}>
-											<img src="/lending/roof-matirial5.png" alt="Прозрачные"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial5.png'} alt="Прозрачные"/>
 											<span>Полупрозрачные</span>
 										</ProductCartsItem>
 									</SwiperSlide>
 									<SwiperSlide style={{ alignSelf:'center'}} className={cn(styles['product-items-slide'])}>
 										<ProductCartsItem>
-											<img src="/lending/roof-matirial6.png" alt="Сатиновые"/>
+											<img src={mediaImagesPath+'/lending/roof-matirial6.png'} alt="Сатиновые"/>
 											<span>Сатиновые</span>
 										</ProductCartsItem> 
 									</SwiperSlide>
@@ -821,8 +821,8 @@ function Lending({className }: LendingProps) {
 							</div>
 
 							<div className={cn(styles['double-image'])}>
-								<img src="/lending/roof5.png" alt="Сумерки"/>
-								<img src="/lending/roof6.png" alt="День"/>
+								<img src={mediaImagesPath+'/lending/roof5.png'} alt="Сумерки"/>
+								<img src={mediaImagesPath+'/lending/roof6.png'} alt="День"/>
 							</div>
 						</div>
 					</div>
@@ -842,7 +842,7 @@ function Lending({className }: LendingProps) {
 								</p>
 							</div>
 
-							<img src="/lending/window-image.png" alt="Пластиковые окна" />
+							<img src={mediaImagesPath+'/lending/window-image.png'} alt="Пластиковые окна" />
 						</div>
 						<div className={cn(styles['product-type'])}>
 							<h3 className={cn(styles['title-second'])}>Характеристики пластиковых окон</h3>

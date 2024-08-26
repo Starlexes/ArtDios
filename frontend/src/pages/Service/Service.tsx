@@ -1,6 +1,7 @@
 
 import PageHead from '../../components/PageHead/PageHead';
 import ServiceItem from '../../components/ServiceItem/ServiceItem';
+import { mediaImagesPath } from '../../utils/constants';
 import styles from './Service.module.css';
 import { ServiceProps } from './Service.props';
 import cn from 'classnames';
@@ -25,7 +26,7 @@ function Service({className }: ServiceProps) {
                 
 					<div className={cn(styles['service'])}>
 						<ServiceItem className={cn(styles['service-item1'])}>
-							<img src="/service/service1.png" alt="Подбор" />
+							<img src={mediaImagesPath+'/service/service1.png'} alt="Подбор" />
 							<span>Подбор</span>
 						</ServiceItem>
 						<p className={cn(styles['service-text'])}>
@@ -37,7 +38,7 @@ function Service({className }: ServiceProps) {
 
 					<div className={cn(styles['service'])}>
 						<ServiceItem className={cn(styles['service-item2'])}>
-							<img src="/service/service2.png" alt="Замеры" />
+							<img src={mediaImagesPath+'/service/service2.png'} alt="Замеры" />
 							<span>Замеры</span>
 						</ServiceItem>
 						<p className={cn(styles['service-text'])}>
@@ -50,7 +51,7 @@ function Service({className }: ServiceProps) {
 
 					<div className={cn(styles['service'])}>
 						<ServiceItem className={cn(styles['service-item3'])}>
-							<img src="/service/service3.png" alt="Продажа" />
+							<img src={mediaImagesPath+'/service/service3.png'} alt="Продажа" />
 							<span>Продажа</span>
 						</ServiceItem>
 						<p className={cn(styles['service-text'])}>
@@ -63,7 +64,7 @@ function Service({className }: ServiceProps) {
 
 					<div className={cn(styles['service'])}>
 						<ServiceItem className={cn(styles['service-item4'])}>
-							<img src="/service/service4.png" alt="Установка" />
+							<img src={mediaImagesPath+'/service/service4.png'} alt="Установка" />
 							<span>Установка</span>
 						</ServiceItem>
 						<p className={cn(styles['service-text'])}>

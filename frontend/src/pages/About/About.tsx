@@ -1,5 +1,6 @@
 
 import PageHead from '../../components/PageHead/PageHead';
+import { mediaImagesPath } from '../../utils/constants';
 import styles from './About.module.css';
 import { AboutProps } from './About.props';
 import cn from 'classnames';
@@ -23,7 +24,7 @@ function About({className }: AboutProps) {
 				<div className={cn(styles['about-content'])} >
 					<div className={cn(styles['content-item'])}>
 						<div className={cn(styles['logo-item'])}>
-							<img src="/artdios-logo.png" alt="Лого АРТДИОС" />
+							<img src={mediaImagesPath+'/artdios-logo.png'} alt="Лого АРТДИОС" />
 							<p>
                                 — это оптово-розничная компания с
                                 одним из самых крупных складов в России. 
@@ -49,7 +50,7 @@ function About({className }: AboutProps) {
 					</div>
 
 					<div className={cn(styles['content-item'])}>
-						<img src="/about/about1.png" alt="Преимущества фото" />
+						<img src={mediaImagesPath+'/about/about1.png'} alt="Преимущества фото" />
 					</div>
 
 					<div className={cn(styles['content-item'])}>
@@ -62,7 +63,7 @@ function About({className }: AboutProps) {
                             без лишних хлопот.
 						</p>
 
-						<img src="/about/about2.png" alt="Собственный склад фото" />
+						<img src={mediaImagesPath+'/about/about2.png'} alt="Собственный склад фото" />
 					</div>
 
 					<div className={cn(styles['content-item'])}>
@@ -73,14 +74,14 @@ function About({className }: AboutProps) {
                             где можно увидеть и потрогать почти весь ассортимент дверей.
 						</p>
 
-						<img src="/about/about3.png" alt="Выставочный залы фото" />
+						<img src={mediaImagesPath+'/about/about3.png'} alt="Выставочный залы фото" />
 
 						<p>
                             В нашем магазине очень большой выбор кварц-виниловой плитки
                             . Наши консультанты помогут правильно подобрать материалы.
 						</p>
 
-						<img src="/about/about4.png" alt="Выставочный залы кварц-винил" />
+						<img src={mediaImagesPath+'/about/about4.png'} alt="Выставочный залы кварц-винил" />
 
 						<p>
                             У нас индивидуальный подход ко всем клиентам. Наши профессионалы быстро,

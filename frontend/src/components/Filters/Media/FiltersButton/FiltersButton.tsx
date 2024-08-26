@@ -8,7 +8,7 @@ import { FiltersButtonProps } from './FiltersButton.props';
 import cn from 'classnames';
 
 
-function FiltersButton({minPrice, maxPrice, chars, className }: FiltersButtonProps) {
+function FiltersButton({minPrice, maxPrice, chars, className, productLength }: FiltersButtonProps) {
 
 	const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -30,7 +30,7 @@ function FiltersButton({minPrice, maxPrice, chars, className }: FiltersButtonPro
 			</Button>
 
 			<FiltersMedia isOpen={modalOpen} closeModal={onClose}
-				minPrice={minPrice} maxPrice={maxPrice} chars={chars}/>
+				minPrice={minPrice} maxPrice={maxPrice} chars={chars} productLength={productLength}/>
 		</>
 	);
 }

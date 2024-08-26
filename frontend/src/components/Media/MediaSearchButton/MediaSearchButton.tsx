@@ -6,7 +6,7 @@ import { MediaSearchButtonProps } from './MediaSearchButton.props';
 import cn from 'classnames';
 import { setMediaSearchClick } from '../../../slices/buttonSlice';
 import { RootState } from '../../../store';
-import { renderCross } from '../../../utils/constants';
+import { mediaImagesPath, renderCross } from '../../../utils/constants';
 
 
 function MediaSearchButton({className}: MediaSearchButtonProps) {
@@ -21,7 +21,7 @@ function MediaSearchButton({className}: MediaSearchButtonProps) {
 	return (
 		<MediaButton onClick={onClick} className={cn(styles['media-search'], className)}>
 			{isClicked? renderCross()
-				: <img src="/media/loupe.svg" alt="Иконка лупы"/> }
+				: <img src={mediaImagesPath+'/media/loupe.svg'} alt="Иконка лупы"/> }
 			
 		</MediaButton>
 	);

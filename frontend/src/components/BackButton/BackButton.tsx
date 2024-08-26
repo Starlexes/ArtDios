@@ -4,6 +4,7 @@ import styles from './BackButton.module.css';
 import { BackButtonProps } from './BackButton.props';
 import cn from 'classnames';
 import { useMediaPredicate } from 'react-media-hook';
+import { mediaImagesPath } from '../../utils/constants';
 
 function BackButton({ className, btnClassName, onClickBack}: BackButtonProps) {
 
@@ -31,7 +32,7 @@ function BackButton({ className, btnClassName, onClickBack}: BackButtonProps) {
 						</>
 				
 						: 
-						<img src="/media/mobile back.svg" alt="Назад"/>
+						<img src= {mediaImagesPath+'/media/mobile back.svg'} alt="Назад"/>
 					
 				}
 			</div>
