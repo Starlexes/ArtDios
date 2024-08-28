@@ -1,0 +1,4 @@
+.product-types {
+    display: flex;
+    flex-direction: column;
+}

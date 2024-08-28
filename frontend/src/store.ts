@@ -8,6 +8,7 @@ import galleryReducer from './slices/gallerySlice';
 import popProductsReducer from './slices/popularProductSlice';
 import promotionReducer from './slices/promotionSlice';
 import promotionCardReducer from './slices/promotionCardSlice';
+import productTypesReducer from './slices/productTypeSlice';
 import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
 
@@ -23,7 +24,8 @@ const store = configureStore({
 		gallery: galleryReducer,
 		popProducts: popProductsReducer,
 		promotions: promotionReducer,
-		promotionCard: promotionCardReducer
+		promotionCard: promotionCardReducer,
+		productTypes: productTypesReducer
 	}
 });
 
@@ -67,7 +69,13 @@ export const selectPhones = createSelector(
 
 export const selectFilteredCategory = createSelector(
 	[filteredCategory],
-	(category) => category.filter((item) => item.is_show)
+	(category) => category
+		.filter(item => item.is_show)
+		.map(item => ({
+			...item,
+			subcategory: item.subcategory.filter(sub => sub.is_show)
+		}))
+		.filter(item => item.subcategory.length > 0)
 );
 
 export type RootState = ReturnType<typeof store.getState>;

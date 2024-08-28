@@ -15,15 +15,15 @@ function CategoryList({onClickLink, className}: CategoryListProps) {
 
 	const dispatch = useAppDispatch();
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
-	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
+	const {categories: categoriesDefault, isLoading }  = useAppSelector((state: RootState) => state.categories);
 
 	const [subActive, setSubActive] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (categories.length === 0 && !isLoading) {
+		if (categoriesDefault.length === 0 && !isLoading) {
 			dispatch(fetchCategory());
 		}
-	}, [dispatch, categories.length, isLoading]);
+	}, [dispatch, categoriesDefault.length, isLoading]);
 
 	
 

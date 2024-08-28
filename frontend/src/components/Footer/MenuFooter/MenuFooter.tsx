@@ -29,6 +29,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
 	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
 
+
 	useEffect(() => {
 		if (categories.length === 0 && !isLoading) {
 			dispatch(fetchCategory());

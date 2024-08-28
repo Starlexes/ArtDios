@@ -1,5 +1,7 @@
 
 import LogOutButton from '../../admin-components/LogOutButton/LogOutButton';
+import NavItem from '../../components/Header/NavItem/NavItem';
+import { adminHomeRoute, adminRoute } from '../../utils/constants';
 import { checkAuthenticated } from '../../utils/help-funcs';
 import styles from './AdminHeader.module.css';
 import cn from 'classnames';
@@ -11,14 +13,17 @@ function AdminHeader() {
 		<header>
 			
 			<div className={cn(styles['header'])}>
-				<div className={cn(styles['header-content'])}>
-					<span>
+				<NavItem to={adminRoute+adminHomeRoute}>
+					<div className={cn(styles['header-content'])}>
+						<span>
                     Админ-панель -
-					</span>
-					<span className={cn(styles['logo'])}>АРТДИОС</span>
-				</div>
+						</span>
+						<span className={cn(styles['logo'])}>АРТДИОС</span>
+					</div>
+				</NavItem>
 				{checkAuthenticated() && <LogOutButton/>}
 			</div>
+			
 		</header>
 	);
 }

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ClientLayout from './layout/ClientLayout/ClientLayout';
 import Error from './pages/Error/Error';
 import Catalog from './pages/Catalog/Catalog';
-import { aboutRoute, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
+import { aboutRoute, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditProductTypesRoute, adminEditSubCategoryRoute, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
 import ProductCard from './pages/ProductCard/ProductCard';
 import Gallery from './pages/Gallery/Gallery';
 import Contacts from './pages/Contacts/Contacts';
@@ -19,6 +19,10 @@ import AdminLayout from './layout/AdminLayout/AdminLayout';
 import { RequireAuth } from './utils/RequireAuth';
 import LoginForm from './admin-components/LoginForm/LoginForm';
 import HomeMenu from './admin-pages/HomeMenu/HomeMenu';
+import EditCategoryMenu from './admin-pages/EditCategoryMenu/EditCategoryMenu';
+import EditProductTypes from './admin-pages/EditProductTypes/EditProductTypes';
+import EditCategory from './admin-pages/EditCategory/EditCategory';
+import EditSubCategory from './admin-pages/EditSubCategory/EditSubCategory';
 
 
 const router = createBrowserRouter([
@@ -106,7 +110,35 @@ const router = createBrowserRouter([
 			{
 				path: `${adminRoute}${adminHomeRoute}`,
 				element: <HomeMenu/>
+			},
+			{
+				path: `${adminEditCategory}`,				
+				children: [
+					{
+						path: adminEditCategoryMenuRoute,
+						element: <EditCategoryMenu/>
+					},
+					{
+						path: adminEditProductTypesRoute,
+						element: <EditProductTypes/>
+					},
+					{
+						path: adminEditCategoryRoute,
+						element: <EditCategory/>
+					},
+					{
+						path: adminEditSubCategoryRoute,
+						element: <EditSubCategory/>
+					}
+					
+
+					
+				]
+
 			}
+			
+
+			
 		]
 	}
 ]);

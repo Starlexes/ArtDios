@@ -1,0 +1,9 @@
+.add-promo {
+    display: flex;
+    gap: 32px;
+    padding: 8px 20px;
+    font-weight: 400;
+    background-color: var(--delete);
+    margin-right: 16px;
+    width: auto;
+}

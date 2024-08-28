@@ -1,0 +1,25 @@
+.edit-btn {
+    
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.main {
+    background-color: #5f5f5f;
+    color: var(--text-color);
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.delete {
+    background: none;
+    color: var(--delete);
+}
+
+.main:hover {
+    background-color: var(--active-color);
+}
+
+.delete:hover {
+    color: var(--text-color);
+}

@@ -1,0 +1,33 @@
+.model-edit {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    padding: 8px 32px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+    border-radius: 4px;
+    background-color: var(--primary-bgc2);
+    width: 1112px;
+    position: relative;
+}
+
+.accept {
+    padding-left: 12px;
+}
+
+.show-out::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(32, 32, 32, 0.8);
+    z-index: 0;
+}
+
+.show-btn {
+    z-index: 1;
+}

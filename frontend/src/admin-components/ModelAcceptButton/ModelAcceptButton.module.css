@@ -1,0 +1,8 @@
+.accept-btn {
+    background-color: var(--active-color);
+    width: 220px;
+}
+
+.accept-btn:hover {
+    background-color: #bb5316;
+}

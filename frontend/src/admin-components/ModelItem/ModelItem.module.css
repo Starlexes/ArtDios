@@ -1,0 +1,19 @@
+.model-item {
+    display: flex;
+    background-color: var(--title-color);
+    border-radius: 40px;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-color);
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-link {
+    width: 100%;
+}
+
+.model-item:hover {
+    background-color: var(--active-color);
+}

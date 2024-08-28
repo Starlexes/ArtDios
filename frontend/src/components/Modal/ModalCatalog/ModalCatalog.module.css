@@ -16,7 +16,6 @@
     transition: transform 0.3s ease;
     max-height: 90vh;
     overflow-y: auto;
-    
 }
 
 .modal-window::-webkit-scrollbar {

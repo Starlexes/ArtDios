@@ -6,7 +6,7 @@ import { selectArrow } from '../../../../utils/constants';
 
 
 
-interface OptionType {
+export interface OptionType {
     value: string;
     label: string;
 }

@@ -1,0 +1,17 @@
+.edit-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.edit-model {
+    padding: 15px;
+    padding-left: 36px;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+.edit-link {
+    width: 450px;
+}

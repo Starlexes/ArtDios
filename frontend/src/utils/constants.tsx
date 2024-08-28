@@ -46,9 +46,19 @@ export const aboutRoute = '/about/';
 
 export const adminRoute = '/admin/';
 
-export const adminHomeRoute = 'home';
+export const adminHomeRoute = 'home/';
 
-export const adminLoginRoute = 'login';
+export const adminLoginRoute = 'login/';
+
+export const adminEditCategory = 'edit-category/';
+
+export const adminEditCategoryMenuRoute = 'menu/';
+
+export const adminEditProductTypesRoute = 'product-types/';
+
+export const adminEditCategoryRoute = 'category/';
+
+export const adminEditSubCategoryRoute = 'subcategory/';
 
 // Pagination
 
@@ -211,4 +221,29 @@ export const hoursContacts = () => (
 		<circle id="Ellipse 54" cx="20.000000" cy="19.000000" r="18.500000" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000"/>
 		<path id="Vector 64" d="M34 19L20.25 19C20.1 19 20 18.88 20 18.75L20 5" stroke="#FFFFFF" strokeOpacity="1.000000" strokeWidth="1.000000" strokeLinecap="round"/>
 	</svg>
+);
+
+// Admin svgs
+
+export const addPlus = () => (
+	<svg width="40.000000" height="40.000000" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">	
+		<rect id="Rectangle 536" y="17.332031" width="40.000000" height="5.333333" fill="#FFFFFF" fillOpacity="1.000000"/>
+		<rect id="Rectangle 537" x="22.666992" width="40.000000" height="5.333333" transform="rotate(90 22.666992 0.000000)" fill="#FFFFFF" fillOpacity="1.000000"/>
+	</svg>
+);
+
+export const cancelMinus = () => (
+	<svg width="26.000000" height="3.466797" viewBox="0 0 26 3.4668" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 536" width="26.000000" height="3.466667" fill="#FFFFFF" fillOpacity="1.000000"/>
+	</svg>
+
+);
+
+export const adminSelectArrow = () => (
+	<svg width="33.799316" height="19.698242" viewBox="0 0 33.7993 19.6982" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 4244" x="-0.000488" y="2.829102" rx="2.000000" width="4.000000" height="23.797852" transform="rotate(-45 -0.000488 2.829102)" fill="#FFFFFF" fillOpacity="1.000000"/>
+		<rect id="Rectangle 4245" x="30.969727" y="-0.000977" rx="2.000000" width="4.000000" height="23.857666" transform="rotate(45 30.969727 -0.000977)" fill="#FFFFFF" fillOpacity="1.000000"/>
+	</svg>
+
+
 );

@@ -3,7 +3,7 @@ import styles from './MediaCategory.module.css';
 import { MediaCategoryProps } from './MediaCategory.props';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import { RootState } from '../../../store';
+import { RootState, selectFilteredCategory } from '../../../store';
 import { fetchCategory, SubCategoryState } from '../../../slices/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import MediaCategoryItem from '../MediaCategoryItem/MediaCategoryItem';
@@ -14,7 +14,9 @@ import MediaSubCategory from '../MediaSubCategory/MediaSubCategory';
 function MediaCategory({onClose, className }: MediaCategoryProps) {
 	const dispatch = useAppDispatch();
 	const { categories, isLoading } = useAppSelector((state: RootState) => state.categories);
-  
+
+	const filteredCategories = useAppSelector((state: RootState) => selectFilteredCategory(state));
+
 	const [subActive, setSubActive] = useState<boolean>(false);
 
 	const [currentSubCategory, setCurrentSubCategory] = useState<SubCategoryState[] | null>(null);
@@ -42,7 +44,7 @@ function MediaCategory({onClose, className }: MediaCategoryProps) {
 		<div className={cn(styles['category-list'], className)}>
 			<nav>
 				<ul>
-					{categories.filter((item) => item.is_show).map((item, index, array) => (
+					{filteredCategories.map((item, index, array) => (
 						<MediaCategoryItem
 							key={item.name}
 							name={item.name}

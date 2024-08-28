@@ -11,7 +11,7 @@ function AdminPageHead({ className, children }: AdminPageHeadProps) {
 	
 	return (
 		
-		<PageHead className={cn(className)} backClassName={cn(styles['back-btn'])}>
+		<PageHead className={cn(styles['page-head'], className)} backClassName={cn(styles['back-btn'])}>
 			{children}
 		</PageHead>
            

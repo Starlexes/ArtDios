@@ -52,6 +52,10 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.submit-btn:hover {
+    background-color: #b75218;
+}
+
 .errors {
     border: 2px solid var(--error);
 }

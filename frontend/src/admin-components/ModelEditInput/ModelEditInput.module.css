@@ -1,0 +1,13 @@
+.edit-input {
+    width: 392px;
+    border-radius: 4px;
+    color: #212121;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 8px 24px;
+    border: none;
+}
+
+.edit-input::placeholder {
+    color: #9F9F9F;
+}
