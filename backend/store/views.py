@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import get_object_or_404 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.auth import authenticate
 from django.db.models import F, Q, Case, When, Value, CharField, Max, Min
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
+from django.db import transaction
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -14,6 +15,17 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import *
 from .serializers import *
 
+def update_children_is_show(parent_instance):
+
+    if isinstance(parent_instance, ProductType):
+        categories = Category.objects.filter(parent=parent_instance)
+        categories.update(is_show=parent_instance.is_show)
+      
+        for category in categories:
+            SubCategory.objects.filter(parent=category).update(is_show=category.is_show)
+   
+    elif isinstance(parent_instance, Category):
+        SubCategory.objects.filter(parent=parent_instance).update(is_show=parent_instance.is_show)
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
@@ -46,7 +58,7 @@ def post_method(request, model_serializer):
         serializer = model_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     except Exception:
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -57,14 +69,16 @@ def put_method(request, model, model_serializer, pk=None):
         if pk:
             try:
                 instance = model.objects.get(pk=pk)
+             
             except model.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
 
             serializer = model_serializer(instance, data=request.data, partial=True)
-
+            
             if serializer.is_valid():
                 serializer.save()
-                return Response(status=status.HTTP_200_OK)
+               
+                return Response(serializer.data ,status=status.HTTP_200_OK)
             return Response(status=status.HTTP_400_BAD_REQUEST)
         to_show = request.GET.get('to-show', '')
         objects_data = request.data
@@ -102,8 +116,18 @@ class CategoryView(APIView):
     def post(self, request):
         return post_method(request, CategorySerializer)
     
+    @transaction.atomic
     def put(self, request, pk=None):
-        return put_method(request, Category, CategorySerializer, pk=pk)
+        if pk is None:
+            return put_method(request, Category, CategorySerializer, pk=pk)
+        category = get_object_or_404(Category, pk=pk)
+        serializer = CategorySerializer(category, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            category = serializer.save()
+            update_children_is_show(category)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk=None):
         return delete_method(Category, pk=pk)
@@ -115,8 +139,20 @@ class ProductTypeView(APIView):
     def post(self, request):
         return post_method(request, ProductTypeSerializer)
     
+    @transaction.atomic
     def put(self, request, pk=None):
-        return put_method(request, ProductType, ProductTypeSerializer, pk=pk)
+        if pk is None:
+            return put_method(request, ProductType, ProductTypeSerializer, pk=pk)
+        
+        product_type = get_object_or_404(ProductType, pk=pk)
+        serializer = ProductTypeSerializer(product_type, data=request.data, partial=True)
+        
+        if serializer.is_valid():
+   
+            product_type = serializer.save()
+            update_children_is_show(product_type)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk=None):
         return delete_method(ProductType, pk=pk)

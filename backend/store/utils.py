@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.utils import timezone
 from django.core.files.storage import default_storage
+
 import os
 import uuid
+
 
 IMAGE_FIELDS = ['image', 'main_image', 'second_image', 'third_image']
 

@@ -4,18 +4,18 @@ from .models import *
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['id', 'name', 'slug', 'parent', 'is_show']
         
 class ProductTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
-        fields = '__all__'
+        model = ProductType
+        fields = ['id', 'name', 'is_show']
 
 class SubCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SubCategory
-        fields = '__all__'
+        fields = ['id', 'name', 'slug', 'parent', 'is_show', 'discount']
 
 class ClassificationsSerializer(serializers.ModelSerializer):
     subcategory = SubCategorySerializer(many=True)
