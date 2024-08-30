@@ -1,0 +1,11 @@
+.active {
+    border: 10px solid var(--btn-success);
+}
+
+.pop-btn {
+    background: none;
+}
+
+.pop-item:hover {
+    transform: none;
+}

@@ -1,0 +1,15 @@
+.promotions {
+    display: flex;
+    flex-direction: column;
+}
+
+.promo-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 64px;
+    column-gap: 16px;
+}
+
+.add-item {
+    margin: 0 auto;
+}

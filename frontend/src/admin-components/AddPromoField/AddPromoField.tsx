@@ -35,7 +35,7 @@ function AddPromoField({ className, onClickSubmit, onClickAdd, onChangePromo }: 
 
 			<ModelEditInput className={cn(styles['promo-input'], {
 				[styles['errors']]: isErrors
-			})} onChange={onChange} placeholder='Введите число в %' type='number'/>
+			})} onChange={onChange} placeholder='Введите число в %'/>
 
 			
 			<ModelAcceptButton className={cn(styles['add-submit'])} onClick={onClick}>

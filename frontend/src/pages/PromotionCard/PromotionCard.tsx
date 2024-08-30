@@ -13,7 +13,7 @@ import { fetchPromotionCard } from '../../slices/promotionCardSlice';
 import PageHead from '../../components/PageHead/PageHead';
 import axios from 'axios';
 import { mediaImagesPath } from '../../utils/constants';
-
+import DOMPurify from 'dompurify';
 
 function PromotionCard({className }: PromotionCardProps) {
 
@@ -23,6 +23,11 @@ function PromotionCard({className }: PromotionCardProps) {
 	
 	const {promotion, error: promoError, isLoading } = useAppSelector((state: RootState) => state.promotionCard);
 	
+	const DisplayContent = ( htmlContent: string ) => {
+		const cleanHTML = DOMPurify.sanitize(htmlContent);
+		return <div className={cn(styles['promotion-desc'])} dangerouslySetInnerHTML={{ __html: cleanHTML }} />;
+	};
+
 	useEffect(() => {
 		if (currentPromo !== promoParam) {
 			setCurrentPromo(promoParam as string);
@@ -48,9 +53,7 @@ function PromotionCard({className }: PromotionCardProps) {
 							<div className={cn(styles['promotion-image'])}>
 								<img src={axios.defaults.baseURL+promotion.main_image} alt={promotion.name}/>
 							</div>
-							<p className={cn(styles['promotion-desc'])}>
-								{promotion.description}
-							</p>
+							{DisplayContent(promotion.description)}
 						</div>
 					</div>
 				</section>

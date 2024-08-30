@@ -60,6 +60,16 @@ export const adminEditCategoryRoute = 'category/';
 
 export const adminEditSubCategoryRoute = 'subcategory/';
 
+export const adminEditPopularProducts = 'edit-popular-products/';
+
+export const adminEditPopularProductCard = 'edit-popular-product-card/';
+
+export const adminCreateNewCard = 'new-card/';
+
+export const adminEditPromotions = 'edit-promotions/';
+
+export const adminEditPromotionCard = 'edit-promotions-card/';
+
 // Pagination
 
 export const nextSinglePage = () => (
@@ -244,6 +254,12 @@ export const adminSelectArrow = () => (
 		<rect id="Rectangle 4244" x="-0.000488" y="2.829102" rx="2.000000" width="4.000000" height="23.797852" transform="rotate(-45 -0.000488 2.829102)" fill="#FFFFFF" fillOpacity="1.000000"/>
 		<rect id="Rectangle 4245" x="30.969727" y="-0.000977" rx="2.000000" width="4.000000" height="23.857666" transform="rotate(45 30.969727 -0.000977)" fill="#FFFFFF" fillOpacity="1.000000"/>
 	</svg>
+);
 
+export const addItemPlus = () => (
+	<svg width="120.000000" height="120.000000" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 544" y="52.000000" width="120.000000" height="16.000000" fill="#D9D9D9" fillOpacity="1.000000"/>
+		<rect id="Rectangle 545" x="68.000000" width="120.000000" height="16.000000" transform="rotate(90 68.000000 0.000000)" fill="#D9D9D9" fillOpacity="1.000000"/>
+	</svg>
 
 );

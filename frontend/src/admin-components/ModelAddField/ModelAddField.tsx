@@ -59,7 +59,7 @@ function ModelAddField({ className, onClickSubmit, onClickAdd, productTypes=null
 			</AddItemButton>
 			<ModelEditInput className={cn(styles['add-input'], {
 				[styles['errors']]: isErrors
-			})} onChange={onChange} type='number'/>
+			})} onChange={onChange}/>
 
 			{productTypes && productTypes.length > 0 && 
 

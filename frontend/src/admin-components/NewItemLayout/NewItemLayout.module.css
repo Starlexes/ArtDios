@@ -1,0 +1,9 @@
+.item-layout {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 95%;
+    background-color: var(--primary-bgc);
+    padding: 32px;
+    gap: 32px;
+}

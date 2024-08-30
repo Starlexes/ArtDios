@@ -52,6 +52,10 @@
     padding-bottom: 14px;
 }
 
+.promotion-desc > ol, .promotion-desc ul {
+    margin-left: 25px;
+}
+
 .promotion-cover {
     position: absolute;
     left: 50%;
@@ -71,6 +75,9 @@
     .promotion-desc {
         font-size: 14px;
         line-height: 32px;
+    }
+    .promotion-desc > ol, .promotion-desc ul {
+        margin-left: 15px;
     }
     .promotion-content {
         padding: 8px;

@@ -20,7 +20,7 @@ function ModalAskDelete({className, isOpen = false, closeModal, message, onDelet
 			
 			<div className={cn(styles['modal-content'], className)}>
 				<span>
-                Вы уверены, что хотите удалить "{message}"?
+                Вы уверены, что хотите удалить {message}?
 				</span>
                 
 				<div className={cn(styles['modal-buttons'])}>

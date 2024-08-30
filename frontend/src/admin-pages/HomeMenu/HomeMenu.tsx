@@ -2,7 +2,7 @@
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import ModelItem from '../../admin-components/ModelItem/ModelItem';
 import ModelItems from '../../admin-components/ModelItems/ModelItems';
-import { adminEditCategory, adminEditCategoryMenuRoute, adminHomeRoute, adminRoute } from '../../utils/constants';
+import { adminEditCategory, adminEditCategoryMenuRoute, adminEditPopularProducts, adminEditPromotions, adminHomeRoute, adminRoute } from '../../utils/constants';
 import styles from './HomeMenu.module.css';
 import { HomeMenuProps } from './HomeMenu.props';
 import cn from 'classnames';
@@ -34,11 +34,11 @@ function HomeMenu({className }: HomeMenuProps) {
 					Редактирование товаров
 					</ModelItem>
 
-					<ModelItem link={adminRoute+adminHomeRoute}>
+					<ModelItem link={adminEditPopularProducts+adminEditCategoryMenuRoute}>
 					Популярные товары
 					</ModelItem>
 
-					<ModelItem link={adminRoute+adminHomeRoute}>
+					<ModelItem link={adminEditPromotions+adminEditCategoryMenuRoute}>
 					Акции
 					</ModelItem>
 

@@ -33,16 +33,18 @@ function Lending({className }: LendingProps) {
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 	const {popProducts, error: popularError, isLoading: isLoadingPop } = useAppSelector((state: RootState) => state.popProducts);
 	const {promo, error: promoError, isLoading: isLoadingPromo} = useAppSelector((state: RootState) => state.promotions);
-	const namesCategories = popProducts.map(product => {
+
+	
+	const showPopProducts = popProducts.filter(product => product.is_show).slice(0, 3);
+	const namesCategories = showPopProducts.map(product => {
 		const category = categories.find(item => item.id === product.category);
 		return category? category: null;
 	});
-	
-	const showPopProducts = popProducts.filter(product => product.is_show).slice(0, 3);
 	const showPromo = promo.filter(item => item.is_show).slice(0, 3);
 
 	const matches = useMediaPredicate('(min-width: 1200px)');
 	const phoneMatches = useMediaPredicate('(min-width: 311px)'); 
+
 
 	useEffect(() => {
 		if (!categories.length) {

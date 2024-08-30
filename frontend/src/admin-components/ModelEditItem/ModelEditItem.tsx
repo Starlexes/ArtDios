@@ -121,7 +121,7 @@ function ModelEditItem({ className, modelItem, onClickAccept,
 			
 			
 			<ModalAskDelete isOpen={deleteClicked} closeModal={onClickDeleteButton}
-				message={String(modelItem.name)} idItem={modelItem.id}
+				message={`"${String(modelItem.name)}"`} idItem={modelItem.id}
 				onDelete={onClickDelete}/>
 			
 		

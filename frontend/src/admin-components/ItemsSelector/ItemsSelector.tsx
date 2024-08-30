@@ -10,12 +10,10 @@ function ItemsSelector({ className, defaultOption,
 	optionLabels, onChangeOption, selectErrors=false}: ItemsSelectorProps) {
 
 	const defaultValue = {value: '', label: defaultOption};
-	
-    
+
 	const options: OptionType[] = optionLabels.map( item => {
 		return {value: String(item.id), label: item.name};
 	});
-
 
 	const onChange = (option: SingleValue<OptionType>) => {
 		onChangeOption(option);
@@ -49,9 +47,8 @@ function ItemsSelector({ className, defaultOption,
 			className={`admin-select-order ${selectErrors? 'select-errors': ''}`}
 			classNamePrefix='react-select'
 			onChange={onChange}
-			components={{DropdownIndicator: adminSelectArrow, Option: CustomOption}}
+			components={{DropdownIndicator: adminSelectArrow, Option: CustomOption}}			
 		/>
-		
 	);
 }
 

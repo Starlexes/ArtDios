@@ -1,0 +1,30 @@
+.image-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 32px;
+    width: 372px;
+    background-color: var(--text-color);
+    height: max-content;
+}
+
+.errors {
+    border: 2px solid var(--delete);
+}
+
+.image {
+    display: flex;
+    width: 100%;
+    height: 252px;
+    background-color: #C4C4C4;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+}
+
+.image-text {
+    font-size: 28px;
+    font-weight: 700;
+}

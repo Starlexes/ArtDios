@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface PopularProductItemProps extends HTMLProps<HTMLDivElement>{}
+export type PopularProductItemProps = HTMLProps<HTMLDivElement>

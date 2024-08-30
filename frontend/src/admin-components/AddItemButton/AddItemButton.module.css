@@ -23,6 +23,12 @@
 .circle {
     background-color: #F3F3F3;
     border-radius: 50%;
+    max-width: max-content;
+    padding: 35px;
+}
+
+.circle:hover {
+    background-color: var(--active-color);
 }
 
 .rect:hover {

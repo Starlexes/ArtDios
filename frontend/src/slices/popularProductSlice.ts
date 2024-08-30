@@ -1,6 +1,18 @@
 import { createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
+
+export interface UpdatePopularProductState{
+	id?: number,
+    image?: string,
+    is_show?: boolean,
+    category?: number
+}
+
+export interface UpdatePopularProduct {
+	id: number,
+	data: UpdatePopularProductState | FormData
+}
 
 export interface PopularProduct {
     id: number,
@@ -32,6 +44,62 @@ export const fetchPopProduct = createAsyncThunk<PopularProduct[], void, { reject
 		}
 	}
 );
+
+export const updatePopularProduct= createAsyncThunk<PopularProduct, UpdatePopularProduct, { rejectValue: string }>(
+	'popProduct/updatePopularProduct',
+	async ({id, data}, { rejectWithValue }) => {
+		
+		try {
+			const response = await axios.put(`/api/popular-product/${id}/`, data);
+			return response.data;
+		
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось обновить популярный продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
+
+export const addPopularProduct = createAsyncThunk<PopularProduct, FormData, { rejectValue: string }>(
+	'popProduct/addPopularProduct',
+	async (data, { rejectWithValue }) => {
+		
+		try {
+			const response = await axios.post('/api/popular-product/', data, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
+			return response.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось добавить популярный продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
+
+export const deletePopularProduct = createAsyncThunk<number, number, { rejectValue: string }>(
+	'popProduct/deletePopularProduct',
+	async (id, { rejectWithValue }) => {
+		
+		try {
+			await axios.delete(`/api/popular-product/${id}/`);
+			return id;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось удалить популярный продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
   
 
 const popProductSlice = createSlice({
@@ -59,6 +127,16 @@ const popProductSlice = createSlice({
 			state.isLoading = false;
 			state.error = action.payload as string;
 			console.error('Error fetching product card:', action.payload);
+		});
+
+		builder.addCase(updatePopularProduct.fulfilled, (state, action: PayloadAction<PopularProduct>) => {
+			state.popProducts = state.popProducts.map(item => item.id === action.payload.id? action.payload: item );
+		});
+		builder.addCase(deletePopularProduct.fulfilled, (state, action: PayloadAction<number>) => {
+			state.popProducts = state.popProducts.filter(item => item.id !== action.payload);
+		});
+		builder.addCase(addPopularProduct.fulfilled, (state, action: PayloadAction<PopularProduct>) => {
+			state.popProducts = [...state.popProducts, action.payload];
 		});
 	}
 });

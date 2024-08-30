@@ -1,0 +1,8 @@
+.edit-area {
+    background-color: var(--text-color);
+    max-width: 360px;
+}
+
+.errors {
+    border: 2px solid var(--delete);
+}

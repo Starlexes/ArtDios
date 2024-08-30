@@ -24,7 +24,6 @@ function Promotions({className }: PromotionsProps) {
 	
 	const {promo, error: promoError, isLoading } = useAppSelector((state: RootState) => state.promotions);
 	
-	const showPromo = promo.filter(item => item.is_show);
 
 	useEffect(() => {
 		if (!promo.length) {
@@ -46,7 +45,7 @@ function Promotions({className }: PromotionsProps) {
 						<PageHead>Акции</PageHead>
                     
 						<PopularProductItems className={cn(styles['promo-items'], className)}>
-							{showPromo.map( promo => (
+							{promo.map( promo => (
 								<NavItem to={promotionRoute+promo.slug} key={promo.id} className={cn(styles['promo-item'])}>
 									<PopularProductItem>
 										<PopularProductContent isPromo={true}>

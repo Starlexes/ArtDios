@@ -1,0 +1,25 @@
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+.upload-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #7B7B7B;
+}
+.file-upload:hover .upload-text {
+    color: #686767;
+}

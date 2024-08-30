@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Promotion } from './promotionSlice';
 
+
 export interface PromotionCardState {
     promotion: Promotion,
     isLoading: boolean,
