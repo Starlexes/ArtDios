@@ -7,7 +7,7 @@ import cn from 'classnames';
 function ItemCardInput({ className, children, errors, ...props}: ItemCardInputProps) {
 
 	return (
-		
+
 		<Input name='item-property' className={cn(styles['card-input'], {
 			[styles['errors']]: errors
 		}, className)} {...props}>
@@ -15,7 +15,7 @@ function ItemCardInput({ className, children, errors, ...props}: ItemCardInputPr
 			{children}
 		
 		</Input>
-           
+	
 	);
 
 }

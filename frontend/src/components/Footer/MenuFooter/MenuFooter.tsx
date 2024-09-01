@@ -7,28 +7,22 @@ import { MenuFooterProps } from './MenuFooter.props';
 import cn from 'classnames';
 import { RootState, selectFilteredCategory } from '../../../store';
 import { useSelector} from 'react-redux';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
-import { fetchContacts } from '../../../slices/contactSlice';
 import { catalog, deliveryPaymentsRoute, mediaImagesPath, serviceRoute } from '../../../utils/constants';
 
 
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
-	const {phones, emails} = useSelector((state: RootState) => state.contacts.contacts);
-	
+	const {contacts} = useSelector((state: RootState) => state.contacts);
+	const {phones, emails} = contacts;
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
-
 	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
 
 	const dispatch = useAppDispatch();
-
-	const memoizedPhones = useMemo(() => phones.slice(), [phones]);
-	const memoizedEmails = useMemo(() => emails.slice(), [emails]);
-
 
 	useEffect(() => {
 		if (categories.length === 0 && !isLoading) {
@@ -36,12 +30,6 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 		}
 	}, [dispatch, categories.length, isLoading]);
 
-	useEffect(() => {
-		if ((phones.length === 0 || emails.length === 0) && !isLoading) {
-			dispatch(fetchContacts());
-		}
-		
-	},  [dispatch, phones.length, emails.length, isLoading]);
 
 	return (
 		<div className={cn(styles['menu-footer'], className)} {...props}>
@@ -89,13 +77,13 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Контакты</MenuTitle>
-				{memoizedPhones.map(item => (
+				{phones.length > 0 && phones.map(item => (
 					<AnchorNavItem className={cn(styles['contact-text'])} href={`tel:${item}`} key={item}>
 						{item}
 					</AnchorNavItem>
 				))}
 
-				{memoizedEmails.map(item => (
+				{emails.length > 0 && emails.map(item => (
 					<AnchorNavItem className={cn(styles['contact-text'])} href={`mailto:${item}`} key={item}>
 						{item}
 					</AnchorNavItem>

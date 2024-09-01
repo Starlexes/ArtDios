@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { RootState } from '../store';
 
 
 export interface ContactState {
@@ -32,30 +31,17 @@ export interface ContactsState {
 
 export const fetchContacts = createAsyncThunk<ContactGetState, void, object>(
 	'contacts/fetchContacts',
-	async (_, { getState, rejectWithValue  }) => {
-		const state= getState() as RootState ;
-		
-		if (state.contacts.contacts.phones.length > 0 || state.contacts.contacts.emails.length > 0) {
-			return {
-				phones: state.contacts.contacts.phones.map(phone => ({ number: phone })),
-				emails: state.contacts.contacts.emails.map(email => ({ email })),
-				addresses: state.contacts.contacts.addresses.map(address => ({ address })),
-				working_hours: [{...state.contacts.contacts.workingHours}]			
-					.map(hours => ({
-						opening_hours: hours.openingHours,
-						closing_hours: hours.closingHours
-					}))
-			} as ContactGetState;
-		} else {
-			try {
-				const response = await axios.get('/api/contacts/');
-				return response.data as ContactGetState;
-			} catch (error) {
-				return rejectWithValue((error as Error).message);
-			}
+	async (_, { rejectWithValue  }) => {
+	
+		try {
+			const response = await axios.get('/api/contacts/');
+			return response.data as ContactGetState;
+		} catch (error) {
+			return rejectWithValue((error as Error).message);
 		}
 	}
 );
+
   
 const initialState: ContactsState = {
 	contacts: {
@@ -97,13 +83,19 @@ const contactSlice = createSlice({
 		});
 		builder.addCase(fetchContacts.fulfilled, (state, action) => {
 			
-			state.contacts.emails = action.payload.emails.map(item => item.email);
-			state.contacts.phones = action.payload.phones.map(item => item.number);
-			state.contacts.addresses = action.payload.addresses.map(item => item.address);
-			state.contacts.workingHours = { 
+			state.contacts.emails = action.payload.emails.length > 0?
+				action.payload.emails.map(item => item.email): [];
+			state.contacts.phones = action.payload.phones.length > 0?
+				action.payload.phones.map(item => item.number): [];
+			state.contacts.addresses = action.payload.addresses.length > 0?
+				action.payload.addresses.map(item => item.address): [];
+			state.contacts.workingHours = action.payload.working_hours.length > 0? { 
 				...action.payload.working_hours[0],
 				openingHours: action.payload.working_hours[0].opening_hours,
 				closingHours: action.payload.working_hours[0].closing_hours
+			}: {
+				openingHours: 0,
+				closingHours: 0
 			};
 			state.isLoading = false;
 		});

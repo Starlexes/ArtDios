@@ -5,6 +5,6 @@ export interface ModalAskDeleteProps extends HTMLProps<HTMLDivElement> {
     isOpen: boolean,
     closeModal: () => void,
     message: string,
-    onDelete: (id: number) => void,
+    onDelete?: (id: number) => void,
     idItem: number | undefined
 }

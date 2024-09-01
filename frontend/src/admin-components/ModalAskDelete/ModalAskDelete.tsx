@@ -26,11 +26,9 @@ function ModalAskDelete({className, isOpen = false, closeModal, message, onDelet
 				<div className={cn(styles['modal-buttons'])}>
 					<ModelEditButton typeAction='main' onClick={() => {
 						if (idItem) {
-							onDelete(idItem);
+							onDelete && onDelete(idItem);
 							closeModal();
-						}
-						
-						
+						}												
 					}} className={cn(styles['modal-button'])}>
                         Да
 					</ModelEditButton>
@@ -42,9 +40,7 @@ function ModalAskDelete({className, isOpen = false, closeModal, message, onDelet
 				</div>
 				
 			</div>
-			
-		
-			
+								
 		</Modal>
 	);
 }

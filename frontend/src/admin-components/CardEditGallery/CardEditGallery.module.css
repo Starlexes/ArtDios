@@ -1,0 +1,32 @@
+.action-btn {
+    width: 88px;
+    height: 88px;
+    padding: 17px;
+}
+
+.gallery-parts, .gallery-items, .gallery-item {
+    display: flex;
+}
+
+
+.gallery-items, .gallery-item {
+    flex-direction: column;
+}
+
+.gallery-parts, .gallery-items {
+    gap: 32px;
+}
+
+.gallery-item {
+    gap: 16px;
+}
+
+textarea.area-input, div.area-input {
+    height: 350px;
+    width: 286px;
+}
+
+div.area-input {
+    overflow-y: auto;
+}
+

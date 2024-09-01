@@ -54,6 +54,8 @@ export const adminEditCategory = 'edit-category/';
 
 export const adminEditCategoryMenuRoute = 'menu/';
 
+export const adminCreateNewCard = 'new-card/';
+
 export const adminEditProductTypesRoute = 'product-types/';
 
 export const adminEditCategoryRoute = 'category/';
@@ -64,11 +66,21 @@ export const adminEditPopularProducts = 'edit-popular-products/';
 
 export const adminEditPopularProductCard = 'edit-popular-product-card/';
 
-export const adminCreateNewCard = 'new-card/';
-
 export const adminEditPromotions = 'edit-promotions/';
 
 export const adminEditPromotionCard = 'edit-promotions-card/';
+
+export const adminEditContacts = 'edit-contacts/';
+
+export const adminEditPhones = 'phones/';
+
+export const adminEditEmails = 'emails/';
+
+export const adminEditAddresses = 'addresses/';
+
+export const adminEditWorkingHours = 'working-hours/';
+
+export const adminEditGallery = 'edit-gallery/';
 
 // Pagination
 
@@ -260,6 +272,12 @@ export const addItemPlus = () => (
 	<svg width="120.000000" height="120.000000" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<rect id="Rectangle 544" y="52.000000" width="120.000000" height="16.000000" fill="#D9D9D9" fillOpacity="1.000000"/>
 		<rect id="Rectangle 545" x="68.000000" width="120.000000" height="16.000000" transform="rotate(90 68.000000 0.000000)" fill="#D9D9D9" fillOpacity="1.000000"/>
+	</svg>
+);
+
+export const removeItemMinus = () => (
+	<svg width="54.000000" height="8.000000" viewBox="0 0 54 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 544" width="54.000000" height="8.000000" fill="#D9D9D9" fillOpacity="1.000000"/>
 	</svg>
 
 );

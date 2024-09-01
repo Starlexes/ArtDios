@@ -29,7 +29,7 @@ function EditPromotionCard({className }: EditPromotionCardProps) {
 	
 	const [image, setImage] = useState<File | null>(null);
 	const [secondImage, setSecondImage] = useState<File | null>(null);
-	const [name, setName] = useState<string>();
+	const [name, setName] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
 

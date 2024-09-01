@@ -1,0 +1,12 @@
+.hours-items {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+}
+
+
+.action-btn {
+    width: 88px;
+    height: 88px;
+    padding: 17px;
+}

@@ -3,7 +3,6 @@ import { ItemCardTextAreaProps } from './ItemCardTextArea.props';
 import cn from 'classnames';
 import 'react-quill-new/dist/quill.snow.css';
 import './textAreaStyles.css';
-
 import { useRef } from 'react';
 import ReactQuill from 'react-quill-new';
 

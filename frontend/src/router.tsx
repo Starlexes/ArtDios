@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ClientLayout from './layout/ClientLayout/ClientLayout';
 import Error from './pages/Error/Error';
 import Catalog from './pages/Catalog/Catalog';
-import { aboutRoute, adminCreateNewCard, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditPopularProductCard, adminEditPopularProducts, adminEditProductTypesRoute, adminEditPromotionCard, adminEditPromotions, adminEditSubCategoryRoute, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
+import { aboutRoute, adminCreateNewCard, adminEditAddresses, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditContacts, adminEditEmails, adminEditGallery, adminEditPhones, adminEditPopularProductCard, adminEditPopularProducts, adminEditProductTypesRoute, adminEditPromotionCard, adminEditPromotions, adminEditSubCategoryRoute, adminEditWorkingHours, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
 import ProductCard from './pages/ProductCard/ProductCard';
 import Gallery from './pages/Gallery/Gallery';
 import Contacts from './pages/Contacts/Contacts';
@@ -29,6 +29,12 @@ import PopularProductCard from './admin-pages/PopularProductCard/PopularProductC
 import EditPromotions from './admin-pages/EditPromotions/EditPromotions';
 import CreatePromotions from './admin-pages/CreatePromotions/CreatePromotions';
 import EditPromotionCard from './admin-pages/EditPromotionCard/EditPromotionCard';
+import EditContactsMenu from './admin-pages/EditContactsMenu/EditContactsMenu';
+import EditPhones from './admin-pages/EditPhones/EditPhones';
+import EditEmails from './admin-pages/EditEmails/EditEmails';
+import EditAddress from './admin-pages/EditAddress/EditAddress';
+import EditWorkingHours from './admin-pages/EditWorkingHours/EditWorkingHours';
+import EditGallery from './admin-pages/EditGallery/EditGallery';
 
 
 const router = createBrowserRouter([
@@ -174,6 +180,35 @@ const router = createBrowserRouter([
 						element: <CreatePromotions/>
 					}
 				]
+			},
+			{
+				path: `${adminEditContacts}`,
+				children: [
+					{
+						path: adminEditCategoryMenuRoute,
+						element: <EditContactsMenu/>
+					},
+					{
+						path: adminEditPhones,
+						element: <EditPhones/>
+					},
+					{
+						path: adminEditEmails,
+						element: <EditEmails/>
+					},
+					{
+						path: adminEditAddresses,
+						element: <EditAddress/>
+					},
+					{
+						path: adminEditWorkingHours,
+						element: <EditWorkingHours/>
+					}																			
+				]
+			},
+			{			
+				path: adminEditGallery,
+				element: <EditGallery/>				
 			}
 			
 

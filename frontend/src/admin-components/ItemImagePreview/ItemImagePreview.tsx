@@ -6,7 +6,7 @@ import ImageUploader from '../ImageUploader/ImageUploader';
 import axios from 'axios';
 
 
-function ItemImagePreview({ className, image, onChange, errors}: ItemImagePreviewProps) {
+function ItemImagePreview({ className, image, onChange, errors, isShowInput=true}: ItemImagePreviewProps) {
 
 	const url = image? image instanceof File? URL.createObjectURL(image):
 		axios.defaults.baseURL+image: null;
@@ -24,8 +24,12 @@ function ItemImagePreview({ className, image, onChange, errors}: ItemImagePrevie
 			}
 			</div>
 			
-			<span className={cn(styles['image-text'])}>Изображение:</span>
-			<ImageUploader onChange={onChange}/>
+			{ isShowInput &&
+				<>
+					<span className={cn(styles['image-text'])}>Изображение:</span>
+					<ImageUploader onChange={onChange}/>
+				</>
+			}
 		
 		</div>
            

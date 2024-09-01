@@ -9,6 +9,10 @@ import popProductsReducer from './slices/popularProductSlice';
 import promotionReducer from './slices/promotionSlice';
 import promotionCardReducer from './slices/promotionCardSlice';
 import productTypesReducer from './slices/productTypeSlice';
+import phonesReducer from './slices/phoneSlice';
+import emailsReducer from './slices/emailSlice';
+import addressReducer from './slices/addressSlice';
+import workingHoursReducer from './slices/workingHours';
 import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
 
@@ -25,7 +29,11 @@ const store = configureStore({
 		popProducts: popProductsReducer,
 		promotions: promotionReducer,
 		promotionCard: promotionCardReducer,
-		productTypes: productTypesReducer
+		productTypes: productTypesReducer,
+		phones: phonesReducer,
+		emails: emailsReducer,
+		address: addressReducer,
+		workingHours: workingHoursReducer
 	}
 });
 
@@ -60,11 +68,9 @@ export const convertedChars = createSelector(
 );
 
 
-
-
 export const selectPhones = createSelector(
 	[phones],
-	(phones) => phones.slice(0, 2)
+	(phones) => phones.length > 0? phones.slice(0, 2): []
 );
 
 export const selectFilteredCategory = createSelector(

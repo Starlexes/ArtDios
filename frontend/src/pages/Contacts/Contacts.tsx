@@ -1,14 +1,11 @@
 import styles from './Contacts.module.css';
 import cn from 'classnames';
 import { useAppSelector } from '../../hooks';
-import { AppDispatch, RootState } from '../../store';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { RootState } from '../../store';
 import Spinner from '../../components/Spinner/Spinner';
 import { Helmet, HelmetProvider} from 'react-helmet-async';
 import Error from '../Error/Error';
 import PageHead from '../../components/PageHead/PageHead';
-import { fetchContacts } from '../../slices/contactSlice';
 import { ContactsProps } from './Contacts.props';
 import ContactsItems from '../../components/ContactsItems/ContactsItems/ContactsItems';
 import ContactsItem from '../../components/ContactsItems/ContactsItem/ContactsItem';
@@ -21,18 +18,11 @@ import AnchorNavItem from '../../components/AnchorNavItem/AnchorNavItem';
 
 function Contacts({className }: ContactsProps) {
 
-	const dispatch = useDispatch<AppDispatch>();
 	const { contacts, isLoading, error } = useAppSelector((state: RootState) => state.contacts);
 	const {phones, addresses, emails, workingHours} = contacts;
-	const openTime = String(workingHours.openingHours).slice(0, 5);
-	const closeTime = String(workingHours.closingHours).slice(0, 5);
-
-	useEffect(() => {
-		if (!contacts) {
-			dispatch(fetchContacts());
-		}
-	}, [dispatch, contacts]);
-
+	const openTime = String(workingHours.openingHours).length < 2? '00:00': String(workingHours.openingHours).slice(0, 5);
+	const closeTime = String(workingHours.closingHours).length < 2? '00:00': String(workingHours.closingHours).slice(0, 5);
+	
 	return (
 		!error? 
 			isLoading? <Spinner/>: 
@@ -52,12 +42,12 @@ function Contacts({className }: ContactsProps) {
 									{phoneContacts()}
 								</ContactsImage>
 								<ContactsContent className={cn(styles['phones-content'])}>
-									<AnchorNavItem href={`tel:${phones[0]}`}
+									<AnchorNavItem href={`tel:${phones.length > 0? phones[0]: '#'}`}
 										className={cn(styles['phone-link'], styles['link-content'])}
-									>{phones[0]}</AnchorNavItem>
-									<AnchorNavItem href={`tel:${phones[1]}`}
+									>{phones.length > 0? phones[0]: ''}</AnchorNavItem>
+									<AnchorNavItem href={`tel:${phones.length > 0? phones[1]: '#'}`}
 										className={cn(styles['phone-link'], styles['link-content'])}
-									>{phones[1]}</AnchorNavItem>
+									>{phones.length > 0? phones[1]: ''}</AnchorNavItem>
 								</ContactsContent>
 							</ContactsItem>
 
@@ -67,9 +57,9 @@ function Contacts({className }: ContactsProps) {
 								</ContactsImage>
 								<ContactsContent>
 								
-									<AnchorNavItem href={`mailto:${emails[0]}`}
+									<AnchorNavItem href={`mailto:${emails.length > 0? emails[0]: ''}`}
 										className={cn(styles['link-content'])}
-									>{emails[0]}</AnchorNavItem>
+									>{emails.length > 0? emails[0]: ''}</AnchorNavItem>
 								</ContactsContent>
 							</ContactsItem>
 
@@ -78,7 +68,7 @@ function Contacts({className }: ContactsProps) {
 									{addressContacts()}
 								</ContactsImage>
 								<ContactsContent>
-									{addresses[0]}
+									{addresses.length > 0? addresses[0]: ''}
 								</ContactsContent>
 							</ContactsItem>
 

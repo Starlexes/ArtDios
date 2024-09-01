@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { RootState } from '../../../store';
 import NavItem from '../../Header/NavItem/NavItem';
@@ -12,15 +12,18 @@ import { fetchContacts } from '../../../slices/contactSlice';
 function ModalCatalogContacts({ className }: ModalCatalogContactsProps) {
     
 	const phones = useAppSelector((state: RootState) => state.contacts.contacts.phones);
-	const {contacts, isLoading} = useAppSelector((state: RootState) => state.contacts);
-	const mainPhone = phones[0];const dispatch = useAppDispatch();
+	const {isLoading} = useAppSelector((state: RootState) => state.contacts);
+	const mainPhone = phones.length > 0? phones[0]: '';
+	const dispatch = useAppDispatch();
+	const [hasFetched, setHasFetched] = useState(false);
 
 	useEffect(() => {
-		if ((contacts.phones.length === 0 || contacts.emails.length === 0) && !isLoading) {
+		if (!hasFetched && !isLoading) {
+			setHasFetched(true);
 			dispatch(fetchContacts());
 		}
 		
-	},  [dispatch, contacts.phones.length, contacts.emails.length, isLoading]);
+	},  [dispatch, isLoading, hasFetched]);
 
 	return (
 		<div className={cn(styles['modal-contacts'], className)}>

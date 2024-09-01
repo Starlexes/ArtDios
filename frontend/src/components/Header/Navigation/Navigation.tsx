@@ -4,7 +4,7 @@ import styles from './Navigation.module.css';
 import { NavigationProps } from './Navigation.props';
 import cn from 'classnames';
 import { RootState, selectPhones } from '../../../store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchContacts } from '../../../slices/contactSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import NavigationListItem from '../NavigationListItem/NavigationListItem';
@@ -16,15 +16,17 @@ import { contactsRoute, deliveryPaymentsRoute } from '../../../utils/constants';
 function Navigation({className}: NavigationProps) {
 
 	const phones = useAppSelector((state: RootState) => selectPhones(state));
-	const {contacts, isLoading} = useAppSelector((state: RootState) => state.contacts);
+	const {isLoading} = useAppSelector((state: RootState) => state.contacts);
 	const dispatch = useAppDispatch();
+	const [hasFetched, setHasFetched] = useState(false);
 
 	useEffect(() => {
-		if ((contacts.phones.length === 0 || contacts.emails.length === 0) && !isLoading) {
-			dispatch(fetchContacts());
+		if (!hasFetched && !isLoading) {
+			setHasFetched(true);
+			dispatch(fetchContacts());			
 		}
 		
-	},  [dispatch, contacts.phones.length, contacts.emails.length, isLoading]);
+	},  [dispatch, isLoading, hasFetched]);
 
 
 
@@ -54,7 +56,7 @@ function Navigation({className}: NavigationProps) {
 				</NavigationListItem>
 					
 				{
-					phones.map((item, index) => (
+					phones.length > 0 && phones.map((item, index) => (
 						<NavigationListItem key={5+index}>
 							<NavItem className={cn(styles['phone-num'])} to={`tel:${item}`}>
 								{item}

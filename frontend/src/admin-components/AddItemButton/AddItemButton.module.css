@@ -25,6 +25,8 @@
     border-radius: 50%;
     max-width: max-content;
     padding: 35px;
+    display: flex;
+    align-items: center;
 }
 
 .circle:hover {
