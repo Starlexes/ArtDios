@@ -55,7 +55,11 @@ def get_method(request, model, model_serializer, pk=None, slug=None):
     
 def post_method(request, model_serializer):
     try:
-        serializer = model_serializer(data=request.data)
+        data = request.data
+        if isinstance(data, list):
+            serializer = model_serializer(data=request.data, many=True)
+        else:
+            serializer = model_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -81,19 +85,20 @@ def put_method(request, model, model_serializer, pk=None):
                 return Response(serializer.data ,status=status.HTTP_200_OK)
             return Response(status=status.HTTP_400_BAD_REQUEST)
         to_show = request.GET.get('to-show', '')
-        objects_data = request.data
-       
-        object_ids = [obj_data['id'] for obj_data in objects_data]
-        objects_to_update = model.objects.filter(pk__in=object_ids)
+        if to_show:
+            objects_data = request.data
+        
+            object_ids = [obj_data['id'] for obj_data in objects_data]
+            objects_to_update = model.objects.filter(pk__in=object_ids)
 
-        for obj in objects_to_update:
-            if to_show.lower() == 'true':
-                obj.is_show = True
-            else:
-                obj.is_show = False
+            for obj in objects_to_update:
+                if to_show.lower() == 'true':
+                    obj.is_show = True
+                else:
+                    obj.is_show = False
 
-        model.objects.bulk_update(objects_to_update, ['is_show'])
-
+            model.objects.bulk_update(objects_to_update, ['is_show'])
+        
         return Response(status=status.HTTP_200_OK)
     
     except Exception:
@@ -316,7 +321,25 @@ class CharacteristicView(APIView):
         return post_method(request, CharacteristicSerializer)
     
     def put(self, request, pk=None):
-        return put_method(request, Characteristic, CharacteristicSerializer, pk)
+            
+        if pk or not isinstance(request.data, list):
+                return put_method(request, Characteristic, CharacteristicSerializer, pk)
+        
+        try:
+            data = request.data
+            updated_items = []
+            for item in data:
+                item_id = item.get('char_id')
+                char = Characteristic.objects.get(char_id=item_id)
+                serializer = CharacteristicSerializer(char, data=item, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    updated_items.append(serializer.data)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)            
+            return Response(updated_items, status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk=None):
         return delete_method(Characteristic, pk)
@@ -345,7 +368,7 @@ class ProductView(APIView):
             min_price = request.query_params.get('min-price', '')
             max_price = request.query_params.get('max-price', '')
             characteristic_names = request.query_params.getlist('characteristic', '')
-            category = request.query_params.get('category', '')
+            category = request.query_params.getlist('category', '')
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
     
@@ -353,18 +376,25 @@ class ProductView(APIView):
 
             if not admin:
                 products = products.filter(category__is_show=True)
-
+            
             if category:  
-                products = products.filter(
-                    Q(category__parent__slug=category) | Q(category__slug=category)
-                ).annotate(
-                    category_name=Case(
-                        When(category__parent__slug=category, then='category__parent__name'),
-                        When(category__slug=category, then='category__name'),
-                        default=Value(''),
-                        output_field=CharField()
+                if len(category) == 1:
+                    obj = category[0]
+                    products = products.filter(
+                        Q(category__parent__slug=obj) | Q(category__slug=obj)
+                    ).annotate(
+                        category_name=Case(
+                            When(category__parent__slug=obj, then='category__parent__name'),
+                            When(category__slug=obj, then='category__name'),
+                            default=Value(''),
+                            output_field=CharField()
+                        )
                     )
-                )
+                
+                elif len(category) > 1 and admin:
+                    products = products.filter(category__parent__slug__in=category)
+                
+                        
             aggregated_data = products.aggregate(
                 max_category_price=Max(
                     Case(
@@ -457,11 +487,19 @@ class ProductView(APIView):
     def post(self, request):
         return post_method(request, ProductSerializer)
     
-    def put(self, request, pk=None):
+    def put(self, request, pk=None):      
         return put_method(request, Product, ProductSerializer, pk)
-
+    
+    @transaction.atomic
     def delete(self, request, pk=None):
-        return delete_method(Product, pk)
+        if pk is not None:
+            return delete_method(Product, pk)
+        ids = request.data.get('ids', [])
+        if (len(ids) > 0):
+            products = Product.objects.filter(product_id__in=ids)
+            for product in products:
+                product.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class ClassificationsView(APIView):
