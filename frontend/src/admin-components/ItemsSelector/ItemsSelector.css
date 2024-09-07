@@ -2,8 +2,17 @@
     width: 100%;
 }
 
+div.small {
+    width: 256px;
+}
+
 div.select-errors .react-select__control{
     background-color: var(--delete);
+}
+
+div.small .react-select__control{
+    height: 35px;
+    border-radius: 0;
 }
 
 .admin-select-order .react-select__control {
@@ -12,6 +21,15 @@ div.select-errors .react-select__control{
     border: none;
     height: 68px;
     background-color: var(--title-color);
+}
+
+div.small .react-select__single-value, div.small .react-select__input-container {
+    font-size: 14px;
+}
+
+div.small svg {
+    width: 20px;
+    height: 28px;
 }
 
 .admin-select-order .react-select__single-value, .admin-select-order .react-select__input-container {
@@ -27,12 +45,20 @@ div.select-errors .react-select__control{
     padding-left: 26px;
 }
 
+div.small .react-select__value-container {
+    padding-left: 14px;
+}
+
 .admin-select-order .react-select__indicator-separator {
    display: none; 
 }
 
 .admin-select-order .react-select__indicators {
     margin-right: 22px;
+}
+
+div.small .react-select__indicators{
+    margin-right: 12px;
 }
 
 .admin-select-order .react-select__menu {
@@ -42,6 +68,10 @@ div.select-errors .react-select__control{
     border: none;
 }
 
+div.small .react-select__menu {
+    margin: 0;
+}
+
 .admin-select-order .react-select__menu-list {
     padding: 0;
     color: #212121;
@@ -49,6 +79,9 @@ div.select-errors .react-select__control{
     font-weight: 400;
 }
 
+div.small .react-select__menu-list {
+    font-size: 14px;
+}
 
 
 

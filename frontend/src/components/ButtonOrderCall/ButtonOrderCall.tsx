@@ -13,7 +13,8 @@ import { useDispatch } from 'react-redux';
 Modal.setAppElement('#root');
 
 
-function ButtonOrderCall({isProduct=false, className, children, onClickProductOrder}: ButtonOrderCallProps) {
+function ButtonOrderCall({isProduct=false, className, children,
+	onClickProductOrder, commentPlaceholder}: ButtonOrderCallProps) {
 
 	const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
@@ -51,7 +52,7 @@ function ButtonOrderCall({isProduct=false, className, children, onClickProductOr
 				<Button className={className} onClick={onClick} isProduct={isProduct}>{children}</Button>
 				: <MediaButtonOrderCall onClick={onClick}/>
 			}
-			<ModalOrderCall isOpen={modalIsOpen} closeModal={closeModal}/>
+			<ModalOrderCall isOpen={modalIsOpen} closeModal={closeModal} commentPlaceholder={commentPlaceholder}/>
 			<ModalThank isOpen={modalThankIsOpen} closeModal={closeThank}/>
 		</>
 	);

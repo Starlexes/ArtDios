@@ -6,6 +6,7 @@
     color: #1A1A1A;
     background-color: #D6D3D3;
     border: none;
+    max-width: 100%;
 }
 
 .errors {
@@ -14,4 +15,15 @@
 
 .card-input::placeholder {
     color: #9F9F9F;
+}
+
+.card-input:focus {
+    border: 1px solid var(--focus-link);
+}
+
+.light {
+    border-radius: 4px;
+    background-color: #F1F1F1;
+    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #1E1E1E;
 }

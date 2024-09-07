@@ -22,7 +22,8 @@ interface CharsState {
 export interface SubmitFilterParams {
 	minPrice?: string | undefined,
 	maxPrice?: string | undefined,
-	chars?: CharsState[] | undefined
+	chars?: CharsState[] | undefined,
+	category?: string[]
 }
 
 interface SubmitButtonState {

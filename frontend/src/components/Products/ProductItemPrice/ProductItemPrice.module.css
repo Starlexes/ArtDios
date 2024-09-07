@@ -12,6 +12,7 @@
 .old-price {
     color: var(--promo-text);
     position: relative;
+    z-index: -1;
 }
 
 .old-price::before {
@@ -19,11 +20,8 @@
     position: absolute;
     left: -25%;
     top: 50%;
-    
     height: 1px;
     width: 75px;
     background-color: var(--default-color);
     transform: rotate(-15deg);
-   
-   
 }

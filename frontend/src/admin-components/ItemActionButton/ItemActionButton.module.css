@@ -15,6 +15,14 @@
     background-color: var(--delete);
 }
 
+.static {
+    cursor: default;
+}
+
+button.static:hover {
+    background-color: #717171;
+}
+
 .action-btn:hover {
     background-color: var(--active-color);
 }

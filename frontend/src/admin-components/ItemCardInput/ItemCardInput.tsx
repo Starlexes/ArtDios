@@ -4,12 +4,13 @@ import { ItemCardInputProps } from './ItemCardInput.props';
 import cn from 'classnames';
 
 
-function ItemCardInput({ className, children, errors, ...props}: ItemCardInputProps) {
+function ItemCardInput({ className, children, errors, dark=true, ...props}: ItemCardInputProps) {
 
 	return (
 
 		<Input name='item-property' className={cn(styles['card-input'], {
-			[styles['errors']]: errors
+			[styles['errors']]: errors,
+			[styles['light']]: !dark
 		}, className)} {...props}>
 		
 			{children}

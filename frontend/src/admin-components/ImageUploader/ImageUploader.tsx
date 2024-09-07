@@ -4,10 +4,12 @@ import { ImageUploaderProps } from './ImageUploader.props';
 import cn from 'classnames';
 
 
-function ImageUploader({ className, ...props}: ImageUploaderProps) {
+function ImageUploader({ className, dark=true, ...props}: ImageUploaderProps) {
 
 	return (
-		<div className={cn(styles['file-upload'], className)}>
+		<div className={cn(styles['file-upload'], {
+			[styles['light']]: !dark
+		}, className)}>
 			<span className={cn(styles['upload-text'])}>Добавить +</span>
 			<Input type='file' {...props} accept="image/*"/>
              

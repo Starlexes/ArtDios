@@ -1,3 +1,5 @@
 import { InputHTMLAttributes } from 'react';
 
-export type ImageUploaderProps = InputHTMLAttributes<HTMLInputElement>
+export interface ImageUploaderProps extends InputHTMLAttributes<HTMLInputElement> {
+    dark?: boolean
+}

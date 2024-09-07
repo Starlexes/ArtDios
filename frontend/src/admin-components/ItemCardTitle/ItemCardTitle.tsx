@@ -3,11 +3,13 @@ import { ItemCardTitleProps } from './ItemCardTitle.props';
 import cn from 'classnames';
 
 
-function ItemCardTitle({ className, children}: ItemCardTitleProps) {
+function ItemCardTitle({ className, children, dark=false}: ItemCardTitleProps) {
 
 	return (
 		
-		<h3 className={cn(styles['item-title'], className)}>		
+		<h3 className={cn(styles['item-title'], {
+			[styles['dark']]: dark
+		}, className)}>		
 			{children}		
 		</h3>        
 	);

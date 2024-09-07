@@ -3,10 +3,13 @@ import { ItemCardInputAreaProps } from './ItemCardInputArea.props';
 import cn from 'classnames';
 
 
-function ItemCardInputArea({ className, children}: ItemCardInputAreaProps) {
+function ItemCardInputArea({ className, children, dark=false}: ItemCardInputAreaProps) {
 
 	return (
-		<div className={cn(styles['input-area'], className)}>
+		<div className={cn(styles['input-area'], {
+			[styles['dark']]: dark,
+			[styles['light']]: !dark
+		}, className)}>
 			{children}             
 		</div>		       
 	);

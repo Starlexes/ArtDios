@@ -1,0 +1,34 @@
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background-color: var(--title-color);
+    width: 376px;
+    padding: 20px;
+}
+
+.char-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.order {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.action-btn {
+    width: 88px;
+    height: 88px;
+    padding: 17px;
+}
+
+.input-item {
+    width: 222px;
+}

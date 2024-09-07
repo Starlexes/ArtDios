@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ClientLayout from './layout/ClientLayout/ClientLayout';
 import Error from './pages/Error/Error';
 import Catalog from './pages/Catalog/Catalog';
-import { aboutRoute, adminCreateNewCard, adminEditAddresses, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditContacts, adminEditEmails, adminEditGallery, adminEditPhones, adminEditPopularProductCard, adminEditPopularProducts, adminEditProductTypesRoute, adminEditPromotionCard, adminEditPromotions, adminEditSubCategoryRoute, adminEditWorkingHours, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
+import { aboutRoute, adminCreateNewCard, adminEditAddresses, adminEditCatalog, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditContacts, adminEditEmails, adminEditGallery, adminEditPhones, adminEditPopularProductCard, adminEditPopularProducts, adminEditProductCard, adminEditProductTypesRoute, adminEditPromotionCard, adminEditPromotions, adminEditSubCategoryRoute, adminEditWorkingHours, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
 import ProductCard from './pages/ProductCard/ProductCard';
 import Gallery from './pages/Gallery/Gallery';
 import Contacts from './pages/Contacts/Contacts';
@@ -35,6 +35,7 @@ import EditEmails from './admin-pages/EditEmails/EditEmails';
 import EditAddress from './admin-pages/EditAddress/EditAddress';
 import EditWorkingHours from './admin-pages/EditWorkingHours/EditWorkingHours';
 import EditGallery from './admin-pages/EditGallery/EditGallery';
+import CreateProduct from './admin-pages/CreateProduct/CreateProduct';
 
 
 const router = createBrowserRouter([
@@ -209,6 +210,23 @@ const router = createBrowserRouter([
 			{			
 				path: adminEditGallery,
 				element: <EditGallery/>				
+			},
+			{			
+				path: adminEditCatalog,
+				children: [
+					{
+						path: adminEditCategoryMenuRoute,
+						element: <Catalog isAdmin={true}/>
+					},
+					{
+						path: adminCreateNewCard,
+						element: <CreateProduct newItem={true}/>
+					},
+					{
+						path: `${adminEditProductCard}:product`,
+						element: <CreateProduct/>
+					}
+				]			
 			}
 			
 

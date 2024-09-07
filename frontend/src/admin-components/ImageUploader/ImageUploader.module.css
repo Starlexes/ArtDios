@@ -23,3 +23,12 @@
 .file-upload:hover .upload-text {
     color: #686767;
 }
+
+.light .upload-text{
+   color: var(--text-color); 
+   font-size: 14px;
+}
+
+.light:hover .upload-text {
+    color: #c8c8c8
+}

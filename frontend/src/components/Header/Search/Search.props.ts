@@ -1,3 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface SearchProps extends HTMLProps<HTMLDivElement>{}
+export interface SearchProps extends HTMLProps<HTMLDivElement>{
+    isAdmin?: boolean
+}

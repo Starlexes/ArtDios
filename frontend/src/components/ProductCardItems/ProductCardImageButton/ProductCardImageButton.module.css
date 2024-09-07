@@ -12,6 +12,7 @@
     max-height: 70px;
 }
 
-.image-btn:hover {
+.image-btn:hover, .active{
     border: 1px solid #7E7E7E;
 }
+

@@ -17,7 +17,7 @@ export interface ErrorData {
 	agreement?: boolean
 }
 
-function ModalOrderCall({isOpen = false, closeModal}: ModalOrderCallProps) {
+function ModalOrderCall({isOpen = false, closeModal, commentPlaceholder}: ModalOrderCallProps) {
 
 	const [errors, setErrors] = useState<ErrorData>({});
 
@@ -50,7 +50,8 @@ function ModalOrderCall({isOpen = false, closeModal}: ModalOrderCallProps) {
 					textClass='modal-text'					
 				/>
 
-				<ModalForm onClickClose={onClickClose} onSubmit={onSubmit} errors={errors} setErrors={setErrors}/>
+				<ModalForm onClickClose={onClickClose} onSubmit={onSubmit}
+					errors={errors} setErrors={setErrors} commentPlaceholder={commentPlaceholder}/>
 			</div>
 			<ModalCloseButton onClick={onClickClose} className={styles['modal-order']}/>
 		</Modal>

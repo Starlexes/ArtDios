@@ -3,12 +3,13 @@ import { ItemCardAreaInputProps } from './ItemCardAreaInput.props';
 import cn from 'classnames';
 
 
-function ItemCardAreaInput({ className, children, errors, ...props}: ItemCardAreaInputProps) {
+function ItemCardAreaInput({ className, children, errors, dark=true, ...props}: ItemCardAreaInputProps) {
 
 	return (
 
 		<textarea name='item-property' className={cn(styles['card-input'], {
-			[styles['errors']]: errors
+			[styles['errors']]: errors,
+			[styles['light']]: !dark
 		}, className)} {...props}>
 		
 			{children}

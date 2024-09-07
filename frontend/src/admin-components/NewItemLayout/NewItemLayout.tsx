@@ -5,11 +5,14 @@ import cn from 'classnames';
 
 
 
-function NewItemLayout({ className, children }: NewItemLayoutProps) {
+function NewItemLayout({ className, children, dark=true }: NewItemLayoutProps) {
 
 	return (
 		
-		<div className={cn(styles['item-layout'], className)}>
+		<div className={cn(styles['item-layout'], {
+			[styles['dark']]: dark,
+			[styles['light']]: !dark
+		},  className)}>
 			{children}
 		</div>
 		

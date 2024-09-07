@@ -4,6 +4,20 @@
     gap: min(calc( 24 / 1200 * 100vw), 24px);   
 }
 
+.add-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed var(--default-color);
+    height: 418px;
+}
+
+button.action-btn {
+    padding: 24px;
+    width: 134px;
+    height: 134px;
+}
+
 @media (max-width: 1200px) {
     .products-list {
         grid-template-columns: repeat(3, 1fr);

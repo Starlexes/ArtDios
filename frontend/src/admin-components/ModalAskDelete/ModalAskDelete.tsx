@@ -7,7 +7,8 @@ import ModelEditButton from '../ModelEditButton/ModelEditButton';
 
 Modal.setAppElement('#root');
 
-function ModalAskDelete({className, isOpen = false, closeModal, message, onDelete, idItem}: ModalAskDeleteProps) {
+function ModalAskDelete({className, isOpen = false, closeModal, message,
+	onDelete, idItem, idsItems, onDeleteMulty}: ModalAskDeleteProps) {
 
 
 	return (
@@ -28,7 +29,11 @@ function ModalAskDelete({className, isOpen = false, closeModal, message, onDelet
 						if (idItem) {
 							onDelete && onDelete(idItem);
 							closeModal();
-						}												
+						}	
+						if (idsItems) {
+							onDeleteMulty && onDeleteMulty(idsItems);
+							closeModal();
+						}											
 					}} className={cn(styles['modal-button'])}>
                         Да
 					</ModelEditButton>

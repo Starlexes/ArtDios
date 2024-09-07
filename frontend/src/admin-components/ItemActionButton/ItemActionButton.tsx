@@ -11,7 +11,10 @@ function ItemActionButton({ className, children, roleAction, ...props}: ItemActi
 		
 		<Button className={cn(styles['action-btn'], {
 			[styles['accept']]: roleAction === 'accept',
-			[styles['delete']]: roleAction === 'delete'
+			[styles['delete']]: roleAction === 'delete',
+			[styles['static']]: roleAction === 'static'
+
+
 		}, className)} {...props}>
 		
 			{children}

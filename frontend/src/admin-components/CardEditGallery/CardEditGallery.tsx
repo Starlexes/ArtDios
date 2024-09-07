@@ -22,8 +22,8 @@ function CardEditGallery({ className, newItem=false, onClickAccept,
 	const [editClicked, setEditClicked] = useState<boolean>(false);
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
 	const [image, setImage] = useState<File | string | null>(null);
-	const [name, setName] = useState<string>('');
-	const [description, setDescription] = useState<string>('');
+	const [name, setName] = useState<string>(galleryItem? galleryItem.name: '');
+	const [description, setDescription] = useState<string>(galleryItem? galleryItem.description:'');
 	const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
 
 	const onClickEdit = () => {
@@ -61,9 +61,9 @@ function CardEditGallery({ className, newItem=false, onClickAccept,
 							<ItemCardInputLabel>Название:</ItemCardInputLabel>
 							{
 								editClicked || newItem? 
-									<ItemCardInput placeholder='Название...' value={name? name: galleryItem?.name}
+									<ItemCardInput placeholder='Название...' value={name}
 										errors={acceptClicked && !name} onChange={onChangeName}/>
-									: name? name: galleryItem?.name
+									: name
 							}
 							
 						</div>
@@ -71,11 +71,11 @@ function CardEditGallery({ className, newItem=false, onClickAccept,
 						<div className={cn(styles['gallery-item'])}>
 							<ItemCardInputLabel>Описание:</ItemCardInputLabel>
 							{editClicked || newItem? 
-								<ItemCardAreaInput placeholder='Описание...' value={description? description: galleryItem?.description}
+								<ItemCardAreaInput placeholder='Описание...' value={description}
 									errors={acceptClicked && !description} className={cn(styles['area-input'])}
 									onChange={onChangeDescription}/>
 								: <div className={cn(styles['area-input'])}>
-									{description? description: galleryItem?.description}
+									{description}
 								</div>
 							}
 							

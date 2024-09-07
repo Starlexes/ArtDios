@@ -1,10 +1,12 @@
 import { HTMLProps } from 'react';
 
 export interface ModalAskDeleteProps extends HTMLProps<HTMLDivElement> {
-    className?: string | undefined,
+    className?: string,
     isOpen: boolean,
     closeModal: () => void,
     message: string,
     onDelete?: (id: number) => void,
-    idItem: number | undefined
+    onDeleteMulty?: (ids: number[]) => void,
+    idItem?: number,
+    idsItems?: number[]
 }

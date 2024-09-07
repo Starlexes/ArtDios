@@ -3,8 +3,8 @@
     position: relative;
     align-items: center;
     gap: 12px;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 14px;
+    font-weight: 400;
     color: var(--default-color);
 }
 
@@ -33,4 +33,8 @@
 
 .checkbox-label {
     display: flex;
+}
+
+.category-desc {
+    word-break: keep-all;
 }

@@ -3,28 +3,14 @@ import {Product} from './productSlice';
 import axios from 'axios';
 
 export interface ProductCardState {
-    product: Product,
+    product: Product | null,
     isLoading: boolean,
 	error: string | null;
 }
 
 
 const initialState: ProductCardState = {
-	product: {
-		product_id: 0,
-		slug: '',
-		name: '',
-		description: '',
-		price: 0,
-		new_price: null,
-		code: '',
-		image: '',
-		second_image: null,
-		third_image: null,
-		category: 0,
-		category_name: '',
-		characteristics: []
-	},
+	product: null,
 	isLoading: false,
 	error: null
 };

@@ -7,7 +7,7 @@ import { OptionType } from '../../components/Filters/Media/SortingOrderMedia/Sor
 
 
 function ItemsSelector({ className, defaultOption,
-	optionLabels, onChangeOption, selectErrors=false}: ItemsSelectorProps) {
+	optionLabels, onChangeOption, selectErrors=false, small=false}: ItemsSelectorProps) {
 
 	const defaultValue = {value: '', label: defaultOption};
 
@@ -29,11 +29,15 @@ function ItemsSelector({ className, defaultOption,
 				style={{ 
 				
 					backgroundColor: isFocused? '#BEBEBE': 'white', 
-					padding: '16px 26px',
+					padding: small? '10px 12px': '16px 26px',
 					border: '1px solid',
 					boxShadow: 'inset 0px 2px 10px 0px rgba(0, 0, 0, 0.25)',
-					borderRadius: '4px'
-				}} className={className}
+					borderRadius: small? '0': '4px',
+					height: small? '35px': '',
+					display: 'flex',
+					alignItems: 'center'
+					
+				}}
 			>
 				{data.label}
 			</div>
@@ -44,7 +48,7 @@ function ItemsSelector({ className, defaultOption,
 		<Select
 			defaultValue={defaultValue}
 			options={options}
-			className={`admin-select-order ${selectErrors? 'select-errors': ''}`}
+			className={`admin-select-order ${selectErrors? 'select-errors': ''} ${small? 'small': ''} ${className? className: ''}`}
 			classNamePrefix='react-select'
 			onChange={onChange}
 			components={{DropdownIndicator: adminSelectArrow, Option: CustomOption}}			

@@ -10,11 +10,11 @@ import { useDispatch } from 'react-redux';
 import { setClearClick, setSubmitFilterParams } from '../../../slices/buttonSlice';
 
 
-function CheckBoxFilter({propertyName, className, name, desc}: CheckBoxFilterProps) {
+function CheckBoxFilter({propertyName, className, name, desc, isCategory=false}: CheckBoxFilterProps) {
 	const dispatch = useDispatch();
-	const {chars} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
+	const {chars, category} = useAppSelector((state: RootState) => state.buttons.actionSubmitButton.filterparams);
 
-	const descExists = chars?.find(item => item.description === desc);
+	const descExists = isCategory? category?.find(item => item === desc): chars?.find(item => item.description === desc);
 	const initial = descExists? true: false;
 
 	const [isChecked, setIsChecked] = useState<boolean>(initial);
@@ -32,23 +32,43 @@ function CheckBoxFilter({propertyName, className, name, desc}: CheckBoxFilterPro
 		const exists = chars?.some(obj => 
 			obj.name === propertyName && obj.description === desc
 		);
+
+		if (isCategory) {
+			if (descExists && !checked) {
+				const updatedArray = category?.filter(obj => 
+					!(obj === desc)
+				);
+			
+				dispatch(setSubmitFilterParams({ category: updatedArray }));
+			}
+			else if (checked) {
+				
+				const newArray = [
+					...(category ?? []),
+					desc
+				];
+		
+				dispatch(setSubmitFilterParams({ category: newArray }));					
+			}
+		} else {
 	
-		if (exists && !checked) {
+			if (exists && !checked) {
 		
-			const updatedArray = chars?.filter(obj => 
-				!(obj.name === propertyName && obj.description === desc)
-			);
+				const updatedArray = chars?.filter(obj => 
+					!(obj.name === propertyName && obj.description === desc)
+				);
 			
-			dispatch(setSubmitFilterParams({ chars: updatedArray }));
+				dispatch(setSubmitFilterParams({ chars: updatedArray }));
 			
-		} else if (checked) {
-			const newArray = [
-				...(chars ?? []),
-				{ name: propertyName, description: desc }
-			];
+			} else if (checked) {
+				const newArray = [
+					...(chars ?? []),
+					{ name: propertyName, description: desc as string }
+				];
 		
-			dispatch(setSubmitFilterParams({ chars: newArray }));
+				dispatch(setSubmitFilterParams({ chars: newArray }));
 			
+			}
 		}
 	};
 	
@@ -72,8 +92,10 @@ function CheckBoxFilter({propertyName, className, name, desc}: CheckBoxFilterPro
 				onChange={onChange}
 			/>
 			<label className={cn(styles['checkbox-label'])}>
-				<span className={cn(styles['checkbox-desc'])}>
-					{desc}
+				<span className={cn(styles['checkbox-desc'], {
+					[styles['category-desc']]: isCategory
+				})}>
+					{isCategory? propertyName: desc}
 				</span>
 			</label>
 		</div>

@@ -17,6 +17,10 @@
     max-height: 162px;  
 }
 
+.category-list {
+    max-height: max-content;
+}
+
 
 .filter-list::-webkit-scrollbar {
     position: absolute;

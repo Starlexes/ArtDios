@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Characteristic } from './characteristicSlice';
+
 
 export interface Product {
     product_id: number,
@@ -18,6 +19,27 @@ export interface Product {
 	characteristics: Characteristic[]
 }
 
+export interface UpdateProductCard {
+	product_id?: number,
+    slug?: string
+    name?: string,
+    description?: string,
+    price?: number,
+    new_price?: number | null,
+    code?: string,
+    image?: string,
+    second_image?: string | null,
+    third_image?: string | null,
+    category?: number
+	category_name?: string,
+	characteristics?: Characteristic[]
+}
+
+export interface UpdateProductCardState {
+	id: number,
+	data: UpdateProductCard | FormData
+}
+
 export type Sorting = 'asc' | 'desc' | null
 
 export interface ProductParams {
@@ -25,9 +47,9 @@ export interface ProductParams {
     minPrice?: string | null,
     maxPrice?: string | null,
     characteristic?: string[] | null,
-    category?: string,
+    category?: string | string[],
     admin?: boolean,
-    search?: string
+    search?: string,
 }
 
 export interface Products {
@@ -41,6 +63,7 @@ export interface ProductState {
 	category: string,
     isLoading: boolean,
 	error: string | null;
+	createdId: number | null;
 }
 
 const initialState: ProductState = {
@@ -51,7 +74,8 @@ const initialState: ProductState = {
 	},
 	isLoading: false,
 	error: null,
-	category: ''
+	category: '',
+	createdId: null
 };
 
 
@@ -60,15 +84,17 @@ export const fetchProduct = createAsyncThunk<Products, ProductParams, { rejectVa
 	async (params, { rejectWithValue }) => {
 		try {
 	
-			const { sortBy, maxPrice, minPrice, characteristic, category, search} = params;
+			const { sortBy, maxPrice, minPrice, characteristic, category, search, admin} = params;
 
 			const queryParams = {
 				category: category,
+				admin: admin,
 				'sort-by': sortBy,
 				'min-price': minPrice,
 				'max-price': maxPrice,
 				characteristic: characteristic,
 				search: search
+				
 			};
 			
 			const queryString = Object.entries(queryParams)
@@ -86,6 +112,83 @@ export const fetchProduct = createAsyncThunk<Products, ProductParams, { rejectVa
 		}
 	}
 );
+
+export const updateProductCard = createAsyncThunk<Product, UpdateProductCardState, { rejectValue: string }>(
+	'productCard/updateProductCard',
+	async ({id, data}, { rejectWithValue }) => {
+		
+		try {
+			const response = await axios.put(`/api/product/${id}/`, data);
+			return response.data;
+		
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось обновить продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
+
+export const addProductCard = createAsyncThunk<Product, FormData, { rejectValue: string }>(
+	'productCard/addProductCard',
+	async (data, { rejectWithValue }) => {
+		
+		try {
+			const response = await axios.post('/api/product/', data, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
+			return response.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось добавить продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
+
+export const deleteProductCard = createAsyncThunk<number, number, { rejectValue: string }>(
+	'productCard/deleteProductCard',
+	async (id, { rejectWithValue }) => {
+		
+		try {
+			await axios.delete(`/api/product/${id}/`);
+			return id;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось удалить продукт');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
+
+export const deleteProducts = createAsyncThunk<number[], number[], { rejectValue: string }>(
+	'productCard/deleteProducts',
+	async (ids, { rejectWithValue }) => {
+		
+		try {
+			await axios.delete('/api/product/', {
+				data: {
+					ids: ids
+				}
+			});
+			return ids;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log('Не удалось удалить продукты');
+			}
+			
+			return rejectWithValue((error as Error).message);
+		}
+	}
+);
   
 
 const productSlice = createSlice({
@@ -99,6 +202,9 @@ const productSlice = createSlice({
 		},
 		setCategoryProduct(state, action: PayloadAction<string>) {
 			state.category = action.payload;
+		},
+		clearId(state) {
+			state.createdId = null;
 		}
 	}, 
     
@@ -118,8 +224,22 @@ const productSlice = createSlice({
 			state.error = action.payload as string;
 			console.error('Error fetching products:', action.payload);
 		});
+
+		builder.addCase(updateProductCard.fulfilled, (state, action: PayloadAction<Product>) => {
+			state.products.products = state.products.products.map(item => item.product_id === action.payload.product_id? action.payload: item );
+		});
+		builder.addCase(deleteProductCard.fulfilled, (state, action: PayloadAction<number>) => {
+			state.products.products = state.products.products.filter(item => item.product_id !== action.payload);
+		});
+		builder.addCase(deleteProducts.fulfilled, (state, action: PayloadAction<number[]>) => {
+			state.products.products = state.products.products.filter(item => !action.payload.includes(item.product_id));
+		});
+		builder.addCase(addProductCard.fulfilled, (state, action: PayloadAction<Product>) => {
+			state.products.products = [...state.products.products, action.payload];
+			state.createdId = action.payload.product_id;
+		});
 	}
 });
 
-export const { setProduct, setCategoryProduct} = productSlice.actions;
+export const { setProduct, setCategoryProduct, clearId} = productSlice.actions;
 export default productSlice.reducer;

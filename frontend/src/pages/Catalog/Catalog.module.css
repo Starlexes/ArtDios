@@ -18,3 +18,11 @@
     gap: 32px;
 }
 
+div.page-head {
+    margin-bottom: 0;
+}
+
+div.item-actions {
+    align-self: flex-start;
+    margin-bottom: 0;
+}

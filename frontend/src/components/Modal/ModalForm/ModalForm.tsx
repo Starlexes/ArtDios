@@ -29,17 +29,19 @@ interface PostData {
 	comments: string,
 }
 
-const initialFormData: FormData =
+
+
+function ModalForm({onClickClose, errors, setErrors, onSubmit, className, commentPlaceholder }: ModalFormProps) {
+
+	const initialFormData: FormData =
 	{
 		name: '',
 		tel: '',
 		email: '',
-		comments: '',
+		comments: commentPlaceholder? commentPlaceholder: '',
 		agreement: false
 	};
 
-
-function ModalForm({onClickClose, errors, setErrors, onSubmit, className }: ModalFormProps) {
 	const [formData, setFormData] = useState<FormData>(initialFormData);
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -157,7 +159,8 @@ function ModalForm({onClickClose, errors, setErrors, onSubmit, className }: Moda
 				</label>
 
 				<label>
-					<ModalTextArea name='comments' onChange={handleChange} placeholder='Комментарии'/>
+					<ModalTextArea name='comments' onChange={handleChange} placeholder='Комментарии'
+						value={formData.comments}/>
 				</label>
 			</div>
 

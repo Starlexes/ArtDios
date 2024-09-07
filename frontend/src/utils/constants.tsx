@@ -16,6 +16,8 @@ export const mediaImagesPath = '';
 
 export const itemsPerPage = 12;
 
+export const commentPlaceholderOrderCall = 'Здравствуйте, хочу приобрести';
+
 // Router names
 
 export const catalog = '/catalog/';
@@ -81,6 +83,10 @@ export const adminEditAddresses = 'addresses/';
 export const adminEditWorkingHours = 'working-hours/';
 
 export const adminEditGallery = 'edit-gallery/';
+
+export const adminEditCatalog = 'edit-catalog/';
+
+export const adminEditProductCard = 'edit-product-card/';
 
 // Pagination
 
@@ -278,6 +284,13 @@ export const addItemPlus = () => (
 export const removeItemMinus = () => (
 	<svg width="54.000000" height="8.000000" viewBox="0 0 54 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<rect id="Rectangle 544" width="54.000000" height="8.000000" fill="#D9D9D9" fillOpacity="1.000000"/>
+	</svg>
+);
+
+export const selectedProductFlag = () => (
+	<svg width="120.652344" height="94.336914" viewBox="0 0 120.652 94.3369" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect id="Rectangle 632" y="26.389648" rx="9.347253" width="18.694506" height="76.287682" transform="rotate(-28.1333 0.000000 26.389648)" fill="#40D128" fillOpacity="1.000000"/>
+		<rect id="Rectangle 633" x="107.433594" y="-0.000977" rx="9.347253" width="18.694506" height="114.718216" transform="rotate(45 107.433594 -0.000977)" fill="#40D128" fillOpacity="1.000000"/>
 	</svg>
 
 );

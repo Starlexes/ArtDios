@@ -1,4 +1,6 @@
 import { HTMLProps } from 'react';
 
 
-export interface CatalogProps extends HTMLProps<HTMLDivElement>{}
+export interface CatalogProps extends HTMLProps<HTMLDivElement>{
+    isAdmin?: boolean
+}

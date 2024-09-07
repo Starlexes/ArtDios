@@ -9,14 +9,14 @@ import cn from 'classnames';
 import SearchSuggestionsItem from '../SearchSuggestionsItem/SearchSuggestionsItem';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { catalog, mediaImagesPath, seachingRoute } from '../../../utils/constants';
+import { adminEditCatalog, adminEditCategoryMenuRoute, adminHomeRoute, adminRoute, catalog, mediaImagesPath, seachingRoute } from '../../../utils/constants';
 
 export interface Suggestion {
 	name: string,
 	slug: string
 } 
 
-function Search({className}: SearchProps) {
+function Search({className, isAdmin=false}: SearchProps) {
 
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -44,7 +44,8 @@ function Search({className}: SearchProps) {
 
 	const onClickSearch = () => {
 		if (inputValue) {
-			navigate(`${catalog}${seachingRoute}?s=${inputValue}`);
+			isAdmin? navigate(`${adminRoute+adminHomeRoute+adminEditCatalog+adminEditCategoryMenuRoute}?s=${inputValue}`)
+				: navigate(`${catalog}${seachingRoute}?s=${inputValue}`);
 			setSuggestsActive(false);
 		}
 	};
@@ -73,13 +74,15 @@ function Search({className}: SearchProps) {
 	};
 
 	useEffect(() => {
-		if (inputValue)  {
-			fetchSuggestions(inputValue);
-		} else {
-			setSuggestsActive(false);
-			setSuggestions([]);
+		if (!isAdmin) {
+			if (inputValue)  {
+				fetchSuggestions(inputValue);
+			} else {
+				setSuggestsActive(false);
+				setSuggestions([]);
+			}
 		}
-	}, [inputValue]);
+	}, [inputValue, isAdmin]);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
@@ -109,7 +112,7 @@ function Search({className}: SearchProps) {
 				<img src={mediaImagesPath+'/other/loupe.svg'} alt="Иконка лупы"/>
 			</Button>
 
-			{suggestsActive && suggestions.length > 0 && inputValue && 
+			{!isAdmin && suggestsActive && suggestions.length > 0 && inputValue && 
 				<SearchSuggestions onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}> 
 					{ suggestions.slice(0, 10).map(item => (
 						<SearchSuggestionsItem key={item.slug} link={item.slug} onClickLink={onClickLink} suggestItem={item}>
