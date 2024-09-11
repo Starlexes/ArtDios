@@ -65,7 +65,7 @@ function EditPhones({className }: EditPhonesProps) {
 																				
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Телефоны:</ItemCardInputLabel>
-							{phones.map(phone => (
+							{phones.length > 0 && phones.map(phone => (
 								<CardEditItemActions key={phone.id}>
 									<CardEditItem content={phone.number} idItem={phone.id}
 										deleteMessage={`телефон: "${phone.number}"`} onClickAccept={onClickAccept}

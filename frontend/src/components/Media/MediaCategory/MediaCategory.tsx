@@ -18,6 +18,7 @@ function MediaCategory({onClose, className }: MediaCategoryProps) {
 	const filteredCategories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 
 	const [subActive, setSubActive] = useState<boolean>(false);
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 
 	const [currentSubCategory, setCurrentSubCategory] = useState<SubCategoryState[] | null>(null);
 
@@ -35,10 +36,13 @@ function MediaCategory({onClose, className }: MediaCategoryProps) {
 	};
 
 	useEffect(() => {
-		if (categories.length === 0 && !isLoading) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoading) {
+				dispatch(fetchCategory());
+			}
 		}
-	}, [dispatch, categories.length, isLoading]);
+	}, [dispatch, categories.length, isLoading, isFetched]);
 
 	return (
 		<div className={cn(styles['category-list'], className)}>

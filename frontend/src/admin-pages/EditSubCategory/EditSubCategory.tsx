@@ -19,24 +19,30 @@ import { fetchProductType } from '../../slices/productTypeSlice';
 
 function EditSubCategory({className }: EditSubCategoryProps) {
 
-	const {isLoading, error, subcategories, categories} = useAppSelector((state: RootState) => state.categories );
+	const {isLoading, error, categories} = useAppSelector((state: RootState) => state.categories );
 	const {productTypes, isLoading: isLoadingProductTypes} = useAppSelector((state: RootState) => state.productTypes );
 	const [addClicked, setAddClicked] = useState<boolean>(false);
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 
-	const sortedSubCategory = [...subcategories].sort((a, b) => 
+	const sortedCategory = categories.length > 0? [...categories].sort((a, b) => 
 		a.name.localeCompare(b.name)
-	);
+	): [];
 
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoading) {
+				dispatch(fetchCategory());
+			}
+			if (productTypes.length === 0 && !isLoadingProductTypes) {
+				dispatch(fetchProductType());
+			}
 		}
-		if (productTypes.length === 0 ) {
-			dispatch(fetchProductType());
-		}
-	}, [categories.length, productTypes.length, dispatch]);
+	}, [categories.length, productTypes.length, dispatch,
+		isFetched, isLoading, isLoadingProductTypes
+	]);
 
 	const onClickDelete = (id: number) => {
 		
@@ -103,16 +109,26 @@ function EditSubCategory({className }: EditSubCategoryProps) {
 
 					{
 						isLoading || isLoadingProductTypes? <Spinner/>:
-							categories.length > 0 && !error? 
-								sortedSubCategory.map(product => (
+							sortedCategory.length > 0 && !error &&
+
+							<div className={cn(styles['subcategory-items'])}>
+
+								{
+									sortedCategory.map(product => (
+										<div className={cn(styles['subcategory-item'])} key={product.id}>
+											<div className={cn(styles['category-name'])}>{product.name}</div>
+											{product.subcategory && product.subcategory.length > 0 && [...product.subcategory].sort((a, b) => a.name.localeCompare(b.name)).map(subcat => (
+												<ModelEditItem key={subcat.id} modelItem={subcat}
+													onClickAccept={onClickAccept} onClickDelete={onClickDelete}
+													showToggleItem={showToggleItem} onClickDiscount={onClickPromo}/>
+											))										
+											}
+										</div>
+									)                       
 									
-									<ModelEditItem key={product.id} modelItem={product}
-										onClickAccept={onClickAccept} onClickDelete={onClickDelete}
-										showToggleItem={showToggleItem} onClickDiscount={onClickPromo}/>
-								)                       
-									
-								):
-								<span>Подкатегорий не найдено, создайте первую</span>
+									)
+								}
+							</div>
 					}
 					
 				</ModelEditItems>								

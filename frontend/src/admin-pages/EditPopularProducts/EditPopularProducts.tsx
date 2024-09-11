@@ -30,6 +30,7 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 	const navigate = useNavigate();
 
 	const [isSearching, setIsSearching] = useState<boolean>(false);
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [activeItems, setActiveItems] = useState<number[]>([]);
 
 	const namesCategories = popProducts.map(product => {
@@ -39,19 +40,23 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 
 
 	useEffect(() => {
-		if (popProducts.length === 0) {
-			dispatch(fetchPopProduct());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (popProducts.length === 0 && !isLoading) {
+				dispatch(fetchPopProduct());
+			}
+			if (categories.length === 0 && !isLoadingCategory) {
+				dispatch(fetchCategory());
+			}
+			if (popProducts.length > 0) {
+				const initiallyActive = popProducts
+					.filter(item => item.is_show)
+					.map(item => item.id);
+				setActiveItems(initiallyActive);
+			}
 		}
-		if (categories.length === 0) {
-			dispatch(fetchCategory());
-		}
-		if (popProducts.length > 0) {
-			const initiallyActive = popProducts
-				.filter(item => item.is_show)
-				.map(item => item.id);
-			setActiveItems(initiallyActive);
-		}
-	}, [popProducts, categories.length, dispatch]);
+	}, [popProducts, categories.length, dispatch,
+		isLoading, isLoadingCategory, isFetched]);
 
 	const onClickSearch = () => {
 		setIsSearching(!isSearching);
@@ -91,7 +96,7 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 			}
 
 		} else {
-			const categorySlug = categories.find(item => item.id === category)?.slug;
+			const categorySlug = categories.length > 0? categories.find(item => item.id === category)?.slug: null;
 			navigate(adminRoute+adminHomeRoute+adminEditPopularProducts+adminEditPopularProductCard+categorySlug+'/');
 		}
 
@@ -116,13 +121,14 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 					<>
 						<ItemActions>
 
-							
-							<ItemActionButton onClick={onClickSearch}>
-								{!isSearching? 
-									'Выбрать товар'
-									: 'Выйти из режима выбора'
-								}
-							</ItemActionButton>
+							{ popProducts.length > 0 &&
+								<ItemActionButton onClick={onClickSearch}>
+									{!isSearching? 
+										'Выбрать товар'
+										: 'Выйти из режима выбора'
+									}
+								</ItemActionButton>
+							}
 							
 
 							
@@ -132,7 +138,7 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 							<AddItemButton shape='circle' className={cn(styles['add-item'])} onClick={onClickNewItem}>
 								{addItemPlus()}
 							</AddItemButton>
-							{popProducts.map( (pop, index) => (
+							{popProducts.length > 0 && popProducts.map( (pop, index) => (
 							
 								<AdminPopularProductItem key={pop.id} active={pop.is_show}
 									onClick={() => onClickItem(pop.id, pop.is_show, pop.category)}>

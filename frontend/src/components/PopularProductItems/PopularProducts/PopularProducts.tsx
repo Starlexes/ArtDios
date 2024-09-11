@@ -17,7 +17,7 @@ function PopularProducts({popProducts, category, className}: PopularProductsProp
 		<div className={cn(styles['popular-products'], className)}>
 			<LendingHeadTitle>Популярные товары</LendingHeadTitle>
 			<PopularProductItems>
-				{popProducts.map( (product, index) => (
+				{popProducts.length > 0 && category && popProducts.map( (product, index) => (
 					<NavItem to={catalog+category[index]?.slug} key={product.id}>
 						<PopularProductItem>
 							<PopularProductContent isPromo={false}>

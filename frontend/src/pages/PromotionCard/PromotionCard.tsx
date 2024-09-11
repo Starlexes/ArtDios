@@ -38,7 +38,7 @@ function PromotionCard({className }: PromotionCardProps) {
 	}, [dispatch, promoParam, currentPromo]);
 	
 	return (
-		!promoError?
+		!promoError || !promotion?
 			isLoading? <Spinner/>: 
 				<section>
 					<div className={cn(styles['promotion'], className)}>

@@ -12,7 +12,7 @@ import CardEditItemActions from '../CardEditItemActions/CardEditItemActions';
 
 
 function CardEditItem({ className, content, onClickAccept, idItem,
-	deleteMessage, onDelete, placeholder, newItem=false, onRemoveItem, onClickAdd}: CardEditItemProps) {
+	deleteMessage, onDelete, placeholder, newItem=false, onRemoveItem, onClickAdd, type}: CardEditItemProps) {
 
 	const [editClicked, setEditClicked] = useState<boolean>(false);
 	const [inputValue, setInputValue] = useState<string>(content? content: '');
@@ -42,7 +42,7 @@ function CardEditItem({ className, content, onClickAccept, idItem,
 					editClicked || newItem? 
 						<ItemCardInput onChange={onChangeInput}
 							placeholder={placeholder} value={inputValue}
-							className={cn(styles['content-input'])} errors={isErrors}/>   
+							className={cn(styles['content-input'])} errors={isErrors} type={type}/>   
 						: content
 				}
 				{editClicked || newItem?

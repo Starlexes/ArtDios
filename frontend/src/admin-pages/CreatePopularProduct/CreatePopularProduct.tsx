@@ -28,22 +28,26 @@ function CreatePopularProduct({className }: CreatePopularProductProps) {
 	const [selectedOption, setSelectedOption] = useState<SingleValue<OptionType> | null>(null);
 	const [image, setImage] = useState<File | null>(null);
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
-
-	const validatedCategories = categories.filter(category => 
+	const [isFetched, setIsFetched] = useState<boolean>(false);
+	const validatedCategories = categories.length > 0? categories.filter(category => 
 		!popProducts.some(item => item.category === category.id)
-	);
+	): [];
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoadingCategory) {
+				dispatch(fetchCategory());
+			}
+			if (popProducts.length === 0 && !isLoading) {
+				dispatch(fetchPopProduct());
+			}
 		}
-		if (popProducts.length === 0) {
-			dispatch(fetchPopProduct());
-		}
-	}, [dispatch, categories.length, popProducts.length]);
+	}, [dispatch, categories.length, popProducts.length,
+		isFetched, isLoading, isLoadingCategory]);
 
 	const onChangeOption = (option: SingleValue<OptionType>) => {
 		setSelectedOption(option);
@@ -93,12 +97,14 @@ function CreatePopularProduct({className }: CreatePopularProductProps) {
 						<>
 							<div className={cn(styles['product-items'])}>
 								<div className={cn(styles['item-selector'])}>
-									<ItemsSelector defaultOption='Выбрать категорию'
-										optionLabels={validatedCategories.map(item => {
-											return {id: item.id, name: item.name};
-										})} onChangeOption={onChangeOption} selectErrors={acceptClicked && !selectedOption}>
+									{ validatedCategories.length > 0 &&
+										<ItemsSelector defaultOption='Выбрать категорию'
+											optionLabels={validatedCategories.map(item => {
+												return {id: item.id, name: item.name};
+											})} onChangeOption={onChangeOption} selectErrors={acceptClicked && !selectedOption}>
 
-									</ItemsSelector>
+										</ItemsSelector>
+									}
 								</div>
 								<ItemImagePreview errors={acceptClicked && !image} image={image} onChange={onChangeImage}/>
 							</div>

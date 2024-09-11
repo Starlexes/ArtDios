@@ -38,5 +38,6 @@
 @media (max-width: 510px) {
     .modal-textarea {
         min-height: 100px;
+        padding: 10px;
     }
 }

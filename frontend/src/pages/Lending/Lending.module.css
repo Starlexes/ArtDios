@@ -405,6 +405,10 @@
         column-gap: 18px;
     }
 
+    .services .service-item {
+        border-radius: 20px;
+    }
+
     .product-desc::before {
         width: 2px;
     }

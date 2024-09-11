@@ -226,13 +226,38 @@ const categorySlice = createSlice({
 		});
 
 		builder.addCase(updateSubCategory.fulfilled, (state, action: PayloadAction<SubCategoryState>) => {
-			state.subcategories = state.subcategories.map(item => item.id === action.payload.id? action.payload: item );
+			state.categories = state.categories.map(category => 
+				category.id === action.payload.parent 
+					? { 
+						...category, 
+						subcategory: category.subcategory.map(sub => 
+							sub.id === action.payload.id ? action.payload : sub
+						)
+					} 
+					: category 
+			);					
 		});
+
 		builder.addCase(deleteSubCategory.fulfilled, (state, action: PayloadAction<number>) => {
-			state.subcategories = state.subcategories.filter(item => item.id !== action.payload);
+			
+			state.categories = state.categories.map(category => {
+				return { 
+					...category, 
+					subcategory: category.subcategory.filter(sub => sub.id !== action.payload) 
+				}; 
+			}	
+			);
 		});
+
 		builder.addCase(addSubCategory.fulfilled, (state, action: PayloadAction<SubCategoryState>) => {
-			state.subcategories = [...state.subcategories, action.payload];
+			state.categories = state.categories.map(category => 
+				category.id === action.payload.parent?
+					{
+						...category, 
+						subcategory: [...category.subcategory, action.payload] 
+					}
+					: category  
+			);
 		});
 	}
 });

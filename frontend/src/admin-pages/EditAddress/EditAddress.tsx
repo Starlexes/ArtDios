@@ -22,7 +22,7 @@ function EditAddress({className }: EditAddressProps) {
 
 	const {isLoading, addresses} = useAppSelector((state: RootState) => state.address);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
-	
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id: number | undefined, address: string) => {
@@ -41,10 +41,13 @@ function EditAddress({className }: EditAddressProps) {
 	};
 
 	useEffect(() => {
-		if (addresses.length === 0) {
-			dispatch(fetchAddress());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (addresses.length === 0 && !isLoading) {
+				dispatch(fetchAddress());
+			}
 		}
-	}, [dispatch, addresses.length]);
+	}, [dispatch, addresses.length, isFetched, isLoading]);
 
 	return (
 		
@@ -65,7 +68,7 @@ function EditAddress({className }: EditAddressProps) {
 																				
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Адрес:</ItemCardInputLabel>
-							{addresses.map(address => (
+							{addresses.length > 0 && addresses.map(address => (
 								<CardEditItemActions key={address.id}>
 									<CardEditItem content={address.address} idItem={address.id}
 										deleteMessage={`адрес: "${address.address}"`} onClickAccept={onClickAccept}

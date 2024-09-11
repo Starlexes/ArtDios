@@ -10,6 +10,12 @@ div.prev-btn {
   transform: translateY(-50%);
 }
 
+.swiper .swiper-slide {
+  overflow: unset;
+}
+
+
+
 .next-btn::after,
 .prev-btn::after {
   display: none;

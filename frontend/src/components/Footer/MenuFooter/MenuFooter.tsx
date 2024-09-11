@@ -7,7 +7,7 @@ import { MenuFooterProps } from './MenuFooter.props';
 import cn from 'classnames';
 import { RootState, selectFilteredCategory } from '../../../store';
 import { useSelector} from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
@@ -21,14 +21,17 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 	const {phones, emails} = contacts;
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
-
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (categories.length === 0 && !isLoading) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoading) {
+				dispatch(fetchCategory());
+			}
 		}
-	}, [dispatch, categories.length, isLoading]);
+	}, [dispatch, categories.length, isLoading, isFetched]);
 
 
 	return (
@@ -36,7 +39,7 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 			<MenuFooterItem>
 				<MenuTitle>Категории</MenuTitle>
 				{
-					categories.map((item) => (
+					categories.length > 0 && categories.map((item) => (
 						<NavItem to={catalog+item.slug} key={item.name} className={cn(styles['contact-text'])} >{item.name}</NavItem>
 					)
 						

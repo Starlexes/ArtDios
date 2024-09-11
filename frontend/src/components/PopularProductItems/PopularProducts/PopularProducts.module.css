@@ -9,3 +9,9 @@
         gap: max(calc( 32 / 880 * 100vw), 16px);
     }
 }
+
+@media (max-width: 510px) {
+    .popular-products {
+        gap: max(calc( 16 / 510 * 100vw), 5px);
+    }
+}

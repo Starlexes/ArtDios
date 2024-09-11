@@ -8,11 +8,14 @@ import { checkAuthenticated } from '../../utils/help-funcs';
 import styles from './AdminHeader.module.css';
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { clearSubmitFilterParams } from '../../slices/buttonSlice';
 
 
 function AdminHeader() {
 
 	const location = useLocation();
+	const dispatch = useAppDispatch();
 
 	const pathname = location.pathname;
 	const [isShowSearch, setIsShowSearch] = useState<boolean>(false);
@@ -22,9 +25,10 @@ function AdminHeader() {
 			!isShowSearch && setIsShowSearch(true);
 		} else {
 			isShowSearch && setIsShowSearch(false);
+			dispatch(clearSubmitFilterParams());
 		}
 		
-	}, [pathname, isShowSearch]);
+	}, [pathname, isShowSearch, dispatch]);
 
 	return (
 		<header>

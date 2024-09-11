@@ -1,4 +1,4 @@
-import { HTMLProps} from 'react';
+import { HTMLInputTypeAttribute, HTMLProps} from 'react';
 
 export interface CardEditItemProps extends HTMLProps<HTMLDivElement> {
     content?: string,
@@ -9,5 +9,6 @@ export interface CardEditItemProps extends HTMLProps<HTMLDivElement> {
     idItem?: number,
     deleteMessage?: string,
     placeholder?: string,
-    newItem?: boolean
+    newItem?: boolean,
+    type?: HTMLInputTypeAttribute
 }

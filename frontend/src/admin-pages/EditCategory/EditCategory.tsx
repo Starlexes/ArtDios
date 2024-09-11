@@ -23,7 +23,7 @@ function EditCategory({className }: EditCategoryProps) {
 	const {isLoading, error, categories} = useAppSelector((state: RootState) => state.categories );
 	const {productTypes, isLoading: isLoadingProductTypes} = useAppSelector((state: RootState) => state.productTypes );
 	const [addClicked, setAddClicked] = useState<boolean>(false);
-
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const sortedCategory = [...categories].sort((a, b) => 
 		String(a.name).localeCompare(String(b.name))
 	);
@@ -31,13 +31,18 @@ function EditCategory({className }: EditCategoryProps) {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoading) {
+				dispatch(fetchCategory());
+			}
+			if (productTypes.length === 0 && !isLoadingProductTypes) {
+				dispatch(fetchProductType());
+			}
 		}
-		if (productTypes.length === 0 ) {
-			dispatch(fetchProductType());
-		}
-	}, [categories.length, productTypes.length, dispatch]);
+	}, [categories.length, productTypes.length, dispatch,
+		isFetched, isLoading, isLoadingProductTypes
+	]);
 
 	const onClickDelete = (id: number) => {
 		dispatch(deleteCategory(id));
@@ -97,7 +102,7 @@ function EditCategory({className }: EditCategoryProps) {
 
 					{
 						isLoading || isLoadingProductTypes? <Spinner/>:
-							categories.length > 0 && !error? 
+							categories.length > 0 && !error &&
 								sortedCategory.map(product => (
 									
 									<ModelEditItem key={product.id} modelItem={product}
@@ -105,8 +110,7 @@ function EditCategory({className }: EditCategoryProps) {
 										showToggleItem={showToggleItem}/>
 								)                       
 									
-								):
-								<span>Категорий не найдено, создайте первую</span>
+								)
 					}
 					
 				</ModelEditItems>

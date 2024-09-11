@@ -46,7 +46,7 @@ const filteredCategory = (state: RootState) => state.categories.categories;
 export const convertedChars = createSelector(
 	[chars],
 	(chars: Characteristic[]): CharacteristicClient[] => {
-		return chars.reduce((acc: CharacteristicClient[], curr: Characteristic) => {
+		return chars.length > 0? chars.reduce((acc: CharacteristicClient[], curr: Characteristic) => {
 			const existing = acc.find(item => item.name === curr.name);
 
 			if (existing) {
@@ -63,7 +63,7 @@ export const convertedChars = createSelector(
 			}
             
 			return acc;
-		}, []);
+		}, []): [];
 	}
 );
 
@@ -75,13 +75,14 @@ export const selectPhones = createSelector(
 
 export const selectFilteredCategory = createSelector(
 	[filteredCategory],
-	(category) => category
+	(category) => category.length > 0? category
 		.filter(item => item.is_show)
 		.map(item => ({
 			...item,
 			subcategory: item.subcategory.filter(sub => sub.is_show)
 		}))
-		.filter(item => item.subcategory.length > 0)
+		.filter(item => item.subcategory.length > 0) 
+		: []
 );
 
 export type RootState = ReturnType<typeof store.getState>;

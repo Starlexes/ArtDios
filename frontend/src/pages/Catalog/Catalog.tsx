@@ -35,8 +35,9 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 	const { products: productsGetting, isLoading } = useAppSelector((state: RootState) => state.products);
 	const {categories} = useAppSelector((state: RootState) => state.categories);
 	const {products, maxPrice, minPrice} = productsGetting;
-	const [currentCategory, setCurrentCategory] = useState<string | undefined>('');
-	const [currentSearchParams, setCurrentSearchParams] = useState<string | undefined>('');
+	const [currentCategory, setCurrentCategory] = useState<string>('');
+	const [currentSearchResults, setCurrentSearchResults] = useState<string>('');
+	const [currentSearchParams, setCurrentSearchParams] = useState<string>('');
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [isSearching, setIsSearching] = useState<boolean>(false);
 	const [productCount, setProductCount] = useState<number>(itemsPerPage);
@@ -137,7 +138,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 	};
 	
 	useEffect(() => {
-		setIsFetched(false);
+		setIsFetched(false);		
 	}, [location.search, catParam]);
 
 
@@ -145,6 +146,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 		if (!isFetched && !isLoading && (currentCategory !== catParam || (currentSearchParams !== location.search && !page))) {		
 			setIsFetched(true);
 			catParam && setCurrentCategory(catParam);
+			searchResults && setCurrentSearchResults(searchResults);
 			dispatch(fetchCharacteristic({ category: catParam}));
 			isAdmin && dispatch(fetchCategory());
 			setCurrentSearchParams(location.search);
@@ -155,18 +157,23 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 			}));	
 		}
 
-		if (!isAdmin && (currentCategory !== catParam || searchResults)) {
-			dispatch(clearSubmitFilterParams());
+		if (categoryFilters.length === 0 && !maxPriceParam &&
+			!minPriceParam && charsParam.length === 0 &&
+			!sortBy &&
+			(catParam && currentCategory !== catParam || searchResults
+				&& currentSearchResults !== searchResults)) {
+			dispatch(clearSubmitFilterParams());	
 		}
 	}, [dispatch, catParam, currentCategory,
 		sortBy, searchParams.size, maxPriceParam,
 		minPriceParam, charsParam, location.search,
 		currentSearchParams, page, searchResults,
-		isFetched, isLoading, isAdmin, categoryFilters]);
+		isFetched, isLoading, isAdmin, categoryFilters,
+		currentSearchResults]);
 		
 	return (
 		
-		isLoading || !isFetched? <Spinner/>:
+		isLoading && products.length === 0? <Spinner/>:
 
 			<section>
 				<HelmetProvider>
@@ -178,7 +185,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 
 				<div className={cn(styles['catalog'], className)}>
 						
-					{isFetched && products.length > 0?
+					{products.length > 0 || isAdmin?
 						<>
 							{ isAdmin? 
 								<AdminPageHead className={cn(styles['page-head'])}>
@@ -201,7 +208,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 							}
 
 							
-							{isAdmin &&
+							{isAdmin && products.length > 0 && 
 								<ItemActions className={cn(styles['item-actions'])}>
 											
 									<ItemActionButton onClick={onClickSearch} roleAction='accept'>
@@ -244,7 +251,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 									}
 
 									{
-										isAdmin &&
+										isAdmin && products.length > 0 &&
 										<div>
 											<ItemsSelector onChangeOption={onChangeItemsCount} defaultOption='Товаров на странице'
 												optionLabels={[
@@ -264,14 +271,10 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 								}
 							</div>
 						</> : 
-						isAdmin?
-							<AdminPageHead>
+	
+						<PageHead>
 								Товары не найдены
-							</AdminPageHead>
-							:
-							<PageHead>
-							Товары не найдены
-							</PageHead>
+						</PageHead>
 					}
 				</div>	
 

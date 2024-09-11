@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { useAppSelector } from '../../hooks';
 import { AppDispatch, RootState} from '../../store';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchPromotion } from '../../slices/promotionSlice';
 import Spinner from '../../components/Spinner/Spinner';
 import Error from '../Error/Error';
@@ -23,13 +23,16 @@ function Promotions({className }: PromotionsProps) {
 	const dispatch = useDispatch<AppDispatch>();
 	
 	const {promo, error: promoError, isLoading } = useAppSelector((state: RootState) => state.promotions);
-	
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (!promo.length) {
-			dispatch(fetchPromotion());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (promo.length === 0 && !isLoading) {
+				dispatch(fetchPromotion());
+			}
 		}
-	}, [dispatch, promo.length]);
+	}, [dispatch, promo.length, isFetched, isLoading]);
 
 	
 	return (
@@ -45,7 +48,7 @@ function Promotions({className }: PromotionsProps) {
 						<PageHead>Акции</PageHead>
                     
 						<PopularProductItems className={cn(styles['promo-items'], className)}>
-							{promo.map( promo => (
+							{promo.length > 0 && promo.map( promo => (
 								<NavItem to={promotionRoute+promo.slug} key={promo.id} className={cn(styles['promo-item'])}>
 									<PopularProductItem>
 										<PopularProductContent isPromo={true}>

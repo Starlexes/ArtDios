@@ -16,20 +16,25 @@ function CategoryList({onClickLink, className}: CategoryListProps) {
 	const dispatch = useAppDispatch();
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 	const {categories: categoriesDefault, isLoading }  = useAppSelector((state: RootState) => state.categories);
-
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [subActive, setSubActive] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (categoriesDefault.length === 0 && !isLoading) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categoriesDefault.length === 0 && !isLoading) {
+				dispatch(fetchCategory());
+			}
 		}
-	}, [dispatch, categoriesDefault.length, isLoading]);
+	}, [dispatch, categoriesDefault.length, isLoading, isFetched]);
 
 	
 
 	const renderSubcategories = (subcategory: SubCategoryState[]) => (
+		
+		subcategory.length > 0 &&
 		<SubCategoryList>
-			{subcategory
+			{ subcategory
 				.map((subcat, index, array) => (
 					<CategoryListItem
 						key={subcat.name}
@@ -45,7 +50,7 @@ function CategoryList({onClickLink, className}: CategoryListProps) {
 
 	const renderCategories = () => (
 		<ul>
-			{categories.filter((item) => item.is_show).map((item, index, array) => (
+			{categories.length > 0 && categories.filter((item) => item.is_show).map((item, index, array) => (
 				<CategoryListItem
 					key={item.name}
 					name={item.name}

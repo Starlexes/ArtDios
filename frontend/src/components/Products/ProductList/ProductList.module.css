@@ -10,6 +10,7 @@
     align-items: center;
     border: 2px dashed var(--default-color);
     height: 418px;
+    width: 188px;
 }
 
 button.action-btn {

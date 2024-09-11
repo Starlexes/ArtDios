@@ -22,7 +22,7 @@ function EditEmails({className }: EditEmailsProps) {
 
 	const {isLoading, emails} = useAppSelector((state: RootState) => state.emails);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
-	
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id: number | undefined, email: string) => {
@@ -41,10 +41,13 @@ function EditEmails({className }: EditEmailsProps) {
 	};
 
 	useEffect(() => {
-		if (emails.length === 0) {
-			dispatch(fetchEmail());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (emails.length === 0 && !isLoading) {
+				dispatch(fetchEmail());
+			}
 		}
-	}, [dispatch, emails.length]);
+	}, [dispatch, emails.length, isLoading, isFetched]);
 
 	return (
 		
@@ -65,7 +68,7 @@ function EditEmails({className }: EditEmailsProps) {
 																				
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Email:</ItemCardInputLabel>
-							{emails.map(email => (
+							{emails.length > 0 && emails.map(email => (
 								<CardEditItemActions key={email.id}>
 									<CardEditItem content={email.email} idItem={email.id}
 										deleteMessage={`почту: "${email.email}"`} onClickAccept={onClickAccept}
@@ -76,7 +79,8 @@ function EditEmails({className }: EditEmailsProps) {
 							{ newItemClicked?
 								<CardEditItem
 									onClickAdd={onClickAddItem}
-									onRemoveItem={() => setNewItemClicked(!newItemClicked)} placeholder='example@mail.ru' newItem={true}/>
+									onRemoveItem={() => setNewItemClicked(!newItemClicked)} placeholder='example@mail.ru'
+									newItem={true} type='email'/>
 								:
 								<AddItemButton shape='circle' className={cn(styles['action-btn'])}
 									onClick={() => setNewItemClicked(!newItemClicked)}>

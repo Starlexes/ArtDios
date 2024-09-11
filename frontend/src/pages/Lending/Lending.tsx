@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { useAppSelector } from '../../hooks';
 import { AppDispatch, RootState, selectFilteredCategory } from '../../store';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchCategory } from '../../slices/categorySlice';
 import LendingBanner from '../../components/LendingItems/LendingBanner/LendingBanner';
 import PopularProducts from '../../components/PopularProductItems/PopularProducts/PopularProducts';
@@ -33,30 +33,34 @@ function Lending({className }: LendingProps) {
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 	const {popProducts, error: popularError, isLoading: isLoadingPop } = useAppSelector((state: RootState) => state.popProducts);
 	const {promo, error: promoError, isLoading: isLoadingPromo} = useAppSelector((state: RootState) => state.promotions);
-
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	
-	const showPopProducts = popProducts.filter(product => product.is_show).slice(0, 3);
-	const namesCategories = showPopProducts.map(product => {
-		const category = categories.find(item => item.id === product.category);
+	const showPopProducts = popProducts.length > 0?
+		popProducts.filter(product => product.is_show).slice(0, 3): [];
+	const namesCategories = showPopProducts.length > 0? showPopProducts.map(product => {
+		const category = categories.length > 0? categories.find(item => item.id === product.category): null;
 		return category? category: null;
-	});
-	const showPromo = promo.filter(item => item.is_show).slice(0, 3);
+	}): [];
+	const showPromo = promo.length > 0? promo.filter(item => item.is_show).slice(0, 3): [];
 
 	const matches = useMediaPredicate('(min-width: 1200px)');
-	const phoneMatches = useMediaPredicate('(min-width: 311px)'); 
+	const phoneMatches = useMediaPredicate('(min-width: 340px)'); 
 
 
 	useEffect(() => {
-		if (!categories.length) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0) {
+				dispatch(fetchCategory());
+			}
+			if (popProducts.length  === 0 ) {
+				dispatch(fetchPopProduct());
+			}
+			if (promo.length === 0 && !isLoadingPromo) {
+				dispatch(fetchPromotion());
+			}
 		}
-		if (!popProducts.length) {
-			dispatch(fetchPopProduct());
-		}
-		if (!promo.length) {
-			dispatch(fetchPromotion());
-		}
-	}, [dispatch, categories.length, popProducts.length, promo.length]);
+	}, [dispatch, categories.length, popProducts.length, promo.length, isFetched, isLoadingPromo]);
 
 	
 	return (
@@ -72,7 +76,7 @@ function Lending({className }: LendingProps) {
 				<div className={cn(styles['lending-head'])}> 
 					{isLoadingPop? <Spinner/>: 
 						
-						showPopProducts.length && !popularError &&
+						showPopProducts.length > 0 && !popularError &&
 									<section>
 										<PopularProducts category={namesCategories} popProducts={showPopProducts}/>
 									</section>							
@@ -110,7 +114,7 @@ function Lending({className }: LendingProps) {
 					</section>
 
 					{ isLoadingPromo? <Spinner/>: 
-						showPromo.length && !promoError && 
+						showPromo.length > 0 && !promoError && 
 								<section>
 									<PromotionItems promotions={showPromo}/>	
 								</section>

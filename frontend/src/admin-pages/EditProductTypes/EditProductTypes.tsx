@@ -89,15 +89,14 @@ function EditProductTypes({className }: EditProductTypesProps) {
 
 					{
 						isLoading? <Spinner/>:
-							productTypes.length > 0 && !error? 
+							productTypes.length > 0 && !error &&
 								sortedProductTypes.map(product=> (
 									<ModelEditItem key={product.id} modelItem={product}
 										onClickAccept={onClickAccept} onClickDelete={onClickDelete}
 										showToggleItem={showToggleItem}/>
                                 
 									
-								)):
-								<span>Видов товаров не найдено, создайте первый</span>
+								))
 					}
 					
 				</ModelEditItems>

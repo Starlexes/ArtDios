@@ -9,10 +9,10 @@ function ProductCardCharacteristics({className, chars}:ProductCardCharacteristic
 			<span className={cn(styles['chars-title'])}>Характеристики</span>
 			<div className={cn(styles['char-items'])}>
 				{
-					chars.map((char, index) => (
+					chars.length > 0 && chars.map((char, index) => (
 						<div className={cn(styles['char-item'])} key={index}>
 							<div className={cn(styles['char-property'])}>
-								{char.name}
+								{char.name}:
 							</div>
 							<div className={cn(styles['char-value'])}>
 								{char.description}

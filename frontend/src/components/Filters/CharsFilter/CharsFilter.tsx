@@ -20,6 +20,7 @@ function CharsFilter({minPrice, maxPrice, chars,
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
+	
 	const {maxPrice: maxPriceParam, minPrice: minPriceParam, chars: charsParam, category: catParam} = filterparams; 
 	const url = location.pathname;	
 	const searchParams = new URLSearchParams(location.search);
@@ -63,15 +64,15 @@ function CharsFilter({minPrice, maxPrice, chars,
 					{productLength > 1 && 						
 						<PriceFilter minVal={minPrice} maxVal={maxPrice} maxPriceSearch={maxPriceSearch} minPriceSearch={minPriceSearch}/>
 					}
-					{ isAdmin && category.length > 0 &&
+					{ isAdmin && category && category.length > 0 &&
 					
 						<PropertyFilter category={category} />
 											
 					}
 					
 
-					{chars.map((item, index) => (
-						<PropertyFilter item={item} key={index} />
+					{chars.length > 0 && chars.map((item, index) => (
+						<PropertyFilter item={item} key={index}/>
 					))}
 										
 					

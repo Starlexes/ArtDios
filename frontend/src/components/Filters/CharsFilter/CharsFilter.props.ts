@@ -8,6 +8,6 @@ export interface CharsFilterProps extends HTMLProps<HTMLDivElement>{
     maxPrice: string,
     closeModal?: () => void,
     productLength: number,
-    isAdmin: boolean,
-    category: CategoryState[]
+    isAdmin?: boolean,
+    category?: CategoryState[]
 }

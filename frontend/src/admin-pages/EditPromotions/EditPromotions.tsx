@@ -26,14 +26,18 @@ function EditPromotions({className }: EditPromotionsProps) {
 	
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [isSearching, setIsSearching] = useState<boolean>(false);
 	const [activeItems, setActiveItems] = useState<number[]>([]);
 
 
 	useEffect(() => {
-		if (promo.length === 0) {
-			dispatch(fetchPromotion());
+
+		if (!isFetched) {
+			setIsFetched(true);
+			if (promo.length === 0 && !isLoading) {
+				dispatch(fetchPromotion());
+			}
 		}
 		
 		if (promo.length > 0) {
@@ -42,7 +46,7 @@ function EditPromotions({className }: EditPromotionsProps) {
 				.map(item => item.id);
 			setActiveItems(initiallyActive);
 		}
-	}, [promo, dispatch]);
+	}, [promo, dispatch, isFetched, isLoading]);
 
 	const onClickSearch = () => {
 		setIsSearching(!isSearching);
@@ -106,12 +110,14 @@ function EditPromotions({className }: EditPromotionsProps) {
 					<>
 						<ItemActions>
 							
-							<ItemActionButton onClick={onClickSearch}>
-								{!isSearching? 
-									'Выбрать акцию'
-									: 'Выйти из режима выбора'
-								}
-							</ItemActionButton>
+							{ promo.length > 0 &&
+								<ItemActionButton onClick={onClickSearch}>
+									{!isSearching? 
+										'Выбрать акцию'
+										: 'Выйти из режима выбора'
+									}
+								</ItemActionButton>
+							}
 														
 						</ItemActions>
 					
@@ -120,7 +126,7 @@ function EditPromotions({className }: EditPromotionsProps) {
 								{addItemPlus()}
 							</AddItemButton>
 
-							{promo.map( pop => (
+							{promo.length > 0 && promo.map( pop => (
 							
 								<AdminPopularProductItem key={pop.id} active={pop.is_show}
 									onClick={() => onClickItem(pop.id, pop.is_show, pop.slug)}>

@@ -19,7 +19,7 @@ function EditGallery({className }: EditGalleryProps) {
 
 	const {isLoading, gallery} = useAppSelector((state: RootState) => state.gallery);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
-	
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id:number, name?: string, description?: string, image?: File | null) => {
@@ -52,10 +52,13 @@ function EditGallery({className }: EditGalleryProps) {
 	};
 
 	useEffect(() => {
-		if (gallery.length === 0) {
-			dispatch(fetchGallery());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (gallery.length === 0 && !isLoading) {
+				dispatch(fetchGallery());
+			}
 		}
-	}, [dispatch, gallery.length]);
+	}, [dispatch, gallery.length, isFetched, isLoading]);
 
 	return (
 		
@@ -74,7 +77,7 @@ function EditGallery({className }: EditGalleryProps) {
 					
 					{isLoading? <Spinner/> :
 																				
-						gallery.map(item => (
+						gallery.length > 0 && gallery.map(item => (
 							<CardEditGallery galleryItem={item} onClickAccept={onClickAccept} 
 								onDelete={onDelete} key={item.gallery_id}/>
 						))																												

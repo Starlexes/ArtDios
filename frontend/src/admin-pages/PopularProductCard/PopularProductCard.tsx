@@ -30,30 +30,36 @@ function PopularProductCard({className }: PopularProductCardProps) {
 	const [image, setImage] = useState<File | null>(null);
 	const [selectedOption, setSelectedOption] = useState<SingleValue<OptionType | null>>(null);
 	const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
+	const [isFetched, setIsFetched] = useState<boolean>(false);
 	
 	const { popItem: categorySlugItem} = useParams<{ popItem: string }>();
 
-	const popItem = popProducts.find(product => product.category === 
-		(categories.find(c => c.slug === categorySlugItem)?.id));
+	const popItem = popProducts.length > 0? popProducts.find(product => product.category === 
+		(categories.find(c => c.slug === categorySlugItem)?.id)): null;
 
 
-	const validatedCategories = categories.filter(category => 
+	const validatedCategories = categories.length > 0? categories.filter(category => 
 		!popProducts.some(item => item.category === category.id) || (category.id === popItem?.category)
-	);
+	): [];
 
-	const popCategory = validatedCategories.find(item => item.id === popItem?.category);
+	const popCategory = validatedCategories.length > 0? validatedCategories.find(item => item.id === popItem?.category): null;
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (categories.length === 0) {
-			dispatch(fetchCategory());
+		if (!isFetched) {
+			setIsFetched(true);
+			if (categories.length === 0 && !isLoadingCategory) {
+				dispatch(fetchCategory());
+			}
+			if (popProducts.length === 0 && !isLoading) {
+				dispatch(fetchPopProduct());
+			}
 		}
-		if (popProducts.length === 0) {
-			dispatch(fetchPopProduct());
-		}
-	}, [dispatch, categories.length, popProducts.length]);
+	}, [dispatch, categories.length, popProducts.length,
+		isLoading, isLoadingCategory, isFetched
+	]);
 
 	const onChangeOption = (option: SingleValue<OptionType>) => {
 		setSelectedOption(option);		
@@ -111,12 +117,14 @@ function PopularProductCard({className }: PopularProductCardProps) {
 						<>
 							<div className={cn(styles['product-items'])}>
 								<div className={cn(styles['item-selector'])}>
-									<ItemsSelector defaultOption={String(popCategory?.name)}
-										optionLabels={validatedCategories.map(item => {
-											return {id: item.id, name: item.name};
-										})} onChangeOption={onChangeOption}>
+									{ validatedCategories.length > 0 &&
+										<ItemsSelector defaultOption={String(popCategory?.name)}
+											optionLabels={validatedCategories.map(item => {
+												return {id: item.id, name: item.name};
+											})} onChangeOption={onChangeOption}>
 
-									</ItemsSelector>
+										</ItemsSelector>
+									}
 								</div>
 								<ItemImagePreview image={image? image: popItem? popItem.image: null} onChange={onChangeImage}/>
 							</div>
