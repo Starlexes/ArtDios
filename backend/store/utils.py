@@ -6,6 +6,7 @@ import os
 import uuid
 
 
+
 IMAGE_FIELDS = ['image', 'main_image', 'second_image', 'third_image']
 
 def get_unique_name(filename):
@@ -49,12 +50,19 @@ def delete_image_field(instance, field_name=''):
     if hasattr(instance, field_name):
         image_field = getattr(instance, field_name)
         if image_field:
+            from .models import Product
             image_path = image_field.path
             image_dir = os.path.dirname(image_path)
+            
             if default_storage.exists(image_path):
                 default_storage.delete(image_path)
                 if not os.listdir(image_dir):
                     os.rmdir(image_dir)
+                
+                if isinstance(instance, Product):
+                    category_dir = os.path.dirname(image_dir)
+                    if not os.listdir(category_dir):
+                        os.rmdir(category_dir)
 
 def get_image_fields(instance, old_instance, field):
     old_image_field = getattr(old_instance, field)

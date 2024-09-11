@@ -5,6 +5,7 @@ from django.db.models import F, Q, Case, When, Value, CharField, Max, Min
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.db import transaction
+from django.core.cache import cache
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -371,7 +372,8 @@ class ProductView(APIView):
             category = request.query_params.getlist('category', '')
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
-    
+
+
             products = Product.objects.all()
 
             if not admin:
@@ -435,7 +437,6 @@ class ProductView(APIView):
                 )
 
             if characteristic_names:
-               
                 characteristic_filters = {}
                 for item in characteristic_names:
                     key, value = item.split(':')

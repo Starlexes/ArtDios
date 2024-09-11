@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Index
 import slugify
 from transliterate import translit
-from .utils import IMAGE_FIELDS, delete_image_field, upload_products, upload_gallery, upload_pop_product, upload_promo
+from .utils import delete_image_field, upload_products, upload_gallery, upload_pop_product, upload_promo
 
 # Create your models here.
 class ProductType(models.Model):
@@ -77,10 +77,6 @@ class Product(models.Model):
         self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Product, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        for field in IMAGE_FIELDS:
-            delete_image_field(self, field)
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -118,10 +114,6 @@ class Promotion(models.Model):
         self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Promotion, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        for field in IMAGE_FIELDS:
-            delete_image_field(self, field)
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -136,10 +128,6 @@ class PopularProduct(models.Model):
     image = models.ImageField(upload_to=upload_pop_product)
     is_show = models.BooleanField(default=False, blank=False)
 
-    def delete(self, *args, **kwargs):
-        for field in IMAGE_FIELDS:
-            delete_image_field(self, field)
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.category.name
@@ -159,10 +147,6 @@ class Gallery(models.Model):
         self.slug = slugify.slugify(translit(self.name, 'ru', reversed=True))
         super(Gallery, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        for field in IMAGE_FIELDS:
-            delete_image_field(self, field)
-        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.name
