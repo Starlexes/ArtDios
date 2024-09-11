@@ -373,7 +373,6 @@ class ProductView(APIView):
             admin = request.query_params.get('admin', '')
             search = request.query_params.get('search', '')
 
-
             products = Product.objects.all()
 
             if not admin:

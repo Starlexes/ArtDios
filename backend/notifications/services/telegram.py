@@ -1,9 +1,11 @@
 from telegram import Bot
 from decouple import config
+from celery import shared_task
 
 TELEGRAM_TOKEN = config("BOT_TOKEN")
 TELEGRAM_CHAT_ID = config("CHAT_ID")
 
+@shared_task
 def send_to_telegram(data):
     bot = Bot(token=TELEGRAM_TOKEN)
     name = f'Имя: {data["name"]}\n\n'
