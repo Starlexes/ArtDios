@@ -5,7 +5,6 @@ from django.db.models import F, Q, Case, When, Value, CharField, Max, Min
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.db import transaction
-from django.core.cache import cache
 
 from rest_framework.views import APIView
 from rest_framework.response import Response

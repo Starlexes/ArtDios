@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "store.apps.StoreConfig",
     "notifications.apps.NotificationsConfig",
-    "django_celery_results"
+    "django_celery_results",
+    "cacheops",
 ]
 
 MIDDLEWARE = [
@@ -210,4 +211,69 @@ CACHES = {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
+}
+
+
+CACHEOPS = {
+    'store.Product': {
+        'ops': 'all',
+        'timeout': 60 * 5,
+        'tags': ['product_cache'],
+    },
+    'store.ProductType': {
+        'ops': 'all',
+        'timeout': 30 * 24 * 60 * 60,
+        'tags': ['product_type_cache'],
+    },
+    'store.Category': {
+        'ops': 'all',
+        'timeout': 10 * 24 * 60 * 60,
+        'tags': ['category_cache'],
+    },
+    'store.SubCategory': {
+        'ops': 'all',
+        'timeout': 10 * 24 * 60 * 60,
+        'tags': ['subcategory_cache'],
+    },
+    'store.Characteristic': {
+        'ops': 'all',
+        'timeout': 60 * 5,
+        'tags': ['characteristic_cache'],
+    },
+    'store.Promotion': {
+        'ops': 'all',
+        'timeout': 10 * 24 * 60 * 60,
+        'tags': ['promotion_cache'],
+    },
+    'store.PopularProduct': {
+        'ops': 'all',
+        'timeout': 10 * 24 * 60 * 60,
+        'tags': ['pop_product_cache'],
+    },
+    'store.Gallery': {
+        'ops': 'all',
+        'timeout': 10 * 24 * 60 * 60,
+        'tags': ['gallery_cache'],
+    },
+    'store.WorkingHours': {
+        'ops': 'all',
+        'timeout': 30 * 24 * 60 * 60,
+        'tags': ['working_hours_cache'],
+    },
+    'store.Phone': {
+        'ops': 'all',
+        'timeout': 30 * 24 * 60 * 60,
+        'tags': ['phone_cache'],
+    },
+    'store.Email': {
+        'ops': 'all',
+        'timeout': 30 * 24 * 60 * 60,
+        'tags': ['email_cache'],
+    },
+    'store.Address': {
+        'ops': 'all',
+        'timeout': 30 * 24 * 60 * 60,
+        'tags': ['address_cache'],
+    },
+    
 }
