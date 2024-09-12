@@ -12,12 +12,13 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import AnchorNavItem from '../../AnchorNavItem/AnchorNavItem';
 import { fetchCategory } from '../../../slices/categorySlice';
 import { catalog, deliveryPaymentsRoute, mediaImagesPath, serviceRoute } from '../../../utils/constants';
+import { fetchContacts } from '../../../slices/contactSlice';
 
 
 
 function MenuFooter({className, ...props }: MenuFooterProps) {
 
-	const {contacts} = useSelector((state: RootState) => state.contacts);
+	const {contacts, isLoading: isLoadingContacts} = useSelector((state: RootState) => state.contacts);
 	const {phones, emails} = contacts;
 	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
 	const { isLoading }  = useAppSelector((state: RootState) => state.categories);
@@ -30,8 +31,11 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 			if (categories.length === 0 && !isLoading) {
 				dispatch(fetchCategory());
 			}
+			if (!isLoadingContacts) {
+				dispatch(fetchContacts());
+			}
 		}
-	}, [dispatch, categories.length, isLoading, isFetched]);
+	}, [dispatch, categories.length, isLoading, isFetched, isLoadingContacts]);
 
 
 	return (

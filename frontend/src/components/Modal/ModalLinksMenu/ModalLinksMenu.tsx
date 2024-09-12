@@ -5,7 +5,7 @@ import NavItem from '../../Header/NavItem/NavItem';
 import styles from './ModalLinksMenu.module.css';
 import cn from 'classnames';
 import { ModalLinksMenuProps } from './ModalLinksMenu.props';
-import { aboutRoute, galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
+import { aboutRoute, contactsRoute, galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
 
 function ModalLinksMenu({onClose, className }: ModalLinksMenuProps) {
 
@@ -37,6 +37,12 @@ function ModalLinksMenu({onClose, className }: ModalLinksMenuProps) {
 				</NavigationListItem>
 
 				<NavigationListItem key={5}>
+					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={contactsRoute}>
+				Контакты
+					</NavItem>
+				</NavigationListItem>
+
+				<NavigationListItem key={6}>
 					<NavItem onClick={onClose} className={cn(styles['nav-menu'])} to={aboutRoute}>
 				О компании
 					</NavItem>

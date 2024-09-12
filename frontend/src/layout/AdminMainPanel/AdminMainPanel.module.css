@@ -4,6 +4,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 64px 0;
+    margin: 64px auto;
     position: relative;
 }

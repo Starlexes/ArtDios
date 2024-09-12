@@ -224,7 +224,7 @@ function CreateProduct({className, newItem=false }: CreateProductProps) {
 
 	useEffect(() => {
 		
-		if (createdId) {
+		if (createdId && acceptClicked) {
 			const newItems = chars.filter(item => item.new);
 			if (newItems.length > 0) {
 				dispatch(addCharacteristic(newItems.map(item => {

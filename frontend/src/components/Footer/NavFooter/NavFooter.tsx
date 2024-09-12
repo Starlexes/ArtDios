@@ -9,6 +9,7 @@ import styles from './NavFooter.module.css';
 import { NavFooterProps } from './NavFooter.props';
 import cn from 'classnames';
 import { customContractRoute, opdPageRoute, publicOfferRoute } from '../../../utils/constants';
+import { getCurrentYear } from '../../../utils/help-funcs';
 
 
 function NavFooter({className, ...props }: NavFooterProps) {
@@ -35,7 +36,7 @@ function NavFooter({className, ...props }: NavFooterProps) {
 
 				<NavigationListItem key={1}>
 					<TextFooter>
-					&copy; 2024 - artdios.ru
+					&copy; {getCurrentYear()} - artdios.ru
 					</TextFooter>
 				</NavigationListItem>
 

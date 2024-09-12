@@ -19,6 +19,7 @@
     margin: 0;
     display: flex;
     color: #181818;
+    white-space: wrap;
 }
 
 .select-order .react-select__value-container {

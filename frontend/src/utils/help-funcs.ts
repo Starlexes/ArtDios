@@ -6,3 +6,7 @@ export const checkAuthenticated = () => {
 export const deleteUser = () => {
 	localStorage.removeItem('access_token');
 };
+
+export const getCurrentYear = () => {
+	return new Date().getFullYear();
+};

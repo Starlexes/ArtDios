@@ -256,9 +256,14 @@
     gap: 22px;
 }
 
-.double-image img {
+.double-image-item {
     max-width: 548px;
     width: max(calc(548 / 1200 * 100vw), 138px);
+}
+
+.double-image-item img {
+    width: 100%;
+    height: 100%;
 }
 
 .window-list {
@@ -381,7 +386,7 @@
 
 
     .double-image {
-        gap: 20px;
+        gap: calc(20 / 880 * 100vw);
     }
     
 

@@ -1,11 +1,12 @@
 .header {
     padding: 24px 44px;
     background-color: var(--primary-bgc2);
-    width: 100%;
+    width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    margin: 0 auto;
 }
 
 .show-search {

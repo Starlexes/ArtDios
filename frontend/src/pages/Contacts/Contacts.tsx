@@ -42,12 +42,16 @@ function Contacts({className }: ContactsProps) {
 									{phoneContacts()}
 								</ContactsImage>
 								<ContactsContent className={cn(styles['phones-content'])}>
-									<AnchorNavItem href={`tel:${phones.length > 0? phones[0]: '#'}`}
-										className={cn(styles['phone-link'], styles['link-content'])}
-									>{phones.length > 0? phones[0]: ''}</AnchorNavItem>
-									<AnchorNavItem href={`tel:${phones.length > 0? phones[1]: '#'}`}
-										className={cn(styles['phone-link'], styles['link-content'])}
-									>{phones.length > 0? phones[1]: ''}</AnchorNavItem>
+									{ phones.length > 0 &&
+										<AnchorNavItem href={`tel:${phones[0]}`}
+											className={cn(styles['phone-link'], styles['link-content'])}
+										>{phones[0]}</AnchorNavItem>
+									}
+									{	phones.length > 1 &&
+										<AnchorNavItem href={`tel:${phones[1]}`}
+											className={cn(styles['phone-link'], styles['link-content'])}
+										>{phones[1]}</AnchorNavItem>
+									}
 								</ContactsContent>
 							</ContactsItem>
 

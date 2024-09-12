@@ -11,29 +11,31 @@ function AdminFooter() {
 		<footer>
 			
 			<div className={cn(styles['footer'])}>
-				<NavItem to={adminEditCategory+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
+				<div className={cn(styles['footer-content'])}>
+					<NavItem to={adminEditCategory+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
 					Редактирование категорий
-				</NavItem>
+					</NavItem>
 
-				<NavItem to={adminEditCatalog+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
+					<NavItem to={adminEditCatalog+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
 					Редактирование товаров
-				</NavItem>
+					</NavItem>
 
-				<NavItem to={adminEditPopularProducts+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
+					<NavItem to={adminEditPopularProducts+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
 					Популярные товары
-				</NavItem>
+					</NavItem>
 
-				<NavItem to={adminEditPromotions+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
+					<NavItem to={adminEditPromotions+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
 					Акции
-				</NavItem>
+					</NavItem>
 
-				<NavItem to={adminEditContacts+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
+					<NavItem to={adminEditContacts+adminEditCategoryMenuRoute} className={cn(styles['footer-item'])}>
 					Контакты
-				</NavItem>
+					</NavItem>
 
-				<NavItem to={adminEditGallery} className={cn(styles['footer-item'])}>
+					<NavItem to={adminEditGallery} className={cn(styles['footer-item'])}>
 					Галерея
-				</NavItem>
+					</NavItem>
+				</div>
 			</div>
 			
 		</footer>

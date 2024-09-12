@@ -675,8 +675,12 @@ function Lending({className }: LendingProps) {
 							</div>
 
 							<div className={cn(styles['double-image'])}>
-								<img src={mediaImagesPath+'/lending/roof2.png'} alt="Глянцевые натяжные потолки"/>
-								<img src={mediaImagesPath+'/lending/roof3.png'} alt="Матовые натяжные потолки"/>
+								<div className={cn(styles['double-image-item'])}>
+									<img src={mediaImagesPath+'/lending/roof2.png'} alt="Глянцевые натяжные потолки"/>
+								</div>
+								<div className={cn(styles['double-image-item'])}>
+									<img src={mediaImagesPath+'/lending/roof3.png'} alt="Матовые натяжные потолки"/>
+								</div>
 							</div>
 						</div>
 
@@ -827,8 +831,12 @@ function Lending({className }: LendingProps) {
 							</div>
 
 							<div className={cn(styles['double-image'])}>
-								<img src={mediaImagesPath+'/lending/roof5.png'} alt="Сумерки"/>
-								<img src={mediaImagesPath+'/lending/roof6.png'} alt="День"/>
+								<div className={cn(styles['double-image-item'])}>
+									<img src={mediaImagesPath+'/lending/roof5.png'} alt="Сумерки"/>
+								</div>
+								<div className={cn(styles['double-image-item'])}>
+									<img src={mediaImagesPath+'/lending/roof6.png'} alt="День"/>
+								</div>
 							</div>
 						</div>
 					</div>
