@@ -298,7 +298,7 @@ class CharacteristicView(APIView):
         try:
             product = request.query_params.get('product', '')
             category = request.query_params.get('category', '')
-
+            search = request.query_params.get('search', '')
     
             chars = Characteristic.objects.all()
 
@@ -309,6 +309,15 @@ class CharacteristicView(APIView):
             
             if product:
                 chars = chars.filter(product__slug=product)
+
+            if search:
+                chars = chars.filter(
+                    Q(product__name__icontains=search) |
+                    Q(product__description__icontains=search) | 
+                    Q(product__category__name__icontains=search) |
+                    Q(product__category__parent__name__icontains=search) | 
+                    Q(product__code=search)
+                )
  
             serializer = CharacteristicSerializer(chars, many=True)
 
