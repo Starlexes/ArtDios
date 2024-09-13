@@ -10,3 +10,8 @@ export const deleteUser = () => {
 export const getCurrentYear = () => {
 	return new Date().getFullYear();
 };
+
+export const stripChars = (line: string, char: string) => {
+	const regex = new RegExp(`^[${char}]+|[${char}]+$`, 'g');
+	return line.replace(regex, '');
+};

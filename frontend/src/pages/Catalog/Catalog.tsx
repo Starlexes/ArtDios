@@ -147,7 +147,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 			setIsFetched(true);
 			catParam && setCurrentCategory(catParam);
 			searchResults && setCurrentSearchResults(searchResults);
-			dispatch(fetchCharacteristic({ category: catParam}));
+			dispatch(fetchCharacteristic({ category: catParam, search: searchResults as string}));
 			isAdmin && dispatch(fetchCategory());
 			setCurrentSearchParams(location.search);
 			dispatch(fetchProduct({ 
@@ -173,7 +173,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 		
 	return (
 		
-		isLoading && products.length === 0? <Spinner/>:
+		!isFetched || isLoading && products.length === 0? <Spinner/>:
 
 			<section>
 				<HelmetProvider>

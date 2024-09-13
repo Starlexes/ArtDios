@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { Characteristic } from './characteristicSlice';
+import { stripChars } from '../utils/help-funcs';
 
 
 export interface Product {
@@ -104,7 +105,7 @@ export const fetchProduct = createAsyncThunk<Products, ProductParams, { rejectVa
 				.join('&');
 
 
-			const response = await axios.get(`/api/product/?${queryString}`);
+			const response = await axios.get(`/api/product/?${stripChars(queryString, '&')}`);
 			
 			return response.data;
 		} catch (error) {

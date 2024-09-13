@@ -8,7 +8,7 @@ import { SearchProps } from './Search.props';
 import cn from 'classnames';
 import SearchSuggestionsItem from '../SearchSuggestionsItem/SearchSuggestionsItem';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { adminEditCatalog, adminEditCategoryMenuRoute, adminHomeRoute, adminRoute, catalog, mediaImagesPath, seachingRoute } from '../../../utils/constants';
 
 export interface Suggestion {
@@ -16,14 +16,16 @@ export interface Suggestion {
 	slug: string
 } 
 
+
 function Search({className, isAdmin=false}: SearchProps) {
 
 	const [inputValue, setInputValue] = useState('');
 	const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
 	const [suggestsActive, setSuggestsActive] = useState<boolean>(false);
-	const [overSuggests, setOverSuggests] = useState<boolean>(false);
 
 	const navigate = useNavigate();
+
+	const location = useLocation();
 
 	const fetchSuggestions = async (query: string) => {
 		if (!query) return;
@@ -39,7 +41,6 @@ function Search({className, isAdmin=false}: SearchProps) {
 
 	const onClickLink = (value:string) => {
 		setInputValue(value);
-		setSuggestsActive(false);
 	};
 
 	const onClickSearch = () => {
@@ -56,17 +57,10 @@ function Search({className, isAdmin=false}: SearchProps) {
 		}
 	};
 
-	const onMouseEnter = () => {
-		setOverSuggests(true);
-	};
-
-	const onMouseLeave = () => {
-		setOverSuggests(false);
-	};
 
 	const highlightText = (text: string) => {
 		if (!inputValue) return text;
-		const regex = new RegExp(`(${inputValue})`, 'gi');
+		const regex = new RegExp(`(${inputValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
 		const parts = text.split(regex);
 		return parts.map((part, index) => 
 			regex.test(part) ? <span key={index} className={cn(styles['matches'])}>{part}</span> : part
@@ -84,6 +78,10 @@ function Search({className, isAdmin=false}: SearchProps) {
 		}
 	}, [inputValue, isAdmin]);
 
+	useEffect(() => {
+		setSuggestsActive(false);
+	}, [location.pathname]);
+
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setSuggestsActive(true);
@@ -94,38 +92,37 @@ function Search({className, isAdmin=false}: SearchProps) {
 		setSuggestsActive(true);
 	};
 
-	const onBlur = () => {
-		if (overSuggests) {
-			setTimeout(() => setSuggestsActive(false), 100);
-		} else {
-			setSuggestsActive(false);
-		}
-		
-	};
 
 	return (
-		<div className={cn(styles['search'], className)} onKeyDown={onKeyDown}>
-			<Input placeholder='Поиск' className={cn(styles['search-input'])}
-				onChange={handleChange} value={inputValue} onFocus={onFocus}
-				onBlur={onBlur}/>
-			<Button className={cn(styles['search-btn'])} onClick={onClickSearch}>
-				<img src={mediaImagesPath+'/other/loupe.svg'} alt="Иконка лупы"/>
-			</Button>
+		<>
+			<div className={cn(styles['search'], className)} onKeyDown={onKeyDown}>
+				<Input placeholder='Поиск' className={cn(styles['search-input'])}
+					onChange={handleChange} value={inputValue} onFocus={onFocus}
+				/>
+				<Button className={cn(styles['search-btn'])} onClick={onClickSearch}>
+					<img src={mediaImagesPath+'/other/loupe.svg'} alt="Иконка лупы"/>
+				</Button>
 
-			{!isAdmin && suggestsActive && suggestions.length > 0 && inputValue && 
-				<SearchSuggestions onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}> 
-					{ suggestions.slice(0, 10).map(item => (
-						<SearchSuggestionsItem key={item.slug} link={item.slug} onClickLink={onClickLink} suggestItem={item}>
-							{highlightText(item.name)}
-						</SearchSuggestionsItem>
+				{!isAdmin && suggestsActive && suggestions.length > 0 && inputValue &&
+				<>
+					<SearchSuggestions> 
+						{ suggestions.slice(0, 10).map(item => (
+							<SearchSuggestionsItem key={item.slug} link={item.slug} onClickLink={onClickLink} suggestItem={item}>
+								{highlightText(item.name)}
+							</SearchSuggestionsItem>
 
-					))
-					}
-				</SearchSuggestions>
+						))
+						}
+					</SearchSuggestions>
+
+					
+				</>
+				}
+			</div>
+			{!isAdmin && suggestsActive && suggestions.length > 0 && inputValue &&
+				<div className={cn(styles['search-overlay'])} onClick={() => setSuggestsActive(false)}></div>
 			}
-		</div>
-			
-		
+		</>
 	);
 }
 

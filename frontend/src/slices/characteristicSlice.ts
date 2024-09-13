@@ -30,6 +30,7 @@ export interface CharacteristicClient {
 export interface CharParams {
     product?: string,
     category?: string,
+	search?: string
 }
 
 
