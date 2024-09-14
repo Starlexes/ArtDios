@@ -143,7 +143,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 
 
 	useEffect(() => {	
-		if (!isFetched && !isLoading && (currentCategory !== catParam || (currentSearchParams !== location.search && !page))) {		
+		if (!isFetched && !isLoading && (currentCategory !== catParam || currentSearchParams !== location.search)) {		
 			setIsFetched(true);
 			catParam && setCurrentCategory(catParam);
 			searchResults && setCurrentSearchResults(searchResults);
@@ -173,7 +173,7 @@ function Catalog({className, isAdmin=false}: CatalogProps) {
 		
 	return (
 		
-		!isFetched || isLoading && products.length === 0? <Spinner/>:
+		isLoading && products.length >= 0? <Spinner/>:
 
 			<section>
 				<HelmetProvider>
