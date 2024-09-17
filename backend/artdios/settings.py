@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-h7ika^s(k9r*-$9^i9queb)*alj^bfzrww+)=h(=4=8u94kh-l"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '91.200.150.41', 'artdios.ru', 'www.artdios.ru']
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -167,7 +167,6 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:5173', "http://localhost:3000",]
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'store','static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -175,7 +174,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
 }
 
-INTERNAL_IPS = ['127.0.0.1',]
+INTERNAL_IPS = ['127.0.0.1', '91.200.150.41']
 
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
