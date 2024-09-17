@@ -60,20 +60,20 @@ function MenuFooter({className, ...props }: MenuFooterProps) {
 
 			<MenuFooterItem>
 				<MenuTitle>Социальные сети</MenuTitle>
-				<AnchorNavItem href='https://wa.me/+11111111111?text=Здравствуйте' className={cn(styles['contact-text']) } target='blank'>
+				<AnchorNavItem href='https://wa.me/+79782111387?text=Здравствуйте' className={cn(styles['contact-text']) } target='blank'>
 					<FooterSocialItem>
 						<img src={mediaImagesPath+'/social/whatsapp logo.svg'} alt="Логотип WhatsApp"/>   
                         WhatsApp
 					</FooterSocialItem>
 				</AnchorNavItem>
-				<AnchorNavItem href='viber://chat?number=+11111111111' className={cn(styles['contact-text'])} target='blank'>
+				<AnchorNavItem href='viber://chat?number=+79782111387' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
 						<img src={mediaImagesPath+'/social/viber logo.svg'} alt="Логотип Viber"/>   
                         Viber
 					</FooterSocialItem>
 				</AnchorNavItem>
 
-				<AnchorNavItem href='https://t.me/+11111111111' className={cn(styles['contact-text'])} target='blank'>
+				<AnchorNavItem href='https://t.me/+79782111387' className={cn(styles['contact-text'])} target='blank'>
 					<FooterSocialItem>
 						<img src={mediaImagesPath+'/social/telegram logo.svg'} alt="Логотип Telegram"/>   
                         Telegram
