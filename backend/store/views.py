@@ -12,6 +12,8 @@ from rest_framework import status, generics
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework_simplejwt.tokens import RefreshToken
 
+import cacheops
+
 from .models import *
 from .serializers import *
 
@@ -23,9 +25,13 @@ def update_children_is_show(parent_instance):
       
         for category in categories:
             SubCategory.objects.filter(parent=category).update(is_show=category.is_show)
-   
+
+    
     elif isinstance(parent_instance, Category):
         SubCategory.objects.filter(parent=parent_instance).update(is_show=parent_instance.is_show)
+
+    cacheops.invalidate_model(Category)   
+    cacheops.invalidate_model(SubCategory)
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
@@ -425,7 +431,7 @@ class ProductView(APIView):
                 search_vector = SearchVector('name', 'description', 'code') + \
                         SearchVector(F('category__name')) + \
                         SearchVector(F('category__parent__name'))
-                products = Product.objects.filter(
+                products = products.filter(
                     Q(name__icontains=search) |
                     Q(description__icontains=search) | 
                     Q(category__name__icontains=search) |
