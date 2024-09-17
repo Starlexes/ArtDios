@@ -46,7 +46,7 @@ function ModalOrderCall({isOpen = false, closeModal, commentPlaceholder}: ModalO
 			<div className={cn(styles['modal-content'])}>
 				<ModalHead 
 					modalTitle='Обратная связь'
-					modalText='Укажите ваши контактные данные и мы свяжемся с вами'
+					modalText='Укажите ваши контактные данные'
 					textClass='modal-text'					
 				/>
 

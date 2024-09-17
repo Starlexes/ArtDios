@@ -8,7 +8,7 @@
     font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
     color: var(--default-color);
     resize: none;
-    min-height: 134px;
+    height: 80px;
 }
 
 
