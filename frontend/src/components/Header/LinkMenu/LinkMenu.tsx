@@ -11,21 +11,28 @@ import { LinkMenuProps } from './LinkMenu.props';
 import Search from '../Search/Search';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { aboutRoute, galleryRoute, promotionRoute, serviceRoute } from '../../../utils/constants';
+import {
+	aboutRoute,
+	galleryRoute,
+	promotionRoute,
+	serviceRoute
+} from '../../../utils/constants';
 
+function LinkMenu({ className }: LinkMenuProps) {
+	const isClickedState = useSelector(
+		(state: RootState) => state.buttons.modalSearchButton.isClicked
+	);
 
-function LinkMenu({className}: LinkMenuProps) {
-	
-	const isClickedState = useSelector((state: RootState) => state.buttons.modalSearchButton.isClicked);
+	const initial = useSelector(
+		(state: RootState) => state.buttons.modalSearchButton.initial
+	);
 
-	const initial = useSelector((state: RootState) => state.buttons.modalSearchButton.initial);
-  
 	const matches = useMediaPredicate('(min-width: 881px)');
-  
+
 	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const handleClick = () => {
-		setIsClicked(prevState => !prevState);
+		setIsClicked((prevState) => !prevState);
 	};
 
 	const handleMouseLeave = () => {
@@ -41,62 +48,104 @@ function LinkMenu({className}: LinkMenuProps) {
 	}, [matches]);
 
 	return (
-
-		<div className={cn(styles.bottom__header, {
-			[styles['active']]: isClickedState,
-			[styles['disactive']]: !initial && !isClickedState
-		},className)} onMouseLeave={handleMouseLeave}>
-			{ matches?
+		<div
+			className={cn(
+				styles.bottom__header,
+				{
+					[styles['active']]: isClickedState,
+					[styles['disactive']]: !initial && !isClickedState
+				},
+				className
+			)}
+			onMouseLeave={handleMouseLeave}
+		>
+			{matches ? (
 				<>
-					<Button className='catalog' onClick={handleClick} isActive={isClicked}>
-						<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<Button
+						className="catalog"
+						onClick={handleClick}
+						isActive={isClicked}
+					>
+						<svg
+							width="20"
+							height="16"
+							viewBox="0 0 20 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
 							<rect width="20" height="4" rx="2" fill="white" />
-							<rect y="6" width="20" height="4" rx="2" fill="white" />
-							<rect y="12" width="20" height="4" rx="2" fill="white" />
+							<rect
+								y="6"
+								width="20"
+								height="4"
+								rx="2"
+								fill="white"
+							/>
+							<rect
+								y="12"
+								width="20"
+								height="4"
+								rx="2"
+								fill="white"
+							/>
 						</svg>
-				Каталог
+						Каталог
 					</Button>
-					<NavigationList className={cn(styles['link-menu'])} onMouseEnter={handleMouseLeave}>
-
+					<NavigationList
+						className={cn(styles['link-menu'])}
+						onMouseEnter={handleMouseLeave}
+					>
 						<NavigationListItem key={1}>
-							<NavItem className={cn(styles['nav-menu'])} to={'/'}>
+							<NavItem
+								className={cn(styles['nav-menu'])}
+								to={'/'}
+							>
 								Главная
 							</NavItem>
 						</NavigationListItem>
 
 						<NavigationListItem key={2}>
-							<NavItem className={cn(styles['nav-menu'])} to={serviceRoute}>
+							<NavItem
+								className={cn(styles['nav-menu'])}
+								to={serviceRoute}
+							>
 								Услуги
 							</NavItem>
 						</NavigationListItem>
 
 						<NavigationListItem key={3}>
-							<NavItem className={cn(styles['nav-menu'])} to={promotionRoute}>
+							<NavItem
+								className={cn(styles['nav-menu'])}
+								to={promotionRoute}
+							>
 								Акции
 							</NavItem>
 						</NavigationListItem>
 
 						<NavigationListItem key={4}>
-							<NavItem className={cn(styles['nav-menu'])} to={galleryRoute}>
+							<NavItem
+								className={cn(styles['nav-menu'])}
+								to={galleryRoute}
+							>
 								Галерея
 							</NavItem>
 						</NavigationListItem>
 
 						<NavigationListItem key={5}>
-							<NavItem className={cn(styles['nav-menu'])} to={aboutRoute}>
+							<NavItem
+								className={cn(styles['nav-menu'])}
+								to={aboutRoute}
+							>
 								О компании
 							</NavItem>
 						</NavigationListItem>
-
 					</NavigationList>
-					{isClicked && <CategoryList onClickLink={onClickLink}/>}
-			
-					
-				</> : <Search/>
-			}
+					{isClicked && <CategoryList onClickLink={onClickLink} />}
+				</>
+			) : (
+				<Search />
+			)}
 		</div>
-			
-			
 	);
 }
 

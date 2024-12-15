@@ -1,5 +1,4 @@
-
-import { ChangeEvent, useEffect, useState} from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -12,7 +11,12 @@ import NewItemLayout from '../../admin-components/NewItemLayout/NewItemLayout';
 import { EditProductCardProps } from './EditProductCard.props';
 import ItemImagePreview from '../../admin-components/ItemImagePreview/ItemImagePreview';
 import SaveDeleteButton from '../../admin-components/SaveDeleteButton/SaveDeleteButton';
-import { adminEditCategoryMenuRoute, adminEditPromotions, adminHomeRoute, adminRoute } from '../../utils/constants';
+import {
+	adminEditCategoryMenuRoute,
+	adminEditPromotions,
+	adminHomeRoute,
+	adminRoute
+} from '../../utils/constants';
 import ModalAskDelete from '../../admin-components/ModalAskDelete/ModalAskDelete';
 import ItemCardTitle from '../../admin-components/ItemCardTitle/ItemCardTitle';
 import { deletePromotion, updatePromotion } from '../../slices/promotionSlice';
@@ -22,11 +26,11 @@ import ItemCardTextArea from '../../admin-components/ItemCardTextArea/ItemCardTe
 import ItemCardInput from '../../admin-components/ItemCardInput/ItemCardInput';
 import { fetchPromotionCard } from '../../slices/promotionCardSlice';
 
+function EditProductCard({ className }: EditProductCardProps) {
+	const { isLoading, promotion } = useAppSelector(
+		(state: RootState) => state.promotionCard
+	);
 
-function EditProductCard({className }: EditProductCardProps) {
-
-	const {isLoading, promotion} = useAppSelector((state: RootState) => state.promotionCard );
-	
 	const [image, setImage] = useState<File | null>(null);
 	const [secondImage, setSecondImage] = useState<File | null>(null);
 	const [name, setName] = useState<string>('');
@@ -36,7 +40,7 @@ function EditProductCard({className }: EditProductCardProps) {
 	const [currentPromo, setCurrentPromo] = useState<string>('');
 
 	const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
-	
+
 	const { promoItem: promoParam } = useParams<{ promoItem: string }>();
 
 	const dispatch = useAppDispatch();
@@ -63,7 +67,6 @@ function EditProductCard({className }: EditProductCardProps) {
 		return text === '';
 	};
 
-
 	const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 		if (file) {
@@ -89,26 +92,37 @@ function EditProductCard({className }: EditProductCardProps) {
 			image && formData.append('main_image', image);
 			secondImage && formData.append('second_image', secondImage);
 			name && formData.append('name', name);
-			!isEmptyDesc(description) && formData.append('description', description);
-			dispatch(updatePromotion({id: Number(promotion?.id), data: formData}));
-			navigate(adminRoute+adminHomeRoute+adminEditPromotions+adminEditCategoryMenuRoute);
+			!isEmptyDesc(description) &&
+				formData.append('description', description);
+			dispatch(
+				updatePromotion({ id: Number(promotion?.id), data: formData })
+			);
+			navigate(
+				adminRoute +
+					adminHomeRoute +
+					adminEditPromotions +
+					adminEditCategoryMenuRoute
+			);
 		}
-
 	};
 
 	const onClickDelete = () => {
-		setDeleteClicked(!deleteClicked);	
+		setDeleteClicked(!deleteClicked);
 	};
 
 	const onDelete = (id?: number) => {
 		if (id) {
 			dispatch(deletePromotion(id));
-			navigate(adminRoute+adminHomeRoute+adminEditPromotions+adminEditCategoryMenuRoute);
+			navigate(
+				adminRoute +
+					adminHomeRoute +
+					adminEditPromotions +
+					adminEditCategoryMenuRoute
+			);
 		}
 	};
 
 	return (
-		
 		<section>
 			<div className={cn(styles['promo-card'], className)}>
 				<HelmetProvider>
@@ -116,54 +130,95 @@ function EditProductCard({className }: EditProductCardProps) {
 						<title>Акция</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Акция
-				</AdminPageHead>
+				<AdminPageHead>Акция</AdminPageHead>
 
 				<NewItemLayout>
-					<ItemCardTitle>
-						Превью
-					</ItemCardTitle>
-				
-					{isLoading? <Spinner/> :
+					<ItemCardTitle>Превью</ItemCardTitle>
+
+					{isLoading ? (
+						<Spinner />
+					) : (
 						<>
-							<div className={cn(styles['product-items'], styles['border-item'])}>
-								<ItemCardInputArea className={cn(styles['promo-area'])}>
-									<ItemCardInputLabel>Название:</ItemCardInputLabel>
-									<ItemCardInput onChange={onChangeName} errors={acceptClicked && !name} placeholder='Название...' value={name}/>    			
+							<div
+								className={cn(
+									styles['product-items'],
+									styles['border-item']
+								)}
+							>
+								<ItemCardInputArea
+									className={cn(styles['promo-area'])}
+								>
+									<ItemCardInputLabel>
+										Название:
+									</ItemCardInputLabel>
+									<ItemCardInput
+										onChange={onChangeName}
+										errors={acceptClicked && !name}
+										placeholder="Название..."
+										value={name}
+									/>
 								</ItemCardInputArea>
-								
-								<ItemImagePreview image={secondImage? secondImage: promotion.second_image } onChange={onChangeSecondImage}/>
+
+								<ItemImagePreview
+									image={
+										secondImage
+											? secondImage
+											: promotion.second_image
+									}
+									onChange={onChangeSecondImage}
+								/>
 							</div>
-							<ItemCardTitle>
-						Карточка Акции
-							</ItemCardTitle>
+							<ItemCardTitle>Карточка Акции</ItemCardTitle>
 							<div className={cn(styles['product-items'])}>
-								<ItemCardInputArea className={cn(styles['promo-area'], styles['promo-textarea'])}>
-									<ItemCardInputLabel>Описание:</ItemCardInputLabel>
-									<ItemCardTextArea content={description} onChangeContent={setDescription} errors={acceptClicked && isEmptyDesc(description)}/>    			
+								<ItemCardInputArea
+									className={cn(
+										styles['promo-area'],
+										styles['promo-textarea']
+									)}
+								>
+									<ItemCardInputLabel>
+										Описание:
+									</ItemCardInputLabel>
+									<ItemCardTextArea
+										content={description}
+										onChangeContent={setDescription}
+										errors={
+											acceptClicked &&
+											isEmptyDesc(description)
+										}
+									/>
 								</ItemCardInputArea>
-								
-								<ItemImagePreview image={image? image: promotion.main_image} onChange={onChangeImage} className={cn(styles['main-preview'])}/>
+
+								<ItemImagePreview
+									image={image ? image : promotion.main_image}
+									onChange={onChangeImage}
+									className={cn(styles['main-preview'])}
+								/>
 							</div>
 							<div className={cn(styles['action-btns'])}>
-								<SaveDeleteButton typeAction='accept' onClick={onClickSubmit}/>
-								<SaveDeleteButton typeAction='delete' onClick={onClickDelete}/>
+								<SaveDeleteButton
+									typeAction="accept"
+									onClick={onClickSubmit}
+								/>
+								<SaveDeleteButton
+									typeAction="delete"
+									onClick={onClickDelete}
+								/>
 							</div>
-							
 						</>
-					}
+					)}
 				</NewItemLayout>
-				
-				<ModalAskDelete isOpen={deleteClicked} closeModal={onClickDelete}
-					message={`акцию "${promotion.name}"`} idItem={promotion?.id}
-					onDelete={onDelete}/>
+
+				<ModalAskDelete
+					isOpen={deleteClicked}
+					closeModal={onClickDelete}
+					message={`акцию "${promotion.name}"`}
+					idItem={promotion?.id}
+					onDelete={onDelete}
+				/>
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditProductCard;
-

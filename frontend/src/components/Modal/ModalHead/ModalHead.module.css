@@ -1,23 +1,21 @@
 .modal-head {
-    display: flex;
-    flex-direction: column;
-    gap: min(calc(21 / 1200 * 100vw), 21px);
-    align-items: center;
-    max-width: 330px;
-    width: calc(330 / 1200 * 100vw);
-    
+	display: flex;
+	flex-direction: column;
+	gap: min(calc(21 / 1200 * 100vw), 21px);
+	align-items: center;
+	max-width: 330px;
+	width: calc(330 / 1200 * 100vw);
 }
 
-
 @media (max-width: 880px) {
-    .modal-head {
-        gap: calc(21 / 880 * 100vw);
-        width: max(calc(300 / 880 * 100vw), 237px);    
-    }
+	.modal-head {
+		gap: calc(21 / 880 * 100vw);
+		width: max(calc(300 / 880 * 100vw), 237px);
+	}
 }
 
 @media (max-width: 376px) {
-    .modal-head {
-        width: calc(222 / 376 * 100vw);
-    }
+	.modal-head {
+		width: calc(222 / 376 * 100vw);
+	}
 }

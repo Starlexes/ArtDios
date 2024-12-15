@@ -1,21 +1,21 @@
 .nav-item {
-    text-decoration: none;
-    font-size: clamp(14px, calc(15 / 1200 * 100vw), 15px);
-    cursor: pointer;
+	text-decoration: none;
+	font-size: clamp(14px, calc(15 / 1200 * 100vw), 15px);
+	cursor: pointer;
 }
 
 .nav-item:hover {
-    color: var(--active-color);
+	color: var(--active-color);
 }
 
 @media (max-width: 880px) {
-    .nav-item {
-        font-size: 18px;
-    }
+	.nav-item {
+		font-size: 18px;
+	}
 }
 
 @media (max-width: 510px) {
-    .nav-item {
-        font-size: 14px;
-    }
+	.nav-item {
+		font-size: 14px;
+	}
 }

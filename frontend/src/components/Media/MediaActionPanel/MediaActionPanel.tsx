@@ -5,12 +5,12 @@ import styles from './MediaActionPanel.module.css';
 import { MediaActionPanelProps } from './MediaActionPanel.props';
 import cn from 'classnames';
 
-function MediaActionPanel({className}: MediaActionPanelProps) {
+function MediaActionPanel({ className }: MediaActionPanelProps) {
 	return (
 		<div className={cn(styles['media-panel'], className)}>
-			<ButtonOrderCall/>
-			<MediaSearchButton/>
-			<MediaBurger/>
+			<ButtonOrderCall />
+			<MediaSearchButton />
+			<MediaBurger />
 		</div>
 	);
 }

@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface PromotionsProps extends HTMLProps<HTMLDivElement>{}
+export interface PromotionsProps extends HTMLProps<HTMLDivElement> {}

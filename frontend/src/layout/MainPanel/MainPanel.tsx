@@ -5,16 +5,13 @@ import { Outlet } from 'react-router-dom';
 import SocialWidget from '../../components/SocialWidget/SocialWidget';
 import { useMediaPredicate } from 'react-media-hook';
 
-function MainPanel({className}: MainPanelProps) {
-
+function MainPanel({ className }: MainPanelProps) {
 	const matches = useMediaPredicate('(min-width: 881px)');
 
 	return (
 		<main className={cn(styles['main'], className)}>
-			<Outlet/>
-			{ matches &&
-				<SocialWidget/>
-			}
+			<Outlet />
+			{matches && <SocialWidget />}
 		</main>
 	);
 }

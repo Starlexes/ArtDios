@@ -1,4 +1,3 @@
 import { HTMLProps } from 'react';
 
-
-export type AdminMainPanelProps = HTMLProps<HTMLDivElement>
+export type AdminMainPanelProps = HTMLProps<HTMLDivElement>;

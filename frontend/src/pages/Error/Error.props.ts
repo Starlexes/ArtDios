@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface ErrorProps extends HTMLProps<HTMLDivElement>{
-    onClickBack?: () => void
+export interface ErrorProps extends HTMLProps<HTMLDivElement> {
+	onClickBack?: () => void;
 }

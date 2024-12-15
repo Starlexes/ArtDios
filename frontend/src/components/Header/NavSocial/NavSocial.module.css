@@ -1,18 +1,18 @@
 .messangers__header {
-    display: flex;
-    justify-content: center;
-    gap: min(calc(12 / 1200 * 100vw), 12px);
+	display: flex;
+	justify-content: center;
+	gap: min(calc(12 / 1200 * 100vw), 12px);
 }
 
 .messangers__header img {
-    width: 20px;
-    height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .social-item {
-    display: flex;
+	display: flex;
 }
 
 .social-item:hover {
-    opacity: .7;
+	opacity: 0.7;
 }

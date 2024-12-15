@@ -1,5 +1,4 @@
-
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -15,19 +14,24 @@ import CardEditItemActions from '../../admin-components/CardEditItemActions/Card
 import CardEditItem from '../../admin-components/CardEditItem/CardEditItem';
 import { addItemPlus } from '../../utils/constants';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
-import { addAddress, deleteAddress, fetchAddress, updateAddress } from '../../slices/addressSlice';
+import {
+	addAddress,
+	deleteAddress,
+	fetchAddress,
+	updateAddress
+} from '../../slices/addressSlice';
 
-
-function EditAddress({className }: EditAddressProps) {
-
-	const {isLoading, addresses} = useAppSelector((state: RootState) => state.address);
+function EditAddress({ className }: EditAddressProps) {
+	const { isLoading, addresses } = useAppSelector(
+		(state: RootState) => state.address
+	);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id: number | undefined, address: string) => {
 		if (id) {
-			dispatch(updateAddress({id: id, data: {address: address}}));		
+			dispatch(updateAddress({ id: id, data: { address: address } }));
 		}
 	};
 
@@ -36,7 +40,7 @@ function EditAddress({className }: EditAddressProps) {
 	};
 
 	const onClickAddItem = (address: string) => {
-		dispatch(addAddress({address: address}));
+		dispatch(addAddress({ address: address }));
 		setNewItemClicked(false);
 	};
 
@@ -50,7 +54,6 @@ function EditAddress({className }: EditAddressProps) {
 	}, [dispatch, addresses.length, isFetched, isLoading]);
 
 	return (
-		
 		<section>
 			<div className={cn(styles['address-items'], className)}>
 				<HelmetProvider>
@@ -58,47 +61,54 @@ function EditAddress({className }: EditAddressProps) {
 						<title>Адрес</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Адрес
-				</AdminPageHead>
+				<AdminPageHead>Адрес</AdminPageHead>
 
 				<NewItemLayout>
-					
-					{isLoading? <Spinner/> :
-																				
+					{isLoading ? (
+						<Spinner />
+					) : (
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Адрес:</ItemCardInputLabel>
-							{addresses.length > 0 && addresses.map(address => (
-								<CardEditItemActions key={address.id}>
-									<CardEditItem content={address.address} idItem={address.id}
-										deleteMessage={`адрес: "${address.address}"`} onClickAccept={onClickAccept}
-										onDelete={onDelete} placeholder='Адрес...'/>										
-								</CardEditItemActions>
-							))}
+							{addresses.length > 0 &&
+								addresses.map((address) => (
+									<CardEditItemActions key={address.id}>
+										<CardEditItem
+											content={address.address}
+											idItem={address.id}
+											deleteMessage={`адрес: "${address.address}"`}
+											onClickAccept={onClickAccept}
+											onDelete={onDelete}
+											placeholder="Адрес..."
+										/>
+									</CardEditItemActions>
+								))}
 
-							{ newItemClicked?
+							{newItemClicked ? (
 								<CardEditItem
 									onClickAdd={onClickAddItem}
-									onRemoveItem={() => setNewItemClicked(!newItemClicked)} placeholder='Адрес...' newItem={true}/>
-								:
-								<AddItemButton shape='circle' className={cn(styles['action-btn'])}
-									onClick={() => setNewItemClicked(!newItemClicked)}>
+									onRemoveItem={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+									placeholder="Адрес..."
+									newItem={true}
+								/>
+							) : (
+								<AddItemButton
+									shape="circle"
+									className={cn(styles['action-btn'])}
+									onClick={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+								>
 									{addItemPlus()}
 								</AddItemButton>
-							}
-								
-						</ItemCardInputArea>																						
-						
-					}
+							)}
+						</ItemCardInputArea>
+					)}
 				</NewItemLayout>
-				
-				
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditAddress;
-

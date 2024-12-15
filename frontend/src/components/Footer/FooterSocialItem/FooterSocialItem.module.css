@@ -1,34 +1,34 @@
 .social-item {
-    display: flex;
-    align-items: center;
-    gap: min(calc(15 / 1200 * 100vw), 15px);
+	display: flex;
+	align-items: center;
+	gap: min(calc(15 / 1200 * 100vw), 15px);
 }
 
 .social-item img {
-    width: 34px;
-    height: 34px;
+	width: 34px;
+	height: 34px;
 }
 
 .social-item:hover img {
-    opacity: .7;
+	opacity: 0.7;
 }
 
 @media (max-width: 880px) {
-    .social-item {
-        font-size: 18px;
-    }
-    .social-item img {
-        width: 38px;
-        height: 38px;
-    }
+	.social-item {
+		font-size: 18px;
+	}
+	.social-item img {
+		width: 38px;
+		height: 38px;
+	}
 }
 
 @media (max-width: 510px) {
-    .social-item {
-        font-size: 14px;
-    }
-    .social-item img {
-        width: 34px;
-        height: 34px;
-    }
+	.social-item {
+		font-size: 14px;
+	}
+	.social-item img {
+		width: 34px;
+		height: 34px;
+	}
 }

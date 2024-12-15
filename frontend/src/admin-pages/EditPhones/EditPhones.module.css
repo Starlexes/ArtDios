@@ -1,12 +1,11 @@
 .phones-items {
-    display: flex;
-    flex-direction: column;
-    width: 1200px;
+	display: flex;
+	flex-direction: column;
+	width: 1200px;
 }
 
-
 .action-btn {
-    width: 88px;
-    height: 88px;
-    padding: 17px;
+	width: 88px;
+	height: 88px;
+	padding: 17px;
 }

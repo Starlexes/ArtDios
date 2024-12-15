@@ -7,10 +7,16 @@ import ModelEditButton from '../ModelEditButton/ModelEditButton';
 
 Modal.setAppElement('#root');
 
-function ModalAskDelete({className, isOpen = false, closeModal, message,
-	onDelete, idItem, idsItems, onDeleteMulty}: ModalAskDeleteProps) {
-
-
+function ModalAskDelete({
+	className,
+	isOpen = false,
+	closeModal,
+	message,
+	onDelete,
+	idItem,
+	idsItems,
+	onDeleteMulty
+}: ModalAskDeleteProps) {
 	return (
 		<Modal
 			isOpen={isOpen}
@@ -18,34 +24,36 @@ function ModalAskDelete({className, isOpen = false, closeModal, message,
 			className={cn(styles['modal-window'])}
 			overlayClassName={cn(overlayStyles['modal-overlay'])}
 		>
-			
 			<div className={cn(styles['modal-content'], className)}>
-				<span>
-                Вы уверены, что хотите удалить {message}?
-				</span>
-                
+				<span>Вы уверены, что хотите удалить {message}?</span>
+
 				<div className={cn(styles['modal-buttons'])}>
-					<ModelEditButton typeAction='main' onClick={() => {
-						if (idItem) {
-							onDelete && onDelete(idItem);
-							closeModal();
-						}	
-						if (idsItems) {
-							onDeleteMulty && onDeleteMulty(idsItems);
-							closeModal();
-						}											
-					}} className={cn(styles['modal-button'])}>
-                        Да
+					<ModelEditButton
+						typeAction="main"
+						onClick={() => {
+							if (idItem) {
+								onDelete && onDelete(idItem);
+								closeModal();
+							}
+							if (idsItems) {
+								onDeleteMulty && onDeleteMulty(idsItems);
+								closeModal();
+							}
+						}}
+						className={cn(styles['modal-button'])}
+					>
+						Да
 					</ModelEditButton>
 
-					<ModelEditButton typeAction='main' onClick={closeModal} className={cn(styles['modal-button'])}>
-                        Нет
+					<ModelEditButton
+						typeAction="main"
+						onClick={closeModal}
+						className={cn(styles['modal-button'])}
+					>
+						Нет
 					</ModelEditButton>
-
 				</div>
-				
 			</div>
-								
 		</Modal>
 	);
 }

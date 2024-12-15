@@ -1,19 +1,18 @@
 .title {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 44px;
-    text-align: center;
+	display: inline-block;
+	font-weight: 700;
+	font-size: 44px;
+	text-align: center;
 }
 
 @media (max-width: 880px) {
-    .title {
-        font-size: calc(32 / 880 * 100vw);
-    }
+	.title {
+		font-size: calc(32 / 880 * 100vw);
+	}
 }
 
 @media (max-width: 510px) {
-          
-    .title {
-        font-size: 18px;
-    }
+	.title {
+		font-size: 18px;
+	}
 }

@@ -1,5 +1,4 @@
-
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -15,19 +14,24 @@ import CardEditItemActions from '../../admin-components/CardEditItemActions/Card
 import CardEditItem from '../../admin-components/CardEditItem/CardEditItem';
 import { addItemPlus } from '../../utils/constants';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
-import { addEmail, deleteEmail, fetchEmail, updateEmail } from '../../slices/emailSlice';
+import {
+	addEmail,
+	deleteEmail,
+	fetchEmail,
+	updateEmail
+} from '../../slices/emailSlice';
 
-
-function EditEmails({className }: EditEmailsProps) {
-
-	const {isLoading, emails} = useAppSelector((state: RootState) => state.emails);
+function EditEmails({ className }: EditEmailsProps) {
+	const { isLoading, emails } = useAppSelector(
+		(state: RootState) => state.emails
+	);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id: number | undefined, email: string) => {
 		if (id) {
-			dispatch(updateEmail({id: id, data: {email: email}}));		
+			dispatch(updateEmail({ id: id, data: { email: email } }));
 		}
 	};
 
@@ -36,7 +40,7 @@ function EditEmails({className }: EditEmailsProps) {
 	};
 
 	const onClickAddItem = (email: string) => {
-		dispatch(addEmail({email: email}));
+		dispatch(addEmail({ email: email }));
 		setNewItemClicked(false);
 	};
 
@@ -50,7 +54,6 @@ function EditEmails({className }: EditEmailsProps) {
 	}, [dispatch, emails.length, isLoading, isFetched]);
 
 	return (
-		
 		<section>
 			<div className={cn(styles['email-items'], className)}>
 				<HelmetProvider>
@@ -58,48 +61,55 @@ function EditEmails({className }: EditEmailsProps) {
 						<title>Email</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Email
-				</AdminPageHead>
+				<AdminPageHead>Email</AdminPageHead>
 
 				<NewItemLayout>
-					
-					{isLoading? <Spinner/> :
-																				
+					{isLoading ? (
+						<Spinner />
+					) : (
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Email:</ItemCardInputLabel>
-							{emails.length > 0 && emails.map(email => (
-								<CardEditItemActions key={email.id}>
-									<CardEditItem content={email.email} idItem={email.id}
-										deleteMessage={`почту: "${email.email}"`} onClickAccept={onClickAccept}
-										onDelete={onDelete} placeholder='example@mail.ru'/>										
-								</CardEditItemActions>
-							))}
+							{emails.length > 0 &&
+								emails.map((email) => (
+									<CardEditItemActions key={email.id}>
+										<CardEditItem
+											content={email.email}
+											idItem={email.id}
+											deleteMessage={`почту: "${email.email}"`}
+											onClickAccept={onClickAccept}
+											onDelete={onDelete}
+											placeholder="example@mail.ru"
+										/>
+									</CardEditItemActions>
+								))}
 
-							{ newItemClicked?
+							{newItemClicked ? (
 								<CardEditItem
 									onClickAdd={onClickAddItem}
-									onRemoveItem={() => setNewItemClicked(!newItemClicked)} placeholder='example@mail.ru'
-									newItem={true} type='email'/>
-								:
-								<AddItemButton shape='circle' className={cn(styles['action-btn'])}
-									onClick={() => setNewItemClicked(!newItemClicked)}>
+									onRemoveItem={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+									placeholder="example@mail.ru"
+									newItem={true}
+									type="email"
+								/>
+							) : (
+								<AddItemButton
+									shape="circle"
+									className={cn(styles['action-btn'])}
+									onClick={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+								>
 									{addItemPlus()}
 								</AddItemButton>
-							}
-								
-						</ItemCardInputArea>																						
-						
-					}
+							)}
+						</ItemCardInputArea>
+					)}
 				</NewItemLayout>
-				
-				
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditEmails;
-

@@ -12,14 +12,14 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-	config => {
+	(config) => {
 		const csrfToken = Cookies.get('csrftoken');
 		if (csrfToken) {
 			config.headers['X-CSRFToken'] = csrfToken;
 		}
 		return config;
 	},
-	error => {
+	(error) => {
 		return Promise.reject(error);
 	}
 );

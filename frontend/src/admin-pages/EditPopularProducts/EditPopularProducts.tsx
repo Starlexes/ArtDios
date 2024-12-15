@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
@@ -8,7 +7,10 @@ import styles from './EditPopularProducts.module.css';
 import { EditPopularProductsProps } from './EditPopularProducts.props';
 import cn from 'classnames';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { fetchPopProduct, updatePopularProduct } from '../../slices/popularProductSlice';
+import {
+	fetchPopProduct,
+	updatePopularProduct
+} from '../../slices/popularProductSlice';
 import PopularProductItems from '../../components/PopularProductItems/PopularProductItems/PopularProductItems';
 import AdminPopularProductItem from '../../admin-components/AdminPopularProductItem/AdminPopularProductItem';
 import axios from 'axios';
@@ -17,14 +19,23 @@ import { useNavigate } from 'react-router-dom';
 import ItemActions from '../../admin-components/ItemActions/ItemActions';
 import ItemActionButton from '../../admin-components/ItemActionButton/ItemActionButton';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
-import { addItemPlus, adminCreateNewCard, adminEditPopularProductCard, adminEditPopularProducts, adminHomeRoute, adminRoute } from '../../utils/constants';
+import {
+	addItemPlus,
+	adminCreateNewCard,
+	adminEditPopularProductCard,
+	adminEditPopularProducts,
+	adminHomeRoute,
+	adminRoute
+} from '../../utils/constants';
 import { fetchCategory } from '../../slices/categorySlice';
 
-
-function EditPopularProducts({className }: EditPopularProductsProps) {
-
-	const {isLoading, popProducts} = useAppSelector((state: RootState) => state.popProducts );
-	const {isLoading: isLoadingCategory, categories} = useAppSelector((state: RootState) => state.categories );
+function EditPopularProducts({ className }: EditPopularProductsProps) {
+	const { isLoading, popProducts } = useAppSelector(
+		(state: RootState) => state.popProducts
+	);
+	const { isLoading: isLoadingCategory, categories } = useAppSelector(
+		(state: RootState) => state.categories
+	);
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -33,11 +44,12 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [activeItems, setActiveItems] = useState<number[]>([]);
 
-	const namesCategories = popProducts.map(product => {
-		const category = categories.find(item => item.id === product.category);
-		return category? category: null;
+	const namesCategories = popProducts.map((product) => {
+		const category = categories.find(
+			(item) => item.id === product.category
+		);
+		return category ? category : null;
 	});
-
 
 	useEffect(() => {
 		if (!isFetched) {
@@ -50,61 +62,80 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 			}
 			if (popProducts.length > 0) {
 				const initiallyActive = popProducts
-					.filter(item => item.is_show)
-					.map(item => item.id);
+					.filter((item) => item.is_show)
+					.map((item) => item.id);
 				setActiveItems(initiallyActive);
 			}
 		}
-	}, [popProducts, categories.length, dispatch,
-		isLoading, isLoadingCategory, isFetched]);
+	}, [
+		popProducts,
+		categories.length,
+		dispatch,
+		isLoading,
+		isLoadingCategory,
+		isFetched
+	]);
 
 	const onClickSearch = () => {
 		setIsSearching(!isSearching);
 	};
 
 	const onClickNewItem = () => {
-		navigate(adminRoute+adminHomeRoute+adminEditPopularProducts+adminCreateNewCard);
+		navigate(
+			adminRoute +
+				adminHomeRoute +
+				adminEditPopularProducts +
+				adminCreateNewCard
+		);
 	};
 
 	const onClickItem = (id: number, isShow: boolean, category: number) => {
-
-		if (isSearching ) {
-
+		if (isSearching) {
 			const isCurrentlyActive = activeItems.includes(id);
 
-
 			if (activeItems.length < 3) {
-				dispatch(updatePopularProduct({
-					id: id,
-					data: {
-						is_show: !isShow
-					}}));
+				dispatch(
+					updatePopularProduct({
+						id: id,
+						data: {
+							is_show: !isShow
+						}
+					})
+				);
 				if (!isCurrentlyActive) {
 					setActiveItems([...activeItems, id]);
 				}
-
 			} else {
-				dispatch(updatePopularProduct({
-					id: id,
-					data: {
+				dispatch(
+					updatePopularProduct({
 						id: id,
-						is_show: false
-					}}));
+						data: {
+							id: id,
+							is_show: false
+						}
+					})
+				);
 			}
-			if (isCurrentlyActive) {				
-				setActiveItems(activeItems.filter((itemId) => itemId !== id));				
+			if (isCurrentlyActive) {
+				setActiveItems(activeItems.filter((itemId) => itemId !== id));
 			}
-
 		} else {
-			const categorySlug = categories.length > 0? categories.find(item => item.id === category)?.slug: null;
-			navigate(adminRoute+adminHomeRoute+adminEditPopularProducts+adminEditPopularProductCard+categorySlug+'/');
+			const categorySlug =
+				categories.length > 0
+					? categories.find((item) => item.id === category)?.slug
+					: null;
+			navigate(
+				adminRoute +
+					adminHomeRoute +
+					adminEditPopularProducts +
+					adminEditPopularProductCard +
+					categorySlug +
+					'/'
+			);
 		}
-
 	};
 
-		
 	return (
-		
 		<section>
 			<div className={cn(styles['pop-products'], className)}>
 				<HelmetProvider>
@@ -112,56 +143,66 @@ function EditPopularProducts({className }: EditPopularProductsProps) {
 						<title>Популярные товары </title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Популярные товары 
-				</AdminPageHead>
+				<AdminPageHead>Популярные товары</AdminPageHead>
 
-				{isLoading || isLoadingCategory? <Spinner/> :
-
+				{isLoading || isLoadingCategory ? (
+					<Spinner />
+				) : (
 					<>
 						<ItemActions>
-
-							{ popProducts.length > 0 &&
+							{popProducts.length > 0 && (
 								<ItemActionButton onClick={onClickSearch}>
-									{!isSearching? 
-										'Выбрать товар'
-										: 'Выйти из режима выбора'
-									}
+									{!isSearching
+										? 'Выбрать товар'
+										: 'Выйти из режима выбора'}
 								</ItemActionButton>
-							}
-							
-
-							
+							)}
 						</ItemActions>
-					
-						<PopularProductItems className={cn(styles['pop-items'], className)}>
-							<AddItemButton shape='circle' className={cn(styles['add-item'])} onClick={onClickNewItem}>
+
+						<PopularProductItems
+							className={cn(styles['pop-items'], className)}
+						>
+							<AddItemButton
+								shape="circle"
+								className={cn(styles['add-item'])}
+								onClick={onClickNewItem}
+							>
 								{addItemPlus()}
 							</AddItemButton>
-							{popProducts.length > 0 && popProducts.map( (pop, index) => (
-							
-								<AdminPopularProductItem key={pop.id} active={pop.is_show}
-									onClick={() => onClickItem(pop.id, pop.is_show, pop.category)}>
-									<PopularProductContent isPromo={false}>
-										<span>{namesCategories[index]?.name}</span>
-									</PopularProductContent>
-                                
-									<img src={axios.defaults.baseURL+pop.image} alt={namesCategories[index]?.name} />
-								</AdminPopularProductItem>
-							
-							))}
-                    
-                    
+							{popProducts.length > 0 &&
+								popProducts.map((pop, index) => (
+									<AdminPopularProductItem
+										key={pop.id}
+										active={pop.is_show}
+										onClick={() =>
+											onClickItem(
+												pop.id,
+												pop.is_show,
+												pop.category
+											)
+										}
+									>
+										<PopularProductContent isPromo={false}>
+											<span>
+												{namesCategories[index]?.name}
+											</span>
+										</PopularProductContent>
+
+										<img
+											src={
+												axios.defaults.baseURL +
+												pop.image
+											}
+											alt={namesCategories[index]?.name}
+										/>
+									</AdminPopularProductItem>
+								))}
 						</PopularProductItems>
 					</>
-				}
-				
+				)}
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditPopularProducts;
-

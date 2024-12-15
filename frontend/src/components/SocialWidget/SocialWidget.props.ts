@@ -1,3 +1,3 @@
-import { HTMLProps} from 'react';
+import { HTMLProps } from 'react';
 
-export interface SocialWidgetProps extends HTMLProps<HTMLDivElement>{}
+export interface SocialWidgetProps extends HTMLProps<HTMLDivElement> {}

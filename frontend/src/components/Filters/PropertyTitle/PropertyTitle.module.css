@@ -1,8 +1,8 @@
 .property-title {
-    display: inline-block;
-    width: 180px;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--default-color);
-    word-wrap: break-word;
+	display: inline-block;
+	width: 180px;
+	font-weight: 700;
+	font-size: 16px;
+	color: var(--default-color);
+	word-wrap: break-word;
 }

@@ -1,42 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
 interface SearchButtonState {
-        isClicked: boolean,
-		initial: boolean
+	isClicked: boolean;
+	initial: boolean;
 }
 
 interface BurgerButtonState {
-	isClicked: boolean
+	isClicked: boolean;
 }
 
 interface ClearButtonState {
-	isClicked: boolean
+	isClicked: boolean;
 }
 
 interface CharsState {
-	name: string,
-	description: string
+	name: string;
+	description: string;
 }
 
 export interface SubmitFilterParams {
-	minPrice?: string | undefined,
-	maxPrice?: string | undefined,
-	chars?: CharsState[] | undefined,
-	category?: string[]
+	minPrice?: string | undefined;
+	maxPrice?: string | undefined;
+	chars?: CharsState[] | undefined;
+	category?: string[];
 }
 
 interface SubmitButtonState {
-	isClicked: boolean,
-	filterparams: SubmitFilterParams
+	isClicked: boolean;
+	filterparams: SubmitFilterParams;
 }
 export interface ButtonsState {
-    modalSearchButton: SearchButtonState,
-	modalBurgerButton: BurgerButtonState,
-	actionClearButton: ClearButtonState,
-	actionSubmitButton: SubmitButtonState
+	modalSearchButton: SearchButtonState;
+	modalBurgerButton: BurgerButtonState;
+	actionClearButton: ClearButtonState;
+	actionSubmitButton: SubmitButtonState;
 }
-
 
 const initialState: ButtonsState = {
 	modalSearchButton: {
@@ -53,10 +51,8 @@ const initialState: ButtonsState = {
 		isClicked: false,
 		filterparams: {}
 	}
-
 };
 
-  
 const buttonSlice = createSlice({
 	name: 'button',
 
@@ -74,20 +70,20 @@ const buttonSlice = createSlice({
 		},
 		setClearClick(state, action: PayloadAction<boolean>) {
 			state.actionClearButton.isClicked = action.payload;
-			if (state.actionClearButton.isClicked){
+			if (state.actionClearButton.isClicked) {
 				state.actionSubmitButton.filterparams = {};
 			}
-			
 		},
 		setSubmitClick(state, action: PayloadAction<boolean>) {
 			state.actionSubmitButton.isClicked = action.payload;
-			
 		},
 		clearSubmitFilterParams(state) {
 			state.actionSubmitButton.filterparams = {};
 		},
-		setSubmitFilterParams(state, action: PayloadAction<SubmitFilterParams>) {
-	
+		setSubmitFilterParams(
+			state,
+			action: PayloadAction<SubmitFilterParams>
+		) {
 			return {
 				...state,
 				actionSubmitButton: {
@@ -99,12 +95,16 @@ const buttonSlice = createSlice({
 				}
 			};
 		}
-
 	}
 });
 
 export const {
-	setMediaSearchClick, setMediaSearchInitial, setMediaBurgerClick,
-	setClearClick, setSubmitClick, setSubmitFilterParams, clearSubmitFilterParams
+	setMediaSearchClick,
+	setMediaSearchInitial,
+	setMediaBurgerClick,
+	setClearClick,
+	setSubmitClick,
+	setSubmitFilterParams,
+	clearSubmitFilterParams
 } = buttonSlice.actions;
 export default buttonSlice.reducer;

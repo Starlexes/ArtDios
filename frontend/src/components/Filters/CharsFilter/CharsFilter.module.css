@@ -1,38 +1,37 @@
 .main-filter {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-shadow: 0 12px 42px 0 rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-    padding: 18px;
-    margin-top: 35px;
-    width: 234px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	box-shadow: 0 12px 42px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	padding: 18px;
+	margin-top: 35px;
+	width: 234px;
 }
 
-
 .filters-title {
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--active-color);
-    text-align: center;
+	font-weight: 700;
+	font-size: 24px;
+	color: var(--active-color);
+	text-align: center;
 }
 
 .filters-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 @media (max-width: 880px) {
-    .main-filter {
-        margin: 0;
-    }
-    .close-filters {
-        display: flex;
-        min-height: max-content;
-        position: absolute;
-        top: 14px;
-        right: 14px;
-        background: none;
-    }
+	.main-filter {
+		margin: 0;
+	}
+	.close-filters {
+		display: flex;
+		min-height: max-content;
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		background: none;
+	}
 }

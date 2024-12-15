@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export type EditProductTypesProps = HTMLProps<HTMLDivElement>
+export type EditProductTypesProps = HTMLProps<HTMLDivElement>;

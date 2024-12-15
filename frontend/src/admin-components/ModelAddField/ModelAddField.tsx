@@ -10,15 +10,20 @@ import { SingleValue } from 'react-select';
 import { OptionType } from '../../components/Filters/Media/SortingOrderMedia/SortingOrderMedia';
 import ItemsSelector from '../ItemsSelector/ItemsSelector';
 
-
-
-function ModelAddField({ className, onClickSubmit, onClickAdd, productTypes=null, categories=null}: ModelAddFieldProps) {
-
+function ModelAddField({
+	className,
+	onClickSubmit,
+	onClickAdd,
+	productTypes = null,
+	categories = null
+}: ModelAddFieldProps) {
 	const [inputValue, setInputValue] = useState<string>('');
 	const [isErrors, setIsErrors] = useState<boolean>(false);
 	const [parent, setParent] = useState<number>(0);
-	const [selectedProductType, setSelectedProductType] = useState<SingleValue<OptionType> | null>(null);
-	const [selectedCategory, setSelectedCategory] = useState<SingleValue<OptionType> | null>(null);
+	const [selectedProductType, setSelectedProductType] =
+		useState<SingleValue<OptionType> | null>(null);
+	const [selectedCategory, setSelectedCategory] =
+		useState<SingleValue<OptionType> | null>(null);
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
 
 	const onClick = () => {
@@ -31,61 +36,92 @@ function ModelAddField({ className, onClickSubmit, onClickAdd, productTypes=null
 		}
 
 		setIsErrors(!inputValue);
-		
 	};
-
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value);
 	};
 
-
 	useEffect(() => {
-	
 		if (categories && selectedCategory) {
 			setParent(Number(selectedCategory.value));
-		} 
+		}
 		if (productTypes && !categories && selectedProductType) {
 			setParent(Number(selectedProductType.value));
 		}
 	}, [selectedCategory, selectedProductType, categories, productTypes]);
 
 	return (
-		
 		<div className={cn(styles['add-field'], className)}>
-			<AddItemButton shape='rect' onClick={onClickAdd}>
-                    Добавить
+			<AddItemButton shape="rect" onClick={onClickAdd}>
+				Добавить
 				{cancelMinus()}
 			</AddItemButton>
-			<ModelEditInput className={cn(styles['add-input'], {
-				[styles['errors']]: isErrors
-			})} onChange={onChange}/>
+			<ModelEditInput
+				className={cn(styles['add-input'], {
+					[styles['errors']]: isErrors
+				})}
+				onChange={onChange}
+			/>
 
-			{productTypes && productTypes.length > 0 && 
+			{productTypes && productTypes.length > 0 && (
+				<ItemsSelector
+					onChangeOption={setSelectedProductType}
+					defaultOption="Выбрать вид товара"
+					optionLabels={productTypes.map((item) => {
+						return {
+							id: item.id ? item.id : 0,
+							name: item.name ? item.name : ''
+						};
+					})}
+					selectErrors={
+						acceptClicked &&
+						!selectedProductType &&
+						!selectedCategory
+					}
+				/>
+			)}
 
-			<ItemsSelector onChangeOption={setSelectedProductType} defaultOption='Выбрать вид товара'
-				optionLabels={productTypes.map(item => {
-					return {id: item.id? item.id: 0, name: item.name? item.name: ''};
-				})} selectErrors={acceptClicked && !selectedProductType && !selectedCategory}/>
-			}
-
-			{
-				categories && categories.length > 0 &&
-				<ItemsSelector onChangeOption={setSelectedCategory} defaultOption='Выбрать категорию'
-					optionLabels={selectedProductType? categories.filter(item => item.parent === Number(selectedProductType?.value))
-						.map(item => {
-							return {id: item.id? item.id: 0, name: item.name? item.name: ''};
-						}): categories.map(item => {
-						return {id: item.id? item.id: 0, name: item.name? item.name: ''};
-					})} selectErrors={acceptClicked && Boolean(selectedProductType) && !selectedCategory}/>
-			}
-			<ModelAcceptButton className={cn(styles['add-submit'])} onClick={onClick}>
-            Применить
+			{categories && categories.length > 0 && (
+				<ItemsSelector
+					onChangeOption={setSelectedCategory}
+					defaultOption="Выбрать категорию"
+					optionLabels={
+						selectedProductType
+							? categories
+									.filter(
+										(item) =>
+											item.parent ===
+											Number(selectedProductType?.value)
+									)
+									.map((item) => {
+										return {
+											id: item.id ? item.id : 0,
+											name: item.name ? item.name : ''
+										};
+									})
+							: categories.map((item) => {
+									return {
+										id: item.id ? item.id : 0,
+										name: item.name ? item.name : ''
+									};
+								})
+					}
+					selectErrors={
+						acceptClicked &&
+						Boolean(selectedProductType) &&
+						!selectedCategory
+					}
+				/>
+			)}
+			<ModelAcceptButton
+				className={cn(styles['add-submit'])}
+				onClick={onClick}
+			>
+				Применить
 			</ModelAcceptButton>
 		</div>
-           
 	);
-
 }
 
 export default ModelAddField;

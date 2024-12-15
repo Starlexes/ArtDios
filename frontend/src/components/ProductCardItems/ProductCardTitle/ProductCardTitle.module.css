@@ -1,12 +1,11 @@
 .title-card {
-    font-weight: 700;
-    font-size: 28px;
-    color: #1A1A1A;
+	font-weight: 700;
+	font-size: 28px;
+	color: #1a1a1a;
 }
 
 @media (max-width: 750px) {
-    .title-card {
-        font-size: 20px;
-      
-    }
+	.title-card {
+		font-size: 20px;
+	}
 }

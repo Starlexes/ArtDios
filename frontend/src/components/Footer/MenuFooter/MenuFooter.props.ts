@@ -1,3 +1,3 @@
 export interface MenuFooterProps {
-    className?: string | undefined
+	className?: string | undefined;
 }

@@ -1,4 +1,3 @@
-
 import NavigationList from '../NavigationList/NavigationList';
 import styles from './Navigation.module.css';
 import { NavigationProps } from './Navigation.props';
@@ -12,59 +11,62 @@ import NavItem from '../NavItem/NavItem';
 import NavSocial from '../NavSocial/NavSocial';
 import { contactsRoute, deliveryPaymentsRoute } from '../../../utils/constants';
 
-
-function Navigation({className}: NavigationProps) {
-
+function Navigation({ className }: NavigationProps) {
 	const phones = useAppSelector((state: RootState) => selectPhones(state));
-	const {isLoading} = useAppSelector((state: RootState) => state.contacts);
+	const { isLoading } = useAppSelector((state: RootState) => state.contacts);
 	const dispatch = useAppDispatch();
 	const [hasFetched, setHasFetched] = useState(false);
 
 	useEffect(() => {
 		if (!hasFetched && !isLoading) {
 			setHasFetched(true);
-			dispatch(fetchContacts());			
+			dispatch(fetchContacts());
 		}
-		
-	},  [dispatch, isLoading, hasFetched]);
-
-
+	}, [dispatch, isLoading, hasFetched]);
 
 	return (
 		<div className={cn(styles['navigation__header'], className)}>
 			<NavigationList>
 				<NavigationListItem key={1}>
-					<NavItem className='contact-text' to={deliveryPaymentsRoute}>
+					<NavItem
+						className="contact-text"
+						to={deliveryPaymentsRoute}
+					>
 						Доставка и оплата
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={2}>
-					<NavItem isHashLink={true} className='contact-text' to={deliveryPaymentsRoute+'#returning-product'}>
+					<NavItem
+						isHashLink={true}
+						className="contact-text"
+						to={deliveryPaymentsRoute + '#returning-product'}
+					>
 						Возврат товара
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={3}>
-					<NavItem className='contact-text' to={contactsRoute}>
+					<NavItem className="contact-text" to={contactsRoute}>
 						Контакты
 					</NavItem>
 				</NavigationListItem>
 
 				<NavigationListItem key={4}>
-					<NavSocial/>
+					<NavSocial />
 				</NavigationListItem>
-					
-				{
-					phones.length > 0 && phones.map((item, index) => (
-						<NavigationListItem key={5+index}>
-							<NavItem className={cn(styles['phone-num'])} to={`tel:${item}`}>
+
+				{phones.length > 0 &&
+					phones.map((item, index) => (
+						<NavigationListItem key={5 + index}>
+							<NavItem
+								className={cn(styles['phone-num'])}
+								to={`tel:${item}`}
+							>
 								{item}
 							</NavItem>
 						</NavigationListItem>
-					))
-				}
-				
+					))}
 			</NavigationList>
 		</div>
 	);

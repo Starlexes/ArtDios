@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export type LendingProps = HTMLProps<HTMLDivElement>
+export type LendingProps = HTMLProps<HTMLDivElement>;

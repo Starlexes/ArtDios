@@ -1,131 +1,128 @@
 .modal-form {
-    display: flex;
-    flex-direction: column;
-    gap: min(calc(24 / 1200 * 100vw), 24px);
-    max-width: 300px;
-    width: calc(300 / 1200 * 100vw);
+	display: flex;
+	flex-direction: column;
+	gap: min(calc(24 / 1200 * 100vw), 24px);
+	max-width: 300px;
+	width: calc(300 / 1200 * 100vw);
 }
 
 .form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: min(calc(20 / 1200 * 100vw), 20px);
+	display: flex;
+	flex-direction: column;
+	gap: min(calc(20 / 1200 * 100vw), 20px);
 }
 
 .form-inputs label {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .checkbox-block {
-    position: relative;
-    font-weight: 400;
-    font-size: 12px;
-    color: #444;
-    max-width: 350;
-    width: calc(350 / 1200 * 100vw);
-    display: flex;
-    min-height: 32px;
+	position: relative;
+	font-weight: 400;
+	font-size: 12px;
+	color: #444;
+	max-width: 350;
+	width: calc(350 / 1200 * 100vw);
+	display: flex;
+	min-height: 32px;
 }
 
 .checkbox-block p {
-    position: absolute;
-    top:0;
-    display: inline-block;
-    width: 350px;
+	position: absolute;
+	top: 0;
+	display: inline-block;
+	width: 350px;
 }
 
 .error-msg {
-    font-weight: 400;
-    font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
-    color: var(--error);
-    display: inline-block;
-    margin-left: auto;
+	font-weight: 400;
+	font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
+	color: var(--error);
+	display: inline-block;
+	margin-left: auto;
 }
 
 .modal-label {
-    font-weight: 400;
-    font-size: 12px;
-    color: #444;
-    text-decoration: underline; 
+	font-weight: 400;
+	font-size: 12px;
+	color: #444;
+	text-decoration: underline;
 }
 
 .submit {
-    height: 58px;
-    width: 100%;
-    border-radius: 10px;
-    color: var(--text-color);
-    background-color: var(--btn-success);
-    font-weight: 700;
-    font-size: clamp(20px, calc(24 / 1200 * 100vw), 24px);
-    line-height: 100%;
-    text-align: center;
-    transition: background-color 0.2s;
+	height: 58px;
+	width: 100%;
+	border-radius: 10px;
+	color: var(--text-color);
+	background-color: var(--btn-success);
+	font-weight: 700;
+	font-size: clamp(20px, calc(24 / 1200 * 100vw), 24px);
+	line-height: 100%;
+	text-align: center;
+	transition: background-color 0.2s;
 }
 
 .submit:hover {
-    background-color: #36b121;
+	background-color: #36b121;
 }
-
 
 @media (max-width: 880px) {
-    .modal-form {
-        gap: 24px;
-        width: max(calc(300 / 880 * 100vw), 240px);
-    }
-    
-    .form-inputs {
-        gap: 24px;
-    }
-       
-    .checkbox-block {
-        max-width: 300;
-        width: auto;
-    }
+	.modal-form {
+		gap: 24px;
+		width: max(calc(300 / 880 * 100vw), 240px);
+	}
 
-    .checkbox-block p {
-        width: 300px;
-    }
-    
-    .error-msg { 
-        font-size: clamp(10px, calc(12 / 880 * 100vw), 12px);
-    }
+	.form-inputs {
+		gap: 24px;
+	}
 
-    .submit {     
-        font-size: clamp(20px, calc(24 / 880 * 100vw), 24px);
-    }
+	.checkbox-block {
+		max-width: 300;
+		width: auto;
+	}
 
-    .checkbox-block {
-        max-width: 240;
-        width: auto;
-    }
+	.checkbox-block p {
+		width: 300px;
+	}
+
+	.error-msg {
+		font-size: clamp(10px, calc(12 / 880 * 100vw), 12px);
+	}
+
+	.submit {
+		font-size: clamp(20px, calc(24 / 880 * 100vw), 24px);
+	}
+
+	.checkbox-block {
+		max-width: 240;
+		width: auto;
+	}
 }
 
-@media (max-width: 510px)  {
-    .modal-form {
-        gap: 24px;
-    }
+@media (max-width: 510px) {
+	.modal-form {
+		gap: 24px;
+	}
 
-    .submit {
-        font-size: 18px;
-        height: 48px;
-    }
-
+	.submit {
+		font-size: 18px;
+		height: 48px;
+	}
 }
 
 @media (max-width: 376px) {
-    .modal-form { 
-        width: max(calc(240 / 376 * 100vw), 200px);
-    }
+	.modal-form {
+		width: max(calc(240 / 376 * 100vw), 200px);
+	}
 
-    .checkbox-block, .modal-label{
-        font-size: 10px;
-    }
+	.checkbox-block,
+	.modal-label {
+		font-size: 10px;
+	}
 
-    .checkbox-block p {
-        width: 210px;
-    }
-
-   
+	.checkbox-block p {
+		width: 210px;
+	}
 }

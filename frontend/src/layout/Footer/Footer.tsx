@@ -7,11 +7,9 @@ import cn from 'classnames';
 const Footer = memo(function Footer() {
 	return (
 		<footer className={cn(styles['footer'])}>
-			
-			<MenuFooter/>
-			
-			<NavFooter/>
-			
+			<MenuFooter />
+
+			<NavFooter />
 		</footer>
 	);
 });

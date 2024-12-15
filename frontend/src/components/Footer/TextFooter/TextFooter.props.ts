@@ -1,5 +1,5 @@
-import {HTMLProps, ReactNode } from 'react';
+import { HTMLProps, ReactNode } from 'react';
 
 export interface TextFooterProps extends HTMLProps<HTMLSpanElement> {
-    children: ReactNode;
+	children: ReactNode;
 }

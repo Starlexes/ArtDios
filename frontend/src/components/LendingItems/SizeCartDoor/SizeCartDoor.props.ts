@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export type SizeCartDoorProps = HTMLProps<HTMLDivElement>
+export type SizeCartDoorProps = HTMLProps<HTMLDivElement>;

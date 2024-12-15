@@ -1,13 +1,13 @@
 .gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	justify-content: center;
+	align-items: center;
 }
 
 @media (max-width: 510px) {
-    .gallery {
-        gap: 32px;
-    }
+	.gallery {
+		gap: 32px;
+	}
 }

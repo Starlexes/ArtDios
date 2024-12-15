@@ -1,4 +1,3 @@
-
 import styles from './CategoryList.module.css';
 import { CategoryListProps } from './CategoryList.props';
 import cn from 'classnames';
@@ -10,12 +9,14 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import SubCategoryList from '../SubCategoryList/SubCategoryList';
 import { catalog, renderArrow } from '../../../utils/constants';
 
-
-function CategoryList({onClickLink, className}: CategoryListProps) {
-
+function CategoryList({ onClickLink, className }: CategoryListProps) {
 	const dispatch = useAppDispatch();
-	const categories = useAppSelector((state: RootState) => selectFilteredCategory(state));
-	const {categories: categoriesDefault, isLoading }  = useAppSelector((state: RootState) => state.categories);
+	const categories = useAppSelector((state: RootState) =>
+		selectFilteredCategory(state)
+	);
+	const { categories: categoriesDefault, isLoading } = useAppSelector(
+		(state: RootState) => state.categories
+	);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [subActive, setSubActive] = useState<string | null>(null);
 
@@ -28,42 +29,41 @@ function CategoryList({onClickLink, className}: CategoryListProps) {
 		}
 	}, [dispatch, categoriesDefault.length, isLoading, isFetched]);
 
-	
-
-	const renderSubcategories = (subcategory: SubCategoryState[]) => (
-		
-		subcategory.length > 0 &&
-		<SubCategoryList>
-			{ subcategory
-				.map((subcat, index, array) => (
+	const renderSubcategories = (subcategory: SubCategoryState[]) =>
+		subcategory.length > 0 && (
+			<SubCategoryList>
+				{subcategory.map((subcat, index, array) => (
 					<CategoryListItem
 						key={subcat.name}
 						borderItem={index !== array.length - 1}
-						link={catalog+subcat.slug}
+						link={catalog + subcat.slug}
 						onClickLink={onClickLink}
 					>
 						{subcat.name}
 					</CategoryListItem>
 				))}
-		</SubCategoryList>
-	);
+			</SubCategoryList>
+		);
 
 	const renderCategories = () => (
 		<ul>
-			{categories.length > 0 && categories.filter((item) => item.is_show).map((item, index, array) => (
-				<CategoryListItem
-					key={item.name}
-					name={item.name}
-					showSub={subActive === item.name}
-					onMouseEnter={() => setSubActive(item.name)}
-					subcategory={renderSubcategories(item.subcategory)}
-					borderItem={index !== array.length - 1}
-					link={catalog+item.slug}
-					onClickLink={onClickLink}
-				>
-					{item.name} {renderArrow()}
-				</CategoryListItem>
-			))}
+			{categories.length > 0 &&
+				categories
+					.filter((item) => item.is_show)
+					.map((item, index, array) => (
+						<CategoryListItem
+							key={item.name}
+							name={item.name}
+							showSub={subActive === item.name}
+							onMouseEnter={() => setSubActive(item.name)}
+							subcategory={renderSubcategories(item.subcategory)}
+							borderItem={index !== array.length - 1}
+							link={catalog + item.slug}
+							onClickLink={onClickLink}
+						>
+							{item.name} {renderArrow()}
+						</CategoryListItem>
+					))}
 		</ul>
 	);
 

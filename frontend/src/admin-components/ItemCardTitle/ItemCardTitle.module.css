@@ -1,10 +1,10 @@
 .item-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--text-color);
+	font-size: 36px;
+	font-weight: 700;
+	color: var(--text-color);
 }
 
 .dark {
-    color: var(--default-color);
-    font-size: 24px;
+	color: var(--default-color);
+	font-size: 24px;
 }

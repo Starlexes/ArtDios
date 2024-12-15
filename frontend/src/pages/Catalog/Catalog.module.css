@@ -1,28 +1,28 @@
 .product-items {
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-    align-items: center;
-    max-width: max-content;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	align-items: center;
+	max-width: max-content;
 }
 
 .catalog {
-    display: flex;
-    flex-direction: column;
-    gap: 34px;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 34px;
+	align-items: center;
 }
 
 .catalog-body {
-    display: flex;
-    gap: 32px;
+	display: flex;
+	gap: 32px;
 }
 
 div.page-head {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 div.item-actions {
-    align-self: flex-start;
-    margin-bottom: 0;
+	align-self: flex-start;
+	margin-bottom: 0;
 }

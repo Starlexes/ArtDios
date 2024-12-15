@@ -1,18 +1,18 @@
 .menu-title {
-    font-weight: 700;
-    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
-    line-height: 100%;
-    color: var(--text-color);
+	font-weight: 700;
+	font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+	line-height: 100%;
+	color: var(--text-color);
 }
 
 @media (max-width: 880px) {
-    .menu-title {
-        font-size: 24px;
-    }
+	.menu-title {
+		font-size: 24px;
+	}
 }
 
 @media (max-width: 510px) {
-    .menu-title {
-        font-size: 16px;
-    }
+	.menu-title {
+		font-size: 16px;
+	}
 }

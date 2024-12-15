@@ -1,9 +1,12 @@
-
 import { useLocation } from 'react-router-dom';
 import LogOutButton from '../../admin-components/LogOutButton/LogOutButton';
 import NavItem from '../../components/Header/NavItem/NavItem';
 import Search from '../../components/Header/Search/Search';
-import { adminEditCatalog, adminHomeRoute, adminRoute } from '../../utils/constants';
+import {
+	adminEditCatalog,
+	adminHomeRoute,
+	adminRoute
+} from '../../utils/constants';
 import { checkAuthenticated } from '../../utils/help-funcs';
 import styles from './AdminHeader.module.css';
 import cn from 'classnames';
@@ -11,9 +14,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { clearSubmitFilterParams } from '../../slices/buttonSlice';
 
-
 function AdminHeader() {
-
 	const location = useLocation();
 	const dispatch = useAppDispatch();
 
@@ -27,31 +28,29 @@ function AdminHeader() {
 			isShowSearch && setIsShowSearch(false);
 			dispatch(clearSubmitFilterParams());
 		}
-		
 	}, [pathname, isShowSearch, dispatch]);
 
 	return (
 		<header>
-			
-			<div className={cn(styles['header'], {
-				[styles['show-search']]: isShowSearch
-			})}>
-				<NavItem to={adminRoute+adminHomeRoute}>
+			<div
+				className={cn(styles['header'], {
+					[styles['show-search']]: isShowSearch
+				})}
+			>
+				<NavItem to={adminRoute + adminHomeRoute}>
 					<div className={cn(styles['header-content'])}>
-						<span>
-                    Админ-панель -
-						</span>
+						<span>Админ-панель -</span>
 						<span className={cn(styles['logo'])}>АРТДИОС</span>
 					</div>
 				</NavItem>
-				{checkAuthenticated() && <LogOutButton/>}
+				{checkAuthenticated() && <LogOutButton />}
 
-				{checkAuthenticated() && isShowSearch &&
+				{checkAuthenticated() && isShowSearch && (
 					<div className={cn(styles['search-menu'])}>
-						<Search isAdmin={true}/>
+						<Search isAdmin={true} />
 					</div>
-				}
-			</div>			
+				)}
+			</div>
 		</header>
 	);
 }

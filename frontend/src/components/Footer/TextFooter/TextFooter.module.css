@@ -1,17 +1,17 @@
 .text-footer {
-    font-weight: 400;
-    font-size: 10px;
-    color: var(--text-color);
+	font-weight: 400;
+	font-size: 10px;
+	color: var(--text-color);
 }
 
 @media (max-width: 880px) {
-    .text-footer {
-        font-size: 18px;
-    }
+	.text-footer {
+		font-size: 18px;
+	}
 }
 
 @media (max-width: 568px) {
-    .text-footer {
-        font-size: 10px;
-    }
+	.text-footer {
+		font-size: 10px;
+	}
 }

@@ -1,9 +1,9 @@
 .main {
-    width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 64px auto;
-    position: relative;
+	width: 1200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 64px auto;
+	position: relative;
 }

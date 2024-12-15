@@ -1,6 +1,5 @@
 import { HTMLProps } from 'react';
 
-
-export interface ProductItemTitleProps extends HTMLProps<HTMLSpanElement>{
-    title: string
+export interface ProductItemTitleProps extends HTMLProps<HTMLSpanElement> {
+	title: string;
 }

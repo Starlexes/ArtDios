@@ -1,7 +1,6 @@
 import { HTMLProps } from 'react';
 
-
-export interface ProductItemPriceProps extends HTMLProps<HTMLDivElement>{
-    price: number,
-    newPrice: number | null
+export interface ProductItemPriceProps extends HTMLProps<HTMLDivElement> {
+	price: number;
+	newPrice: number | null;
 }

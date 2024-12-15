@@ -1,51 +1,50 @@
 .back-btn {
-    background: none;
-    min-height: auto;
-    position: absolute;
-    top: 80px;
-    left: min(calc( 62 / 1200 * 100vw), 62px);
+	background: none;
+	min-height: auto;
+	position: absolute;
+	top: 80px;
+	left: min(calc(62 / 1200 * 100vw), 62px);
 }
 
 .back-btn:hover .back-content {
-    color: #848484;
+	color: #848484;
 }
 
 .back-btn:hover rect {
-    fill: #848484;
+	fill: #848484;
 }
 
 .back-content {
-    display: flex;
-    gap: 9px;
-    align-items: center;
-    font-weight: 700;
-    font-size: 20px;
-    color: #999;
+	display: flex;
+	gap: 9px;
+	align-items: center;
+	font-weight: 700;
+	font-size: 20px;
+	color: #999;
 }
 
 @media (max-width: 880px) {
-    .back-btn {
-        top: calc( 50 / 880 * 100vw);
-        left: calc( 62 / 880 * 100vw);
-    }
+	.back-btn {
+		top: calc(50 / 880 * 100vw);
+		left: calc(62 / 880 * 100vw);
+	}
 
-    .back-content {
-        font-size: calc(20 / 880 * 100vw);
-    }
-    
+	.back-content {
+		font-size: calc(20 / 880 * 100vw);
+	}
 }
 
 @media (max-width: 510px) {
-    .back-btn {
-        top: 26px;
-    }
-    
-    .back-content {
-        border-radius: 50%;
-        background-color: #ECEBEB;
-        left: max(calc( 80 / 510 * 100vw), 50px);
-        justify-content: center;
-        width: max(calc( 30 / 510 * 100vw), 20px);
-        height: max(calc( 30 / 510 * 100vw), 20px);
-    }
+	.back-btn {
+		top: 26px;
+	}
+
+	.back-content {
+		border-radius: 50%;
+		background-color: #ecebeb;
+		left: max(calc(80 / 510 * 100vw), 50px);
+		justify-content: center;
+		width: max(calc(30 / 510 * 100vw), 20px);
+		height: max(calc(30 / 510 * 100vw), 20px);
+	}
 }

@@ -1,17 +1,13 @@
-
 import styles from './ProductCardImageButtonsMenu.module.css';
 import { ProductCardImageButtonsMenuProps } from './ProductCardImageButtonsMenu.props';
 import cn from 'classnames';
 
-function ProductCardImageButtonsMenu({className, children}: ProductCardImageButtonsMenuProps) {
-
-	
+function ProductCardImageButtonsMenu({
+	className,
+	children
+}: ProductCardImageButtonsMenuProps) {
 	return (
-			
-		<div className={cn(styles['images-btn'], className)}>
-			{children}
-		</div>
-
+		<div className={cn(styles['images-btn'], className)}>{children}</div>
 	);
 }
 

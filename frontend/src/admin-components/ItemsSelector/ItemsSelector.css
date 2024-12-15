@@ -1,87 +1,86 @@
 .admin-select-order {
-    width: 100%;
+	width: 100%;
 }
 
 div.small {
-    width: 256px;
+	width: 256px;
 }
 
-div.select-errors .react-select__control{
-    background-color: var(--delete);
+div.select-errors .react-select__control {
+	background-color: var(--delete);
 }
 
-div.small .react-select__control{
-    height: 35px;
-    border-radius: 0;
+div.small .react-select__control {
+	height: 35px;
+	border-radius: 0;
 }
 
 .admin-select-order .react-select__control {
-    border-radius: 4px;
-    box-shadow: none;
-    border: none;
-    height: 68px;
-    background-color: var(--title-color);
+	border-radius: 4px;
+	box-shadow: none;
+	border: none;
+	height: 68px;
+	background-color: var(--title-color);
 }
 
-div.small .react-select__single-value, div.small .react-select__input-container {
-    font-size: 14px;
+div.small .react-select__single-value,
+div.small .react-select__input-container {
+	font-size: 14px;
 }
 
 div.small svg {
-    width: 20px;
-    height: 28px;
+	width: 20px;
+	height: 28px;
 }
 
-.admin-select-order .react-select__single-value, .admin-select-order .react-select__input-container {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    display: flex;
-    color: var(--text-color);
+.admin-select-order .react-select__single-value,
+.admin-select-order .react-select__input-container {
+	font-size: 24px;
+	font-weight: 700;
+	margin: 0;
+	display: flex;
+	color: var(--text-color);
 }
 
 .admin-select-order .react-select__value-container {
-    padding: 0;
-    padding-left: 26px;
+	padding: 0;
+	padding-left: 26px;
 }
 
 div.small .react-select__value-container {
-    padding-left: 14px;
+	padding-left: 14px;
 }
 
 .admin-select-order .react-select__indicator-separator {
-   display: none; 
+	display: none;
 }
 
 .admin-select-order .react-select__indicators {
-    margin-right: 22px;
+	margin-right: 22px;
 }
 
-div.small .react-select__indicators{
-    margin-right: 12px;
+div.small .react-select__indicators {
+	margin-right: 12px;
 }
 
 .admin-select-order .react-select__menu {
-    margin: 0;
-    top: 100%;
-    margin-top: 2px;
-    border: none;
+	margin: 0;
+	top: 100%;
+	margin-top: 2px;
+	border: none;
 }
 
 div.small .react-select__menu {
-    margin: 0;
+	margin: 0;
 }
 
 .admin-select-order .react-select__menu-list {
-    padding: 0;
-    color: #212121;
-    font-size: 24px;
-    font-weight: 400;
+	padding: 0;
+	color: #212121;
+	font-size: 24px;
+	font-weight: 400;
 }
 
 div.small .react-select__menu-list {
-    font-size: 14px;
+	font-size: 14px;
 }
-
-
-

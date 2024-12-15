@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface OPDPageProps extends HTMLProps<HTMLDivElement>{}
+export type OPDPageProps = HTMLProps<HTMLDivElement>;

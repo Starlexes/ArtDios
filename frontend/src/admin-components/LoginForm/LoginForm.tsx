@@ -9,15 +9,12 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { adminHomeRoute, adminRoute } from '../../utils/constants';
 
-
-
-function LoginForm({className }: LoginFormProps) {
+function LoginForm({ className }: LoginFormProps) {
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [isErrors, setIsErrors] = useState<boolean>(false);
 
 	const navigate = useNavigate();
-
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -42,26 +39,36 @@ function LoginForm({className }: LoginFormProps) {
 	}, []);
 
 	return (
-		<form onSubmit={handleSubmit} className={cn(styles['login-form'], className)}>
-			
+		<form
+			onSubmit={handleSubmit}
+			className={cn(styles['login-form'], className)}
+		>
 			<div className={cn(styles['form-title'])}>АВТОРИЗАЦИЯ НА САЙТЕ</div>
 
 			<div className={cn(styles['form-inputs'])}>
-				<Input className={cn(styles['form-input'], {
-					[styles['errors']]: isErrors
-				})} name='login'
-				onChange={(e) => setUsername(e.target.value)}
-				type='text' placeholder='Логин'/>
-				<Input className={cn(styles['form-input'], {
-					[styles['errors']]: isErrors
-				})} name='password'
-				onChange={(e) => setPassword(e.target.value)}
-				type='password' placeholder='Пароль'/>
+				<Input
+					className={cn(styles['form-input'], {
+						[styles['errors']]: isErrors
+					})}
+					name="login"
+					onChange={(e) => setUsername(e.target.value)}
+					type="text"
+					placeholder="Логин"
+				/>
+				<Input
+					className={cn(styles['form-input'], {
+						[styles['errors']]: isErrors
+					})}
+					name="password"
+					onChange={(e) => setPassword(e.target.value)}
+					type="password"
+					placeholder="Пароль"
+				/>
 			</div>
 
-			<Button className={cn(styles['submit-btn'])} type="submit">Войти</Button>
-
-	
+			<Button className={cn(styles['submit-btn'])} type="submit">
+				Войти
+			</Button>
 		</form>
 	);
 }

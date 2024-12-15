@@ -9,15 +9,25 @@ import NavItem from '../../Header/NavItem/NavItem';
 import Button from '../../Header/Button/Button';
 import ModalCatalogHead from '../../Modal/ModalCatalogHead/ModalCatalogHead';
 
-function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcategory, category }: MediaSubCategoryProps) {
+function MediaSubCategory({
+	isOpen,
+	onClose,
+	onCloseCategory,
+	className,
+	subcategory,
+	category
+}: MediaSubCategoryProps) {
 	return (
 		<Modal
 			isOpen={isOpen}
 			onRequestClose={onClose}
 			className={cn(styles['modal-window'], className)}
-			overlayClassName={cn(overlayStyles['modal-overlay'], overlayStyles['overlay-catalog'])}
+			overlayClassName={cn(
+				overlayStyles['modal-overlay'],
+				overlayStyles['overlay-catalog']
+			)}
 		>
-			<ModalCatalogHead onClose={onCloseCategory}/>
+			<ModalCatalogHead onClose={onCloseCategory} />
 			<div className={cn(styles['subcategory'])}>
 				{subcategory && (
 					<nav>
@@ -27,14 +37,20 @@ function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcate
 								borderItem={subcategory.length !== 0}
 								className={cn(styles['subcat-item'])}
 							>
-								<Button className={cn(styles['back-btn'])} onClick={onClose}>
+								<Button
+									className={cn(styles['back-btn'])}
+									onClick={onClose}
+								>
 									{renderArrow()}
 								</Button>
-								
-								<NavItem to={catalog+category} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
+
+								<NavItem
+									to={catalog + category}
+									className={cn(styles['subcat-link'])}
+									onClick={onCloseCategory}
+								>
 									Все товары
 								</NavItem>
-
 							</MediaCategoryItem>
 							{subcategory
 								.filter((item) => item.is_show)
@@ -43,16 +59,21 @@ function MediaSubCategory({ isOpen, onClose, onCloseCategory, className, subcate
 										key={subcat.name}
 										borderItem={index !== array.length - 1}
 										className={cn(styles['subcat-item'])}
-									>						
-										<NavItem to={catalog+subcat.slug} className={cn(styles['subcat-link'])} onClick={onCloseCategory}>									
+									>
+										<NavItem
+											to={catalog + subcat.slug}
+											className={cn(
+												styles['subcat-link']
+											)}
+											onClick={onCloseCategory}
+										>
 											{subcat.name}
 										</NavItem>
 									</MediaCategoryItem>
 								))}
 						</ul>
 					</nav>
-				)
-				}
+				)}
 			</div>
 		</Modal>
 	);

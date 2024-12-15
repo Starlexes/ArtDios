@@ -1,61 +1,59 @@
 .logo-two {
-    width: calc(206 / 1200 * 100vw);
-    max-width: 206px;
-    border-top: 1px solid var(--active-color);
-    border-bottom: 1px solid var(--active-color);
-    font-weight: 400;
-    font-size: clamp(10px, calc(16 / 1200 * 100vw), 16px);
-    color: var(--text-color);
+	width: calc(206 / 1200 * 100vw);
+	max-width: 206px;
+	border-top: 1px solid var(--active-color);
+	border-bottom: 1px solid var(--active-color);
+	font-weight: 400;
+	font-size: clamp(10px, calc(16 / 1200 * 100vw), 16px);
+	color: var(--text-color);
 }
 
 .logo-footer {
-    max-height: 32px;
-    display: flex;
-    font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
-    border: none;
-    width: 300px;
+	max-height: 32px;
+	display: flex;
+	font-size: clamp(10px, calc(12 / 1200 * 100vw), 12px);
+	border: none;
+	width: 300px;
 }
 
 @media (max-width: 880px) {
-    .logo-two {
-        width: auto;
-        max-width: 206px;
-        font-size: 16px;
-    }
+	.logo-two {
+		width: auto;
+		max-width: 206px;
+		font-size: 16px;
+	}
 
-    .logo-footer {
-        font-size: 18px;
-        width: 226px;
-        max-width: 226px;
-    }
+	.logo-footer {
+		font-size: 18px;
+		width: 226px;
+		max-width: 226px;
+	}
 }
 
 @media (max-width: 650px) {
-    .logo-two {
-
-        max-width: 180px;
-        font-size: 14px;
-    }
+	.logo-two {
+		max-width: 180px;
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 568px) {
-    .logo-two {
-      
-        max-width: 130px;
-        font-size: 10px;
-        font-weight: 300;
-    }
+	.logo-two {
+		max-width: 130px;
+		font-size: 10px;
+		font-weight: 300;
+	}
 
-    .logo-footer {
-        font-size: 12px;
-        width: 155px;
-        max-width: max-content;
-        font-weight: 400;
-    }
+	.logo-footer {
+		font-size: 12px;
+		width: 155px;
+		max-width: max-content;
+		font-weight: 400;
+	}
 }
 
 @media (max-width: 445px) {
-    .logo-two  {
-        border: none;
-    }
+	.logo-two {
+		border: none;
+	}
 }

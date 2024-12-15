@@ -1,4 +1,4 @@
 export interface LogoImageProps {
-    className?: string | undefined;
-    isFooter?: boolean | undefined;
+	className?: string | undefined;
+	isFooter?: boolean | undefined;
 }

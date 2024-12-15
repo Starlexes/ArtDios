@@ -1,22 +1,21 @@
 .pop-card {
-    display: flex;
-    flex-direction: column;
-    width: 1200px;
+	display: flex;
+	flex-direction: column;
+	width: 1200px;
 }
 
 .item-selector {
-    width: 488px;
+	width: 488px;
 }
 
 .product-items {
-    display: flex;
-    gap: 120px;
+	display: flex;
+	gap: 120px;
 }
 
 .action-btns {
-    display: flex;
-    margin-top: 32px;
-    align-self: center;
-    gap: 238px;
+	display: flex;
+	margin-top: 32px;
+	align-self: center;
+	gap: 238px;
 }
-

@@ -16,14 +16,24 @@ import ItemCardAreaInput from '../ItemCardAreaInput/ItemCardAreaInput';
 import ItemImagePreview from '../ItemImagePreview/ItemImagePreview';
 import ModalAskDelete from '../ModalAskDelete/ModalAskDelete';
 
-function CardEditGallery({ className, newItem=false, onClickAccept,
-	onClickAddItem, onDelete, galleryItem, onClickAdd}: CardEditGalleryProps) {
-
+function CardEditGallery({
+	className,
+	newItem = false,
+	onClickAccept,
+	onClickAddItem,
+	onDelete,
+	galleryItem,
+	onClickAdd
+}: CardEditGalleryProps) {
 	const [editClicked, setEditClicked] = useState<boolean>(false);
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
 	const [image, setImage] = useState<File | string | null>(null);
-	const [name, setName] = useState<string>(galleryItem? galleryItem.name: '');
-	const [description, setDescription] = useState<string>(galleryItem? galleryItem.description:'');
+	const [name, setName] = useState<string>(
+		galleryItem ? galleryItem.name : ''
+	);
+	const [description, setDescription] = useState<string>(
+		galleryItem ? galleryItem.description : ''
+	);
 	const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
 
 	const onClickEdit = () => {
@@ -50,74 +60,107 @@ function CardEditGallery({ className, newItem=false, onClickAccept,
 		onClickAdd && onClickAdd();
 	};
 
-
 	return (
 		<ItemActions>
 			<ItemCardInputArea className={cn(className)}>
-
 				<div className={cn(styles['gallery-parts'])}>
 					<div className={cn(styles['gallery-items'])}>
 						<div className={cn(styles['gallery-item'])}>
 							<ItemCardInputLabel>Название:</ItemCardInputLabel>
-							{
-								editClicked || newItem? 
-									<ItemCardInput placeholder='Название...' value={name}
-										errors={acceptClicked && !name} onChange={onChangeName}/>
-									: name
-							}
-							
+							{editClicked || newItem ? (
+								<ItemCardInput
+									placeholder="Название..."
+									value={name}
+									errors={acceptClicked && !name}
+									onChange={onChangeName}
+								/>
+							) : (
+								name
+							)}
 						</div>
 
 						<div className={cn(styles['gallery-item'])}>
 							<ItemCardInputLabel>Описание:</ItemCardInputLabel>
-							{editClicked || newItem? 
-								<ItemCardAreaInput placeholder='Описание...' value={description}
-									errors={acceptClicked && !description} className={cn(styles['area-input'])}
-									onChange={onChangeDescription}/>
-								: <div className={cn(styles['area-input'])}>
+							{editClicked || newItem ? (
+								<ItemCardAreaInput
+									placeholder="Описание..."
+									value={description}
+									errors={acceptClicked && !description}
+									className={cn(styles['area-input'])}
+									onChange={onChangeDescription}
+								/>
+							) : (
+								<div className={cn(styles['area-input'])}>
 									{description}
 								</div>
-							}
-							
+							)}
 						</div>
 
-						{ 
-							editClicked || newItem?		
-								<ModelAcceptButton onClick={() => {
+						{editClicked || newItem ? (
+							<ModelAcceptButton
+								onClick={() => {
 									setAcceptClicked(true);
-									setEditClicked(false);		
-									galleryItem && onClickAccept && onClickAccept(galleryItem.gallery_id, name? name: undefined, description? description: undefined, image? image as File: null);					
-									newItem && name && description && image && onClickAddItem && onClickAddItem(name, description, image as File);
-								}}>
-				Применить
-								</ModelAcceptButton>
-								:
-								<ModelEditButton typeAction='main' onClick={onClickEdit}>
-				Редактировать
-								</ModelEditButton>
-						}
-
+									setEditClicked(false);
+									galleryItem &&
+										onClickAccept &&
+										onClickAccept(
+											galleryItem.gallery_id,
+											name ? name : undefined,
+											description
+												? description
+												: undefined,
+											image ? (image as File) : null
+										);
+									newItem &&
+										name &&
+										description &&
+										image &&
+										onClickAddItem &&
+										onClickAddItem(
+											name,
+											description,
+											image as File
+										);
+								}}
+							>
+								Применить
+							</ModelAcceptButton>
+						) : (
+							<ModelEditButton
+								typeAction="main"
+								onClick={onClickEdit}
+							>
+								Редактировать
+							</ModelEditButton>
+						)}
 					</div>
 
-					<ItemImagePreview image={image? image: galleryItem?.image} onChange={onChangeImage}
-						errors={newItem && acceptClicked && !image} isShowInput={editClicked || newItem}/>
-					
+					<ItemImagePreview
+						image={image ? image : galleryItem?.image}
+						onChange={onChangeImage}
+						errors={newItem && acceptClicked && !image}
+						isShowInput={editClicked || newItem}
+					/>
 				</div>
-			
-				
-				
 			</ItemCardInputArea>
 
-			<AddItemButton shape='circle' className={cn(styles['action-btn'])} onClick={onClickDeleteButton}>
+			<AddItemButton
+				shape="circle"
+				className={cn(styles['action-btn'])}
+				onClick={onClickDeleteButton}
+			>
 				{removeItemMinus()}
 			</AddItemButton>
 
-			<ModalAskDelete isOpen={Boolean(galleryItem) && deleteClicked} closeModal={onClickDeleteButton}
-				message={`галерею "${String(galleryItem?.name)}"`} idItem={galleryItem?.gallery_id}
-				onDelete={onDelete}/>
-		</ItemActions>	
+			<ModalAskDelete
+				isOpen={Boolean(galleryItem) && deleteClicked}
+				closeModal={onClickDeleteButton}
+				message={`галерею "${String(galleryItem?.name)}"`}
+				idItem={galleryItem?.gallery_id}
+				onDelete={onDelete}
+			/>
+		</ItemActions>
 	);
-
 }
 
 export default CardEditGallery;

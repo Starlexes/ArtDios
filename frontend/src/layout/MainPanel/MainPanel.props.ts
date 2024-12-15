@@ -1,5 +1,3 @@
-
-
 export interface MainPanelProps {
-    className?: string | undefined
+	className?: string | undefined;
 }

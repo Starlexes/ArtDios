@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
@@ -16,34 +15,39 @@ import { useNavigate } from 'react-router-dom';
 import ItemActions from '../../admin-components/ItemActions/ItemActions';
 import ItemActionButton from '../../admin-components/ItemActionButton/ItemActionButton';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
-import { addItemPlus, adminCreateNewCard, adminEditPromotionCard, adminEditPromotions, adminHomeRoute, adminRoute } from '../../utils/constants';
+import {
+	addItemPlus,
+	adminCreateNewCard,
+	adminEditPromotionCard,
+	adminEditPromotions,
+	adminHomeRoute,
+	adminRoute
+} from '../../utils/constants';
 import { fetchPromotion, updatePromotion } from '../../slices/promotionSlice';
 
+function EditPromotions({ className }: EditPromotionsProps) {
+	const { isLoading, promo } = useAppSelector(
+		(state: RootState) => state.promotions
+	);
 
-function EditPromotions({className }: EditPromotionsProps) {
-
-	const {isLoading, promo} = useAppSelector((state: RootState) => state.promotions );
-	
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 	const [isSearching, setIsSearching] = useState<boolean>(false);
 	const [activeItems, setActiveItems] = useState<number[]>([]);
 
-
 	useEffect(() => {
-
 		if (!isFetched) {
 			setIsFetched(true);
 			if (promo.length === 0 && !isLoading) {
 				dispatch(fetchPromotion());
 			}
 		}
-		
+
 		if (promo.length > 0) {
 			const initiallyActive = promo
-				.filter(item => item.is_show)
-				.map(item => item.id);
+				.filter((item) => item.is_show)
+				.map((item) => item.id);
 			setActiveItems(initiallyActive);
 		}
 	}, [promo, dispatch, isFetched, isLoading]);
@@ -53,47 +57,56 @@ function EditPromotions({className }: EditPromotionsProps) {
 	};
 
 	const onClickNewItem = () => {
-		navigate(adminRoute+adminHomeRoute+adminEditPromotions+adminCreateNewCard);
+		navigate(
+			adminRoute +
+				adminHomeRoute +
+				adminEditPromotions +
+				adminCreateNewCard
+		);
 	};
 
 	const onClickItem = (id: number, isShow: boolean, slug: string) => {
-
-		if (isSearching ) {
-
+		if (isSearching) {
 			const isCurrentlyActive = activeItems.includes(id);
 
-
 			if (activeItems.length < 3) {
-				dispatch(updatePromotion({
-					id: id,
-					data: {
-						is_show: !isShow
-					}}));
+				dispatch(
+					updatePromotion({
+						id: id,
+						data: {
+							is_show: !isShow
+						}
+					})
+				);
 				if (!isCurrentlyActive) {
 					setActiveItems([...activeItems, id]);
 				}
-
 			} else {
-				dispatch(updatePromotion({
-					id: id,
-					data: {
+				dispatch(
+					updatePromotion({
 						id: id,
-						is_show: false
-					}}));
+						data: {
+							id: id,
+							is_show: false
+						}
+					})
+				);
 			}
-			if (isCurrentlyActive) {				
-				setActiveItems(activeItems.filter((itemId) => itemId !== id));				
+			if (isCurrentlyActive) {
+				setActiveItems(activeItems.filter((itemId) => itemId !== id));
 			}
-
-		} else {			
-			navigate(adminRoute+adminHomeRoute+adminEditPromotions+adminEditPromotionCard+slug);
+		} else {
+			navigate(
+				adminRoute +
+					adminHomeRoute +
+					adminEditPromotions +
+					adminEditPromotionCard +
+					slug
+			);
 		}
-
 	};
 
-		
 	return (
-		
 		<section>
 			<div className={cn(styles['promotions'], className)}>
 				<HelmetProvider>
@@ -101,55 +114,65 @@ function EditPromotions({className }: EditPromotionsProps) {
 						<title>Акции</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Акции
-				</AdminPageHead>
+				<AdminPageHead>Акции</AdminPageHead>
 
-				{isLoading? <Spinner/> :
-
+				{isLoading ? (
+					<Spinner />
+				) : (
 					<>
 						<ItemActions>
-							
-							{ promo.length > 0 &&
+							{promo.length > 0 && (
 								<ItemActionButton onClick={onClickSearch}>
-									{!isSearching? 
-										'Выбрать акцию'
-										: 'Выйти из режима выбора'
-									}
+									{!isSearching
+										? 'Выбрать акцию'
+										: 'Выйти из режима выбора'}
 								</ItemActionButton>
-							}
-														
+							)}
 						</ItemActions>
-					
-						<PopularProductItems className={cn(styles['promo-items'], className)}>
-							<AddItemButton shape='circle' className={cn(styles['add-item'])} onClick={onClickNewItem}>
+
+						<PopularProductItems
+							className={cn(styles['promo-items'], className)}
+						>
+							<AddItemButton
+								shape="circle"
+								className={cn(styles['add-item'])}
+								onClick={onClickNewItem}
+							>
 								{addItemPlus()}
 							</AddItemButton>
 
-							{promo.length > 0 && promo.map( pop => (
-							
-								<AdminPopularProductItem key={pop.id} active={pop.is_show}
-									onClick={() => onClickItem(pop.id, pop.is_show, pop.slug)}>
-									<PopularProductContent isPromo={true}>
-										<span>{pop.name}</span>
-									</PopularProductContent>
-                                
-									<img src={axios.defaults.baseURL+pop.second_image} alt={pop.name} />
-								</AdminPopularProductItem>
-							
-							))}
-                    
-                    
+							{promo.length > 0 &&
+								promo.map((pop) => (
+									<AdminPopularProductItem
+										key={pop.id}
+										active={pop.is_show}
+										onClick={() =>
+											onClickItem(
+												pop.id,
+												pop.is_show,
+												pop.slug
+											)
+										}
+									>
+										<PopularProductContent isPromo={true}>
+											<span>{pop.name}</span>
+										</PopularProductContent>
+
+										<img
+											src={
+												axios.defaults.baseURL +
+												pop.second_image
+											}
+											alt={pop.name}
+										/>
+									</AdminPopularProductItem>
+								))}
 						</PopularProductItems>
 					</>
-				}
-				
+				)}
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditPromotions;
-

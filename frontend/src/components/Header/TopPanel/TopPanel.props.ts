@@ -1,3 +1,3 @@
 export interface TopPanelProps {
-    className?: string | undefined;
+	className?: string | undefined;
 }

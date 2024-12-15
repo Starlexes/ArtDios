@@ -1,6 +1,4 @@
-
 import { ButtonHTMLAttributes } from 'react';
 
-
-export interface MediaBurgerProps extends ButtonHTMLAttributes<HTMLButtonElement>{}
-
+export interface MediaBurgerProps
+	extends ButtonHTMLAttributes<HTMLButtonElement> {}

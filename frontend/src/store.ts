@@ -13,9 +13,11 @@ import phonesReducer from './slices/phoneSlice';
 import emailsReducer from './slices/emailSlice';
 import addressReducer from './slices/addressSlice';
 import workingHoursReducer from './slices/workingHours';
-import characteristicReducer, { CharacteristicClient, Characteristic } from './slices/characteristicSlice';
+import characteristicReducer, {
+	CharacteristicClient,
+	Characteristic
+} from './slices/characteristicSlice';
 import { createSelector } from 'reselect';
-
 
 const store = configureStore({
 	reducer: {
@@ -46,43 +48,54 @@ const filteredCategory = (state: RootState) => state.categories.categories;
 export const convertedChars = createSelector(
 	[chars],
 	(chars: Characteristic[]): CharacteristicClient[] => {
-		return chars.length > 0? chars.reduce((acc: CharacteristicClient[], curr: Characteristic) => {
-			const existing = acc.find(item => item.name === curr.name);
+		return chars.length > 0
+			? chars.reduce(
+					(acc: CharacteristicClient[], curr: Characteristic) => {
+						const existing = acc.find(
+							(item) => item.name === curr.name
+						);
 
-			if (existing) {
-			
-				const uniqueDescriptions = new Set(existing.description);
-				uniqueDescriptions.add(curr.description);
+						if (existing) {
+							const uniqueDescriptions = new Set(
+								existing.description
+							);
+							uniqueDescriptions.add(curr.description);
 
-				existing.description = Array.from(uniqueDescriptions);
-			} else {
-				acc.push({
-					name: curr.name,
-					description: [curr.description]
-				});
-			}
-            
-			return acc;
-		}, []): [];
+							existing.description =
+								Array.from(uniqueDescriptions);
+						} else {
+							acc.push({
+								name: curr.name,
+								description: [curr.description]
+							});
+						}
+
+						return acc;
+					},
+					[]
+				)
+			: [];
 	}
 );
 
-
-export const selectPhones = createSelector(
-	[phones],
-	(phones) => phones.length > 0? phones.slice(0, 2): []
+export const selectPhones = createSelector([phones], (phones) =>
+	phones.length > 0 ? phones.slice(0, 2) : []
 );
 
 export const selectFilteredCategory = createSelector(
 	[filteredCategory],
-	(category) => category.length > 0? category
-		.filter(item => item.is_show)
-		.map(item => ({
-			...item,
-			subcategory: item.subcategory.filter(sub => sub.is_show)
-		}))
-		.filter(item => item.subcategory.length > 0) 
-		: []
+	(category) =>
+		category.length > 0
+			? category
+					.filter((item) => item.is_show)
+					.map((item) => ({
+						...item,
+						subcategory: item.subcategory.filter(
+							(sub) => sub.is_show
+						)
+					}))
+					.filter((item) => item.subcategory.length > 0)
+			: []
 );
 
 export type RootState = ReturnType<typeof store.getState>;

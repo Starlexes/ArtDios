@@ -1,4 +1,3 @@
 import { HTMLProps } from 'react';
 
-
-export interface SpinnerProps extends HTMLProps<HTMLDivElement>{}
+export interface SpinnerProps extends HTMLProps<HTMLDivElement> {}

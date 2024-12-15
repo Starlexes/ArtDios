@@ -5,14 +5,17 @@ import styles from './ModalHead.module.css';
 import { ModalHeadProps } from './ModalHead.props';
 import cn from 'classnames';
 
-
-function ModalHead({modalTitle, titleClass, modalText, className, textClass }: ModalHeadProps) {
-
+function ModalHead({
+	modalTitle,
+	titleClass,
+	modalText,
+	className,
+	textClass
+}: ModalHeadProps) {
 	return (
 		<div className={cn(styles['modal-head'], className)}>
-
 			<ModalTitle className={titleClass}>{modalTitle}</ModalTitle>
-				
+
 			<ModalText className={textClass}>{modalText}</ModalText>
 		</div>
 	);

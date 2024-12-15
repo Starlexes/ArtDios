@@ -4,9 +4,7 @@ import cn from 'classnames';
 
 function ModelEditItems({ className, children }: ModelEditItemsProps) {
 	return (
-		<div className={cn(styles['edit-items'], className)}>
-			{children}
-		</div>     
+		<div className={cn(styles['edit-items'], className)}>{children}</div>
 	);
 }
 

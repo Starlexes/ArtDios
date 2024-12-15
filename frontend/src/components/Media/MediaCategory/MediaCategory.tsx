@@ -1,4 +1,3 @@
-
 import styles from './MediaCategory.module.css';
 import { MediaCategoryProps } from './MediaCategory.props';
 import cn from 'classnames';
@@ -10,20 +9,25 @@ import MediaCategoryItem from '../MediaCategoryItem/MediaCategoryItem';
 import { renderArrow } from '../../../utils/constants';
 import MediaSubCategory from '../MediaSubCategory/MediaSubCategory';
 
-
-function MediaCategory({onClose, className }: MediaCategoryProps) {
+function MediaCategory({ onClose, className }: MediaCategoryProps) {
 	const dispatch = useAppDispatch();
-	const { categories, isLoading } = useAppSelector((state: RootState) => state.categories);
+	const { categories, isLoading } = useAppSelector(
+		(state: RootState) => state.categories
+	);
 
-	const filteredCategories = useAppSelector((state: RootState) => selectFilteredCategory(state));
+	const filteredCategories = useAppSelector((state: RootState) =>
+		selectFilteredCategory(state)
+	);
 
 	const [subActive, setSubActive] = useState<boolean>(false);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 
-	const [currentSubCategory, setCurrentSubCategory] = useState<SubCategoryState[] | null>(null);
+	const [currentSubCategory, setCurrentSubCategory] = useState<
+		SubCategoryState[] | null
+	>(null);
 
 	const [currentCategory, setCurrentCategory] = useState<string | null>(null);
-  
+
 	const onClick = (subcategory: SubCategoryState[], category: string) => {
 		setCurrentSubCategory(subcategory);
 		setSubActive(true);
@@ -60,10 +64,13 @@ function MediaCategory({onClose, className }: MediaCategoryProps) {
 					))}
 				</ul>
 			</nav>
-			<MediaSubCategory isOpen={subActive} subcategory={currentSubCategory}
+			<MediaSubCategory
+				isOpen={subActive}
+				subcategory={currentSubCategory}
 				onClose={onCloseSubcategory}
 				onCloseCategory={onClose}
-				category={currentCategory}/>
+				category={currentCategory}
+			/>
 		</div>
 	);
 }

@@ -7,22 +7,29 @@ import CharsFilter from '../../CharsFilter/CharsFilter';
 
 Modal.setAppElement('#root');
 
-function FiltersMedia({maxPrice, minPrice, chars, className, isOpen = false, closeModal, productLength}: FiltersMediaProps) {
-
-
+function FiltersMedia({
+	maxPrice,
+	minPrice,
+	chars,
+	className,
+	isOpen = false,
+	closeModal,
+	productLength
+}: FiltersMediaProps) {
 	return (
 		<Modal
 			isOpen={isOpen}
 			onRequestClose={closeModal}
 			className={cn(styles['modal-window'], className)}
 			overlayClassName={cn(overlayStyles['modal-overlay'])}
-			
 		>
-			<CharsFilter maxPrice={String(maxPrice)} minPrice={String(minPrice)}
-				chars={chars} closeModal={closeModal}
-				productLength={productLength}/>
-		
-			
+			<CharsFilter
+				maxPrice={String(maxPrice)}
+				minPrice={String(minPrice)}
+				chars={chars}
+				closeModal={closeModal}
+				productLength={productLength}
+			/>
 		</Modal>
 	);
 }

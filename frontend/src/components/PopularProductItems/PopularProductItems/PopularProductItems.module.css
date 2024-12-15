@@ -1,12 +1,12 @@
 .product-items {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: center;
 }
 
 @media (max-width: 880px) {
-    .product-items {
-        gap: max(calc( 20 / 880 * 100vw), 16px);
-    }
+	.product-items {
+		gap: max(calc(20 / 880 * 100vw), 16px);
+	}
 }

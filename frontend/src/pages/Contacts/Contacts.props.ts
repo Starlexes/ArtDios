@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface ContactsProps extends HTMLProps<HTMLDivElement>{}
+export interface ContactsProps extends HTMLProps<HTMLDivElement> {}

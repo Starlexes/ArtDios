@@ -1,3 +1,3 @@
-import { ButtonHTMLAttributes} from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-export type LogOutButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
+export type LogOutButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;

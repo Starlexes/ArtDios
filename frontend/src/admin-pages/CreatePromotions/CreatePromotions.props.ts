@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export type CreatePromotionsProps = HTMLProps<HTMLDivElement>
+export type CreatePromotionsProps = HTMLProps<HTMLDivElement>;

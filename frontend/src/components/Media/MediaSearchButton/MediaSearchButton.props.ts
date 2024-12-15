@@ -1,6 +1,4 @@
-
 import { ButtonHTMLAttributes } from 'react';
 
-
-export interface MediaSearchButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{}
-
+export interface MediaSearchButtonProps
+	extends ButtonHTMLAttributes<HTMLButtonElement> {}

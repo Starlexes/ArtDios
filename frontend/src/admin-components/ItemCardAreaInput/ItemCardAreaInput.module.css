@@ -1,29 +1,29 @@
 .card-input {
-    width: 100%;
-    padding: 6px 10px;
-    font-size: 16px;
-    font-weight: 400;
-    color: #1A1A1A;
-    background-color: #D6D3D3;
-    border: none;
-    max-width: 100%;
+	width: 100%;
+	padding: 6px 10px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #1a1a1a;
+	background-color: #d6d3d3;
+	border: none;
+	max-width: 100%;
 }
 
 .errors {
-    border: 2px solid var(--delete);
+	border: 2px solid var(--delete);
 }
 
 .card-input::placeholder {
-    color: #9F9F9F;
+	color: #9f9f9f;
 }
 
 .card-input:focus {
-    border: 1px solid var(--focus-link);
+	border: 1px solid var(--focus-link);
 }
 
 .light {
-    border-radius: 4px;
-    background-color: #F1F1F1;
-    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #1E1E1E;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+	box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+	color: #1e1e1e;
 }

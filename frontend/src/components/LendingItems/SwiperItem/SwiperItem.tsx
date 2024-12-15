@@ -8,17 +8,23 @@ import { Navigation } from 'swiper/modules';
 import cn from 'classnames';
 import { mediaImagesPath } from '../../../utils/constants';
 
+function SwiperItem({
+	children,
+	className,
+	sliderCount,
+	betweenSlider,
+	slidesPerView
+}: SwiperItemProps) {
+	const phoneMatches = useMediaPredicate(
+		`(min-width: ${sliderCount ? sliderCount : 511}px)`
+	);
 
-function SwiperItem({children, className, sliderCount, betweenSlider, slidesPerView }: SwiperItemProps) {
-
-	const phoneMatches = useMediaPredicate(`(min-width: ${sliderCount? sliderCount: 511}px)`);
-	
 	return (
-	
 		<Swiper
-				
-			slidesPerView={slidesPerView? slidesPerView: phoneMatches? 2: 1}
-			spaceBetween={betweenSlider? betweenSlider: phoneMatches? 10: 20}
+			slidesPerView={slidesPerView ? slidesPerView : phoneMatches ? 2 : 1}
+			spaceBetween={
+				betweenSlider ? betweenSlider : phoneMatches ? 10 : 20
+			}
 			pagination={{
 				clickable: true
 			}}
@@ -27,16 +33,23 @@ function SwiperItem({children, className, sliderCount, betweenSlider, slidesPerV
 				prevEl: '.prev-btn'
 			}}
 			modules={[Navigation]}
-			className={cn(styles['swiper-item'], className) }
+			className={cn(styles['swiper-item'], className)}
 		>
-              
 			{children}
-			<div className='next-btn swiper-button-next'><img src={mediaImagesPath+'/lending/right-arrow.svg'} alt="Вправо"/></div>
-			<div className='prev-btn swiper-button-prev'><img src={mediaImagesPath+'/lending/left-arrow.svg'} alt="Влево"/></div>
+			<div className="next-btn swiper-button-next">
+				<img
+					src={mediaImagesPath + '/lending/right-arrow.svg'}
+					alt="Вправо"
+				/>
+			</div>
+			<div className="prev-btn swiper-button-prev">
+				<img
+					src={mediaImagesPath + '/lending/left-arrow.svg'}
+					alt="Влево"
+				/>
+			</div>
 		</Swiper>
-
 	);
-
 }
 
 export default SwiperItem;

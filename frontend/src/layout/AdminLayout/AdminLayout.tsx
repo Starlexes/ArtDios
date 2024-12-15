@@ -8,17 +8,14 @@ import cn from 'classnames';
 
 function AdminLayout() {
 	useScrollToTop();
-	
+
 	return (
 		<div className={cn(styles['layout'])}>
-			<AdminHeader/>
-			<AdminMainPanel/>
+			<AdminHeader />
+			<AdminMainPanel />
 
-			{ checkAuthenticated() &&
-				<AdminFooter/>
-			}
+			{checkAuthenticated() && <AdminFooter />}
 		</div>
-		
 	);
 }
 

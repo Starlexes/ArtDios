@@ -2,7 +2,41 @@ import { createBrowserRouter } from 'react-router-dom';
 import ClientLayout from './layout/ClientLayout/ClientLayout';
 import Error from './pages/Error/Error';
 import Catalog from './pages/Catalog/Catalog';
-import { aboutRoute, adminCreateNewCard, adminEditAddresses, adminEditCatalog, adminEditCategory, adminEditCategoryMenuRoute, adminEditCategoryRoute, adminEditContacts, adminEditEmails, adminEditGallery, adminEditPhones, adminEditPopularProductCard, adminEditPopularProducts, adminEditProductCard, adminEditProductTypesRoute, adminEditPromotionCard, adminEditPromotions, adminEditSubCategoryRoute, adminEditWorkingHours, adminHomeRoute, adminLoginRoute, adminRoute, catalog, contactsRoute, customContractRoute, deliveryPaymentsRoute, galleryRoute, opdPageRoute, products, promotionRoute, publicOfferRoute, seachingRoute, serviceRoute } from './utils/constants';
+import {
+	aboutRoute,
+	adminCreateNewCard,
+	adminEditAddresses,
+	adminEditCatalog,
+	adminEditCategory,
+	adminEditCategoryMenuRoute,
+	adminEditCategoryRoute,
+	adminEditContacts,
+	adminEditEmails,
+	adminEditGallery,
+	adminEditPhones,
+	adminEditPopularProductCard,
+	adminEditPopularProducts,
+	adminEditProductCard,
+	adminEditProductTypesRoute,
+	adminEditPromotionCard,
+	adminEditPromotions,
+	adminEditSubCategoryRoute,
+	adminEditWorkingHours,
+	adminHomeRoute,
+	adminLoginRoute,
+	adminRoute,
+	catalog,
+	contactsRoute,
+	customContractRoute,
+	deliveryPaymentsRoute,
+	galleryRoute,
+	opdPageRoute,
+	products,
+	promotionRoute,
+	publicOfferRoute,
+	seachingRoute,
+	serviceRoute
+} from './utils/constants';
 import ProductCard from './pages/ProductCard/ProductCard';
 import Gallery from './pages/Gallery/Gallery';
 import Contacts from './pages/Contacts/Contacts';
@@ -37,130 +71,131 @@ import EditWorkingHours from './admin-pages/EditWorkingHours/EditWorkingHours';
 import EditGallery from './admin-pages/EditGallery/EditGallery';
 import CreateProduct from './admin-pages/CreateProduct/CreateProduct';
 
-
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <ClientLayout/>,
+		element: <ClientLayout />,
 		children: [
 			{
 				path: '/',
-				element: <Lending/>
+				element: <Lending />
 			},
 			{
 				path: `${catalog}:category`,
-				element: <Catalog/>
+				element: <Catalog />
 			},
 			{
 				path: `${catalog}${seachingRoute}`,
-				element: <Catalog/>
+				element: <Catalog />
 			},
 			{
 				path: `${products}:product`,
-				element: <ProductCard/>
+				element: <ProductCard />
 			},
 			{
 				path: `${galleryRoute}`,
-				element: <Gallery/>
+				element: <Gallery />
 			},
 			{
 				path: `${contactsRoute}`,
-				element: <Contacts/>
+				element: <Contacts />
 			},
 			{
 				path: `${promotionRoute}`,
-				element: <Promotions/>
+				element: <Promotions />
 			},
 			{
 				path: `${promotionRoute}:promotion`,
-				element: <PromotionCard/>
+				element: <PromotionCard />
 			},
 			{
 				path: `${opdPageRoute}`,
-				element: <OPDPage/>
+				element: <OPDPage />
 			},
 			{
 				path: `${publicOfferRoute}`,
-				element: <PublicOffer/>
+				element: <PublicOffer />
 			},
 			{
 				path: `${customContractRoute}`,
-				element: <CustomContract/>
+				element: <CustomContract />
 			},
 			{
 				path: `${serviceRoute}`,
-				element: <Service/>
+				element: <Service />
 			},
 			{
 				path: `${deliveryPaymentsRoute}`,
-				element: <DeliveryPayments/>
+				element: <DeliveryPayments />
 			},
 			{
 				path: `${aboutRoute}`,
-				element: <About/>
+				element: <About />
 			},
 			{
 				path: '*',
-				element: <Error/>
+				element: <Error />
 			}
 		]
 	},
 	{
 		path: `${adminRoute}${adminLoginRoute}`,
-		element: <AdminLayout/>,
-		children: [{
-			
-			path: `${adminRoute}${adminLoginRoute}`,
-			element: <LoginForm/>
-			
-		}] 
+		element: <AdminLayout />,
+		children: [
+			{
+				path: `${adminRoute}${adminLoginRoute}`,
+				element: <LoginForm />
+			}
+		]
 	},
 	{
 		path: `${adminRoute}${adminHomeRoute}`,
-		element: <RequireAuth><AdminLayout/></RequireAuth> ,
+		element: (
+			<RequireAuth>
+				<AdminLayout />
+			</RequireAuth>
+		),
 		children: [
-			
 			{
 				path: `${adminRoute}${adminHomeRoute}`,
-				element: <HomeMenu/>
+				element: <HomeMenu />
 			},
 			{
-				path: `${adminEditCategory}`,				
+				path: `${adminEditCategory}`,
 				children: [
 					{
 						path: adminEditCategoryMenuRoute,
-						element: <EditCategoryMenu/>
+						element: <EditCategoryMenu />
 					},
 					{
 						path: adminEditProductTypesRoute,
-						element: <EditProductTypes/>
+						element: <EditProductTypes />
 					},
 					{
 						path: adminEditCategoryRoute,
-						element: <EditCategory/>
+						element: <EditCategory />
 					},
 					{
 						path: adminEditSubCategoryRoute,
-						element: <EditSubCategory/>
-					}									
+						element: <EditSubCategory />
+					}
 				]
-
 			},
 			{
 				path: `${adminEditPopularProducts}`,
 				children: [
 					{
 						path: adminEditCategoryMenuRoute,
-						element: <EditPopularProducts/>
+						element: <EditPopularProducts />
 					},
-					
+
 					{
 						path: `${adminEditPopularProductCard}:popItem`,
-						element: <PopularProductCard/>
+						element: <PopularProductCard />
 					},
 					{
 						path: adminCreateNewCard,
-						element: <CreatePopularProduct/>
+						element: <CreatePopularProduct />
 					}
 				]
 			},
@@ -169,16 +204,16 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: adminEditCategoryMenuRoute,
-						element: <EditPromotions/>
+						element: <EditPromotions />
 					},
-					
+
 					{
 						path: `${adminEditPromotionCard}:promoItem`,
-						element: <EditPromotionCard/>
+						element: <EditPromotionCard />
 					},
 					{
 						path: adminCreateNewCard,
-						element: <CreatePromotions/>
+						element: <CreatePromotions />
 					}
 				]
 			},
@@ -187,50 +222,47 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: adminEditCategoryMenuRoute,
-						element: <EditContactsMenu/>
+						element: <EditContactsMenu />
 					},
 					{
 						path: adminEditPhones,
-						element: <EditPhones/>
+						element: <EditPhones />
 					},
 					{
 						path: adminEditEmails,
-						element: <EditEmails/>
+						element: <EditEmails />
 					},
 					{
 						path: adminEditAddresses,
-						element: <EditAddress/>
+						element: <EditAddress />
 					},
 					{
 						path: adminEditWorkingHours,
-						element: <EditWorkingHours/>
-					}																			
+						element: <EditWorkingHours />
+					}
 				]
 			},
-			{			
+			{
 				path: adminEditGallery,
-				element: <EditGallery/>				
+				element: <EditGallery />
 			},
-			{			
+			{
 				path: adminEditCatalog,
 				children: [
 					{
 						path: adminEditCategoryMenuRoute,
-						element: <Catalog isAdmin={true}/>
+						element: <Catalog isAdmin={true} />
 					},
 					{
 						path: adminCreateNewCard,
-						element: <CreateProduct newItem={true}/>
+						element: <CreateProduct newItem={true} />
 					},
 					{
 						path: `${adminEditProductCard}:product`,
-						element: <CreateProduct/>
+						element: <CreateProduct />
 					}
-				]			
+				]
 			}
-			
-
-			
 		]
 	}
 ]);

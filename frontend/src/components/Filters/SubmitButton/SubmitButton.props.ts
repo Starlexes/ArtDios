@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes} from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-
-export interface SubmitButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{}
+export interface SubmitButtonProps
+	extends ButtonHTMLAttributes<HTMLButtonElement> {}

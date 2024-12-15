@@ -5,14 +5,12 @@ import styles from './ModalCatalogBody.module.css';
 import { ModalCatalogBodyProps } from './ModalCatalogBody.props';
 import cn from 'classnames';
 
-
-function ModalCatalogBody({onClose, className }: ModalCatalogBodyProps) {
-
+function ModalCatalogBody({ onClose, className }: ModalCatalogBodyProps) {
 	return (
 		<div className={cn(styles['modal-body'], className)}>
-			<ModalCatalogContacts/>
-			<MediaCategory onClose={onClose}/>
-			<ModalLinksMenu onClose={onClose}/>
+			<ModalCatalogContacts />
+			<MediaCategory onClose={onClose} />
+			<ModalLinksMenu onClose={onClose} />
 		</div>
 	);
 }

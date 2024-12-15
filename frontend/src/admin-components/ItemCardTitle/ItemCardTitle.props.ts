@@ -1,5 +1,5 @@
-import { HTMLProps  } from 'react';
+import { HTMLProps } from 'react';
 
 export interface ItemCardTitleProps extends HTMLProps<HTMLHeadingElement> {
-    dark?: boolean
+	dark?: boolean;
 }

@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface ProductCardTitleProps extends HTMLProps<HTMLHeadingElement>{
-    children: string
+export interface ProductCardTitleProps extends HTMLProps<HTMLHeadingElement> {
+	children: string;
 }

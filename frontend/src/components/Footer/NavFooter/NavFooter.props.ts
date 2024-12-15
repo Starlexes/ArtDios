@@ -1,3 +1,3 @@
 export interface NavFooterProps {
-    className?: string | undefined
+	className?: string | undefined;
 }

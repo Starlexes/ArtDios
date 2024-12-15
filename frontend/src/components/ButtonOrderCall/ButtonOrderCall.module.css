@@ -1,6 +1,5 @@
-
 @media (max-width: 880px) {
-    .order-btn {
-        display: none;
-    }
+	.order-btn {
+		display: none;
+	}
 }

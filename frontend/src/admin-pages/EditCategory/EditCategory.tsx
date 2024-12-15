@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
@@ -13,18 +12,24 @@ import { EditCategoryProps } from './EditCategory.props';
 import cn from 'classnames';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import ModelAddField from '../../admin-components/ModelAddField/ModelAddField';
-import { addCategory, deleteCategory, fetchCategory, updateCategory } from '../../slices/categorySlice';
+import {
+	addCategory,
+	deleteCategory,
+	fetchCategory,
+	updateCategory
+} from '../../slices/categorySlice';
 import { fetchProductType } from '../../slices/productTypeSlice';
 
-
-
-function EditCategory({className }: EditCategoryProps) {
-
-	const {isLoading, error, categories} = useAppSelector((state: RootState) => state.categories );
-	const {productTypes, isLoading: isLoadingProductTypes} = useAppSelector((state: RootState) => state.productTypes );
+function EditCategory({ className }: EditCategoryProps) {
+	const { isLoading, error, categories } = useAppSelector(
+		(state: RootState) => state.categories
+	);
+	const { productTypes, isLoading: isLoadingProductTypes } = useAppSelector(
+		(state: RootState) => state.productTypes
+	);
 	const [addClicked, setAddClicked] = useState<boolean>(false);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
-	const sortedCategory = [...categories].sort((a, b) => 
+	const sortedCategory = [...categories].sort((a, b) =>
 		String(a.name).localeCompare(String(b.name))
 	);
 
@@ -40,8 +45,13 @@ function EditCategory({className }: EditCategoryProps) {
 				dispatch(fetchProductType());
 			}
 		}
-	}, [categories.length, productTypes.length, dispatch,
-		isFetched, isLoading, isLoadingProductTypes
+	}, [
+		categories.length,
+		productTypes.length,
+		dispatch,
+		isFetched,
+		isLoading,
+		isLoadingProductTypes
 	]);
 
 	const onClickDelete = (id: number) => {
@@ -49,15 +59,14 @@ function EditCategory({className }: EditCategoryProps) {
 	};
 
 	const onClickAccept = (id: number | undefined, name: string) => {
-		
 		if (id && name) {
-			dispatch(updateCategory({id: id, data: {name: name}}));
+			dispatch(updateCategory({ id: id, data: { name: name } }));
 		}
 	};
-	
+
 	const showToggleItem = (id: number | undefined, isShow: boolean) => {
 		if (id) {
-			dispatch(updateCategory({id: id, data: {is_show: isShow}}));
+			dispatch(updateCategory({ id: id, data: { is_show: isShow } }));
 		}
 	};
 
@@ -67,18 +76,18 @@ function EditCategory({className }: EditCategoryProps) {
 
 	const onClickSubmit = (name: string, parent: number | null = null) => {
 		if (name && parent) {
-			dispatch(addCategory({
-				name: name,
-				is_show: true,
-				parent: parent
-			}));
+			dispatch(
+				addCategory({
+					name: name,
+					is_show: true,
+					parent: parent
+				})
+			);
 		}
 		setAddClicked(false);
 	};
 
-	
 	return (
-		
 		<section>
 			<div className={cn(styles['categories'], className)}>
 				<HelmetProvider>
@@ -86,42 +95,41 @@ function EditCategory({className }: EditCategoryProps) {
 						<title>Категории</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Категории
-				</AdminPageHead>
-                
+				<AdminPageHead>Категории</AdminPageHead>
+
 				<ModelEditItems>
-					{addClicked? 
-						<ModelAddField onClickAdd={onClick} onClickSubmit={onClickSubmit} productTypes={productTypes}/>
-						:
-						<AddItemButton shape='rect' onClick={onClick}>
-                    Добавить
+					{addClicked ? (
+						<ModelAddField
+							onClickAdd={onClick}
+							onClickSubmit={onClickSubmit}
+							productTypes={productTypes}
+						/>
+					) : (
+						<AddItemButton shape="rect" onClick={onClick}>
+							Добавить
 							{addPlus()}
 						</AddItemButton>
-					}
+					)}
 
-					{
-						isLoading || isLoadingProductTypes? <Spinner/>:
-							categories.length > 0 && !error &&
-								sortedCategory.map(product => (
-									
-									<ModelEditItem key={product.id} modelItem={product}
-										onClickAccept={onClickAccept} onClickDelete={onClickDelete}
-										showToggleItem={showToggleItem}/>
-								)                       
-									
-								)
-					}
-					
+					{isLoading || isLoadingProductTypes ? (
+						<Spinner />
+					) : (
+						categories.length > 0 &&
+						!error &&
+						sortedCategory.map((product) => (
+							<ModelEditItem
+								key={product.id}
+								modelItem={product}
+								onClickAccept={onClickAccept}
+								onClickDelete={onClickDelete}
+								showToggleItem={showToggleItem}
+							/>
+						))
+					)}
 				</ModelEditItems>
-				
-				
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditCategory;
-

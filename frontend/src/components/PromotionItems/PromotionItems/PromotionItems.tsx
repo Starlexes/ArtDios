@@ -9,33 +9,36 @@ import PopularProductItem from '../../PopularProductItems/PopularProductItem/Pop
 import PopularProductContent from '../../PopularProductItems/PopularProductContent/PopularProductContent';
 import { promotionRoute } from '../../../utils/constants';
 
-
-
-function PromotionItems({promotions, className}: PromotionItemsProps) {
-	
+function PromotionItems({ promotions, className }: PromotionItemsProps) {
 	return (
-	
 		<div className={cn(styles['promo-items'], className)}>
 			<LendingHeadTitle>Акции</LendingHeadTitle>
 			<PopularProductItems>
-				{promotions.map( promo => (
-					<NavItem to={promotionRoute+promo.slug} key={promo.id}>
+				{promotions.map((promo) => (
+					<NavItem to={promotionRoute + promo.slug} key={promo.id}>
 						<PopularProductItem>
-							<PopularProductContent className={cn(styles['promo-content'], className)} isPromo={true}>
+							<PopularProductContent
+								className={cn(
+									styles['promo-content'],
+									className
+								)}
+								isPromo={true}
+							>
 								<span>{promo.name}</span>
 							</PopularProductContent>
-							
-							<img src={axios.defaults.baseURL+promo.second_image} alt={promo.name} />
+
+							<img
+								src={
+									axios.defaults.baseURL + promo.second_image
+								}
+								alt={promo.name}
+							/>
 						</PopularProductItem>
 					</NavItem>
 				))}
-				
-				
 			</PopularProductItems>
-		</div>	
-
+		</div>
 	);
-
 }
 
 export default PromotionItems;

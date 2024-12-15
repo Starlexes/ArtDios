@@ -5,12 +5,12 @@ import MainPanel from '../MainPanel/MainPanel';
 
 function ClientLayout() {
 	useScrollToTop();
-	
+
 	return (
 		<>
-			<Header/>
-			<MainPanel/>
-			<Footer/>
+			<Header />
+			<MainPanel />
+			<Footer />
 		</>
 	);
 }

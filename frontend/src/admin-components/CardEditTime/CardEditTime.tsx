@@ -9,12 +9,21 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import './TimePickerStyles.css';
 
-function CardEditTime({ className, newItem=false, hoursItem, onClickAccept, onClickAddItem}: CardEditTimeProps) {
-
+function CardEditTime({
+	className,
+	newItem = false,
+	hoursItem,
+	onClickAccept,
+	onClickAddItem
+}: CardEditTimeProps) {
 	const [editClicked, setEditClicked] = useState<boolean>(false);
 	const [acceptClicked, setAcceptClicked] = useState<boolean>(false);
-	const [openHours, setOpenHours] = useState<string>(hoursItem? hoursItem.opening_hours: '');
-	const [closeHours, setCloseHours] = useState<string>(hoursItem? hoursItem.closing_hours: '');
+	const [openHours, setOpenHours] = useState<string>(
+		hoursItem ? hoursItem.opening_hours : ''
+	);
+	const [closeHours, setCloseHours] = useState<string>(
+		hoursItem ? hoursItem.closing_hours : ''
+	);
 	const [isEmptyOpenHours, setIsEmptyOpenHours] = useState<boolean>(false);
 	const [isEmptyCloseHours, setIsEmptyCloseHours] = useState<boolean>(false);
 
@@ -36,61 +45,84 @@ function CardEditTime({ className, newItem=false, hoursItem, onClickAccept, onCl
 	}, [newItem, acceptClicked, openHours, closeHours]);
 
 	return (
-
 		<div className={cn(styles['time-edit'], className)}>
-			
 			<span className={cn(styles['time-text'])}>C</span>
 			<div className={cn(styles['time-item'])}>
-				{newItem || editClicked?
-					<TimePicker value={openHours} format='HH:mm'
-						onChange={onChangeOpenHour} disableClock={true} locale='ru-RU' clearIcon={null}
+				{newItem || editClicked ? (
+					<TimePicker
+						value={openHours}
+						format="HH:mm"
+						onChange={onChangeOpenHour}
+						disableClock={true}
+						locale="ru-RU"
+						clearIcon={null}
 						className={cn(styles['time-picker'], {
 							[styles['errors']]: isEmptyOpenHours
-						})}/>
-					: openHours.slice(0, 5)
-				}
+						})}
+					/>
+				) : (
+					openHours.slice(0, 5)
+				)}
 			</div>
 
 			<span className={cn(styles['time-text'])}>ДО</span>
 
 			<div className={cn(styles['time-item'])}>
-				{newItem || editClicked?
-					<TimePicker value={closeHours} format='HH:mm'
-						onChange={onChangeCloseHour} disableClock={true} locale='ru-RU' clearIcon={null}
+				{newItem || editClicked ? (
+					<TimePicker
+						value={closeHours}
+						format="HH:mm"
+						onChange={onChangeCloseHour}
+						disableClock={true}
+						locale="ru-RU"
+						clearIcon={null}
 						className={cn(styles['time-picker'], {
 							[styles['errors']]: isEmptyCloseHours
-						})}/>
-					: closeHours.slice(0, 5)
-				}
+						})}
+					/>
+				) : (
+					closeHours.slice(0, 5)
+				)}
 			</div>
 
-			{ 
-				editClicked || newItem?		
-					<ModelAcceptButton onClick={() => {
+			{editClicked || newItem ? (
+				<ModelAcceptButton
+					onClick={() => {
 						setAcceptClicked(true);
 						setEditClicked(false);
-						openHours && closeHours && onClickAddItem &&
-						onClickAddItem(openHours, closeHours);
-						hoursItem && onClickAccept &&
-						onClickAccept(hoursItem.id,
-							openHours === hoursItem.opening_hours? undefined: openHours,
-							closeHours === hoursItem.closing_hours? undefined: closeHours
-						);
+						openHours &&
+							closeHours &&
+							onClickAddItem &&
+							onClickAddItem(openHours, closeHours);
+						hoursItem &&
+							onClickAccept &&
+							onClickAccept(
+								hoursItem.id,
+								openHours === hoursItem.opening_hours
+									? undefined
+									: openHours,
+								closeHours === hoursItem.closing_hours
+									? undefined
+									: closeHours
+							);
 						newItem && !openHours && setIsEmptyOpenHours(true);
 						newItem && !closeHours && setIsEmptyCloseHours(true);
-					}} className={cn(styles['action'])}>
-				Применить
-					</ModelAcceptButton>
-					:
-					<ModelEditButton typeAction='main' onClick={onClickEdit}
-						className={cn(styles['action'])}>
-				Редактировать
-					</ModelEditButton>
-			}
-				
-		</div>	
+					}}
+					className={cn(styles['action'])}
+				>
+					Применить
+				</ModelAcceptButton>
+			) : (
+				<ModelEditButton
+					typeAction="main"
+					onClick={onClickEdit}
+					className={cn(styles['action'])}
+				>
+					Редактировать
+				</ModelEditButton>
+			)}
+		</div>
 	);
-
 }
 
 export default CardEditTime;

@@ -1,40 +1,40 @@
 .checkbox-filter {
-    display: flex;
-    position: relative;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--default-color);
+	display: flex;
+	position: relative;
+	align-items: center;
+	gap: 12px;
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--default-color);
 }
 
 .checkbox-item {
-    opacity: 0;
-    width: 14px;
-    height: 14px;
-    z-index: 1;
-    cursor: pointer;
-    position: absolute;
+	opacity: 0;
+	width: 14px;
+	height: 14px;
+	z-index: 1;
+	cursor: pointer;
+	position: absolute;
 }
 
 .checkbox-area {
-    width: 14px;
-    height: 14px;
-    border: 1px solid var(--primary-bgc2);
-    border-radius: 4px;
+	width: 14px;
+	height: 14px;
+	border: 1px solid var(--primary-bgc2);
+	border-radius: 4px;
 }
 
 .checkbox-desc {
-    max-width: 168px;
-    display: flex;
-    flex-wrap: wrap;
-    word-break: break-all;
+	max-width: 168px;
+	display: flex;
+	flex-wrap: wrap;
+	word-break: break-all;
 }
 
 .checkbox-label {
-    display: flex;
+	display: flex;
 }
 
 .category-desc {
-    word-break: keep-all;
+	word-break: keep-all;
 }

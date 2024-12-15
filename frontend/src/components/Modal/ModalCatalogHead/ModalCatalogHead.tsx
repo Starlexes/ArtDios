@@ -4,12 +4,14 @@ import styles from './ModalCatalogHead.module.css';
 import { ModalCatalogHeadProps } from './ModalCatalogHead.props';
 import cn from 'classnames';
 
-
-function ModalCatalogHead({onClose, className }: ModalCatalogHeadProps) {
-
+function ModalCatalogHead({ onClose, className }: ModalCatalogHeadProps) {
 	return (
 		<div className={cn(styles['modal-head'], className)}>
-			<img className={cn(styles['modal-logo'])} src={mediaImagesPath+'/artdios-logo.png'} alt="АРТДИОС logo"/>
+			<img
+				className={cn(styles['modal-logo'])}
+				src={mediaImagesPath + '/artdios-logo.png'}
+				alt="АРТДИОС logo"
+			/>
 
 			<ModalCloseButton onClick={onClose}>
 				{renderCross()}

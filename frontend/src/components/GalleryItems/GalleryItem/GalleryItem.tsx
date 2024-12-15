@@ -7,34 +7,31 @@ import styles from './GalleryItem.module.css';
 import { GalleryItemProps } from './GalleryItem.props';
 import cn from 'classnames';
 
-
-function GalleryItem({gallery, type, className }: GalleryItemProps) {
-	
+function GalleryItem({ gallery, type, className }: GalleryItemProps) {
 	return (
-		
-		<div className={cn(styles['gallery-item'], {
-			[styles['left']]: type === 'even',
-			[styles['right']]: type === 'odd'
-		}, className)}>
-		
+		<div
+			className={cn(
+				styles['gallery-item'],
+				{
+					[styles['left']]: type === 'even',
+					[styles['right']]: type === 'odd'
+				},
+				className
+			)}
+		>
 			<GalleryImage type={type}>
-				<img src={axios.defaults.baseURL+gallery.image} alt={gallery.name} />				   
-			</GalleryImage>  
+				<img
+					src={axios.defaults.baseURL + gallery.image}
+					alt={gallery.name}
+				/>
+			</GalleryImage>
 			<GalleryInfo>
-				<GalleryTitle>
-					{gallery.name}
-				</GalleryTitle>
-                        
-				<GalleryDesc>
-					{gallery.description}
-				</GalleryDesc>
+				<GalleryTitle>{gallery.name}</GalleryTitle>
+
+				<GalleryDesc>{gallery.description}</GalleryDesc>
 			</GalleryInfo>
-			
-			
-		</div>	
-
+		</div>
 	);
-
 }
 
 export default GalleryItem;

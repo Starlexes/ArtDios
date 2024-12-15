@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { filtersIcon } from '../../../../utils/constants';
 import Button from '../../../Header/Button/Button';
@@ -7,9 +6,13 @@ import styles from './FiltersButton.module.css';
 import { FiltersButtonProps } from './FiltersButton.props';
 import cn from 'classnames';
 
-
-function FiltersButton({minPrice, maxPrice, chars, className, productLength }: FiltersButtonProps) {
-
+function FiltersButton({
+	minPrice,
+	maxPrice,
+	chars,
+	className,
+	productLength
+}: FiltersButtonProps) {
 	const [modalOpen, setModalOpen] = useState<boolean>(false);
 
 	const onClose = () => {
@@ -22,15 +25,24 @@ function FiltersButton({minPrice, maxPrice, chars, className, productLength }: F
 
 	return (
 		<>
-			<Button onClick={onClick} className={cn(styles['filters-btn'], className)}>
+			<Button
+				onClick={onClick}
+				className={cn(styles['filters-btn'], className)}
+			>
 				<div className={cn(styles['filters-content'])}>
-            Фильтры
+					Фильтры
 					{filtersIcon()}
 				</div>
 			</Button>
 
-			<FiltersMedia isOpen={modalOpen} closeModal={onClose}
-				minPrice={minPrice} maxPrice={maxPrice} chars={chars} productLength={productLength}/>
+			<FiltersMedia
+				isOpen={modalOpen}
+				closeModal={onClose}
+				minPrice={minPrice}
+				maxPrice={maxPrice}
+				chars={chars}
+				productLength={productLength}
+			/>
 		</>
 	);
 }

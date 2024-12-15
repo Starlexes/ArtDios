@@ -2,7 +2,7 @@ import styles from './Promotions.module.css';
 import { PromotionsProps } from './Promotions.props';
 import cn from 'classnames';
 import { useAppSelector } from '../../hooks';
-import { AppDispatch, RootState} from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchPromotion } from '../../slices/promotionSlice';
@@ -17,12 +17,14 @@ import axios from 'axios';
 import { promotionRoute } from '../../utils/constants';
 import PageHead from '../../components/PageHead/PageHead';
 
-
-
-function Promotions({className }: PromotionsProps) {
+function Promotions({ className }: PromotionsProps) {
 	const dispatch = useDispatch<AppDispatch>();
-	
-	const {promo, error: promoError, isLoading } = useAppSelector((state: RootState) => state.promotions);
+
+	const {
+		promo,
+		error: promoError,
+		isLoading
+	} = useAppSelector((state: RootState) => state.promotions);
 	const [isFetched, setIsFetched] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -34,39 +36,51 @@ function Promotions({className }: PromotionsProps) {
 		}
 	}, [dispatch, promo.length, isFetched, isLoading]);
 
-	
-	return (
-		!promoError?
-			isLoading? <Spinner/>: 
-				<section>
-					<div className={cn(styles['promotions'], className)}>
-						<HelmetProvider>
-							<Helmet>
-								<title>Акции</title>
-							</Helmet>
-						</HelmetProvider>
-						<PageHead>Акции</PageHead>
-                    
-						<PopularProductItems className={cn(styles['promo-items'], className)}>
-							{promo.length > 0 && promo.map( promo => (
-								<NavItem to={promotionRoute+promo.slug} key={promo.id} className={cn(styles['promo-item'])}>
+	return !promoError ? (
+		isLoading ? (
+			<Spinner />
+		) : (
+			<section>
+				<div className={cn(styles['promotions'], className)}>
+					<HelmetProvider>
+						<Helmet>
+							<title>Акции</title>
+						</Helmet>
+					</HelmetProvider>
+					<PageHead>Акции</PageHead>
+
+					<PopularProductItems
+						className={cn(styles['promo-items'], className)}
+					>
+						{promo.length > 0 &&
+							promo.map((promo) => (
+								<NavItem
+									to={promotionRoute + promo.slug}
+									key={promo.id}
+									className={cn(styles['promo-item'])}
+								>
 									<PopularProductItem>
 										<PopularProductContent isPromo={true}>
 											<span>{promo.name}</span>
 										</PopularProductContent>
-							
-										<img src={axios.defaults.baseURL+promo.second_image} alt={promo.name} />
+
+										<img
+											src={
+												axios.defaults.baseURL +
+												promo.second_image
+											}
+											alt={promo.name}
+										/>
 									</PopularProductItem>
 								</NavItem>
 							))}
-				
-				
-						</PopularProductItems>
-					</div>
-				</section>
-			: <Error/>
+					</PopularProductItems>
+				</div>
+			</section>
+		)
+	) : (
+		<Error />
 	);
-
 }
 
 export default Promotions;

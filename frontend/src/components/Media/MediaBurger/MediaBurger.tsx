@@ -10,10 +10,10 @@ import { setMediaBurgerClick } from '../../../slices/buttonSlice';
 import { useEffect, useState } from 'react';
 import { mediaImagesPath } from '../../../utils/constants';
 
-
-function MediaBurger({className}: MediaBurgerProps) {
-
-	const isClicked = useSelector((state: RootState) => state.buttons.modalBurgerButton.isClicked);
+function MediaBurger({ className }: MediaBurgerProps) {
+	const isClicked = useSelector(
+		(state: RootState) => state.buttons.modalBurgerButton.isClicked
+	);
 
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -22,7 +22,6 @@ function MediaBurger({className}: MediaBurgerProps) {
 	const [contentVisible, setContentVisible] = useState<boolean>(false);
 
 	useEffect(() => {
-		
 		if (isOpen) {
 			const timer = setTimeout(() => {
 				setContentVisible(true);
@@ -31,12 +30,10 @@ function MediaBurger({className}: MediaBurgerProps) {
 		} else {
 			setContentVisible(false);
 		}
-
 	}, [isOpen]);
 
-
 	const onClick = () => {
-		dispatch(setMediaBurgerClick(!isClicked));		
+		dispatch(setMediaBurgerClick(!isClicked));
 	};
 
 	const closeModal = () => {
@@ -44,20 +41,29 @@ function MediaBurger({className}: MediaBurgerProps) {
 		setIsOpen(false);
 	};
 
-	useEffect( () => {
+	useEffect(() => {
 		if (isClicked) {
 			setIsOpen(true);
 		}
 	}, [isClicked, dispatch]);
-	
 
 	return (
 		<>
-			<MediaButton onClick={onClick} className={cn(styles['media-burger'], className)}>
-				<img src={mediaImagesPath+'/media/burger.svg'} alt="Бургер-меню" />
+			<MediaButton
+				onClick={onClick}
+				className={cn(styles['media-burger'], className)}
+			>
+				<img
+					src={mediaImagesPath + '/media/burger.svg'}
+					alt="Бургер-меню"
+				/>
 			</MediaButton>
 
-			<ModalCatalog isOpen={isOpen} closeModal={closeModal} contentVisible={contentVisible}/>
+			<ModalCatalog
+				isOpen={isOpen}
+				closeModal={closeModal}
+				contentVisible={contentVisible}
+			/>
 		</>
 	);
 }

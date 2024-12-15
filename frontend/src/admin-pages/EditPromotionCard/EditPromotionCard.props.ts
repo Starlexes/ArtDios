@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export type EditPromotionCardProps = HTMLProps<HTMLDivElement>
+export type EditPromotionCardProps = HTMLProps<HTMLDivElement>;

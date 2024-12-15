@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from 'react-redux';
 import MediaButton from '../MediaButton/MediaButton';
 import styles from './MediaSearchButton.module.css';
@@ -8,10 +7,10 @@ import { setMediaSearchClick } from '../../../slices/buttonSlice';
 import { RootState } from '../../../store';
 import { mediaImagesPath, renderCross } from '../../../utils/constants';
 
-
-function MediaSearchButton({className}: MediaSearchButtonProps) {
-
-	const { isClicked } = useSelector((state: RootState) => state.buttons.modalSearchButton);
+function MediaSearchButton({ className }: MediaSearchButtonProps) {
+	const { isClicked } = useSelector(
+		(state: RootState) => state.buttons.modalSearchButton
+	);
 	const dispatch = useDispatch();
 
 	const onClick = () => {
@@ -19,10 +18,18 @@ function MediaSearchButton({className}: MediaSearchButtonProps) {
 	};
 
 	return (
-		<MediaButton onClick={onClick} className={cn(styles['media-search'], className)}>
-			{isClicked? renderCross()
-				: <img src={mediaImagesPath+'/media/loupe.svg'} alt="Иконка лупы"/> }
-			
+		<MediaButton
+			onClick={onClick}
+			className={cn(styles['media-search'], className)}
+		>
+			{isClicked ? (
+				renderCross()
+			) : (
+				<img
+					src={mediaImagesPath + '/media/loupe.svg'}
+					alt="Иконка лупы"
+				/>
+			)}
 		</MediaButton>
 	);
 }

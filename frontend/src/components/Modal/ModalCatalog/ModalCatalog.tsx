@@ -8,9 +8,12 @@ import ModalCatalogBody from '../ModalCatalogBody/ModalCatalogBody';
 
 Modal.setAppElement('#root');
 
-function ModalCatalog({className, isOpen = false, closeModal, contentVisible }: ModalCatalogProps) {
-
-
+function ModalCatalog({
+	className,
+	isOpen = false,
+	closeModal,
+	contentVisible
+}: ModalCatalogProps) {
 	return (
 		<Modal
 			isOpen={isOpen}
@@ -18,16 +21,17 @@ function ModalCatalog({className, isOpen = false, closeModal, contentVisible }: 
 			className={cn(styles['modal-window'], {
 				[styles['active']]: contentVisible
 			})}
-			overlayClassName={cn(overlayStyles['modal-overlay'], overlayStyles['overlay-catalog'])}
+			overlayClassName={cn(
+				overlayStyles['modal-overlay'],
+				overlayStyles['overlay-catalog']
+			)}
 		>
-			{
-				contentVisible && <div className={cn(styles['modal-content'], className)}>
-					<ModalCatalogHead onClose={closeModal}/>
-					<ModalCatalogBody onClose={closeModal}/>
+			{contentVisible && (
+				<div className={cn(styles['modal-content'], className)}>
+					<ModalCatalogHead onClose={closeModal} />
+					<ModalCatalogBody onClose={closeModal} />
 				</div>
-			}
-		
-			
+			)}
 		</Modal>
 	);
 }

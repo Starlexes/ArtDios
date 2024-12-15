@@ -1,14 +1,14 @@
 .close-modal {
-    background: none;
-    
-    min-height: max-content;
+	background: none;
+
+	min-height: max-content;
 }
 
 .order-call {
-    position: absolute;
+	position: absolute;
 }
 
-.close-modal:hover rect,.close-modal:active rect{
-    fill: #a4a2a2;
+.close-modal:hover rect,
+.close-modal:active rect {
+	fill: #a4a2a2;
 }
-

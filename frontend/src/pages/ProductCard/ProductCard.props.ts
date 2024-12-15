@@ -1,4 +1,3 @@
 import { HTMLProps } from 'react';
 
-
-export interface ProductCardProps extends HTMLProps<HTMLDivElement>{}
+export type ProductCardProps = HTMLProps<HTMLDivElement>;

@@ -1,21 +1,20 @@
 .modal-title {
-    font-size: clamp(26px, calc(36 / 1200 * 100vw), 36px);
+	font-size: clamp(26px, calc(36 / 1200 * 100vw), 36px);
 }
 
 .thank-title {
-    display: inline-block;
-    width: 100%;
-    font-size: 36px;
+	display: inline-block;
+	width: 100%;
+	font-size: 36px;
 }
 
 @media (max-width: 880px) {
-    .modal-title {
-        text-align: center;
-        font-size: max(calc(36 / 880 * 100vw), 18px);
-    }
+	.modal-title {
+		text-align: center;
+		font-size: max(calc(36 / 880 * 100vw), 18px);
+	}
 
-    .thank-title {
-        text-align: start;
-    }
-    
+	.thank-title {
+		text-align: start;
+	}
 }

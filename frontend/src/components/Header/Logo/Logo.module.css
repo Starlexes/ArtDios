@@ -1,24 +1,21 @@
 .main-logo {
-    width: calc(454 / 1200 * 100vw);
-    max-width: 454px;
+	width: calc(454 / 1200 * 100vw);
+	max-width: 454px;
 }
 
 .logo-link {
-    caret-color: transparent;
-    text-decoration: none;
+	caret-color: transparent;
+	text-decoration: none;
 }
 
 @media (max-width: 880px) {
-    .main-logo {
-        width: 394;
-    }
+	.main-logo {
+		width: 394;
+	}
 }
 
 @media (max-width: 700px) {
-    .main-logo {
-        width: auto;
-    }
+	.main-logo {
+		width: auto;
+	}
 }
-
-
-

@@ -1,13 +1,13 @@
 .navigation__header {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    padding: 11px 40px;
-    max-width: 1200px;
-    width: 100%;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	padding: 11px 40px;
+	max-width: 1200px;
+	width: 100%;
 }
 
 .phone-num {
-    font-weight: 700;
-    color: var(--text-color);
+	font-weight: 700;
+	color: var(--text-color);
 }

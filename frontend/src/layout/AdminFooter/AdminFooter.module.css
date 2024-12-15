@@ -1,21 +1,21 @@
 .footer {
-    background-color: var(--primary-bgc2);
-    height: 314px;
-    width: 100%;
-    padding: 80px;
-    display: flex;   
-    justify-content: center;     
+	background-color: var(--primary-bgc2);
+	height: 314px;
+	width: 100%;
+	padding: 80px;
+	display: flex;
+	justify-content: center;
 }
 .footer-content {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 60px;
-    max-width: 1200px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 60px;
+	max-width: 1200px;
 }
 
 .footer-item {
-    color: var(--text-color);
-    font-size: 32px;
-    font-weight: 400;
+	color: var(--text-color);
+	font-size: 32px;
+	font-weight: 400;
 }

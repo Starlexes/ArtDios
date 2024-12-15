@@ -1,5 +1,4 @@
-
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import AdminPageHead from '../../admin-components/AdminPageHead/AdminPageHead';
 import Spinner from '../../components/Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -9,7 +8,12 @@ import cn from 'classnames';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import NewItemLayout from '../../admin-components/NewItemLayout/NewItemLayout';
 import { EditPhonesProps } from './EditPhones.props';
-import { addPhone, deletePhone, fetchPhone, updatePhone } from '../../slices/phoneSlice';
+import {
+	addPhone,
+	deletePhone,
+	fetchPhone,
+	updatePhone
+} from '../../slices/phoneSlice';
 import ItemCardInputArea from '../../admin-components/ItemCardInputArea/ItemCardInputArea';
 import ItemCardInputLabel from '../../admin-components/ItemCardInputLabel/ItemCardInputLabel';
 import CardEditItemActions from '../../admin-components/CardEditItemActions/CardEditItemActions';
@@ -17,17 +21,17 @@ import CardEditItem from '../../admin-components/CardEditItem/CardEditItem';
 import { addItemPlus } from '../../utils/constants';
 import AddItemButton from '../../admin-components/AddItemButton/AddItemButton';
 
-
-function EditPhones({className }: EditPhonesProps) {
-
-	const {isLoading, phones} = useAppSelector((state: RootState) => state.phones);
+function EditPhones({ className }: EditPhonesProps) {
+	const { isLoading, phones } = useAppSelector(
+		(state: RootState) => state.phones
+	);
 	const [newItemClicked, setNewItemClicked] = useState<boolean>(false);
-	
+
 	const dispatch = useAppDispatch();
 
 	const onClickAccept = (id: number | undefined, number: string) => {
 		if (id) {
-			dispatch(updatePhone({id: id, data: {number: number}}));		
+			dispatch(updatePhone({ id: id, data: { number: number } }));
 		}
 	};
 
@@ -36,7 +40,7 @@ function EditPhones({className }: EditPhonesProps) {
 	};
 
 	const onClickAddItem = (number: string) => {
-		dispatch(addPhone({number: number}));
+		dispatch(addPhone({ number: number }));
 		setNewItemClicked(false);
 	};
 
@@ -47,7 +51,6 @@ function EditPhones({className }: EditPhonesProps) {
 	}, [dispatch, phones.length]);
 
 	return (
-		
 		<section>
 			<div className={cn(styles['phones-items'], className)}>
 				<HelmetProvider>
@@ -55,47 +58,54 @@ function EditPhones({className }: EditPhonesProps) {
 						<title>Телефоны</title>
 					</Helmet>
 				</HelmetProvider>
-				<AdminPageHead>
-                    Телефоны
-				</AdminPageHead>
+				<AdminPageHead>Телефоны</AdminPageHead>
 
 				<NewItemLayout>
-					
-					{isLoading? <Spinner/> :
-																				
+					{isLoading ? (
+						<Spinner />
+					) : (
 						<ItemCardInputArea>
 							<ItemCardInputLabel>Телефоны:</ItemCardInputLabel>
-							{phones.length > 0 && phones.map(phone => (
-								<CardEditItemActions key={phone.id}>
-									<CardEditItem content={phone.number} idItem={phone.id}
-										deleteMessage={`телефон: "${phone.number}"`} onClickAccept={onClickAccept}
-										onDelete={onDelete} placeholder='+7/8 ...'/>										
-								</CardEditItemActions>
-							))}
+							{phones.length > 0 &&
+								phones.map((phone) => (
+									<CardEditItemActions key={phone.id}>
+										<CardEditItem
+											content={phone.number}
+											idItem={phone.id}
+											deleteMessage={`телефон: "${phone.number}"`}
+											onClickAccept={onClickAccept}
+											onDelete={onDelete}
+											placeholder="+7/8 ..."
+										/>
+									</CardEditItemActions>
+								))}
 
-							{ newItemClicked?
+							{newItemClicked ? (
 								<CardEditItem
 									onClickAdd={onClickAddItem}
-									onRemoveItem={() => setNewItemClicked(!newItemClicked)} placeholder='+7/8 ...' newItem={true}/>
-								:
-								<AddItemButton shape='circle' className={cn(styles['action-btn'])}
-									onClick={() => setNewItemClicked(!newItemClicked)}>
+									onRemoveItem={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+									placeholder="+7/8 ..."
+									newItem={true}
+								/>
+							) : (
+								<AddItemButton
+									shape="circle"
+									className={cn(styles['action-btn'])}
+									onClick={() =>
+										setNewItemClicked(!newItemClicked)
+									}
+								>
 									{addItemPlus()}
 								</AddItemButton>
-							}
-								
-						</ItemCardInputArea>																						
-						
-					}
+							)}
+						</ItemCardInputArea>
+					)}
 				</NewItemLayout>
-				
-				
 			</div>
 		</section>
-	
 	);
-
 }
 
 export default EditPhones;
-

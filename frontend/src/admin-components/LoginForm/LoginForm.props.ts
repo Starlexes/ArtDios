@@ -1,3 +1,3 @@
 import { FormHTMLAttributes } from 'react';
 
-export type LoginFormProps = FormHTMLAttributes<HTMLFormElement>
+export type LoginFormProps = FormHTMLAttributes<HTMLFormElement>;

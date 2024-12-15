@@ -1,21 +1,21 @@
 .categories {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .subcategory-items {
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
 }
 
 .subcategory-item {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
 
 .category-name {
-    font-size: 24px;
-    font-weight: 700;
+	font-size: 24px;
+	font-weight: 700;
 }

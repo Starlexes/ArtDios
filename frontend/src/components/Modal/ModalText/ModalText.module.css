@@ -1,21 +1,21 @@
 .modal-text {
-    font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
-    font-weight: 300;
-    color: #464646;
+	font-size: clamp(14px, calc(16 / 1200 * 100vw), 16px);
+	font-weight: 300;
+	color: #464646;
 }
 
 .modal-thank {
-    font-weight: 300;
-    font-size: 24px;
-    color: var(--default-color);
+	font-weight: 300;
+	font-size: 24px;
+	color: var(--default-color);
 }
 
 @media (max-width: 880px) {
-    .modal-text {
-        font-size: max(calc(16 / 880 * 100vw), 12px);
-    }
-    
-    .modal-thank {
-        font-size: max(calc(24 / 880 * 100vw), 14px);
-    }
+	.modal-text {
+		font-size: max(calc(16 / 880 * 100vw), 12px);
+	}
+
+	.modal-thank {
+		font-size: max(calc(24 / 880 * 100vw), 14px);
+	}
 }

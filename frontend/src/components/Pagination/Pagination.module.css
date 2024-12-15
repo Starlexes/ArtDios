@@ -1,59 +1,58 @@
 .pagination {
-    display: flex;
-    gap: 24px;
-    align-items: center;
+	display: flex;
+	gap: 24px;
+	align-items: center;
 }
 
 .pagination-text {
-    font-weight: 700;
-    font-size: 32px;
-    color: var(--default-color);
+	font-weight: 700;
+	font-size: 32px;
+	color: var(--default-color);
 }
 
 .page-arrows {
-    display: flex;
-    gap: 48px;
+	display: flex;
+	gap: 48px;
 }
 
-
 .page-arrows .page-arrow:hover rect {
-    fill: #525252;
+	fill: #525252;
 }
 
 .page-arrow {
-    background-color: #EBEBEB;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	background-color: #ebebeb;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @media (max-width: 880px) {
-    .page-arrows {
-        gap: 40px;
-    }
+	.page-arrows {
+		gap: 40px;
+	}
 }
 
 @media (max-width: 510px) {
-    .page-arrows {
-        gap: 8px;
-    }
+	.page-arrows {
+		gap: 8px;
+	}
 
-    .page-arrow {
-        width: 40px;
-        height: 40px;
-    }
+	.page-arrow {
+		width: 40px;
+		height: 40px;
+	}
 
-    .page-arrow svg {
-        width: 18px;
-        height: 18px;
-    }
+	.page-arrow svg {
+		width: 18px;
+		height: 18px;
+	}
 }
 
 @media (max-width: 350px) {
-    .pagination-text {
-        font-size: 22px;
-    }
+	.pagination-text {
+		font-size: 22px;
+	}
 }

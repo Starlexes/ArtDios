@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {Product} from './productSlice';
+import { Product } from './productSlice';
 import axios from 'axios';
 
 export interface ProductCardState {
-    product: Product | null,
-    isLoading: boolean,
+	product: Product | null;
+	isLoading: boolean;
 	error: string | null;
 }
-
 
 const initialState: ProductCardState = {
 	product: null,
@@ -15,21 +14,19 @@ const initialState: ProductCardState = {
 	error: null
 };
 
+export const fetchProductCard = createAsyncThunk<
+	Product,
+	string,
+	{ rejectValue: string }
+>('productCard/fetchProductCard', async (productItem, { rejectWithValue }) => {
+	try {
+		const response = await axios.get(`/api/product/${productItem}/`);
 
-export const fetchProductCard = createAsyncThunk<Product, string, { rejectValue: string }>(
-	'productCard/fetchProductCard',
-	async (productItem, { rejectWithValue  }) => {
-		try {
-			
-			const response = await axios.get(`/api/product/${productItem}`);
-			
-			return response.data;
-		} catch (error) {
-			return rejectWithValue((error as Error).message);
-		}
+		return response.data;
+	} catch (error) {
+		return rejectWithValue((error as Error).message);
 	}
-);
-  
+});
 
 const productCardSlice = createSlice({
 	name: 'productCard',
@@ -40,19 +37,21 @@ const productCardSlice = createSlice({
 		setProductCard(state, action: PayloadAction<ProductCardState>) {
 			state.product = action.payload.product;
 		}
-	}, 
-    
+	},
+
 	extraReducers: (builder) => {
 		builder.addCase(fetchProductCard.pending, (state) => {
 			state.isLoading = true;
 			state.error = null;
-			
 		});
-		builder.addCase(fetchProductCard.fulfilled, (state, action: PayloadAction<Product>) => {
-			state.product = action.payload;
-			state.isLoading = false;
-			state.error = null;
-		});
+		builder.addCase(
+			fetchProductCard.fulfilled,
+			(state, action: PayloadAction<Product>) => {
+				state.product = action.payload;
+				state.isLoading = false;
+				state.error = null;
+			}
+		);
 		builder.addCase(fetchProductCard.rejected, (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload as string;

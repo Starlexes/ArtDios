@@ -1,23 +1,24 @@
 .list-item {
-    padding: 14px 0;
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    color: var(--text-color);
+	padding: 14px 0;
+	display: flex;
+	gap: 20px;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center;
+	color: var(--text-color);
 }
 
 .border-item {
-    border-bottom: 1px solid #838383;
+	border-bottom: 1px solid #838383;
 }
 
-.list-item:active, .list-item:active rect {
-    color: var(--active-color);
-    fill:  var(--active-color);
+.list-item:active,
+.list-item:active rect {
+	color: var(--active-color);
+	fill: var(--active-color);
 }
 
 .list-item svg {
-    min-width: 9px;
-    min-height: 15px;
+	min-width: 9px;
+	min-height: 15px;
 }

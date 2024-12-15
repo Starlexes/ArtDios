@@ -6,8 +6,13 @@ import { SearchSuggestionsItemProps } from './SearchSuggestionsItem.props';
 import cn from 'classnames';
 import { useMediaPredicate } from 'react-media-hook';
 
-function SearchSuggestionsItem({onClickLink, children, className, link, suggestItem}: SearchSuggestionsItemProps) {
-
+function SearchSuggestionsItem({
+	onClickLink,
+	children,
+	className,
+	link,
+	suggestItem
+}: SearchSuggestionsItemProps) {
 	const [isEntered, setIsEntered] = useState<boolean>(false);
 
 	const matches = useMediaPredicate('(min-width: 881px)');
@@ -22,15 +27,23 @@ function SearchSuggestionsItem({onClickLink, children, className, link, suggestI
 
 	return (
 		<li>
-			<NavItem to={catalog+link} onClick={() => onClickLink(suggestItem.name)}>
-				<div className={cn(styles['suggest-item'], className)} onMouseEnter={onMouseEnter}
-					onMouseLeave={onMouseLeave}>
+			<NavItem
+				to={catalog + link}
+				onClick={() => onClickLink(suggestItem.name)}
+			>
+				<div
+					className={cn(styles['suggest-item'], className)}
+					onMouseEnter={onMouseEnter}
+					onMouseLeave={onMouseLeave}
+				>
 					<div className={cn(styles['suggest-category'])}>
 						{children}
 					</div>
-					{(isEntered || !matches) &&
-					<span className={cn(styles['link-catalog'])}>Перейти в каталог</span>
-					}
+					{(isEntered || !matches) && (
+						<span className={cn(styles['link-catalog'])}>
+							Перейти в каталог
+						</span>
+					)}
 				</div>
 			</NavItem>
 		</li>
