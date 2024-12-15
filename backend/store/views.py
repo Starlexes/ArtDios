@@ -408,8 +408,22 @@ class ProductView(APIView):
                 
                 elif len(category) > 1 and admin:
                     products = products.filter(category__parent__slug__in=category)
-                
-                        
+                                        
+            if search:
+                search_vector = SearchVector('name', 'description', 'code') + \
+                        SearchVector(F('category__name')) + \
+                        SearchVector(F('category__parent__name'))
+                products = products.filter(
+                    Q(name__icontains=search) |
+                    Q(description__icontains=search) | 
+                    Q(category__name__icontains=search) |
+                    Q(category__parent__name__icontains=search) | 
+                    Q(code=search)
+                ).annotate(
+                    search=search_vector,
+                    rank=SearchRank(search_vector, SearchQuery(search))
+                ).order_by('-rank')
+
             aggregated_data = products.aggregate(
                 max_category_price=Max(
                     Case(
@@ -426,21 +440,6 @@ class ProductView(APIView):
                     )
                 )
             )
-            
-            if search:
-                search_vector = SearchVector('name', 'description', 'code') + \
-                        SearchVector(F('category__name')) + \
-                        SearchVector(F('category__parent__name'))
-                products = products.filter(
-                    Q(name__icontains=search) |
-                    Q(description__icontains=search) | 
-                    Q(category__name__icontains=search) |
-                    Q(category__parent__name__icontains=search) | 
-                    Q(code=search)
-                ).annotate(
-                    search=search_vector,
-                    rank=SearchRank(search_vector, SearchQuery(search))
-                ).order_by('-rank')
 
             
             if min_price and max_price:
