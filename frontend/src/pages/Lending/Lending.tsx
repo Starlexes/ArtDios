@@ -55,10 +55,10 @@ function Lending({ className }: LendingProps) {
 						categories.length > 0
 							? categories.find(
 									(item) => item.id === product.category
-								)
+							  )
 							: null;
 					return category ? category : null;
-				})
+			  })
 			: [];
 	const showPromo =
 		promo.length > 0
@@ -225,7 +225,8 @@ function Lending({ className }: LendingProps) {
 
 							<img
 								src={
-									mediaImagesPath + '/lending/image-door1.png'
+									mediaImagesPath +
+									'/lending/image-door1.webp'
 								}
 								alt="Распашные"
 							/>
@@ -247,7 +248,8 @@ function Lending({ className }: LendingProps) {
 							</div>
 							<img
 								src={
-									mediaImagesPath + '/lending/image-door2.png'
+									mediaImagesPath +
+									'/lending/image-door2.webp'
 								}
 								alt="Раздвижные"
 							/>
@@ -271,7 +273,8 @@ function Lending({ className }: LendingProps) {
 							</div>
 							<img
 								src={
-									mediaImagesPath + '/lending/image-door3.png'
+									mediaImagesPath +
+									'/lending/image-door3.webp'
 								}
 								alt="Раздвижные"
 							/>
@@ -300,7 +303,7 @@ function Lending({ className }: LendingProps) {
 								<img
 									src={
 										mediaImagesPath +
-										'/lending/double-door.png'
+										'/lending/double-door.webp'
 									}
 									alt="Двустворчатые межкомнатные двери"
 								/>
@@ -783,7 +786,8 @@ function Lending({ className }: LendingProps) {
 							</div>
 							<img
 								src={
-									mediaImagesPath + '/lending/enter-door1.png'
+									mediaImagesPath +
+									'/lending/enter-door1.webp'
 								}
 								alt="Распашные"
 							/>
@@ -816,7 +820,8 @@ function Lending({ className }: LendingProps) {
 							</div>
 							<img
 								src={
-									mediaImagesPath + '/lending/enter-door2.png'
+									mediaImagesPath +
+									'/lending/enter-door2.webp'
 								}
 								alt="Распашные"
 							/>
@@ -846,7 +851,8 @@ function Lending({ className }: LendingProps) {
 
 							<img
 								src={
-									mediaImagesPath + '/lending/enter-door3.png'
+									mediaImagesPath +
+									'/lending/enter-door3.webp'
 								}
 								alt="Распашные"
 							/>
@@ -920,7 +926,7 @@ function Lending({ className }: LendingProps) {
 							</div>
 
 							<img
-								src={mediaImagesPath + '/lending/floor1.png'}
+								src={mediaImagesPath + '/lending/floor1.webp'}
 								alt="Ламинат"
 							/>
 						</div>
@@ -959,7 +965,7 @@ function Lending({ className }: LendingProps) {
 							</div>
 
 							<img
-								src={mediaImagesPath + '/lending/floor2.png'}
+								src={mediaImagesPath + '/lending/floor2.webp'}
 								alt="Ламинат SPC"
 							/>
 						</div>
@@ -1185,7 +1191,7 @@ function Lending({ className }: LendingProps) {
 							</div>
 
 							<img
-								src={mediaImagesPath + '/lending/Vinil1.png'}
+								src={mediaImagesPath + '/lending/Vinil1.webp'}
 								alt="Ламинат"
 							/>
 						</div>
@@ -1247,7 +1253,7 @@ function Lending({ className }: LendingProps) {
 								</ul>
 							</div>
 							<img
-								src={mediaImagesPath + '/lending/Vinil2.png'}
+								src={mediaImagesPath + '/lending/Vinil2.webp'}
 								alt="Ламинат SPC"
 							/>
 
@@ -1288,7 +1294,7 @@ function Lending({ className }: LendingProps) {
 							</div>
 
 							<img
-								src={mediaImagesPath + '/lending/Vinil3.png'}
+								src={mediaImagesPath + '/lending/Vinil3.webp'}
 								alt="Ламинат SPC2"
 							/>
 						</div>
@@ -1324,7 +1330,7 @@ function Lending({ className }: LendingProps) {
 									<img
 										src={
 											mediaImagesPath +
-											'/lending/roof2.png'
+											'/lending/roof2.webp'
 										}
 										alt="Глянцевые натяжные потолки"
 									/>
@@ -1335,7 +1341,7 @@ function Lending({ className }: LendingProps) {
 									<img
 										src={
 											mediaImagesPath +
-											'/lending/roof3.png'
+											'/lending/roof3.webp'
 										}
 										alt="Матовые натяжные потолки"
 									/>
@@ -1401,7 +1407,7 @@ function Lending({ className }: LendingProps) {
 								</p>
 							</div>
 							<img
-								src={mediaImagesPath + '/lending/roof4.png'}
+								src={mediaImagesPath + '/lending/roof4.webp'}
 								alt="сатиновых натяжных потолков"
 							/>
 						</div>
@@ -1685,7 +1691,7 @@ function Lending({ className }: LendingProps) {
 									<img
 										src={
 											mediaImagesPath +
-											'/lending/roof5.png'
+											'/lending/roof5.webp'
 										}
 										alt="Сумерки"
 									/>
@@ -1696,7 +1702,7 @@ function Lending({ className }: LendingProps) {
 									<img
 										src={
 											mediaImagesPath +
-											'/lending/roof6.png'
+											'/lending/roof6.webp'
 										}
 										alt="День"
 									/>
@@ -1732,7 +1738,7 @@ function Lending({ className }: LendingProps) {
 							<img
 								src={
 									mediaImagesPath +
-									'/lending/window-image.png'
+									'/lending/window-image.webp'
 								}
 								alt="Пластиковые окна"
 							/>

@@ -36,7 +36,7 @@ function DeliveryPayments({ className }: DeliveryPaymentsProps) {
 							<img
 								src={
 									mediaImagesPath +
-									'/delivery-pays/delivery1.png'
+									'/delivery-pays/delivery1.webp'
 								}
 								alt="Скидка 5%"
 							/>
@@ -84,7 +84,7 @@ function DeliveryPayments({ className }: DeliveryPaymentsProps) {
 							<img
 								src={
 									mediaImagesPath +
-									'/delivery-pays/delivery2.png'
+									'/delivery-pays/delivery2.webp'
 								}
 								alt="Скидка 4%"
 							/>

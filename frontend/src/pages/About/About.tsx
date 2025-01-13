@@ -51,7 +51,7 @@ function About({ className }: AboutProps) {
 
 					<div className={cn(styles['content-item'])}>
 						<img
-							src={mediaImagesPath + '/about/about1.png'}
+							src={mediaImagesPath + '/about/about1.webp'}
 							alt="Преимущества фото"
 						/>
 					</div>
@@ -70,7 +70,7 @@ function About({ className }: AboutProps) {
 						</p>
 
 						<img
-							src={mediaImagesPath + '/about/about2.png'}
+							src={mediaImagesPath + '/about/about2.webp'}
 							alt="Собственный склад фото"
 						/>
 					</div>
@@ -87,7 +87,7 @@ function About({ className }: AboutProps) {
 						</p>
 
 						<img
-							src={mediaImagesPath + '/about/about3.png'}
+							src={mediaImagesPath + '/about/about3.webp'}
 							alt="Выставочный залы фото"
 						/>
 
@@ -98,7 +98,7 @@ function About({ className }: AboutProps) {
 						</p>
 
 						<img
-							src={mediaImagesPath + '/about/about4.png'}
+							src={mediaImagesPath + '/about/about4.webp'}
 							alt="Выставочный залы кварц-винил"
 						/>
 

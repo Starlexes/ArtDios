@@ -7,7 +7,7 @@ function LendingBanner({ className }: LendingBannerProps) {
 	return (
 		<div className={cn(styles['lending-banner'], className)}>
 			<img
-				src={mediaImagesPath + '/lending/lending-banner.png'}
+				src={mediaImagesPath + '/lending/lending-banner.webp'}
 				alt="АРТДИОС Баннер"
 			/>
 			<div className={cn(styles['banner-info'])}>
